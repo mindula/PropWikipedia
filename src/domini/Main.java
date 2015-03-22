@@ -9,7 +9,6 @@ public class Main {
         System.out.println(p.getNom());
         Categoria c = new Categoria("Categoria funciona");
         System.out.println(c.getNom());
-
     }
 
 
