@@ -1,3 +1,5 @@
+package domini;
+
 import java.util.Date;
 
 /**
@@ -5,6 +7,11 @@ import java.util.Date;
  */
 public class Sessio {
     //singleton
+
+    public enum Foo {
+        INSTANCE;
+    }
+
     private String nom;
     private Date dataCreacio;
 }
