@@ -7,7 +7,7 @@ public class testMain {
         System.out.println(p.getNom());
         Categoria c = new Categoria("Categoria funciona");
         System.out.println(c.getNom());
-
+        //test
     }
 
 
