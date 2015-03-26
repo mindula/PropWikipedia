@@ -8,6 +8,8 @@ public class testMain {
         Categoria c = new Categoria("Categoria funciona");
         System.out.println(c.getNom());
 
+
+        //jojojoj
     }
 
 
