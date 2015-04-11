@@ -1,4 +1,4 @@
-package domini;
+package graf;
 
 /*************************************************************************
  *  Compilació:   javac Graf.java
