@@ -9,7 +9,4 @@ public class testMain {
         System.out.println(c.getNom());
         //jojojoj
     }
-
-
-
 }
