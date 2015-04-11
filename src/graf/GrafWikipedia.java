@@ -34,11 +34,12 @@ package graf;
  *  <p>
  */
 
+/*S'ha de netejar coses, en principi això serà una herència de Graf*/
 import java.util.*;
 
 public class GrafWikipedia<T> {
 
-    private Map<T, Set<Arc<T>>> adjacencyMap;
+    protected Map<T, Set<Arc<T>>> adjacencyMap;
     private int V, E;
 
     /**
