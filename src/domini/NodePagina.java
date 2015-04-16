@@ -1,9 +1,9 @@
 package domini;
 
-public class Pagina extends NodeWiki {
+public class NodePagina extends NodeWiki {
     //falta l'associacio 'té predecessor'
 
-    public Pagina(String nom, boolean creat) {
+    public NodePagina(String nom, boolean creat) {
         super(nom, creat);
     }
 

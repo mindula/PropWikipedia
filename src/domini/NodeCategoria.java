@@ -1,9 +1,9 @@
 package domini;
 
-public class Categoria extends NodeWiki {
-    //falten associacions recursives
+public class NodeCategoria extends NodeWiki {
 
-    public Categoria(String nom, boolean creat) {
+
+    public NodeCategoria(String nom, boolean creat) {
         super(nom, creat);
     }
 
