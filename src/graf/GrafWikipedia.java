@@ -35,6 +35,9 @@ package graf;
  */
 
 /*S'ha de netejar coses, en principi això serà una herència de Graf*/
+import org.grupwiki.graf.Arc;
+import org.grupwiki.graf.Graf;
+
 import java.util.*;
 
 public class GrafWikipedia<T> {
@@ -46,9 +49,11 @@ public class GrafWikipedia<T> {
      * Inicialitza un Graf buit
      */
     public Graf() {
+
         adjacencyMap = new HashMap<T, Set<Arc<T>>>();
         V = E = 0;
     }
+
 
     public Graf(Graf G) {
         Set<T> setNodes = G.getNodes();
