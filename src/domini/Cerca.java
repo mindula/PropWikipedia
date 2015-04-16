@@ -1,5 +1,7 @@
 package domini;
 
+import org.grupwiki.graf.Graf;
+
 import java.util.Date;
 
 public class Cerca {
