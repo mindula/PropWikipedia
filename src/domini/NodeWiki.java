@@ -2,7 +2,7 @@ package domini;
 
 
 public abstract class NodeWiki {
-    ///
+    //////
     private String nom;
     private boolean creat;
 
