@@ -18,4 +18,12 @@ public class InfoCerca {
     public String getDataCerca() {
         return data;
     }
+
+    @Override
+    public String toString() {
+        return "InfoCerca{" +
+                "a=" + a +
+                ", data='" + data + '\'' +
+                '}';
+    }
 }

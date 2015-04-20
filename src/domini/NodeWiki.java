@@ -26,9 +26,25 @@ public abstract class NodeWiki {
 
     abstract public String getUrl();
 
+    @Override
+    public String toString() {
+        return nom;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        NodeWiki nodeWiki = (NodeWiki) o;
 
+        if (!nom.equals(nodeWiki.nom)) return false;
 
+        return true;
+    }
 
+    @Override
+    public int hashCode() {
+        return nom.hashCode();
+    }
 }

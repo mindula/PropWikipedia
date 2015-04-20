@@ -12,11 +12,21 @@ public abstract class Cerca {
 
     /*static Pattern patro = Pattern.compile(Pattern.quote(a.getNodeB().getNom()),
             Pattern.CASE_INSENSITIVE);*/
-    public static InfoCerca cercarCategoria(GrafWikipedia<NodeWiki> g, String query) {
+    public static InfoCerca cercarCategoria (GrafWikipedia<NodeWiki> g, String query) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         ArrayList<NodeWiki> res = cercaGraf(g, query);
         return new InfoCerca(res, dateFormat.format(date));
+    }
+
+    private static ArrayList<NodeWiki> cercaGraf (GrafWikipedia<NodeWiki> g, String query) {
+        //afegeix els resultats tal qual, estaria bé que els ordenés per afinitat amb la query feta
+        ArrayList<NodeWiki> l = new ArrayList<NodeWiki>();
+        Set<NodeWiki> s = g.getNodes();
+        for (NodeWiki n : s) {
+                if (n.getNom().contains(query)) l.add(n);  //case sensitive :(
+        }
+        return l;
     }
 
     /*private static ArrayList<NodeWiki> BFS(GrafWikipedia<NodeWiki> g, String query) {
@@ -41,18 +51,7 @@ public abstract class Cerca {
         return res;
     }*/
 
-    private static ArrayList<NodeWiki> cercaGraf (GrafWikipedia<NodeWiki> g, String query) {
-        ArrayList<NodeWiki> pq = new ArrayList<NodeWiki>();
-        Set<NodeWiki> s = g.getNodes();
-        for (NodeWiki n : s) {
-                boolean match = Pattern.compile(Pattern.quote(n.getNom()),
-                        Pattern.CASE_INSENSITIVE).matcher(query).find();
-                if (match) pq.add(n);
-        }
-        return pq;
-    }
-
-    private static NodeWiki getRandomNode(Set<NodeWiki> s) {
+    /*private static NodeWiki getRandomNode(Set<NodeWiki> s) {
         int size = s.size();
         int item = new Random().nextInt(size);
         int i = 0;
@@ -62,5 +61,5 @@ public abstract class Cerca {
             ++i;
         }
         return null;
-    }
+    }*/
 }
