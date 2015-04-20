@@ -7,21 +7,12 @@ import java.util.regex.Pattern;
 
 public abstract class Cerca {
 
+    static Pattern patro = Pattern.compile(Pattern.quote(a.getNodeB().getNom()),
+            Pattern.CASE_INSENSITIVE);
     public static ArrayList<NodeWiki> cercarCategoria(GrafWikipedia<NodeWiki> g, String query, Date data) {
+        //Encapsular query, data i ArrayList dins un objecte?
         ArrayList<NodeWiki> res = BFS(g, query);
         return res;
-    }
-
-    private static NodeWiki getRandomNode(Set<NodeWiki> s) {
-        int size = s.size();
-        int item = new Random().nextInt(size);
-        int i = 0;
-        for(NodeWiki node : s) {
-            if (i == item)
-                return node;
-            ++i;
-        }
-        return null;
     }
 
     private static ArrayList<NodeWiki> BFS(GrafWikipedia<NodeWiki> g, String query) {
@@ -44,5 +35,27 @@ public abstract class Cerca {
             }
         }
         return res;
+    }
+
+    private static Queue<NodeWiki> cercaGraf (GrafWikipedia<NodeWiki> g, String query) {
+        PriorityQueue<NodeWiki> pq = new PriorityQueue<NodeWiki>(g.ordre(), new Comparator<NodeWiki>() {
+            @Override
+            public int compare(NodeWiki nodeWiki, NodeWiki t1) {
+                return nodeWiki.getNom().in
+                return 0;
+            }
+        });
+    }
+
+    private static NodeWiki getRandomNode(Set<NodeWiki> s) {
+        int size = s.size();
+        int item = new Random().nextInt(size);
+        int i = 0;
+        for(NodeWiki node : s) {
+            if (i == item)
+                return node;
+            ++i;
+        }
+        return null;
     }
 }
