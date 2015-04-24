@@ -1,0 +1,16 @@
+multispectral_segmentation	page	PC	magnetic_resonance_imaging	cat
+fertility_preservation	page	PC	oncology	cat
+fertility_preservation	page	PC	fertility_medicine	cat
+amanita_muscaria_var._formosa	page	PC	fungi_of_north_america	cat
+amanita_muscaria_var._formosa	page	PC	amanita	cat
+amanita_muscaria_var._formosa	page	PC	edible_fungi	cat
+amanita_muscaria_var._formosa	page	PC	poisonous_fungi	cat
+wireless_ambulatory_ecg	page	PC	health_informatics	cat
+wireless_ambulatory_ecg	page	PC	cardiology	cat
+bosworth_fracture	page	PC	bone_fractures	cat
+operating_microscope	page	PC	endodontics	cat
+operating_microscope	page	PC	surgery	cat
+operating_microscope	page	PC	dentistry	cat
+pulmonary_hygiene	page	PC	respiratory_therapy	cat
+pulmonary_hygiene	page	PC	respiratory_system_procedures	cat
+kinesitherapy	page	PC	massage_therapy	cat

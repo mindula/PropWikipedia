@@ -1,6 +1,5 @@
 package graf;
 
-
 import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
@@ -47,6 +46,7 @@ public class GrafWikipedia extends Graf<NodeWiki> {
     public void eliminarArc(Arc<NodeWiki> arc) {
         adjacencyMap.remove(arc.getNodeA());
     }
+
 
 
 }
