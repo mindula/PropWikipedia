@@ -1,7 +1,7 @@
 package domini;
 
 public class NodePagina extends NodeWiki {
-    //falta l'associacio 'té predecessor'
+    //falta l'associacio 'té predecessor' .
 
     public NodePagina(String nom, boolean creat) {
         super(nom, creat);
