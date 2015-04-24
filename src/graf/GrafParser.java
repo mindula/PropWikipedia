@@ -14,7 +14,7 @@ public class GrafParser {
     public GrafWikipedia parse(Path path){
         GrafWikipedia g = new GrafWikipedia();
         try{
-            List<String> l = Files.readAllLines(path, Charset.defaultCharset()); // canviar la implementació, fitxers grans
+            List<String> l = Files.readAllLines(path, Charset.defaultCharset()); // canviar la implementacio, fitxers grans
             for(String s: l){
                 parseLine(s);
             }
