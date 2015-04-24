@@ -12,14 +12,14 @@ public abstract class Cerca {
 
     /*static Pattern patro = Pattern.compile(Pattern.quote(a.getNodeB().getNom()),
             Pattern.CASE_INSENSITIVE);*/
-    public static InfoCerca cercarCategoria (GrafWikipedia<NodeWiki> g, String query) {
+    public static InfoCerca cercarCategoria (GrafWikipedia g, String query) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         ArrayList<NodeWiki> res = cercaGraf(g, query);
         return new InfoCerca(res, dateFormat.format(date));
     }
 
-    private static ArrayList<NodeWiki> cercaGraf (GrafWikipedia<NodeWiki> g, String query) {
+    private static ArrayList<NodeWiki> cercaGraf (GrafWikipedia g, String query) {
         //afegeix els resultats tal qual, estaria bé que els ordenés per afinitat amb la query feta
         ArrayList<NodeWiki> l = new ArrayList<NodeWiki>();
         Set<NodeWiki> s = g.getNodes();

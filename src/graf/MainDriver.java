@@ -5,6 +5,7 @@ import graf.graftransform.GrafTransform;
 import graf.graftransform.NomTransform;
 import graf.graftransform.PlainTransform;
 import org.grupwiki.graf.Algoritme;
+import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 import org.grupwiki.louvain.AlgoritmeLouvain;
 
@@ -23,15 +24,17 @@ public class MainDriver {
 
         Graf<NodeWiki> grafPerAlgoritme = parser.parse("fitxer1");
 
-        List<GrafTransform> transformList = new ArrayList<GrafTransform>();
 
-        transformList.add(new PlainTransform());
-        transformList.add(new NomTransform());
 
-        for(GrafTransform transform : transformList)
-            grafPerAlgoritme = transform.transform(grafPerAlgoritme);
 
-        Algoritme<NodeWiki> algoritme = new AlgoritmeLouvain();
+
+        Algoritme<NodeWiki> algoritme = new Algoritme<NodeWiki>() {
+            @Override
+            public ConjuntComunitats<NodeWiki> cercarComunitats(Graf<NodeWiki> graf, int k, int l) {
+                return null;
+            }
+        };
+
 
 
     }

@@ -1,7 +1,6 @@
 package graf.graftransform;
 
 import domini.NodeWiki;
-import graf.GrafWikipedia;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
@@ -10,7 +9,7 @@ import java.util.*;
 /**
  * Created by gus on 16/04/15.
  */
-public class NomTransform extends GrafTransormDecorator {
+public class NomTransform extends GrafTransformDecorator {
 
     public NomTransform(GrafTransform delegate) {
         super(delegate);

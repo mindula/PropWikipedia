@@ -4,15 +4,22 @@ import domini.NodeWiki;
 import graf.GrafWikipedia;
 import org.grupwiki.graf.Graf;
 
+import javax.xml.soap.Node;
+
 /**
  * Created by gus on 16/04/15.
  */
-public class PlainTransform extends GrafTransform {
+public class PlainTransform extends GrafTransformDecorator {
+    public PlainTransform(GrafTransform delegate) {
+        super(delegate);
+    }
+
     @Override
-    public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
-        if(from instanceof GrafWikipedia)
-            return GrafWikipedia.convertBidirectional((GrafWikipedia)from);
-        else
-            return from;
+    public void transform(Graf<NodeWiki> from) {
+        super.transform(from);
+
+        Graf<NodeWiki> graf = GrafWikipedia.convertBidirectional((GrafWikipedia)from);
+        from = graf;
+
     }
 }
