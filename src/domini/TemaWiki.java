@@ -3,11 +3,9 @@ package domini;
 import org.grupwiki.graf.Comunitat;
 
 /**
- * Created with IntelliJ IDEA.
+ * Grup 3: Wikipedia
  * User: eduard.casellas
  * Date: 24/04/15
- * Time: 13:17
- * To change this template use File | Settings | File Templates.
  */
 
 
@@ -17,14 +15,14 @@ public class TemaWiki extends Comunitat<NodeWiki> {
      *
      * @param id
      */
+
     public TemaWiki(int id) {
         super(id);
     }
 
-    public eliminarNode(NodeWiki node){
+    public void eliminarNode(NodeWiki node){
         nodes.remove(node);
     }
-
 
 
 

@@ -1,5 +1,11 @@
 package domini;
 
+/**
+ * Grup 3: Wikipedia
+ * User: eduard.casellas
+ * Date: 18/04/15
+ */
+
 public class NodePagina extends NodeWiki {
     //falta l'associacio 'té predecessor' .
 

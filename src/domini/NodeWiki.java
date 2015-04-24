@@ -1,5 +1,11 @@
 package domini;
 
+/**
+ * Grup 3: Wikipedia
+ * User: eduard.casellas
+ * Date: 3/04/15
+ */
+
 
 public abstract class NodeWiki {
 
@@ -47,4 +53,6 @@ public abstract class NodeWiki {
     public int hashCode() {
         return nom.hashCode();
     }
+
+
 }
