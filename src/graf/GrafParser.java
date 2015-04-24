@@ -37,6 +37,4 @@ public class GrafParser {
         Pattern p = Pattern.compile("");
         Matcher m = p.matcher(s);*/
     }
-
-
 }
