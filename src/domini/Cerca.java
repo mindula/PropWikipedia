@@ -12,7 +12,7 @@ import java.util.*;
 
 public abstract class Cerca {
 
-    public static InfoCerca cercarCategoria (GrafWikipedia g, String query) {
+    public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return new InfoCerca(cercaGraf(g, query), dateFormat.format(date));

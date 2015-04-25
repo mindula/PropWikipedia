@@ -40,4 +40,11 @@ public class Historial {
     public List<InfoCerca> getCerques() {
         return Collections.unmodifiableList(llistatCerques);
     }
+
+    @Override
+    public String toString() {
+        return "Historial{" +
+                "llistatCerques=" + llistatCerques +
+                '}';
+    }
 }

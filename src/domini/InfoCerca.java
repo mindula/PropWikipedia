@@ -1,7 +1,5 @@
 package domini;
 
-import java.util.ArrayList;
-
 public class InfoCerca {
     NodeWiki a;
     private String data;

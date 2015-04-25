@@ -27,8 +27,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     }
 
     // Calcula ki: la suma dels pesos dels arcs incidents al NodeWiki node
-    private int ki(Graf<T> graf, T node){
-        int ki = 0;
+    private double ki(Graf<T> graf, T node){
+        double ki = 0;
         Set<Arc<T>> set = graf.getNodesAdjacents(node);
         for(Arc<T> a : set) ki += a.getPes();
         return ki;
