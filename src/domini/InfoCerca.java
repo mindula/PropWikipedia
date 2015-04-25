@@ -3,15 +3,19 @@ package domini;
 import java.util.ArrayList;
 
 public class InfoCerca {
-    private ArrayList<NodeWiki> a;
+    NodeWiki a;
     private String data;
 
-    public InfoCerca(ArrayList<NodeWiki> a, String data) {
+    private InfoCerca() {
+        super();
+    }
+
+    public InfoCerca(NodeWiki a, String data) {
         this.a = a;
         this.data = data;
     }
 
-    public ArrayList<NodeWiki> getResultats() {
+    public NodeWiki getResultat() {
         return a;
     }
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class AlgorismeLouvain extends Algoritme<NodeWiki>{
     @Override
-    public ConjuntComunitats<NodeWiki> cercarComunitats(Graf<NodeWiki> graf, int k, int l) {
+    public ConjuntComunitats<NodeWiki> cercarComunitats(Graf<NodeWiki> graf, int k, int l) throws Exception{
         int m2 = m2(graf);
         // TODO: implementar l'algoritme
     }
@@ -19,6 +19,7 @@ public class AlgorismeLouvain extends Algoritme<NodeWiki>{
         int sumaArcs = 0;
         // TODO: falta metode getArcs del graf! O necessitem accedir a l'atribut privat de la classe Graf...
         // TODO: l'alternativa amb l'especificacio actual seria fer un getNodes i un getNodesAdjacents per cada un, pero es poc eficient
+            //DONE: un cop Alicia ho permeti, tenim una operació amb cost O(1)
         return sumaArcs;
     }
 
