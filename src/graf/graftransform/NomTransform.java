@@ -37,7 +37,7 @@ public class NomTransform extends GrafTransformDecorator {
     }
 
     @Override
-    public void transform(Graf<NodeWiki> from) {
+    public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
         super.transform(from);
 
         List<NodeWiki> nodes = new ArrayList<NodeWiki>();
@@ -64,5 +64,6 @@ public class NomTransform extends GrafTransformDecorator {
             }
         }
 
+        return ret;
     }
 }

@@ -14,8 +14,10 @@ public class GrafTransformDecorator implements GrafTransform {
     }
 
     @Override
-    public void transform(Graf<NodeWiki> from) {
+    public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
         if(delegate != null)
-            delegate.transform(from);
+            return delegate.transform(from);
+        else
+            return null;
     }
 }
