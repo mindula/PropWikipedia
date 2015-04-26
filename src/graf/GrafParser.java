@@ -5,8 +5,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 public class GrafParser {
     //public GrafParser();

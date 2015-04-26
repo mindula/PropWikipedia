@@ -10,8 +10,11 @@ package domini;
 public abstract class NodeWiki {
 
     private String nom;
-    private boolean creat;  //if TRUE, node creat manualment
-    //private String color;  //funcions opcionals
+    /**
+     * Creat: creat manualment (segueixo sense trobarli el sentit)
+     */
+    private boolean creat;
+    //private String color;  //aixo anira en una extensio. crec yo vaya
 
     public NodeWiki(String nom, boolean creat){
         this.nom = nom;

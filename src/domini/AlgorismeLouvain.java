@@ -1,9 +1,6 @@
 package domini;
 
-import org.grupwiki.graf.Algoritme;
-import org.grupwiki.graf.Arc;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import org.grupwiki.graf.*;
 
 import java.util.List;
 import java.util.Set;
@@ -11,9 +8,10 @@ import java.util.Set;
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l) throws Exception{
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l) throws GrafExeption{
         double m2 = m2(graf);
         // TODO: implementar l'algoritme
+        return null;
     }
 
     // Calcula m*2, es a dir, per a tot arc del graf, la suma del seu pes (un arc del node A al node B s'ha de sumar 2 cops)

@@ -26,6 +26,6 @@ public class Test {
         gw.afegirArc(new Arc(0, n2, n3));
         gw.afegirArc(new Arc(0, n4, n1));
         gw.afegirArc(new Arc(0, n3, n6));
-        System.out.print(Cerca.cercarCategoria(gw, "6"));
+        // System.out.print(Cerca.cercarCategoria(gw, "6"));
     }
 }

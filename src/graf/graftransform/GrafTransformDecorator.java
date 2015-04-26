@@ -13,6 +13,9 @@ public class GrafTransformDecorator implements GrafTransform {
         this.delegate = delegate;
     }
 
+    public GrafTransformDecorator(){
+
+    }
     @Override
     public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
         if(delegate != null)

@@ -4,8 +4,6 @@ import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
-import java.util.*;
-
 /**
  * Created by gus on 16/04/15.
  */
@@ -14,23 +12,14 @@ public class NomTransform extends GrafTransformDecorator {
     public NomTransform(GrafTransform delegate) {
         super(delegate);
     }
-
-    private class NodeWikiSorter implements Comparator<NodeWiki> {
-
-        @Override
-        public int compare(NodeWiki o1, NodeWiki o2) {
-            return o1.getNom().compareTo(o2.getNom());
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return false;
-        }
+    public NomTransform() {
+        super();
     }
 
     private static int getCommonLetters(String s1, String s2){
         int i = 0;
-        while(s1.charAt(i) == s2.charAt(i)){
+        int minLetters = Math.min(s1.length(), s2.length());
+        while(i < minLetters && s1.charAt(i) == s2.charAt(i)){
             i++;
         }
         return i;
@@ -39,27 +28,27 @@ public class NomTransform extends GrafTransformDecorator {
     @Override
     public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
         super.transform(from);
+        System.out.println("NomTransform");
 
-        List<NodeWiki> nodes = new ArrayList<NodeWiki>();
-        nodes.addAll(from.getNodes());
-        Collections.sort(nodes, new NodeWikiSorter());
 
         Graf<NodeWiki> ret = new Graf<NodeWiki>();
 
-        for(NodeWiki n1: nodes){
-            int commonLetters = 999;
-            for(int i = 0; i<nodes.size() && commonLetters > 0; i++){
-                NodeWiki n2 = nodes.get(i);
+        for(NodeWiki n1: from.getNodes()){
+            for(NodeWiki n2 :  from.getNodes()){
+
                 if(n1 != n2) {
-                    commonLetters = getCommonLetters(n1.getNom(), n2.getNom());
+                    int commonLetters = getCommonLetters(n1.getNom(), n2.getNom());
 
                     if(!ret.existeixNode(n1))
                         ret.afegirNode(n1);
                     if(!ret.existeixNode(n2))
                         ret.afegirNode(n2);
 
-                    Arc<NodeWiki> arc = new Arc<NodeWiki>(commonLetters, n1, n2);
-                    ret.afegirArc(arc);
+                    if(commonLetters > 0) {
+                        Arc<NodeWiki> arc = new Arc<NodeWiki>(commonLetters, n1, n2);
+                        ret.afegirArc(arc);
+                    }
+
                 }
             }
         }
