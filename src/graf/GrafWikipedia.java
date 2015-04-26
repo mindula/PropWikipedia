@@ -46,7 +46,4 @@ public class GrafWikipedia extends Graf<NodeWiki> {
     public void eliminarArc(Arc<NodeWiki> arc) {
         adjacencyMap.remove(arc.getNodeA());
     }
-
-
-
 }

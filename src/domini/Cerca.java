@@ -1,65 +1,29 @@
 package domini;
 
-import graf.GrafWikipedia;
-import org.grupwiki.graf.Arc;
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard.gascons
+ * Data: 15/4/15
+ */
 
-import javax.xml.soap.Node;
+import graf.GrafWikipedia;
 import java.text.*;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public abstract class Cerca {
 
-    /*static Pattern patro = Pattern.compile(Pattern.quote(a.getNodeB().getNom()),
-            Pattern.CASE_INSENSITIVE);*/
-    public static InfoCerca cercarCategoria (GrafWikipedia g, String query) {
+    public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        ArrayList<NodeWiki> res = cercaGraf(g, query);
-        return new InfoCerca(res, dateFormat.format(date));
+        return new InfoCerca(cercaGraf(g, query), dateFormat.format(date));
     }
 
-    private static ArrayList<NodeWiki> cercaGraf (GrafWikipedia g, String query) {
-        //afegeix els resultats tal qual, estaria bé que els ordenés per afinitat amb la query feta
-        ArrayList<NodeWiki> l = new ArrayList<NodeWiki>();
+    //Atenció: Retorna NULL si no troba res
+    private static NodeWiki cercaGraf (GrafWikipedia g, String query) {
         Set<NodeWiki> s = g.getNodes();
         for (NodeWiki n : s) {
-                if (n.getNom().contains(query)) l.add(n);  //case sensitive :(
-        }
-        return l;
-    }
-
-    /*private static ArrayList<NodeWiki> BFS(GrafWikipedia<NodeWiki> g, String query) {
-        ArrayList<NodeWiki> res = new ArrayList<NodeWiki>();
-        Queue<NodeWiki> q = new LinkedList<NodeWiki>();
-        Queue<NodeWiki> visited = new LinkedList<NodeWiki>();       //hi ha formes més eficients de fer-ho
-        q.add(getRandomNode(g.getNodes()));
-        while(!q.isEmpty()) {
-            visited.add(q.peek());
-            NodeWiki n = q.remove();
-            Set<Arc<NodeWiki>> adjacents = g.getNodesAdjacents(n);
-            for (Arc<NodeWiki> a : adjacents) {
-                if (!visited.contains(a.getNodeB())) {
-                    boolean match = Pattern.compile(Pattern.quote(a.getNodeB().getNom()),
-                            Pattern.CASE_INSENSITIVE).matcher(query).find();
-                    if (match) res.add(a.getNodeB());
-                    q.add(a.getNodeB());
-                    visited.add(a.getNodeB());
-                }
-            }
-        }
-        return res;
-    }*/
-
-    /*private static NodeWiki getRandomNode(Set<NodeWiki> s) {
-        int size = s.size();
-        int item = new Random().nextInt(size);
-        int i = 0;
-        for (NodeWiki node : s) {
-            if (i == item)
-                return node;
-            ++i;
+                if (n.getNom().toLowerCase().contains(query.toLowerCase())) return n;
         }
         return null;
-    }*/
+    }
 }
