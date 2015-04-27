@@ -24,6 +24,6 @@ public abstract class Cerca {
         for (NodeWiki n : s) {
                 if (n.getNom().toLowerCase().contains(query.toLowerCase())) return n;
         }
-        return null;
+        return null;        //controlar-ho amb una excepció
     }
 }

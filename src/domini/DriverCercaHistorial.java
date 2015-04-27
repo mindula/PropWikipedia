@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class DriverCercaHistorial {
 
     private GrafWikipedia g;
-    Historial h;
+    private Historial h;
 
     private DriverCercaHistorial () {
         super();
