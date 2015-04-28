@@ -8,9 +8,7 @@ import graf.graftransform.PlainTransform;
 import org.grupwiki.graf.Algoritme;
 import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
-import org.grupwiki.graf.GrafExeption;
-
-import javax.xml.soap.Node;
+import domini.GrafExeption;
 
 /**
  * Created by gus on 16/04/15.
@@ -41,12 +39,8 @@ public class MainDriver {
         Algoritme<NodeWiki> algoritme = new AlgorismeLouvain<NodeWiki>();
 
 
-        try {
-            ConjuntComunitats<NodeWiki> nodeWikiConjuntComunitats = algoritme.cercarComunitats(grafWikipedia, 3, 1);
-            System.out.println(nodeWikiConjuntComunitats);
-        } catch (GrafExeption grafExeption) {
-            grafExeption.printStackTrace();
-        }
+        ConjuntComunitats<NodeWiki> nodeWikiConjuntComunitats = algoritme.cercarComunitats(grafWikipedia, 3, 1);
+        System.out.println(nodeWikiConjuntComunitats);
 
 
     }
