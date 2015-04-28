@@ -1,7 +1,13 @@
 package domini;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard.gascons
+ * Data: 15/4/15
+ */
+
 public class InfoCerca {
-    NodeWiki a;
+    private NodeWiki a;
     private String data;
 
     private InfoCerca() {

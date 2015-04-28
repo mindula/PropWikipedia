@@ -12,18 +12,18 @@ import java.util.*;
 
 public abstract class Cerca {
 
-    public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) {
+    public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return new InfoCerca(cercaGraf(g, query), dateFormat.format(date));
     }
 
     //Atenció: Retorna NULL si no troba res
-    private static NodeWiki cercaGraf (GrafWikipedia g, String query) {
+    private static NodeWiki cercaGraf (GrafWikipedia g, String query) throws Exception {
         Set<NodeWiki> s = g.getNodes();
         for (NodeWiki n : s) {
-                if (n.getNom().toLowerCase().contains(query.toLowerCase())) return n;
+            if (n.getNom().toLowerCase().contains(query.toLowerCase())) return n;
         }
-        return null;        //controlar-ho amb una excepció
+        throw new Exception("No s'ha trobat cap resultat");
     }
 }

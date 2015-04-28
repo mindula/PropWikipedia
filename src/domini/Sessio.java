@@ -1,18 +1,36 @@
 package domini;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//S'ha de tenir en compte que aquesta classe és un singleton
-public class Sessio {
-    private String nom;
-    private Date dataCreacio;
-    private int nombreCategories, nombrePagines;
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard
+ * Data: 3/22/15
+ */
 
-    public Sessio (String nom, Date dataCreacio, int nombreCategories, int nombrePagines) {
+public class Sessio {
+
+    private static Sessio INSTANCE;
+
+    private String nom;
+    private String dataCreacio;
+
+    private Sessio() {}
+
+    public static Sessio getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Sessio();
+        }
+        return INSTANCE;
+    }
+
+    public Sessio (String nom) {
         this.nom = nom;
-        this.dataCreacio = dataCreacio;
-        this.nombreCategories = nombreCategories;
-        this.nombrePagines = nombrePagines;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataCreacio = new Date();
+        this.dataCreacio = dateFormat.format(dataCreacio);
     }
 
     public String getNom() {
@@ -23,27 +41,7 @@ public class Sessio {
         this.nom = nom;
     }
 
-    public Date getDataCreacio() {
+    public String getDataCreacio() {
         return dataCreacio;
-    }
-
-    public void setDataCreacio(Date dataCreacio) {
-        this.dataCreacio = dataCreacio;
-    }
-
-    public int getNombreCategories() {
-        return nombreCategories;
-    }
-
-    public void setNombreCategories(int nombreCategories) {
-        this.nombreCategories = nombreCategories;
-    }
-
-    public int getNombrePagines() {
-        return nombrePagines;
-    }
-
-    public void setNombrePagines(int nombrePagines) {
-        this.nombrePagines = nombrePagines;
     }
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l) throws GrafExeption{
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l){
         double m2 = m2(graf);
         // TODO: implementar l'algoritme
         return null;
