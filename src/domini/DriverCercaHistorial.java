@@ -11,7 +11,8 @@ import java.util.Scanner;
  */
 public class DriverCercaHistorial {
 
-    public static void main (GrafWikipedia g) {     //Es una guarrada
+    public static void main (String[] args) {
+        GrafWikipedia g = new GrafWikipedia();         //solucionar graf q li passo
         Historial h = Historial.getInstance();
         System.out.println("Escull una opció: 1. Buscar     2. Historial de cerques     3. Finalitzar test");
         Scanner sc = new Scanner(System.in);
