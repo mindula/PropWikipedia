@@ -1,5 +1,7 @@
 package domini;
 
+import org.grupwiki.graf.ConjuntComunitats;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
@@ -7,6 +9,11 @@ package domini;
  */
 public class DriverComnunitatCjtComunitats {
 
+    public static void main (String[] args){
+        CjtComunitatsWiki cjt = new CjtComunitatsWiki();
+
+
+    }
 
 
 
