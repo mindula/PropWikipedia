@@ -14,6 +14,9 @@ public abstract class NodeWiki {
      * Creat: creat manualment (segueixo sense trobarli el sentit)
      */
     private boolean creat;
+
+
+    private boolean isCategoria;
     //private String color;  //aixo anira en una extensio. crec yo vaya
 
     public NodeWiki(String nom, boolean creat){
