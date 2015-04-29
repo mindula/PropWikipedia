@@ -25,7 +25,7 @@ public class DriverCercaHistorial {
                     InfoCerca i;
                     try {
                         i = Cerca.cercarWikipedia(g, paraula);
-                        System.out.println("S'ha trobat el node" + i.getResultat() + "amb data" + i.getDataCerca());
+                        System.out.println("S'ha trobat el node " + i.getResultat() + " amb data " + i.getDataCerca());
                         h.afegirCerca(i);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());

@@ -14,10 +14,12 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         double m2 = m2(graf);
         int numComunitats = graf.ordre();
         ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
-        HashMap<T, Comunitat<T>> nodeComunitat = new HashMap<T, Comunitat<T>>();
+        HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
         for(T node : graf.getNodes()){
-            classificacio.afegirComunitat(new Comunitat<T>(node));
+            Comunitat<T> c = new Comunitat<T>(node);
+            classificacio.afegirComunitat(c);
+            nodeToComunitat.put(node, c);
         }
         while(numComunitats > criteriParada){
             //Fase 1
@@ -25,7 +27,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             do {
                 Set<T> nodesGraf = graf.getNodes();
                 for (T node : nodesGraf) {
-                    double aillarNode = - deltaQ(node);
+                    double aillarNode = - deltaQ(node, nodeToComunitat.get(node), graf, m2);
+                    
                 }
 
             } while(canviQ);
