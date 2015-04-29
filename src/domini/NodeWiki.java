@@ -21,9 +21,9 @@ public abstract class NodeWiki {
     private boolean isCategoria; */
     //private String color;  //aixo anira en una extensio. crec yo vaya
 
-    public NodeWiki(String nom, boolean creat){
+    public NodeWiki(String nom){
         this.nom = nom;
-        this.creat = creat;
+        this.creat = false;
     }
 
     public String getNom() {
@@ -33,6 +33,10 @@ public abstract class NodeWiki {
     public void setNom(String nom) {        //modificar node
         this.nom = nom;
     }  //Modificar nom node
+
+    public void setCreat(boolean creat) {
+        this.creat = creat;
+    }
 
     public boolean getCreat() {
         return creat;
