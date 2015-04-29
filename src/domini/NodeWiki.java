@@ -15,8 +15,10 @@ public abstract class NodeWiki {
      */
     private boolean creat;
 
-
-    private boolean isCategoria;
+    /*
+     * isCreat = True si el node és una Categoria, si és False és una pàgina
+     *
+    private boolean isCategoria; */
     //private String color;  //aixo anira en una extensio. crec yo vaya
 
     public NodeWiki(String nom, boolean creat){
