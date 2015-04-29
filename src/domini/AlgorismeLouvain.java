@@ -8,10 +8,19 @@ import java.util.Set;
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l){
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int criteriParada, int nul){
         double m2 = m2(graf);
         // TODO: implementar l'algoritme
-        return null;
+        int numComunitats = graf.ordre();
+        ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
+        for(T node : graf.getNodes()){
+
+        }
+        while(numComunitats > criteriParada){
+
+
+        }
+        return classificacio;
     }
 
     // Calcula m*2, es a dir, per a tot arc del graf, la suma del seu pes (un arc del node A al node B s'ha de sumar 2 cops)
