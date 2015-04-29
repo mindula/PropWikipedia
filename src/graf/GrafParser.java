@@ -6,6 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: aleix.paris
+ * Data: 23/4/15
+ */
+
 public class GrafParser {
     //public GrafParser();
 
