@@ -18,16 +18,16 @@ public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
 
     public ComunitatWiki union(ComunitatWiki a, ComunitatWiki b){
             ComunitatWiki c = new ComunitatWiki();
-            c.getComunitat().addAll(a.getComunitat());
-            c.getComunitat().addAll(b.getComunitat());
+            c.getNodes().addAll(a.getNodes());
+            c.getNodes().addAll(b.getNodes());
             return c;
     }
 
     public ComunitatWiki intersection(ComunitatWiki a, ComunitatWiki b){
             ComunitatWiki c = new ComunitatWiki();
-            for (NodeWiki n : a.getComunitat()){
-                if (b.getComunitat().contains(n)){
-                    c.getComunitat().add(n);
+            for (NodeWiki n : a.getNodes()){
+                if (b.getNodes().contains(n)){
+                    c.getNodes().add(n);
                 }
             }
             return c;
@@ -35,8 +35,8 @@ public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
 
     public ComunitatWiki diferencia(ComunitatWiki a, ComunitatWiki b){
         ComunitatWiki c = new ComunitatWiki();
-        c.getComunitat().addAll(a.getComunitat());
-        c.getComunitat().removeAll(b.getComunitat());
+        c.getNodes().addAll(a.getNodes());
+        c.getNodes().removeAll(b.getNodes());
         afegirComunitat(c);
         return c;
     }
