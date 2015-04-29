@@ -17,4 +17,6 @@ public class NodePagina extends NodeWiki {
         if (getCreat()) System.out.println("El url probablement no existeix ja que es tracta d'una pàgina inventada") ;
         return "www.wikipedia.org/wiki/"+getNom().replaceAll(" ","_");
     }
+
+
 }

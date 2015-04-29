@@ -9,20 +9,21 @@ import org.grupwiki.graf.Comunitat;
  */
 
 
-public class TemaWiki extends Comunitat<NodeWiki> {
+public class ComunitatWiki extends Comunitat<NodeWiki> {
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
      *
      * @param id
      */
 
-    public TemaWiki(int id) {
+    public ComunitatWiki(int id) {
         super(id);
     }
 
     public void eliminarNode(NodeWiki node){
         nodes.remove(node);
     }
+
 
 
 

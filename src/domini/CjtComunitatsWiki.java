@@ -7,8 +7,8 @@ import org.grupwiki.graf.ConjuntComunitats;
  * Usuari: eduard.casellas
  * Data: 24/04/15
  */
-public class ClassificacioWiki extends ConjuntComunitats<NodeWiki> {
-    public ClassificacioWiki() {
+public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
+    public CjtComunitatsWiki() {
         super();
     }
 
@@ -16,5 +16,9 @@ public class ClassificacioWiki extends ConjuntComunitats<NodeWiki> {
         cjtComunitats.remove(id);
     }
 
+    private void interseccio(ComunitatWiki a, ComunitatWiki b){
+
+
+    }
 
 }
