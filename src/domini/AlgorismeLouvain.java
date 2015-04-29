@@ -2,6 +2,7 @@ package domini;
 
 import org.grupwiki.graf.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         double m2 = m2(graf);
         int numComunitats = graf.ordre();
         ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
+        HashMap<T, Comunitat<T>> nodeComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
         for(T node : graf.getNodes()){
             classificacio.afegirComunitat(new Comunitat<T>(node));
@@ -23,7 +25,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             do {
                 Set<T> nodesGraf = graf.getNodes();
                 for (T node : nodesGraf) {
-                    double aillarNode = - deltaQ();
+                    double aillarNode = - deltaQ(node);
                 }
 
             } while(canviQ);
