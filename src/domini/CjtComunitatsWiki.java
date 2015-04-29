@@ -16,9 +16,28 @@ public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
         cjtComunitats.remove(id);
     }
 
-    private void interseccio(ComunitatWiki a, ComunitatWiki b){
-
-
+    public ComunitatWiki union(ComunitatWiki a, ComunitatWiki b){
+            ComunitatWiki c = new ComunitatWiki();
+            c.getComunitat().addAll(a.getComunitat());
+            c.getComunitat().addAll(b.getComunitat());
+            return c;
     }
 
+    public ComunitatWiki intersection(ComunitatWiki a, ComunitatWiki b){
+            ComunitatWiki c = new ComunitatWiki();
+            for (NodeWiki n : a.getComunitat()){
+                if (b.getComunitat().contains(n)){
+                    c.getComunitat().add(n);
+                }
+            }
+            return c;
+    }
+
+    public ComunitatWiki diferencia(ComunitatWiki a, ComunitatWiki b){
+        ComunitatWiki c = new ComunitatWiki();
+        c.getComunitat().addAll(a.getComunitat());
+        c.getComunitat().removeAll(b.getComunitat());
+        afegirComunitat(c);
+        return c;
+    }
 }
