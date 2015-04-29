@@ -23,7 +23,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             do {
                 Set<T> nodesGraf = graf.getNodes();
                 for (T node : nodesGraf) {
-                    double aillarNode = - deltaQ(node, )
+                    double aillarNode = - deltaQ();
                 }
 
             } while(canviQ);
