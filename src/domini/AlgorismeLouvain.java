@@ -30,30 +30,26 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                 for (T node : nodesGraf) {
                     double maxModularitat = 0;  //assumim que només ens importen guanys positius
                     Comunitat<T> cOriginal = nodeToComunitat.get(node);
-                    Pair <Double, Comunitat<T>> pairMaxim = new Pair<Double, Comunitat<T>>();
-                    pairMaxim.setFirst(maxModularitat);
-                    pairMaxim.setSecond(cOriginal);
-                    cOriginal.eliminarNode(node);
+                    Pair <Double, Comunitat<T>> deltaQMaxComunitat = new Pair<Double, Comunitat<T>>();
+                    deltaQMaxComunitat.setFirst(maxModularitat);
+                    deltaQMaxComunitat.setSecond(cOriginal);
                     Set<Arc<T>> arcsAdjacents = grafActual.getNodesAdjacents(node);
                     for (Arc<T> arc: arcsAdjacents) {
                         Comunitat<T> cAdjacent = nodeToComunitat.get(Graf.getNodeOposat(node, arc));
                         //possible millora: comunitats ja visitades no les tornem a visitar
-                        if (cAdjacent != cOriginal) {
-                            cAdjacent.afegirNode(node);
+                        if (cAdjacent != cOriginal){
                             double deltaQ = deltaQ(node, cAdjacent, grafActual, m2);
                             maxModularitat = max(maxModularitat, deltaQ);
-                            if (maxModularitat > pairMaxim.getFirst()) {
-                                pairMaxim.setFirst(maxModularitat);
-                                pairMaxim.setSecond(cAdjacent);
+                            if (maxModularitat > deltaQMaxComunitat.getFirst()) {
+                                deltaQMaxComunitat.setFirst(maxModularitat);
+                                deltaQMaxComunitat.setSecond(cAdjacent);
                             }
-                            cAdjacent.eliminarNode(node);
                         }
                     }
                     if (maxModularitat != 0) {
                         canviQ = true;
-                        pairMaxim.getSecond().afegirNode(node);
-                    } else {
-                        cOriginal.afegirNode(node);
+                        deltaQMaxComunitat.getSecond().afegirNode(node);
+                        cOriginal.eliminarNode(node);
                     }
                 }
             } while(canviQ);
