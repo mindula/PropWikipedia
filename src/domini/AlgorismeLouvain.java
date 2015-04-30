@@ -13,7 +13,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
         Graf<T> grafActual = grafOriginal;
         int numComunitats = grafActual.ordre();
-        ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
+        ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();    //no fa falta ara, ho fem al final
         HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
         for(T node : grafActual.getNodes()){
@@ -48,16 +48,19 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                     }
                     if (maxModularitat != 0) {
                         canviQ = true;
-                        deltaQMaxComunitat.getSecond().afegirNode(node);
+                        Comunitat<T> c = deltaQMaxComunitat.getSecond();
+                        c.afegirNode(node);
                         cOriginal.eliminarNode(node);
+                        nodeToComunitat.put(node, c);
                     }
                 }
             } while(canviQ);
 
             //Fase 2
             //Hem de comptabilitzar les comunitats que tenim. Per fer-ho hauriem d'eliminar les comunitats que
-            //s'han quedat desertes, és a dir, no tenen cap node
-
+            //s'han quedat desertes, és a dir, les que no tenen cap node
+            HashSet<Comunitat<T>> comunitatsRestants = new HashSet<Comunitat<T>>(nodeToComunitat.values());
+            Graf<Comunitat<T>> nouGraf = new Graf<Comunitat<T>>();
 
         }
         return classificacio;
