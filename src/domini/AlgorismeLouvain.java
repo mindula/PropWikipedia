@@ -10,28 +10,54 @@ import java.util.Set;
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int criteriParada, int nul){
-        double m2 = m2(graf);
-        int numComunitats = graf.ordre();
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
+        Graf<T> grafActual = grafOriginal;
+        int numComunitats = grafActual.ordre();
         ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
         HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
-        for(T node : graf.getNodes()){
+        for(T node : grafActual.getNodes()){
             Comunitat<T> c = new Comunitat<T>(node);
             classificacio.afegirComunitat(c);
             nodeToComunitat.put(node, c);
         }
         while(numComunitats > criteriParada){
             //Fase 1
+            double m2 = m2(grafActual);   //es necessari tenir-ho aqui, ja que anem creant nous grafs
             boolean canviQ = false;
             do {
-                Set<T> nodesGraf = graf.getNodes();
+                Set<T> nodesGraf = grafActual.getNodes();
                 for (T node : nodesGraf) {
-                    double aillarNode = - deltaQ(node, nodeToComunitat.get(node), graf, m2);
-                    
+                    double maxModularitat = 0;  //assumim que només ens importen guanys positius
+                    Comunitat<T> cOriginal = nodeToComunitat.get(node);
+                    Pair <Double, Comunitat<T>> deltaQMaxComunitat = new Pair<Double, Comunitat<T>>();
+                    deltaQMaxComunitat.setFirst(maxModularitat);
+                    deltaQMaxComunitat.setSecond(cOriginal);
+                    Set<Arc<T>> arcsAdjacents = grafActual.getNodesAdjacents(node);
+                    for (Arc<T> arc: arcsAdjacents) {
+                        Comunitat<T> cAdjacent = nodeToComunitat.get(Graf.getNodeOposat(node, arc));
+                        //possible millora: comunitats ja visitades no les tornem a visitar
+                        if (cAdjacent != cOriginal){
+                            double deltaQ = deltaQ(node, cAdjacent, grafActual, m2);
+                            maxModularitat = max(maxModularitat, deltaQ);
+                            if (maxModularitat > deltaQMaxComunitat.getFirst()) {
+                                deltaQMaxComunitat.setFirst(maxModularitat);
+                                deltaQMaxComunitat.setSecond(cAdjacent);
+                            }
+                        }
+                    }
+                    if (maxModularitat != 0) {
+                        canviQ = true;
+                        deltaQMaxComunitat.getSecond().afegirNode(node);
+                        cOriginal.eliminarNode(node);
+                    }
                 }
-
             } while(canviQ);
+
+            //Fase 2
+            //Hem de comptabilitzar les comunitats que tenim. Per fer-ho hauriem d'eliminar les comunitats que
+            //s'han quedat desertes, és a dir, no tenen cap node
+
 
         }
         return classificacio;
@@ -114,5 +140,10 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             }
         }
         return kiIn;
+    }
+
+    private double max (double x, double y) {
+        if (x > y) return x;
+        return y;
     }
 }
