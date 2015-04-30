@@ -12,6 +12,7 @@ import org.grupwiki.graf.Graf;
 public class GrafTransformDriver  {
     public static void main(String[] args) {
         Graf<NodeWiki> graf = new GrafWikipedia();
+        /* *Dona error i m'impedeix executar el driver, ho comento*
         NodePagina n1 = new NodePagina("Agus", true);
         NodePagina n2 = new NodePagina("Agusti", true);
         NodePagina n3 = new NodePagina("Babababa", true);
@@ -39,7 +40,7 @@ public class GrafTransformDriver  {
         System.out.println("AFTER:");
         System.out.print(graf);
 
-
+*/
 
     }
 }

@@ -1,5 +1,10 @@
 package graf;
 
+import domini.NodeCategoria;
+import domini.NodePagina;
+import domini.NodeWiki;
+import org.grupwiki.graf.Arc;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -17,29 +22,52 @@ public class GrafParser {
 
     public GrafWikipedia parse(Path path){
         // TODO: quan estigui implementada Sessio.getGraf, no crear un nou graf
-        GrafWikipedia g = new GrafWikipedia();
+        GrafWikipedia grafWikipedia = new GrafWikipedia();
         try{
             List<String> l = Files.readAllLines(path, Charset.defaultCharset()); // canviar la implementacio, fitxers grans
             for(String s: l){
-                parseLine(s);
+                parseLine(s, grafWikipedia);
             }
         }
         catch(IOException e) {
             e.printStackTrace();
         }
-        return g;
+        return grafWikipedia;
     }
 
-    private void parseLine(String s){
+    private void parseLine(String s, GrafWikipedia grafWikipedia){
         String[] parts = s.split("\\t");
-        System.out.println(parts[0]);
-        System.out.println(parts[1]);
-        System.out.println(parts[2]);
-        System.out.println(parts[3]);
-        System.out.println(parts[4]);
-        System.out.println(parts[5]);
-        /*
-        Pattern p = Pattern.compile("");
-        Matcher m = p.matcher(s);*/
+        // Tipus d’arc: "CsubC", "CsupC", "CP" i "PC"
+
+        //DEBUG:
+        System.out.println(parts[0] + " " + parts[2] + " " + parts[3]);
+        if(parts[2].equals("CsubC")){
+            NodeCategoria nodeA = new NodeCategoria(parts[0]);
+            NodeCategoria nodeB = new NodeCategoria(parts[3]);
+            grafWikipedia.afegirNode(nodeA);
+            grafWikipedia.afegirNode(nodeB);
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUBCATEGORIA?
+        }
+        else if(parts[2].equals("CsupC")){
+            NodeCategoria nodeA = new NodeCategoria(parts[0]);
+            NodeCategoria nodeB = new NodeCategoria(parts[3]);
+            grafWikipedia.afegirNode(nodeA);
+            grafWikipedia.afegirNode(nodeB);
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUPERCATEGORIA?
+        }
+        else if(parts[2].equals("CP")){
+            NodeCategoria nodeA = new NodeCategoria(parts[0]);
+            NodePagina nodeB = new NodePagina(parts[3]);
+            grafWikipedia.afegirNode(nodeA);
+            grafWikipedia.afegirNode(nodeB);
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // CAT-PAGINA?
+        }
+        else{ // "PC"
+            NodePagina nodeA = new NodePagina(parts[0]);
+            NodeCategoria nodeB = new NodeCategoria(parts[3]);
+            grafWikipedia.afegirNode(nodeA);
+            grafWikipedia.afegirNode(nodeB);
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // PAGINA-CAT?
+        }
     }
 }

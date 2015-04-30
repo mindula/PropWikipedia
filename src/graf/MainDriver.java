@@ -10,6 +10,8 @@ import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 import domini.GrafExeption;
 
+import java.nio.file.Paths;
+
 /**
  * Created by gus on 16/04/15.
  */
@@ -20,7 +22,9 @@ public class MainDriver {
         GrafParser parser = new GrafParser();
 
         // no se com es crea un Path, seria millor que agafes string crec..
-        Graf<NodeWiki> grafWikipedia = parser.parse("misc/cats_test");
+        // Aleix: solucionat, es fa amb Paths.get(String path);
+
+        Graf<NodeWiki> grafWikipedia = parser.parse(Paths.get("misc/cats_test"));
 
         System.out.println("Graf Parsejat:");
         System.out.println(grafWikipedia);
