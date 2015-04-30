@@ -2,6 +2,8 @@ package domini;
 
 import org.grupwiki.graf.ConjuntComunitats;
 
+import java.util.Scanner;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
@@ -10,7 +12,10 @@ import org.grupwiki.graf.ConjuntComunitats;
 public class DriverComnunitatCjtComunitats {
 
     public static void main (String[] args){
-        CjtComunitatsWiki cjt = new CjtComunitatsWiki();
+        System.out.println("Escull una opció: 1. Provar Comunitat    2. Provar ConjuntComunitat);
+        Scanner sc = new Scanner(System.in);
+        int opcio = sc.nextInt();
+        while
 
 
     }
