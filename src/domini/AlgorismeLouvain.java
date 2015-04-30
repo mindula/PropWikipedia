@@ -7,6 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: aleix.paris, ricard.gascons
+ * Data: 23/4/15
+ */
+
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override

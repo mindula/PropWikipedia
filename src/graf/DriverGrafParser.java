@@ -3,6 +3,12 @@ package graf;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: aleix.paris
+ * Data: 24/4/15
+ */
+
 public class DriverGrafParser {
     public static void main (String[] args) {
 

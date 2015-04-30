@@ -13,9 +13,10 @@ import java.util.List;
  */
 
 public class GrafParser {
-    //public GrafParser();
+    public GrafParser(){}
 
     public GrafWikipedia parse(Path path){
+        // TODO: quan estigui implementada Sessio.getGraf, no crear un nou graf
         GrafWikipedia g = new GrafWikipedia();
         try{
             List<String> l = Files.readAllLines(path, Charset.defaultCharset()); // canviar la implementacio, fitxers grans
