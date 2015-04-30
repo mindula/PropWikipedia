@@ -12,10 +12,9 @@ import java.util.Scanner;
 public class DriverComnunitatCjtComunitats {
 
     public static void main (String[] args){
-        System.out.println("Escull una opció: 1. Provar Comunitat    2. Provar ConjuntComunitat);
+        System.out.println("Escull una opció: 1. Provar Comunitat    2. Provar ConjuntComunitat");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
-        while
 
 
     }
