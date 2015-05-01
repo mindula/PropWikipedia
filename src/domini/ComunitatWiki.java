@@ -41,7 +41,7 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
      * Edita la descripció de la comunitat, Cas d'ús Modificar Tema
      * @param s
      */
-    public void editarDescripcio(String s){
+    public void setrDescripcio(String s){
         descripcio = s;
     }
 

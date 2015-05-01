@@ -12,10 +12,25 @@ import java.util.Scanner;
 public class TestComnunitatCjtComunitats {
 
     public static void main (String[] args){
-        System.out.println("Escull una opció: 1. Provar Comunitat    2. Provar ConjuntComunitat");
+        System.out.println("Escull una opció:" +
+                "1. Provar ComunitatWiki" +
+                "2. Provar ConjuntComunitatWiki" +
+                "3. Finalitzar Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
+        while(opcio != 3){
+            switch(opcio){
+                case 1:
+                    System.out.println("Escull opcio:" +
+                            "1. ");
+                    int opcio2 = sc.nextInt();
 
+                    break;
+                case 2:
+
+                    break;
+            }
+        }
 
     }
 
