@@ -2,10 +2,7 @@ package domini;
 
 import org.grupwiki.graf.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Grup 3: Wikipedia
@@ -65,7 +62,27 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             //Fase 2
             //Hem de comptabilitzar les comunitats que tenim. Per fer-ho hauriem d'eliminar les comunitats que
             //s'han quedat desertes, és a dir, les que no tenen cap node
-            HashSet<Comunitat<T>> comunitatsRestants = new HashSet<Comunitat<T>>(nodeToComunitat.values());
+            ArrayList<Comunitat<T>> comunitats = classificacio.getComunitats();
+            for(Comunitat comunitat : comunitats){
+                if(comunitat.estaBuida()) classificacio.eliminarComunitat(comunitat);
+            }
+            for(Comunitat comunitat : comunitats){
+                HashSet<T> nodes = comunitat.getNodes();
+                double pesComunitat = 0;
+                for(T node : nodes){
+                    HashSet<Arc<T>> arcs = grafActual.getNodesAdjacents(node);
+                    for(Arc<T> arc : arcs){
+                        T nodeOposat = Graf.getNodeOposat(node, arc);
+                        if(comunitat.teNode(nodeOposat)) pesComunitat += arc.getPes();
+
+                    }
+                }
+
+
+
+
+            }
+
             Graf<Comunitat<T>> nouGraf = new Graf<Comunitat<T>>();
 
         }
