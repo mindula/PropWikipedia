@@ -63,10 +63,12 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             //Hem de comptabilitzar les comunitats que tenim. Per fer-ho hauriem d'eliminar les comunitats que
             //s'han quedat desertes, és a dir, les que no tenen cap node
             ArrayList<Comunitat<T>> comunitats = classificacio.getComunitats();
-            for(Comunitat comunitat : comunitats){
+            Graf<T> grafFase2 = new Graf<T>();
+            for(Comunitat<T> comunitat : comunitats){
                 if(comunitat.estaBuida()) classificacio.eliminarComunitat(comunitat);
             }
-            for(Comunitat comunitat : comunitats){
+            for(Comunitat<T> comunitat : comunitats){
+                grafFase2.afegirNode(new T);
                 HashSet<T> nodes = comunitat.getNodes();
                 double pesComunitat = 0;
                 for(T node : nodes){
@@ -82,8 +84,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
 
             }
-
-            Graf<Comunitat<T>> nouGraf = new Graf<Comunitat<T>>();
 
         }
         return classificacio;
@@ -172,4 +172,23 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         if (x > y) return x;
         return y;
     }
+
+    /*
+    private class NodeLouvain{
+        private HashSet<T> nodesComunitat;
+
+        public void afegirNode(T node){
+            nodesComunitat.add(T);
+        }
+
+        public boolean conteNode(T node){
+            return nodesComunitat.contains(node);
+        }
+
+        public void eliminarNode(T node){
+            nodesComunitat.remove(node);
+        }
+
+
+    }*/
 }
