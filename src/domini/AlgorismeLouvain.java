@@ -115,19 +115,31 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                 Integer node = comunitat.getId();
                 grafLouvainNou.afegirNode(node);
                 double selfLoop = sigmaIn(comunitat, grafLouvain);
-                grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop*2,node,node));
-
+                grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
             }
-
-
+            for(Comunitat<Integer> comunitat : comunitatsLocals){
+                // Crear arcs entre comunitats
+                HashSet<Integer> nodes = comunitat.getNodes();
+                for(Integer node : nodes){
+                    HashSet<Arc<Integer>> arcs = grafLouvain.getNodesAdjacents(node);
+                    for(Arc<Integer> arc : arcs){
+                        Integer nodeOposat = Graf.getNodeOposat(node, arc);
+                        Comunitat<Integer> comunitatOposada = nodeToComunitat.get(nodeOposat);
+                        double pes = arc.getPes();
+                        if(!grafLouvainNou.existeixArc(node, nodeOposat))
+                            grafLouvainNou.afegirArc(new Arc<Integer>(pes, node, nodeOposat));
+                        else arc.setPes((arc.getPes()+pes)/2.0);
+                    }
+                }
+            }
         }
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
-        ConjuntComunitats<T> conjuntComunitatsT = new ConjuntComunitats<T>();
+        ConjuntComunitats<T> classificacioT = new ConjuntComunitats<T>();
 
         ArrayList<Comunitat<Integer>> comunitats = classificacio.getComunitats();
         for(Comunitat<Integer> comunitat : comunitats){
             Comunitat<T> comunitatT = new Comunitat<T>();
-            conjuntComunitatsT.afegirComunitat(comunitatT);
+            classificacioT.afegirComunitat(comunitatT);
             HashSet<Integer> nodesI = comunitat.getNodes();
             for(Integer node : nodesI){
                 T nodeT = traduccioGraf.get(node);
@@ -135,7 +147,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             }
         }
 
-        return conjuntComunitatsT;
+        return classificacioT;
     }
 
     private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT,

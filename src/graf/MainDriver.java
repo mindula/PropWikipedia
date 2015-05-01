@@ -2,6 +2,7 @@ package graf;
 
 import domini.AlgorismeLouvain;
 import domini.NodeWiki;
+import domini.Sessio;
 import graf.graftransform.GrafTransform;
 import graf.graftransform.NomTransform;
 import graf.graftransform.PlainTransform;
@@ -19,7 +20,8 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
-        GrafParser parser = new GrafParser();
+        // Aleix: al parser li has de passar el graf de la sessio
+        GrafParser parser = new GrafParser(Sessio.getInstance().getGrafWiki());
 
         // no se com es crea un Path, seria millor que agafes string crec..
         // Aleix: solucionat, es fa amb Paths.get(String path);

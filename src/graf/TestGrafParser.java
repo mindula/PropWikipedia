@@ -14,13 +14,12 @@ public class TestGrafParser {
         System.out.println("Escriu 0 pel test (misc/cats_test) o el path del fitxer:");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
-        if(path.equals("0")) path = "misc/cats_test";
+        if(path.equals("0")) path = "misc/cats_test.txt";
         GrafWikipedia g = new GrafWikipedia();
         // TODO: canviar per
-        // Sessio sessio = Sessio.getInstance();
-        // GrafWikipedia g = sessio.getGrafWiki();
+        // GrafWikipedia g = sessio.getInstance().getGraf..
         GrafParser grafParser = new GrafParser(g);
         grafParser.parse(Paths.get(path));
-        g.toString();
+        //System.out.println(g);
     }
 }
