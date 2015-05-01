@@ -64,12 +64,12 @@ public class GrafParser {
             grafWikipedia.afegirNode(nodeA);
             grafWikipedia.afegirNode(nodeB);
             if (parts[2].equals("CsubC")) {
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUBCATEGORIA?
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeB, nodeA)); // SUPERCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeA, nodeB)); // SUBCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeB, nodeA)); // SUPERCATEGORIA?
             }
             else{ // CsupC
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUPERCATEGORIA?
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeB, nodeA)); // SUBCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeA, nodeB)); // SUPERCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeB, nodeA)); // SUBCATEGORIA?
             }
         }
     }
