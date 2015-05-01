@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Usuari: ricard
  * Data: 4/25/15
  */
-public class DriverGrafAlgorisme {
+public class TestGrafAlgorisme {
     public static void main (String[] args) {
         Graf<NodeWiki> g = new Graf<NodeWiki>();
         System.out.println("Escull una opció:\n" +

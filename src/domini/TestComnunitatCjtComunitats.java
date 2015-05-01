@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Usuari: eduard.casellas
  * Data: 29/04/15
  */
-public class DriverComnunitatCjtComunitats {
+public class TestComnunitatCjtComunitats {
 
     public static void main (String[] args){
         System.out.println("Escull una opció: 1. Provar Comunitat    2. Provar ConjuntComunitat");

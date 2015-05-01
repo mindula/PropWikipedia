@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Usuari: ricard
  * Data: 4/25/15
  */
-public class DriverCercaHistorial {
+public class TestCercaHistorial {
 
     public static void main (String[] args) {
         GrafWikipedia g = new GrafWikipedia();         //solucionar graf q li passo
