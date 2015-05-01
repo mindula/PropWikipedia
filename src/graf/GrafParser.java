@@ -31,6 +31,8 @@ public class GrafParser {
         }
         catch(IOException e) {
             e.printStackTrace();
+            e.getCause();
+            e.getMessage();
         }
         return grafWikipedia;
     }
@@ -41,33 +43,34 @@ public class GrafParser {
 
         //DEBUG:
         System.out.println(parts[0] + " " + parts[2] + " " + parts[3]);
-        if(parts[2].equals("CsubC")){
-            NodeCategoria nodeA = new NodeCategoria(parts[0]);
-            NodeCategoria nodeB = new NodeCategoria(parts[3]);
-            grafWikipedia.afegirNode(nodeA);
-            grafWikipedia.afegirNode(nodeB);
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUBCATEGORIA?
-        }
-        else if(parts[2].equals("CsupC")){
-            NodeCategoria nodeA = new NodeCategoria(parts[0]);
-            NodeCategoria nodeB = new NodeCategoria(parts[3]);
-            grafWikipedia.afegirNode(nodeA);
-            grafWikipedia.afegirNode(nodeB);
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUPERCATEGORIA?
-        }
-        else if(parts[2].equals("CP")){
+
+        if(parts[2].equals("CP")){
             NodeCategoria nodeA = new NodeCategoria(parts[0]);
             NodePagina nodeB = new NodePagina(parts[3]);
             grafWikipedia.afegirNode(nodeA);
             grafWikipedia.afegirNode(nodeB);
             grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // CAT-PAGINA?
         }
-        else{ // "PC"
+        else if(parts[2].equals("PC")){
             NodePagina nodeA = new NodePagina(parts[0]);
             NodeCategoria nodeB = new NodeCategoria(parts[3]);
             grafWikipedia.afegirNode(nodeA);
             grafWikipedia.afegirNode(nodeB);
             grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // PAGINA-CAT?
+        }
+        else { // CsubC, CsupC
+            NodeCategoria nodeA = new NodeCategoria(parts[0]);
+            NodeCategoria nodeB = new NodeCategoria(parts[3]);
+            grafWikipedia.afegirNode(nodeA);
+            grafWikipedia.afegirNode(nodeB);
+            if (parts[2].equals("CsubC")) {
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUBCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeB, nodeA)); // SUPERCATEGORIA?
+            }
+            else{ // CsupC
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeA, nodeB)); // SUPERCATEGORIA?
+                grafWikipedia.afegirArc(new Arc<NodeWiki>(nodeB, nodeA)); // SUBCATEGORIA?
+            }
         }
     }
 }
