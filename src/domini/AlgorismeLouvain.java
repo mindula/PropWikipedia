@@ -14,16 +14,25 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
-        Graf<T> grafActual = grafOriginal;
+        //Graf<T> grafActual = grafOriginal;
+
+        Graf<Comunitat<T>> grafActual = new Graf<Comunitat<T>>();
+
+
+
         int numComunitats = grafActual.ordre();
         ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();    //no fa falta ara, ho fem al final
         HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
-        for(T node : grafActual.getNodes()){
+
+        for(T node : grafOriginal.getNodes()){
             Comunitat<T> c = new Comunitat<T>(node);
             classificacio.afegirComunitat(c);
             nodeToComunitat.put(node, c);
         }
+
+        convertirGrafComunitat(grafOriginal, grafActual, nodeToComunitat);
+
         while(numComunitats > criteriParada){
             //Fase 1
             double m2 = m2(grafActual);   //es necessari tenir-ho aqui, ja que anem creant nous grafs
@@ -103,10 +112,10 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     // Calcula m*2, es a dir, per a tot arc del graf, la suma del seu pes (un arc del node A al node B s'ha de sumar 2 cops)
     // Enlaços sumats només un cop
-    private double m2(Graf<T> graf){
+    private double m2(Graf<Comunitat<T>> graf){
         double sumaArcs = 0;
-        List<Arc<T>> arcs = graf.getArcs();
-        for (Arc<T> a : arcs) {
+        List<Arc<Comunitat<T>>> arcs = graf.getArcs();
+        for (Arc<Comunitat<T>> a : arcs) {
             sumaArcs += a.getPes();
         }
         return sumaArcs*2;
@@ -156,11 +165,11 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     }
 
 
-    private double kiIn(T node , Comunitat<T> c, Graf<T> graf){
+    private double kiIn(Comunitat<T> node , Comunitat<T> c, Graf<Comunitat<T>> graf){
         double kiIn = 0;
-        Set<Arc<T>> arcs = graf.getNodesAdjacents(node);
+        Set<Arc<Comunitat<T>>> arcs = graf.getNodesAdjacents(node);
         Set<T> nodesComunitat = c.getNodes();
-        for(Arc<T> arc : arcs){
+        for(Arc<Comunitat<T>> arc : arcs){
             if(nodesComunitat.contains(Graf.getNodeOposat(node, arc))){
                 kiIn += arc.getPes();
             }
@@ -171,6 +180,22 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     private double max (double x, double y) {
         if (x > y) return x;
         return y;
+    }
+
+    private void convertirGrafComunitat(Graf<T> grafOriginal, Graf<Comunitat<T>> grafComunitat,
+                                        HashMap<T, Comunitat<T>> nodeToComunitat) {
+        HashSet<T> nodesOriginal = grafOriginal.getNodes();
+        List<Arc<T>> arcsOriginal = grafOriginal.getArcs();
+        for (T node : nodesOriginal) {
+            Comunitat<T> cNode = nodeToComunitat.get(node);
+            grafComunitat.afegirNode(cNode);
+        }
+        for (Arc<T> arc : arcsOriginal) {
+            Comunitat<T> cNodeA = nodeToComunitat.get(arc.getNodeA());
+            Comunitat<T> cNodeB = nodeToComunitat.get(arc.getNodeB());
+            Arc<Comunitat<T>> cArc = new Arc<Comunitat<T>>(arc.getPes(), cNodeA, cNodeB);
+            grafComunitat.afegirArc(cArc);
+        }
     }
 
     /*
