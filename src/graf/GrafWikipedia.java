@@ -11,7 +11,7 @@ import java.util.Map;
 public class GrafWikipedia extends Graf<NodeWiki> {
 
 
-
+    //TODO: cal que eliminarNode tingui en compte que el graf és dirigit
 
     @Override
     public void afegirArc(Arc<NodeWiki> arc) {
