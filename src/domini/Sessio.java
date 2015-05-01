@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard
- * Data: 3/22/15
+ * Data: 22/3/15
  */
 
 public class Sessio {
