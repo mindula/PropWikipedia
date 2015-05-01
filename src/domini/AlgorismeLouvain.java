@@ -29,6 +29,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         double m2 = m2(grafLouvain); // només cal calcular m2 un cop
 
         while(numComunitats > criteriParada){
+            System.out.println("Començo");
             //Fase 1
             //Cada node és una comunitat
             ConjuntComunitats<Integer> conjuntComunitats = new ConjuntComunitats<Integer>();
@@ -38,8 +39,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                 nodeToComunitat.put(node, c);
             }
 
-            boolean canviQ = false;
+            boolean canviQ;
             do {
+                canviQ = false;
                 Set<Integer> nodesGraf = grafLouvain.getNodes();
                 for (Integer node : nodesGraf) {
                     double maxModularitat = 0;  //assumim que només ens importen guanys positius
@@ -113,6 +115,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             Graf<Integer> grafLouvainNou = new Graf<Integer>();
             for(Comunitat<Integer> comunitat : comunitatsLocals){
                 Integer node = comunitat.getId();
+                //System.out.println(node);
                 grafLouvainNou.afegirNode(node);
                 double selfLoop = sigmaIn(comunitat, grafLouvain);
                 grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
@@ -126,12 +129,15 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                         Integer nodeOposat = Graf.getNodeOposat(node, arc);
                         Comunitat<Integer> comunitatOposada = nodeToComunitat.get(nodeOposat);
                         double pes = arc.getPes();
-                        if(!grafLouvainNou.existeixArc(node, nodeOposat))
-                            grafLouvainNou.afegirArc(new Arc<Integer>(pes, node, nodeOposat));
+                        if(!grafLouvainNou.existeixArc(comunitat.getId(), comunitatOposada.getId()))
+                            grafLouvainNou.afegirArc(new Arc<Integer>(pes, comunitat.getId(), comunitatOposada.getId()));
                         else arc.setPes((arc.getPes()+pes)/2.0);
                     }
                 }
             }
+            grafLouvain = grafLouvainNou;
+            numComunitats = grafLouvainNou.ordre();
+            System.out.println("Acabo, i l'ordre es " + numComunitats);
         }
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
         ConjuntComunitats<T> classificacioT = new ConjuntComunitats<T>();
@@ -146,7 +152,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                 comunitatT.afegirNode(nodeT);
             }
         }
-
         return classificacioT;
     }
 
@@ -160,8 +165,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             traduccioIntegerT.put(i, nodeOriginal);
             traduccioTInteger.put(nodeOriginal, i);
             grafFinal.afegirNode(i);
-            classificacioInicial.afegirComunitat(new Comunitat<Integer>(i, i));
-            ++i;
+            Comunitat<Integer> c = new Comunitat<Integer>(i,i);
+            classificacioInicial.afegirComunitat(c);
+            i++;
         }
 
         List<Arc<T>> arcs = grafOriginal.getArcs();
@@ -254,20 +260,4 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         if (x > y) return x;
         return y;
     }
-    /*
-    private void convertirGrafComunitat(Graf<T> grafOriginal, Graf<Comunitat<T>> grafComunitat,
-                                        HashMap<T, Comunitat<T>> nodeToComunitat) {
-        HashSet<T> nodesOriginal = grafOriginal.getNodes();
-        List<Arc<T>> arcsOriginal = grafOriginal.getArcs();
-        for (T node : nodesOriginal) {
-            Comunitat<T> cNode = nodeToComunitat.get(node);
-            grafComunitat.afegirNode(cNode);
-        }
-        for (Arc<T> arc : arcsOriginal) {
-            Comunitat<T> cNodeA = nodeToComunitat.get(arc.getNodeA());
-            Comunitat<T> cNodeB = nodeToComunitat.get(arc.getNodeB());
-            Arc<Comunitat<T>> cArc = new Arc<Comunitat<T>>(arc.getPes(), cNodeA, cNodeB);
-            grafComunitat.afegirArc(cArc);
-        }
-    }*/
 }
