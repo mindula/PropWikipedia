@@ -25,17 +25,17 @@ public class Navegacio {
         HashSet<Arc<NodeWiki>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
         HashSet<NodeCategoria> supercategories = new HashSet<NodeCategoria>();
         for(Arc<NodeWiki> arc : arcs){
-            if(arc.getPes() > 0) supercategories.add(Graf.getNodeOposat(nodeCategoria, arc));
+            if(arc.getPes() > 0) supercategories.add((NodeCategoria)Graf.getNodeOposat(nodeCategoria, arc));
         }
         return supercategories;
     }
 
     public HashSet<NodeCategoria> getSubcategories(){
-
+        return null;
     }
 
     public HashSet<NodePagina> getPagines(){
-
+        return null;
     }
 
 }

@@ -14,24 +14,21 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     @Override
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
-        //Graf<T> grafActual = grafOriginal;
 
-        Graf<Comunitat<T>> grafActual = new Graf<Comunitat<T>>();
+        int numComunitats = grafOriginal.ordre();
 
+        ConjuntComunitats<Integer> classificacio = new ConjuntComunitats<Integer>();    //no fa falta ara, ho fem al final
+        HashMap<Integer, Comunitat<Integer>> nodeToComunitat = new HashMap<Integer, Comunitat<Integer>>();
 
+        HashMap<Integer, T> traduccioGraf = new HashMap<Integer, T>();
+        // Traduim el graf:
 
-        int numComunitats = grafActual.ordre();
-        ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();    //no fa falta ara, ho fem al final
-        HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
-
-        for(T node : grafOriginal.getNodes()){
+        for(Integer node : grafOriginal.getNodes()){
             Comunitat<T> c = new Comunitat<T>(node);
             classificacio.afegirComunitat(c);
             nodeToComunitat.put(node, c);
         }
-
-        convertirGrafComunitat(grafOriginal, grafActual, nodeToComunitat);
 
         while(numComunitats > criteriParada){
             //Fase 1
@@ -98,8 +95,22 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         return classificacio;
     }
 
+    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioGraf){
+        HashSet<T> nodesOriginals = grafOriginal.getNodes();
+        Integer i = new Integer(0);
+        Graf<Integer> grafFinal = new Graf<Integer>();
+        for(T nodeOriginal : nodesOriginals){
+            traduccioGraf.put(i, nodeOriginal);
+            grafFinal.afegirNode(i);
+            ++i;
+        }
 
-    private double deltaQ (T node , Comunitat<T> c, Graf<T> graf, double m2) {
+
+
+        return grafFinal;
+    }
+
+    private double deltaQ (Integer node , Comunitat<Integer> c, Graf<Integer> graf, double m2) {
         double deltaQ;
         double sigmaIn = sigmaIn(c, graf);
         double sigmaTot = sigmaTot(c, graf);
@@ -112,49 +123,45 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
     // Calcula m*2, es a dir, per a tot arc del graf, la suma del seu pes (un arc del node A al node B s'ha de sumar 2 cops)
     // Enlaços sumats només un cop
-    private double m2(Graf<Comunitat<T>> graf){
+    private double m2(Graf<Integer> graf){
         double sumaArcs = 0;
-        List<Arc<Comunitat<T>>> arcs = graf.getArcs();
-        for (Arc<Comunitat<T>> a : arcs) {
+        List<Arc<Integer>> arcs = graf.getArcs();
+        for (Arc<Integer> a : arcs) {
             sumaArcs += a.getPes();
         }
         return sumaArcs*2;
     }
 
-    // Calcula ki: la suma dels pesos dels arcs incidents al NodeWiki node
-    // Aqui no tenim el problema de sumar 2 o 1 cops el pes
-    private double ki(T node, Graf<T> graf){
+    private double ki(Integer node, Graf<Integer> graf){
         double ki = 0;
-        Set<Arc<T>> set = graf.getNodesAdjacents(node);
-        for(Arc<T> a : set) ki += a.getPes();
+        Set<Arc<Integer>> set = graf.getNodesAdjacents(node);
+        for(Arc<Integer> a : set) ki += a.getPes();
         return ki;
     }
 
-    // Sumem dos cops cada enllaç
-    private double sigmaIn (Comunitat<T> c, Graf<T> graf){
-        Set<T> nodesComunitat = c.getNodes();
+    private double sigmaIn (Comunitat<Integer> c, Graf<Integer> graf){
+        Set<Integer> nodesComunitat = c.getNodes();
         double sigmaIn = 0;
-        for (T node : nodesComunitat) {
-            Set<Arc<T>> arcs = graf.getNodesAdjacents(node);
-            for (Arc<T> arc : arcs) {
-                T oposat = Graf.getNodeOposat(node, arc);
+        for (Integer node : nodesComunitat) {
+            Set<Arc<Integer>> arcs = graf.getNodesAdjacents(node);
+            for (Arc<Integer> arc : arcs) {
+                Integer oposat = Graf.getNodeOposat(node, arc);
                 if (nodesComunitat.contains(oposat)) {
                     sigmaIn += arc.getPes();
                 }
             }
         }
-        return sigmaIn;
+        return sigmaIn/2;
     }
 
-    // Aqui no tenim el problema de sumar 2 o 1 cops el pes
-    private double sigmaTot(Comunitat<T> c, Graf<T> graf){
+    private double sigmaTot(Comunitat<Integer> c, Graf<Integer> graf){
         double sigmaTot = 0;
-        Set<T> nodes = graf.getNodes();
-        Set<T> nodesComunitat = c.getNodes();
-        for(T node : nodes){
+        Set<Integer> nodes = graf.getNodes();
+        Set<Integer> nodesComunitat = c.getNodes();
+        for(Integer node : nodes){
             if(!nodesComunitat.contains(node)){
-                HashSet<Arc<T>> arcsAdjacents = graf.getNodesAdjacents(node);
-                for(Arc<T> arc : arcsAdjacents){
+                HashSet<Arc<Integer>> arcsAdjacents = graf.getNodesAdjacents(node);
+                for(Arc<Integer> arc : arcsAdjacents){
                     if(nodesComunitat.contains(Graf.getNodeOposat(node, arc))){
                         sigmaTot += arc.getPes();
                     }
@@ -164,12 +171,11 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         return sigmaTot;
     }
 
-
-    private double kiIn(Comunitat<T> node , Comunitat<T> c, Graf<Comunitat<T>> graf){
+    private double kiIn(Integer node, Comunitat<Integer> c, Graf<Integer> graf){
         double kiIn = 0;
-        Set<Arc<Comunitat<T>>> arcs = graf.getNodesAdjacents(node);
-        Set<T> nodesComunitat = c.getNodes();
-        for(Arc<Comunitat<T>> arc : arcs){
+        Set<Arc<Integer>> arcs = graf.getNodesAdjacents(node);
+        Set<Integer> nodesComunitat = c.getNodes();
+        for(Arc<Integer> arc : arcs){
             if(nodesComunitat.contains(Graf.getNodeOposat(node, arc))){
                 kiIn += arc.getPes();
             }
@@ -181,7 +187,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         if (x > y) return x;
         return y;
     }
-
+    /*
     private void convertirGrafComunitat(Graf<T> grafOriginal, Graf<Comunitat<T>> grafComunitat,
                                         HashMap<T, Comunitat<T>> nodeToComunitat) {
         HashSet<T> nodesOriginal = grafOriginal.getNodes();
@@ -196,24 +202,5 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             Arc<Comunitat<T>> cArc = new Arc<Comunitat<T>>(arc.getPes(), cNodeA, cNodeB);
             grafComunitat.afegirArc(cArc);
         }
-    }
-
-    /*
-    private class NodeLouvain{
-        private HashSet<T> nodesComunitat;
-
-        public void afegirNode(T node){
-            nodesComunitat.add(T);
-        }
-
-        public boolean conteNode(T node){
-            return nodesComunitat.contains(node);
-        }
-
-        public void eliminarNode(T node){
-            nodesComunitat.remove(node);
-        }
-
-
     }*/
 }
