@@ -17,21 +17,23 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
         int numComunitats = grafOriginal.ordre();
 
-        ConjuntComunitats<Integer> conjuntComunitats = new ConjuntComunitats<Integer>();
         HashMap<Integer, Comunitat<Integer>> nodeToComunitat = new HashMap<Integer, Comunitat<Integer>>();
 
         HashMap<Integer, T> traduccioGraf = new HashMap<Integer, T>();
 
+        ConjuntComunitats<Integer> classificacio = new ConjuntComunitats<Integer>();
+
         // Traduim el graf a un graf d'enters:
-        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf);
+        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf, classificacio);
 
         double m2 = m2(grafLouvain); // només cal calcular m2 un cop
 
         while(numComunitats > criteriParada){
             //Fase 1
             //Cada node és una comunitat
+            ConjuntComunitats<Integer> conjuntComunitats = new ConjuntComunitats<Integer>();
             for(Integer node : grafLouvain.getNodes()){
-                Comunitat<Integer> c = new Comunitat<Integer>(node);
+                Comunitat<Integer> c = new Comunitat<Integer>(node, node);
                 conjuntComunitats.afegirComunitat(c);
                 nodeToComunitat.put(node, c);
             }
@@ -71,36 +73,73 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             } while(canviQ);
 
             //Fase 2
-            //Hem de comptabilitzar les comunitats que tenim. Per fer-ho hauriem d'eliminar les comunitats que
-            //s'han quedat desertes, és a dir, les que no tenen cap node
-            ArrayList<Comunitat<T>> comunitats = classificacio.getComunitats();
-            Graf<T> grafFase2 = new Graf<T>();
-            for(Comunitat<T> comunitat : comunitats){
-                if(comunitat.estaBuida()) classificacio.eliminarComunitat(comunitat);
-            }
-            for(Comunitat<T> comunitat : comunitats){
-                grafFase2.afegirNode(new T);
-                HashSet<T> nodes = comunitat.getNodes();
-                double pesComunitat = 0;
-                for(T node : nodes){
-                    HashSet<Arc<T>> arcs = grafActual.getNodesAdjacents(node);
-                    for(Arc<T> arc : arcs){
-                        T nodeOposat = Graf.getNodeOposat(node, arc);
-                        if(comunitat.teNode(nodeOposat)) pesComunitat += arc.getPes();
 
+            // conjuntComunitats -> Nodes (amb els seus arcs entre nodes i self-loops)
+            // classificacio -> afegir per cada comunitat anterior, una comunitat:
+
+            // Primera passada, Fase 1: Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
+            // classificacio =  Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
+            // Ara a la fase 2 tenim 3 nodes: 1 2 i 3
+
+            // Segona passada, Fase 1: Comunitat1(1,2) Comunitat2(3)
+            // classificacio = Comunitat1(1,3,7,2,4,5) Comunitat2(6)
+
+
+            ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
+            ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
+            Integer idNova = 0;
+            for(Comunitat<Integer> comunitatLocal : comunitatsLocals){
+                HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
+                Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
+                unioComunitats.setId(idNova);
+                novaClassificacio.afegirComunitat(unioComunitats);
+                for(Integer i : nodesLocals){
+                    Comunitat<Integer> comunitatNodesAfegir;
+                    try {
+                        comunitatNodesAfegir = classificacio.getComunitat(i);
+                        HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
+                        for(Integer nodeAfegir : nodesAfegir){
+                            unioComunitats.afegirNode(nodeAfegir);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
+                ++idNova;
+            }
+            classificacio = novaClassificacio;
 
-
-
+            // Ara, crear el nou graf
+            Graf<Integer> grafLouvainNou = new Graf<Integer>();
+            for(Comunitat<Integer> comunitat : comunitatsLocals){
+                Integer node = comunitat.getId();
+                grafLouvainNou.afegirNode(node);
+                double selfLoop = sigmaIn(comunitat, grafLouvain);
+                grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop*2,node,node));
 
             }
 
+
         }
-        return classificacio;
+        // Creem el conjunt de comunitats que retornarem i fem la traduccio
+        ConjuntComunitats<T> conjuntComunitatsT = new ConjuntComunitats<T>();
+
+        ArrayList<Comunitat<Integer>> comunitats = classificacio.getComunitats();
+        for(Comunitat<Integer> comunitat : comunitats){
+            Comunitat<T> comunitatT = new Comunitat<T>();
+            conjuntComunitatsT.afegirComunitat(comunitatT);
+            HashSet<Integer> nodesI = comunitat.getNodes();
+            for(Integer node : nodesI){
+                T nodeT = traduccioGraf.get(node);
+                comunitatT.afegirNode(nodeT);
+            }
+        }
+
+        return conjuntComunitatsT;
     }
 
-    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT){
+    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT,
+                                        ConjuntComunitats<Integer> classificacioInicial){
         HashMap<T, Integer> traduccioTInteger = new HashMap<T, Integer>();
         HashSet<T> nodesOriginals = grafOriginal.getNodes();
         Graf<Integer> grafFinal = new Graf<Integer>();
@@ -109,6 +148,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             traduccioIntegerT.put(i, nodeOriginal);
             traduccioTInteger.put(nodeOriginal, i);
             grafFinal.afegirNode(i);
+            classificacioInicial.afegirComunitat(new Comunitat<Integer>(i, i));
             ++i;
         }
 
