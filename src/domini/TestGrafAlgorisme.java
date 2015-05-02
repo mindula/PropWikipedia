@@ -9,9 +9,15 @@ import java.util.Scanner;
  * Usuari: ricard
  * Data: 4/25/15
  */
-public class TestGrafAlgorisme {
+public class TestGrafAlgorisme<T> {
+
+    private Graf<T> graf;
+
+    public TestGrafAlgorisme(Graf<T> graf) {
+        this.graf = graf;
+    }
+
     public static void main (String[] args) {
-        Graf<NodeWiki> g = new Graf<NodeWiki>();
         System.out.println("Escull una opció:\n" +
                 "1.  Afegir Node\n"+
                 "2.  Afegir Arc\n"+

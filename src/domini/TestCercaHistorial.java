@@ -14,7 +14,10 @@ public class TestCercaHistorial {
     public static void main (String[] args) {
         GrafWikipedia g = new GrafWikipedia();         //solucionar graf q li passo
         Historial h = Historial.getInstance();
-        System.out.println("Escull una opció: 1. Buscar     2. Historial de cerques     3. Finalitzar test");
+        System.out.println("Escull una opció:" +
+                "1. Buscar     " +
+                "2. Historial de cerques    " +
+                "3. Finalitzar el Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         while (opcio != 3) {
