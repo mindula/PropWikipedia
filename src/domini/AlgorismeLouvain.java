@@ -18,7 +18,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         int numComunitats = grafOriginal.ordre();
 
         HashMap<Integer, Comunitat<Integer>> nodeToComunitat = new HashMap<Integer, Comunitat<Integer>>();
-
         HashMap<Integer, T> traduccioGraf = new HashMap<Integer, T>();
 
         ConjuntComunitats<Integer> classificacio = new ConjuntComunitats<Integer>();
@@ -26,9 +25,17 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         // Traduim el graf a un graf d'enters:
         Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf, classificacio);
 
+        System.out.println("graf Louvain: \n" + grafLouvain);
+        System.out.println("classificacio: \n" + classificacio);
+
         double m2 = m2(grafLouvain); // només cal calcular m2 un cop
 
-        while(numComunitats > criteriParada){
+        int passada = 0;
+        boolean canviExtern;
+
+        do {
+            ++passada;
+            canviExtern = false;
             System.out.println("Començo");
             //Fase 1
             //Cada node és una comunitat
@@ -65,6 +72,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                     }
                     if (maxModularitat != 0) {
                         canviQ = true;
+                        canviExtern = true;
                         Comunitat<Integer> cAdjacent = deltaQMaxComunitat.getSecond();
                         cOriginal.eliminarNode(node);
                         cAdjacent.afegirNode(node);
@@ -85,7 +93,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
             // Segona passada, Fase 1: Comunitat1(1,2) Comunitat2(3)
             // classificacio = Comunitat1(1,3,7,2,4,5) Comunitat2(6)
-
 
             ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
             ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
@@ -138,7 +145,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             grafLouvain = grafLouvainNou;
             numComunitats = grafLouvainNou.ordre();
             System.out.println("Acabo, i l'ordre es " + numComunitats);
-        }
+        }while(canviExtern && criteriParada > passada);
+
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
         ConjuntComunitats<T> classificacioT = new ConjuntComunitats<T>();
 
