@@ -32,13 +32,14 @@ public class TestComnunitatCjtComunitats {
                             "7. Canviar el identificador" +
                             "8. Consultar si es buida" +
                             "9. Consultar si té un Node n" +
-                            "10. Obtenir el nom de la comunitat" +
-                            "11. Canviar el nom de la comunitat" +
-                            "12. Obtenir la descripció" +
-                            "13. Editar la descripció" +
-                            "14. Finalitzar el Test ");
+                            "10. Consultar si té un Node amb nom s" +
+                            "11. Obtenir el nom de la comunitat" +
+                            "12. Canviar el nom de la comunitat" +
+                            "13. Obtenir la descripció" +
+                            "14. Editar la descripció" +
+                            "15. Finalitzar el Test ");
                     int opcio2 = sc.nextInt();
-                    while(opcio2 != 14){
+                    while(opcio2 != 15){
                         switch(opcio2){
                             case 1:
                                 System.out.println("Escriu el nom del node que volguis inserir");
@@ -69,20 +70,23 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println(C.estaBuida());
                                 break;
                             case 9:
-
+                                System.out.println(" ");
                                 break;
                             case 10:
-                                System.out.println(C.getNom());
+
                                 break;
                             case 11:
+                                System.out.println(C.getNom());
+                                break;
+                            case 12:
                                 System.out.println("Esciu el nou nom");
                                 String nom = sc.nextLine();
                                 C.setNom(nom);
                                 break;
-                            case 12:
+                            case 13:
                                 System.out.println(C.getDescripcio());
                                 break;
-                            case 13:
+                            case 14:
                                 System.out.println("Esciu la nova descripció");
                                 String desc = sc.nextLine();
                                 C.setDescripcio(desc);
