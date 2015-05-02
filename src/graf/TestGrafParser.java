@@ -18,9 +18,9 @@ import java.util.Scanner;
 public class TestGrafParser {
     public static void main (String[] args) {
         System.out.println("Escriu el numero del test o el path del fitxer:");
-        System.out.println("test 0: cats_test.txt");
-        System.out.println("test 1: cats_small_test.txt");
-        System.out.println("test 2: cats.txt (fitxer molt gran)");
+        System.out.println("test 0: misc/cats_test.txt");
+        System.out.println("test 1: misc/cats_small_test.txt");
+        System.out.println("test 2: misc/cats.txt (fitxer molt gran)");
         Scanner sc = new Scanner(System.in);
         String path = sc.nextLine();
         switch(Integer.parseInt(path)){

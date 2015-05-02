@@ -51,47 +51,46 @@ public class GrafParser {
         if(tipusArc.equals("CP")){
             NodeCategoria nodeA;
             NodePagina nodeB;
-            if(!grafWikipedia.existeixNode(elemA)){
+            if(!grafWikipedia.existeixNodeCat(elemA)){
                 nodeA = new NodeCategoria(elemA);
                 grafWikipedia.afegirNode(nodeA);
             }
-            else nodeA = (NodeCategoria) grafWikipedia.getNode(elemA);
-            if(!grafWikipedia.existeixNode(elemB)){
+            else nodeA = grafWikipedia.getNodeCat(elemA);
+            if(!grafWikipedia.existeixNodePag(elemB)){
                 nodeB = new NodePagina(elemB);
                 grafWikipedia.afegirNode(nodeB);
             }
-            else nodeB = (NodePagina) grafWikipedia.getNode(elemB);
+            else nodeB = grafWikipedia.getNodePag(elemB);
             grafWikipedia.afegirArcPC(nodeB, nodeA); // CAT-PAGINA
         }
         else if(tipusArc.equals("PC")){
             NodePagina nodeA;
             NodeCategoria nodeB;
-            if(!grafWikipedia.existeixNode(elemA)){
+            if(!grafWikipedia.existeixNodePag(elemA)){
                 nodeA = new NodePagina(elemA);
                 grafWikipedia.afegirNode(nodeA);
             }
-            else nodeA = (NodePagina) grafWikipedia.getNode(elemA);
-            if(!grafWikipedia.existeixNode(elemB)){
+            else nodeA = grafWikipedia.getNodePag(elemA);
+            if(!grafWikipedia.existeixNodeCat(elemB)){
                 nodeB = new NodeCategoria(elemB);
                 grafWikipedia.afegirNode(nodeB);
             }
-            else nodeB = (NodeCategoria) grafWikipedia.getNode(elemB);
+            else nodeB = grafWikipedia.getNodeCat(elemB);
             grafWikipedia.afegirArcPC(nodeA, nodeB); // PAGINA-CAT
         }
-
         else { // CsubC, CsupC
             NodeCategoria nodeA;
             NodeCategoria nodeB;
-            if(!grafWikipedia.existeixNode(elemA)){
+            if(!grafWikipedia.existeixNodeCat(elemA)){
                 nodeA = new NodeCategoria(elemA);
                 grafWikipedia.afegirNode(nodeA);
             }
-            else nodeA = (NodeCategoria) grafWikipedia.getNode(elemA);
-            if(!grafWikipedia.existeixNode(elemB)){
+            else nodeA = grafWikipedia.getNodeCat(elemA);
+            if(!grafWikipedia.existeixNodeCat(elemB)){
                 nodeB = new NodeCategoria(elemB);
                 grafWikipedia.afegirNode(nodeB);
             }
-            else nodeB = (NodeCategoria) grafWikipedia.getNode(elemB);
+            else nodeB = grafWikipedia.getNodeCat(elemB);
             if (tipusArc.equals("CsubC")) {
                 grafWikipedia.afegirArcCsubC(nodeA, nodeB); // SUBCATEGORIA
             }

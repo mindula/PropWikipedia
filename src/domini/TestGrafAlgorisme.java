@@ -39,7 +39,7 @@ public class TestGrafAlgorisme {
                     print("Escriu el nom del node");
                     String nom = sc.nextLine();
                     NodeCategoria n = new NodeCategoria(nom);
-                    graf.afegirNode(n);
+                    //graf.afegirNode(n);
                     break;
                 case 2:
                     break;
