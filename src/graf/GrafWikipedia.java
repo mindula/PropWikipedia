@@ -92,18 +92,18 @@ public class GrafWikipedia {
         return grafWiki.existeixArc(nodeA, nodeB);
     }
 
-    public NodeWiki getNodeCat (String nom) {
+    public NodeCategoria getNodeCat (String nom) {
         HashSet<NodeWiki> s = grafWiki.getNodes();
         for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && node.esCategoria()) return node;
+            if (nom.equals(node.getNom()) && node.esCategoria()) return (NodeCategoria) node;
         }
         throw new RuntimeException("No existeix una categoria amb aquest nom");
     }
 
-    public NodeWiki getNodePag (String nom) {
+    public NodePagina getNodePag (String nom) {
         HashSet<NodeWiki> s = grafWiki.getNodes();
         for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && !node.esCategoria()) return node;
+            if (nom.equals(node.getNom()) && !node.esCategoria()) return (NodePagina) node;
         }
         throw new RuntimeException("No existeix una pàgina amb aquest nom");
     }
