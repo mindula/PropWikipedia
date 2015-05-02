@@ -43,7 +43,7 @@ public class GrafParser {
         String[] parts = s.split("\\t");
         // Tipus d’arc: "CsubC", "CsupC", "CP" i "PC"
 
-        //System.out.println(parts[0] + " " + parts[2] + " " + parts[3]);
+        //System.out.println(parts[0] + " " + parts[2] + " " + parts[3])
 
         if(parts[2].equals("CP")){
             NodeCategoria nodeA = new NodeCategoria(parts[0]);

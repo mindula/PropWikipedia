@@ -46,7 +46,7 @@ public class TestGrafParser {
         g.afegirArcPC(nodep1, nodec1);
         g.afegirArcPC(nodep2, nodec1);
         g.afegirArcPC(nodep1, nodec1);
-
+//
         //GrafParser grafParser = new GrafParser(g);
         //grafParser.parse(Paths.get(path));
         System.out.println(g);
