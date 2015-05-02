@@ -16,19 +16,26 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
 
         int numComunitats = grafOriginal.ordre();
+        final double MIN_MODULARITAT = 0.01;
 
         HashMap<Integer, Comunitat<Integer>> nodeToComunitat = new HashMap<Integer, Comunitat<Integer>>();
-
         HashMap<Integer, T> traduccioGraf = new HashMap<Integer, T>();
 
         ConjuntComunitats<Integer> classificacio = new ConjuntComunitats<Integer>();
 
         // Traduim el graf a un graf d'enters:
-        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf, classificacio);
+        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf/*, classificacio*/);
+
+        System.out.println("graf Louvain: \n" + grafLouvain);
 
         double m2 = m2(grafLouvain); // només cal calcular m2 un cop
 
-        while(numComunitats > criteriParada){
+        int passada = 0;
+        boolean canviExtern;
+
+        do {
+            ++passada;
+            canviExtern = false;
             System.out.println("Començo");
             //Fase 1
             //Cada node és una comunitat
@@ -63,8 +70,10 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                             }
                         }
                     }
-                    if (maxModularitat != 0) {
+                    if (maxModularitat > MIN_MODULARITAT) {
+                        System.out.println("Node: " + node + ": " + maxModularitat);
                         canviQ = true;
+                        canviExtern = true;
                         Comunitat<Integer> cAdjacent = deltaQMaxComunitat.getSecond();
                         cOriginal.eliminarNode(node);
                         cAdjacent.afegirNode(node);
@@ -79,8 +88,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             // conjuntComunitats -> Nodes (amb els seus arcs entre nodes i self-loops)
             // classificacio -> afegir per cada comunitat anterior, una comunitat:
 
-            // Primera passada, Fase 1: Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
-            // classificacio =  Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
+            // Primera passada, Fase 1: Comunitat1(1,3,7) Comunitat5(2,4,5) Comunitat6(6)
+            // classificacio =  Comunitat1(1,3,7) Comunitat5(2,4,5) Comunitat6(6)
             // Ara a la fase 2 tenim 3 nodes: 1 2 i 3
 
             // Segona passada, Fase 1: Comunitat1(1,2) Comunitat2(3)
@@ -88,34 +97,39 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
 
 
             ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
-            ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
-            Integer idNova = 0;
-            for(Comunitat<Integer> comunitatLocal : comunitatsLocals){
-                HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
-                Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
-                unioComunitats.setId(idNova);
-                novaClassificacio.afegirComunitat(unioComunitats);
-                for(Integer i : nodesLocals){
-                    Comunitat<Integer> comunitatNodesAfegir;
-                    try {
-                        comunitatNodesAfegir = classificacio.getComunitat(i);
-                        HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
-                        for(Integer nodeAfegir : nodesAfegir){
-                            unioComunitats.afegirNode(nodeAfegir);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                ++idNova;
+            if(passada == 1){
+                classificacio = conjuntComunitats;
             }
-            classificacio = novaClassificacio;
+            else {
+                ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
+                Integer idNova = 0;
+                for (Comunitat<Integer> comunitatLocal : comunitatsLocals) {
+                    HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
+                    Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
+                    unioComunitats.setId(idNova);
+                    novaClassificacio.afegirComunitat(unioComunitats);
+                    for (Integer i : nodesLocals) {
+                        Comunitat<Integer> comunitatNodesAfegir;
+                        try {
+                            comunitatNodesAfegir = classificacio.getComunitat(i);
+                            HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
+                            for (Integer nodeAfegir : nodesAfegir) {
+                                unioComunitats.afegirNode(nodeAfegir);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    ++idNova;
+                }
+                classificacio = novaClassificacio;
+            }
 
             // Ara, crear el nou graf
+
             Graf<Integer> grafLouvainNou = new Graf<Integer>();
             for(Comunitat<Integer> comunitat : comunitatsLocals){
                 Integer node = comunitat.getId();
-                //System.out.println(node);
                 grafLouvainNou.afegirNode(node);
                 double selfLoop = sigmaIn(comunitat, grafLouvain);
                 grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
@@ -138,7 +152,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             grafLouvain = grafLouvainNou;
             numComunitats = grafLouvainNou.ordre();
             System.out.println("Acabo, i l'ordre es " + numComunitats);
-        }
+            nodeToComunitat.clear();
+        }while(canviExtern && criteriParada > passada);
+
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
         ConjuntComunitats<T> classificacioT = new ConjuntComunitats<T>();
 
@@ -155,8 +171,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         return classificacioT;
     }
 
-    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT,
-                                        ConjuntComunitats<Integer> classificacioInicial){
+    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT/*,
+                                        ConjuntComunitats<Integer> classificacioInicial*/){
         HashMap<T, Integer> traduccioTInteger = new HashMap<T, Integer>();
         HashSet<T> nodesOriginals = grafOriginal.getNodes();
         Graf<Integer> grafFinal = new Graf<Integer>();
@@ -166,7 +182,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             traduccioTInteger.put(nodeOriginal, i);
             grafFinal.afegirNode(i);
             Comunitat<Integer> c = new Comunitat<Integer>(i,i);
-            classificacioInicial.afegirComunitat(c);
+            //classificacioInicial.afegirComunitat(c);
             i++;
         }
 
