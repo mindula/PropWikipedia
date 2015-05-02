@@ -12,6 +12,10 @@ public class GrafWikipedia {
 
     private GrafDirigit<NodeWiki> grafWiki;
 
+    public GrafWikipedia (){
+        grafWiki = new GrafDirigit<NodeWiki>();
+    }
+
     public void afegirNode(NodeWiki node) {
         grafWiki.afegirNode(node);
     }
