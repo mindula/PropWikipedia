@@ -20,7 +20,7 @@ public class Test_Louvain_no_oficial {
         graf.afegirArc(new Arc<Character>(30, 'c', 'd'));
 
         AlgorismeLouvain<Character> algorismeLouvain = new AlgorismeLouvain<Character>();
-        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 3, 0);
+        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 4, 0);
         System.out.println(resultat.toString());
     }
 }
