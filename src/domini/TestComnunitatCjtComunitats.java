@@ -17,7 +17,7 @@ public class TestComnunitatCjtComunitats {
         this.graf = graf;
     }
 
-    public static void main (String[] args) throws Exception {
+    public static void main () throws Exception {
         String paraula;
         int ident;
         int ident2;
@@ -156,21 +156,22 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println("Escriu els id de les dues comunitats");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
-                                com = Cjt.unio(Cjt.getComunitat(ident),Cjt.getComunitat(ident2));
+                                System.out.println(Cjt.unio(Cjt.getComunitat(ident),Cjt.getComunitat(ident2)));
 
                                 break;
                             case 6:
                                 System.out.println("Escriu els id de les dues comunitats");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
-                                com = Cjt.interseccio(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+                                System.out.println(Cjt.interseccio(Cjt.getComunitat(ident), Cjt.getComunitat(ident2)));
 
                                 break;
                             case 7:
                                 System.out.println("Escriu els id de les dues comunitats");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
-                                com = Cjt.diferencia(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+                                System.out.println(Cjt.diferencia(Cjt.getComunitat(ident), Cjt.getComunitat(ident2)));
+
                                 break;
                             case 8:
                                 System.out.println(Cjt.getComunitats());
