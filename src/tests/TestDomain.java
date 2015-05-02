@@ -1,6 +1,5 @@
-package domini;
+package tests;
 
-import graf.TestGrafParser;
 import org.grupwiki.graf.Graf;
 
 import java.util.Scanner;

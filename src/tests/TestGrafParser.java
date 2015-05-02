@@ -1,10 +1,10 @@
-package graf;
+package tests;
 
-import domini.NodeCategoria;
-import domini.NodePagina;
-import domini.NodeWiki;
+import graf.NodeCategoria;
+import graf.NodePagina;
 import domini.Sessio;
-import org.grupwiki.graf.Arc;
+import graf.GrafParser;
+import graf.GrafWikipedia;
 
 import java.nio.file.Paths;
 import java.util.Scanner;

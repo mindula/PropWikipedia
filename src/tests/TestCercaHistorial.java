@@ -1,5 +1,8 @@
-package domini;
+package tests;
 
+import domini.Cerca;
+import domini.Historial;
+import domini.InfoCerca;
 import graf.GrafWikipedia;
 
 import java.util.Scanner;

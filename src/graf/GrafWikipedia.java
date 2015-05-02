@@ -1,8 +1,5 @@
 package graf;
 
-import domini.NodeCategoria;
-import domini.NodePagina;
-import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
 
 import java.util.HashSet;

@@ -1,10 +1,5 @@
 package graf;
 
-import domini.NodeCategoria;
-import domini.NodePagina;
-import domini.NodeWiki;
-import org.grupwiki.graf.Arc;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -41,7 +36,7 @@ public class GrafParser {
 
     private void parseLine(String s){
         String[] parts = s.split("\\t");
-        // Tipus d’arc: "CsubC", "CsupC", "CP" i "PC"
+        // Tipus dï¿½arc: "CsubC", "CsupC", "CP" i "PC"
 
         //System.out.println(parts[0] + " " + parts[2] + " " + parts[3])
         String elemA = parts[0];

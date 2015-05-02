@@ -1,10 +1,13 @@
 package graf.graftransform.Criteris;
 
-import domini.NodeWiki;
+import graf.NodeWiki;
 import org.grupwiki.graf.Graf;
 
 /**
- * Created by gus on 30/04/15.
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 2/5/15
+ *
  */
 public  abstract class Criteri {
 

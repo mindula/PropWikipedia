@@ -1,5 +1,7 @@
 package domini;
 
+import graf.NodeWiki;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard.gascons

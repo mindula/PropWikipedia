@@ -7,6 +7,8 @@ package domini;
  */
 
 import graf.GrafWikipedia;
+import graf.NodeWiki;
+
 import java.text.*;
 import java.util.*;
 

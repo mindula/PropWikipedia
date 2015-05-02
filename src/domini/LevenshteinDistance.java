@@ -1,7 +1,12 @@
-package graf.graftransform;
+package domini;
 
 /**
- * Created by gus on 02/05/15.
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 2/5/15
+ *
+ * basat en el algoritme Levenshtein mostrat aqui:
+ * http://www.codeproject.com/Articles/13525/Fast-memory-efficient-Levenshtein-algorithm
  */
 public class LevenshteinDistance {
     

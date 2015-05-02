@@ -1,11 +1,14 @@
 package graf.graftransform.Criteris;
 
-import domini.NodeWiki;
-import graf.graftransform.LevenshteinDistance;
+import graf.NodeWiki;
+import domini.LevenshteinDistance;
 import org.grupwiki.graf.Graf;
 
 /**
- * Created by gus on 02/05/15.
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 2/5/15
+ *
  */
 public class CriteriNom extends Criteri{
 

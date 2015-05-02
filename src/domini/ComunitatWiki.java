@@ -1,5 +1,6 @@
 package domini;
 
+import graf.NodeWiki;
 import org.grupwiki.graf.Comunitat;
 
 /**

@@ -1,5 +1,9 @@
-package domini;
+package tests;
 
+import domini.ComunitatWiki;
+import graf.NodeCategoria;
+import graf.NodeWiki;
+import domini.OperacionsConjunts;
 import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 import java.util.Scanner;
@@ -156,7 +160,7 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println("Escriu els id de les dues comunitats");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
-                                System.out.println(OperacionsConjunts.unio(comunitats.getComunitat(ident),comunitats.getComunitat(ident2)));
+                                System.out.println(OperacionsConjunts.unio(comunitats.getComunitat(ident), comunitats.getComunitat(ident2)));
 
                                 break;
                             case 6:

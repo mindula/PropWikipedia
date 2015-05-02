@@ -1,5 +1,7 @@
-package domini;
+package tests;
 
+import graf.NodeCategoria;
+import graf.NodeWiki;
 import org.grupwiki.graf.Graf;
 
 import java.util.Scanner;

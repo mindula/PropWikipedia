@@ -1,11 +1,13 @@
 package domini;
 
 import graf.GrafWikipedia;
+import graf.NodeCategoria;
+import graf.NodePagina;
+import graf.NodeWiki;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Grup 3: Wikipedia

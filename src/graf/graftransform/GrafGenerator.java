@@ -1,13 +1,16 @@
 package graf.graftransform;
 
-import domini.NodeCategoria;
-import domini.NodeWiki;
+import graf.NodeCategoria;
+import graf.NodeWiki;
 import graf.graftransform.Criteris.Criteri;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
 /**
- * Created by gus on 30/04/15.
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 2/5/15
+ *
  */
 public class GrafGenerator  {
     public Graf<NodeCategoria> generate(Graf<NodeWiki> graf, Criteri... criteris) {

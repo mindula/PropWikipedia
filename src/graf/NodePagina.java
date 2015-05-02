@@ -1,4 +1,4 @@
-package domini;
+package graf;
 
 /**
  * Grup 3: Wikipedia

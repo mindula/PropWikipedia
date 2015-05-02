@@ -1,16 +1,17 @@
-package graf.graftransform;
+package tests;
 
-import domini.NodeCategoria;
-import domini.NodePagina;
-import domini.NodeWiki;
+import graf.NodeCategoria;
+import graf.NodePagina;
+import graf.NodeWiki;
 import graf.graftransform.Criteris.CriteriFillsComuns;
+import graf.graftransform.GrafGenerator;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
 /**
  * Created by gus on 26/04/15.
  */
-public class GrafTransformDriver  {
+public class TestGrafTransform {
     public static void main(String[] args) {
 
         Graf<NodeWiki> graf = new Graf<NodeWiki>();

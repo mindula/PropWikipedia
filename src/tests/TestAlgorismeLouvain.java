@@ -1,5 +1,6 @@
-package domini;
+package tests;
 
+import domini.AlgorismeLouvain;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
