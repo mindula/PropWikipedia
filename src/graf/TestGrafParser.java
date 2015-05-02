@@ -35,7 +35,6 @@ public class TestGrafParser {
                 break;
             default:
         }
-        //GrafWikipedia g = new GrafWikipedia();
         GrafWikipedia g = Sessio.getInstance().getGrafWiki();
         // Test extra:
         NodePagina nodep1 = new NodePagina("TESTP1");
@@ -44,10 +43,9 @@ public class TestGrafParser {
         g.afegirNode(nodep1);
         g.afegirNode(nodep2);
         g.afegirNode(nodec1);
-        g.afegirArc(new Arc<NodeWiki>(0, nodep1, nodec1));
-        g.afegirArc(new Arc<NodeWiki>(0, nodep2, nodec1));
-        g.afegirArc(new Arc<NodeWiki>(0, nodec1, nodep1));
-        g.afegirArc(new Arc<NodeWiki>(0, nodec1, nodep2));
+        g.afegirArcPC(nodep1, nodec1);
+        g.afegirArcPC(nodep2, nodec1);
+        g.afegirArcPC(nodep1, nodec1);
 
         //GrafParser grafParser = new GrafParser(g);
         //grafParser.parse(Paths.get(path));

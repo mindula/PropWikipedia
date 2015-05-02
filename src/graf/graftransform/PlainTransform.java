@@ -43,7 +43,7 @@ public class PlainTransform extends GrafTransformDecorator {
     }
 
 
-
+   /* Peta, ho comento per poder fer test
 
     @Override
     public Graf<NodeWiki> transform(Graf<NodeWiki> from) {
@@ -54,4 +54,5 @@ public class PlainTransform extends GrafTransformDecorator {
         else
             return from;
     }
+    */
 }

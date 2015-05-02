@@ -26,7 +26,9 @@ public class MainDriver {
         // no se com es crea un Path, seria millor que agafes string crec..
         // Aleix: solucionat, es fa amb Paths.get(String path);
 
-        Graf<NodeWiki> grafWikipedia = parser.parse(Paths.get("misc/cats_test"));
+        /* Peta, comentat per fer tests
+
+        GrafWikipedia grafWikipedia = parser.parse(Paths.get("misc/cats_test"));
 
         System.out.println("Graf Parsejat:");
         System.out.println(grafWikipedia);
@@ -47,7 +49,7 @@ public class MainDriver {
 
         ConjuntComunitats<NodeWiki> nodeWikiConjuntComunitats = algoritme.cercarComunitats(grafWikipedia, 3, 1);
         System.out.println(nodeWikiConjuntComunitats);
-
+       */
 
     }
 

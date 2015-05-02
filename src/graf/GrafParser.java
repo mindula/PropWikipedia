@@ -50,30 +50,29 @@ public class GrafParser {
             NodePagina nodeB = new NodePagina(parts[3]);
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);
             if(!grafWikipedia.existeixNode(nodeB))grafWikipedia.afegirNode(nodeB);
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // CAT-PAGINA
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // PAGINA-CAT
+            //grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // CAT-PAGINA
+            //grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // PAGINA-CAT
         }
         else if(parts[2].equals("PC")){
             NodePagina nodeA = new NodePagina(parts[0]);
             NodeCategoria nodeB = new NodeCategoria(parts[3]);
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);
             if(!grafWikipedia.existeixNode(nodeB))grafWikipedia.afegirNode(nodeB);
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // PAGINA-CAT
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // CAT-PAGINA
+            //grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // PAGINA-CAT
+            //grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // CAT-PAGINA
         }
         else { // CsubC, CsupC
-            //if(parts[0].equals(parts[3])) throw new Exception("La categoria és la mateixa"); //*********************//
             NodeCategoria nodeA = new NodeCategoria(parts[0]);
             NodeCategoria nodeB = new NodeCategoria(parts[3]);
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);
             if(!grafWikipedia.existeixNode(nodeB))grafWikipedia.afegirNode(nodeB);
             if (parts[2].equals("CsubC")) {
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeA, nodeB)); // SUBCATEGORIA
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeB, nodeA)); // SUPERCATEGORIA
+                //grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeA, nodeB)); // SUBCATEGORIA
+                //grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeB, nodeA)); // SUPERCATEGORIA
             }
             else{ // CsupC
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeA, nodeB)); // SUPERCATEGORIA
-                grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeB, nodeA)); // SUBCATEGORIA
+               // grafWikipedia.afegirArc(new Arc<NodeWiki>(1, nodeA, nodeB)); // SUPERCATEGORIA
+               //grafWikipedia.afegirArc(new Arc<NodeWiki>(-1, nodeB, nodeA)); // SUBCATEGORIA
             }
         }
     }
