@@ -95,13 +95,17 @@ public class GrafWikipedia {
     public NodeWiki getNodeCat (String nom) {
         HashSet<NodeWiki> s = grafWiki.getNodes();
         for (NodeWiki node : s) {
-            if (nom.equals(node.getNom())) return node;
+            if (nom.equals(node.getNom()) && node.esCategoria()) return node;
         }
-        throw new RuntimeException("No existeix un node amb aquest nom");
+        throw new RuntimeException("No existeix una categoria amb aquest nom");
     }
 
     public NodeWiki getNodePag (String nom) {
-
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && !node.esCategoria()) return node;
+        }
+        throw new RuntimeException("No existeix una pàgina amb aquest nom");
     }
 
     @Override
