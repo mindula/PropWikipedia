@@ -37,6 +37,13 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
         return descripcio;
     }
 
+    public boolean teNode(String nom) {
+        for (NodeWiki n : nodes) {
+            if (nom.equals(n.getNom())) return true;
+        }
+        return false;
+    }
+
     /**
      * Edita la descripció de la comunitat, Cas d'ús Modificar Tema
      * @param s
