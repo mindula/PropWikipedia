@@ -119,10 +119,10 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             classificacio = novaClassificacio;
 
             // Ara, crear el nou graf
+
             Graf<Integer> grafLouvainNou = new Graf<Integer>();
             for(Comunitat<Integer> comunitat : comunitatsLocals){
                 Integer node = comunitat.getId();
-                //System.out.println(node);
                 grafLouvainNou.afegirNode(node);
                 double selfLoop = sigmaIn(comunitat, grafLouvain);
                 grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
@@ -145,6 +145,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             grafLouvain = grafLouvainNou;
             numComunitats = grafLouvainNou.ordre();
             System.out.println("Acabo, i l'ordre es " + numComunitats);
+            nodeToComunitat.clear();
         }while(canviExtern && criteriParada > passada);
 
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
