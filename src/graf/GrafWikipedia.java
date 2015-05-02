@@ -5,6 +5,7 @@ import domini.NodePagina;
 import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
 
+import javax.xml.soap.Node;
 import java.util.*;
 
 
@@ -79,8 +80,24 @@ public class GrafWikipedia {
         return grafWiki.existeixNode(node);
     }
 
+    public boolean existeixNode(String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom())) return true;
+        }
+        return false;
+    }
+
     public boolean existeixArc(NodeWiki nodeA, NodeWiki nodeB) {
         return grafWiki.existeixArc(nodeA, nodeB);
+    }
+
+    public NodeWiki getNode (String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom())) return node;
+        }
+        throw new RuntimeException("No existeix un node amb aquest nom");
     }
 
     @Override
