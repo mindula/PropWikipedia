@@ -1,7 +1,7 @@
 package domini;
 
 import org.grupwiki.graf.ConjuntComunitats;
-
+import org.grupwiki.graf.Graf;
 import java.util.Scanner;
 
 /**
@@ -11,7 +11,16 @@ import java.util.Scanner;
  */
 public class TestComnunitatCjtComunitats {
 
-    public static void main (String[] args){
+    private Graf<NodeWiki> graf;
+
+    public TestComnunitatCjtComunitats(Graf<NodeWiki> graf) {
+        this.graf = graf;
+    }
+
+    public static void main (String[] args) throws Exception {
+        String paraula;
+        int ident;
+        int ident2;
         System.out.println("Escull una opció:\n" +
                 "1. Provar ComunitatWiki\n" +
                 "2. Provar ConjuntComunitatWiki\n" +
@@ -39,8 +48,6 @@ public class TestComnunitatCjtComunitats {
                             "14. Editar la descripció\n" +
                             "15. Finalitzar el Test");
                     int opcio2 = sc.nextInt();
-                    String paraula;
-                    int ident;
                     while(opcio2 != 15){
                         switch(opcio2){
                             case 1:
@@ -84,7 +91,7 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println("Escriu el nom del node");
                                 paraula = sc.next();
 
-                                //falla
+                                //falta fer
 
                                 break;
                             case 10:
@@ -113,7 +120,63 @@ public class TestComnunitatCjtComunitats {
                     }
                     break;
                 case 2:
+                    CjtComunitatsWiki Cjt = new CjtComunitatsWiki();
+                    System.out.println("Escull una opció:\n" +
+                            "1. Afegir Comunitat\n" +
+                            "2. Obtenir el nombre de Comunitats\n" +
+                            "3. Obtenir la comunitat amb id s\n" +
+                            "4. Eliminar una comunitat\n" +
+                            "5. Unió de dos comunitats\n" +
+                            "6. Intersecció de dos comunitats\n" +
+                            "7. Diferència de dos comunitats\n" +
+                            "8.Obtenir comunitats" +
+                            "9. Finalitzar el test");
+                    int opcio3 = sc.nextInt();
+                    ComunitatWiki com;
+                    while (opcio3 != 9){
+                        switch (opcio3){
+                            case 1:
+                               com = new ComunitatWiki();
+                                Cjt.afegirComunitat(com);
+                                break;
+                            case 2:
+                                System.out.println(Cjt.getNumComunitats());
+                                break;
+                            case 3:
+                                System.out.println("Escriu el id de la comunitat");
+                                ident = sc.nextInt();
+                                System.out.println(Cjt.getComunitat(ident));
+                                break;
+                            case 4:
+                                System.out.println("Escriu el id de la comunitat");
+                                ident = sc.nextInt();
+                                Cjt.eliminarComunitat(Cjt.getComunitat(ident));
+                                break;
+                            case 5:
+                                System.out.println("Escriu els id de les dues comunitats");
+                                ident = sc.nextInt();
+                                ident2 = sc.nextInt();
+                                com = Cjt.unio(Cjt.getComunitat(ident),Cjt.getComunitat(ident2));
 
+                                break;
+                            case 6:
+                                System.out.println("Escriu els id de les dues comunitats");
+                                ident = sc.nextInt();
+                                ident2 = sc.nextInt();
+                                com = Cjt.interseccio(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+
+                                break;
+                            case 7:
+                                System.out.println("Escriu els id de les dues comunitats");
+                                ident = sc.nextInt();
+                                ident2 = sc.nextInt();
+                                com = Cjt.diferencia(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+                                break;
+                            case 8:
+                                System.out.println(Cjt.getComunitats());
+                                break;
+                        }
+                    }
                     break;
             }
             opcio = sc.nextInt();
