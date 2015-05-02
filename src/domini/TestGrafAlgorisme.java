@@ -9,11 +9,11 @@ import java.util.Scanner;
  * Usuari: ricard
  * Data: 4/25/15
  */
-public class TestGrafAlgorisme<T> {
+public class TestGrafAlgorisme {
 
-    private Graf<T> graf;
+    private Graf<NodeWiki> graf;
 
-    public TestGrafAlgorisme(Graf<T> graf) {
+    public TestGrafAlgorisme(Graf<NodeWiki> graf) {
         this.graf = graf;
     }
 
@@ -36,6 +36,10 @@ public class TestGrafAlgorisme<T> {
         while (opcio != 12) {
             switch (opcio) {
                 case 1:
+                    print("Escriu el nom del node");
+                    String nom = sc.nextLine();
+                    NodeCategoria n = new NodeCategoria(nom);
+                    graf.afegirNode(n);
                     break;
                 case 2:
                     break;
@@ -60,5 +64,9 @@ public class TestGrafAlgorisme<T> {
             }
             opcio = sc.nextInt();
         }
+    }
+
+    private static void print(String txt) {
+        System.out.println(txt);
     }
 }

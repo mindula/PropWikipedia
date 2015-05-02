@@ -10,7 +10,7 @@ public class NodeCategoria extends NodeWiki {
 
 
     public NodeCategoria(String nom) {
-        super(nom);
+        super(nom, true);
     }
 
     public String getUrl(){

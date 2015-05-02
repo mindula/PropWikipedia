@@ -14,16 +14,17 @@ public abstract class NodeWiki {
      * Creat: creat manualment (segueixo sense trobarli el sentit)
      */
     private boolean creat;
-
+    private boolean isCategoria;
     /*
      * isCreat = True si el node és una Categoria, si és False és una pàgina
      *
-    private boolean isCategoria; */
+     */
     //private String color;  //aixo anira en una extensio. crec yo vaya
 
-    public NodeWiki(String nom){
+    public NodeWiki(String nom, boolean isCategoria){
         this.nom = nom;
         this.creat = false;
+        this.isCategoria = isCategoria;
     }
 
     public String getNom() {
@@ -43,6 +44,10 @@ public abstract class NodeWiki {
     }
 
     abstract public String getUrl();
+
+    public boolean esCategoria() {
+        return isCategoria;
+    }
 
     @Override
     public String toString() {

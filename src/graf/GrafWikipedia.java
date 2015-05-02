@@ -92,12 +92,16 @@ public class GrafWikipedia {
         return grafWiki.existeixArc(nodeA, nodeB);
     }
 
-    public NodeWiki getNode (String nom) {
+    public NodeWiki getNodeCat (String nom) {
         HashSet<NodeWiki> s = grafWiki.getNodes();
         for (NodeWiki node : s) {
             if (nom.equals(node.getNom())) return node;
         }
         throw new RuntimeException("No existeix un node amb aquest nom");
+    }
+
+    public NodeWiki getNodePag (String nom) {
+
     }
 
     @Override
