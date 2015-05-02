@@ -16,11 +16,7 @@ public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
         super();
     }
 
-    public void eliminarTema(int id){
-        cjtComunitats.remove(id);
-    }
-
-    public static ComunitatWiki union(ComunitatWiki a, ComunitatWiki b){
+    public static ComunitatWiki unio(ComunitatWiki a, ComunitatWiki b){
             ComunitatWiki c = new ComunitatWiki();
             c.getNodes().addAll(a.getNodes());
             c.getNodes().addAll(b.getNodes());
@@ -29,7 +25,7 @@ public class CjtComunitatsWiki extends ConjuntComunitats<NodeWiki> {
 
 
 
-    public static ComunitatWiki intersection(ComunitatWiki a, ComunitatWiki b){
+    public static ComunitatWiki interseccio(ComunitatWiki a, ComunitatWiki b){
             ComunitatWiki c = new ComunitatWiki();
             for (NodeWiki n : a.getNodes()){
                 if (b.getNodes().contains(n)){
