@@ -23,7 +23,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         ConjuntComunitats<Integer> classificacio = new ConjuntComunitats<Integer>();
 
         // Traduim el graf a un graf d'enters:
-        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf, classificacio);
+        Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf/*, classificacio*/);
 
         System.out.println("graf Louvain: \n" + grafLouvain);
         System.out.println("classificacio: \n" + classificacio);
@@ -87,36 +87,42 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             // conjuntComunitats -> Nodes (amb els seus arcs entre nodes i self-loops)
             // classificacio -> afegir per cada comunitat anterior, una comunitat:
 
-            // Primera passada, Fase 1: Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
-            // classificacio =  Comunitat1(1,3,7) Comunitat2(2,4,5) Comunitat3(6)
+            // Primera passada, Fase 1: Comunitat1(1,3,7) Comunitat5(2,4,5) Comunitat6(6)
+            // classificacio =  Comunitat1(1,3,7) Comunitat5(2,4,5) Comunitat6(6)
             // Ara a la fase 2 tenim 3 nodes: 1 2 i 3
 
             // Segona passada, Fase 1: Comunitat1(1,2) Comunitat2(3)
             // classificacio = Comunitat1(1,3,7,2,4,5) Comunitat2(6)
 
+
             ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
-            ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
-            Integer idNova = 0;
-            for(Comunitat<Integer> comunitatLocal : comunitatsLocals){
-                HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
-                Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
-                unioComunitats.setId(idNova);
-                novaClassificacio.afegirComunitat(unioComunitats);
-                for(Integer i : nodesLocals){
-                    Comunitat<Integer> comunitatNodesAfegir;
-                    try {
-                        comunitatNodesAfegir = classificacio.getComunitat(i);
-                        HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
-                        for(Integer nodeAfegir : nodesAfegir){
-                            unioComunitats.afegirNode(nodeAfegir);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                ++idNova;
+            if(passada == 1){
+                classificacio = conjuntComunitats;
             }
-            classificacio = novaClassificacio;
+            else {
+                ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
+                Integer idNova = 0;
+                for (Comunitat<Integer> comunitatLocal : comunitatsLocals) {
+                    HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
+                    Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
+                    unioComunitats.setId(idNova);
+                    novaClassificacio.afegirComunitat(unioComunitats);
+                    for (Integer i : nodesLocals) {
+                        Comunitat<Integer> comunitatNodesAfegir;
+                        try {
+                            comunitatNodesAfegir = classificacio.getComunitat(i);
+                            HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
+                            for (Integer nodeAfegir : nodesAfegir) {
+                                unioComunitats.afegirNode(nodeAfegir);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    ++idNova;
+                }
+                classificacio = novaClassificacio;
+            }
 
             // Ara, crear el nou graf
 
@@ -164,8 +170,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         return classificacioT;
     }
 
-    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT,
-                                        ConjuntComunitats<Integer> classificacioInicial){
+    private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT/*,
+                                        ConjuntComunitats<Integer> classificacioInicial*/){
         HashMap<T, Integer> traduccioTInteger = new HashMap<T, Integer>();
         HashSet<T> nodesOriginals = grafOriginal.getNodes();
         Graf<Integer> grafFinal = new Graf<Integer>();
@@ -175,7 +181,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             traduccioTInteger.put(nodeOriginal, i);
             grafFinal.afegirNode(i);
             Comunitat<Integer> c = new Comunitat<Integer>(i,i);
-            classificacioInicial.afegirComunitat(c);
+            //classificacioInicial.afegirComunitat(c);
             i++;
         }
 
