@@ -129,10 +129,11 @@ public class TestComnunitatCjtComunitats {
                             "5. Unió de dos comunitats\n" +
                             "6. Intersecció de dos comunitats\n" +
                             "7. Diferència de dos comunitats\n" +
-                            "8. Finalitzar el test");
+                            "8.Obtenir comunitats" +
+                            "9. Finalitzar el test");
                     int opcio3 = sc.nextInt();
                     ComunitatWiki com;
-                    while (opcio3 != 8){
+                    while (opcio3 != 9){
                         switch (opcio3){
                             case 1:
                                com = new ComunitatWiki();
@@ -155,7 +156,7 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println("Escriu els id de les dues comunitats");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
-                                com = Cjt.unio(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+                                com = Cjt.unio(Cjt.getComunitat(ident),Cjt.getComunitat(ident2));
 
                                 break;
                             case 6:
@@ -170,6 +171,9 @@ public class TestComnunitatCjtComunitats {
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
                                 com = Cjt.diferencia(Cjt.getComunitat(ident), Cjt.getComunitat(ident2));
+                                break;
+                            case 8:
+                                System.out.println(Cjt.getComunitats());
                                 break;
                         }
                     }
