@@ -43,7 +43,6 @@ public class GrafParser {
         String[] parts = s.split("\\t");
         // Tipus d’arc: "CsubC", "CsupC", "CP" i "PC"
 
-        //DEBUG:
         //System.out.println(parts[0] + " " + parts[2] + " " + parts[3]);
 
         if(parts[2].equals("CP")){
@@ -52,6 +51,7 @@ public class GrafParser {
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);
             if(!grafWikipedia.existeixNode(nodeB))grafWikipedia.afegirNode(nodeB);
             grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // CAT-PAGINA
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // PAGINA-CAT
         }
         else if(parts[2].equals("PC")){
             NodePagina nodeA = new NodePagina(parts[0]);
@@ -59,9 +59,10 @@ public class GrafParser {
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);
             if(!grafWikipedia.existeixNode(nodeB))grafWikipedia.afegirNode(nodeB);
             grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeA, nodeB)); // PAGINA-CAT
-            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // PENDENT
+            grafWikipedia.afegirArc(new Arc<NodeWiki>(0, nodeB, nodeA)); // CAT-PAGINA
         }
         else { // CsubC, CsupC
+            //if(parts[0].equals(parts[3])) throw new Exception("La categoria és la mateixa"); //*********************//
             NodeCategoria nodeA = new NodeCategoria(parts[0]);
             NodeCategoria nodeB = new NodeCategoria(parts[3]);
             if(!grafWikipedia.existeixNode(nodeA))grafWikipedia.afegirNode(nodeA);

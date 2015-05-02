@@ -1,0 +1,12 @@
+pagina11	page	PC	cat1	cat
+pagina12	page	PC	cat1	cat
+pagina13	page	PC	cat1	cat
+supercat11	cat	CsubC	cat1	cat
+supercat12	cat	CsubC	cat1	cat
+subcat11	cat	CsupC	cat1	cat
+cat1	cat	CsubC	subcat11	cat
+cat1	cat	CsupC	supercat11	cat
+pagina21	page	PC	cat2	cat
+cat2	cat	CP	pagina22	page
+page99	page	PC	cat1	cat
+page99	page	PC	cat2	cat
