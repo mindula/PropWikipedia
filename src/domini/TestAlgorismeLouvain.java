@@ -55,14 +55,42 @@ public class TestAlgorismeLouvain{
                 graf.afegirArc(new Arc<Character>(100, 'f', 'd'));
                 break;
             case 2:
+                graf.afegirNode('0');
+                graf.afegirNode('1');
+                graf.afegirNode('2');
+                graf.afegirNode('3');
+                graf.afegirNode('4');
+                graf.afegirNode('5');
+                graf.afegirNode('6');
+                graf.afegirNode('7');
+                graf.afegirNode('8');
+                graf.afegirNode('9');
+                graf.afegirNode('A');
+                graf.afegirNode('B');
+                graf.afegirNode('C');
+
+                graf.afegirArc(new Arc<Character>(1, '0', '1'));
+                graf.afegirArc(new Arc<Character>(1, '1', '2'));
+                graf.afegirArc(new Arc<Character>(1, '2', '3'));
+                graf.afegirArc(new Arc<Character>(1, '3', '1'));
+                graf.afegirArc(new Arc<Character>(1, '0', '4'));
+                graf.afegirArc(new Arc<Character>(1, '4', '5'));
+                graf.afegirArc(new Arc<Character>(1, '5', '6'));
+                graf.afegirArc(new Arc<Character>(1, '6', '4'));
+                graf.afegirArc(new Arc<Character>(1, '0', '7'));
+                graf.afegirArc(new Arc<Character>(1, '7', '8'));
+                graf.afegirArc(new Arc<Character>(1, '8', '9'));
+                graf.afegirArc(new Arc<Character>(1, '9', '7'));
+                graf.afegirArc(new Arc<Character>(1, '0', 'A'));
+                graf.afegirArc(new Arc<Character>(1, 'A', 'B'));
+                graf.afegirArc(new Arc<Character>(1, 'B', 'C'));
+                graf.afegirArc(new Arc<Character>(1, 'C', 'A'));
 
                 break;
             default:
         }
-
-
         AlgorismeLouvain<Character> algorismeLouvain = new AlgorismeLouvain<Character>();
-        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 10, 0);
+        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 50, 0);
         System.out.println(resultat.toString());
     }
 }

@@ -12,6 +12,8 @@ import java.util.*;
 
 public class AlgorismeLouvain<T> extends Algoritme<T>{
 
+
+
     @Override
 
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
