@@ -1,8 +1,10 @@
 package graf.graftransform;
 
+import domini.NodeCategoria;
 import domini.NodePagina;
 import domini.NodeWiki;
 import graf.GrafWikipedia;
+import graf.graftransform.Criteris.CriteriFillsComuns;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
@@ -12,12 +14,13 @@ import org.grupwiki.graf.Graf;
 public class GrafTransformDriver  {
     public static void main(String[] args) {
         Graf<NodeWiki> graf = new GrafWikipedia();
-        NodePagina n1 = new NodePagina("Agus", true);
-        NodePagina n2 = new NodePagina("Agusti", true);
-        NodePagina n3 = new NodePagina("Babababa", true);
-        NodePagina n4 = new NodePagina("Cacaca", true);
-        NodePagina n5 = new NodePagina("Caca", true);
-        NodePagina n6 = new NodePagina("Sheeet", true);
+        NodeCategoria n1 = new NodeCategoria("Holo");
+        NodeCategoria n2 = new NodeCategoria("joder");
+        NodeCategoria n3 = new NodeCategoria("jalalalala");
+        NodeCategoria n4 = new NodeCategoria("papapapap");
+        NodeCategoria n5 = new NodeCategoria("palalala");
+        NodeCategoria n6 = new NodeCategoria("agus");
+
 
         graf.afegirNode(n1);
         graf.afegirNode(n2);
@@ -26,18 +29,49 @@ public class GrafTransformDriver  {
         graf.afegirNode(n5);
         graf.afegirNode(n6);
 
-        graf.afegirArc(new Arc<NodeWiki>(n1, n2) );
+
+
+
+        NodePagina p1 = new NodePagina("hololo.1");
+        NodePagina p2 = new NodePagina("hololo.2");
+        NodePagina p3 = new NodePagina("hololo.3");
+
+
+        graf.afegirNode(p1);
+        graf.afegirNode(p2);
+        graf.afegirNode(p3);
+
+        graf.afegirArc(new Arc<NodeWiki>(n1, p1));
+        graf.afegirArc(new Arc<NodeWiki>(n1, p2));
+        graf.afegirArc(new Arc<NodeWiki>(n1, p3));
+
+        NodePagina p4 = new NodePagina("joder.1");
+        NodePagina p5 = new NodePagina("joder.2");
+        NodePagina p6 = new NodePagina("joder.3");
+
+        graf.afegirNode(p4);
+        graf.afegirNode(p5);
+        graf.afegirNode(p6);
+
+        graf.afegirArc(new Arc<NodeWiki>(n2, p4));
+        graf.afegirArc(new Arc<NodeWiki>(n2, p5));
+        graf.afegirArc(new Arc<NodeWiki>(n2, p6));
+
+
+
+
+
 
 
         System.out.println("BEFORE:");
         System.out.println(graf);
 
+        GrafGenerator generator = new GrafGenerator();
+        Graf<NodeCategoria> newGraf = generator.generate(graf,new CriteriFillsComuns(1));
 
-        GrafTransform transform = new PlainTransform(new NomTransform());
-        graf = transform.transform(graf);
 
         System.out.println("AFTER:");
-        System.out.print(graf);
+        System.out.print(newGraf);
 
 
 

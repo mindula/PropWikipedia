@@ -16,8 +16,10 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         ConjuntComunitats<T> classificacio = new ConjuntComunitats<T>();
         HashMap<T, Comunitat<T>> nodeToComunitat = new HashMap<T, Comunitat<T>>();
         //Cada node és una comunitat
+        int i = 0;
         for(T node : graf.getNodes()){
-            Comunitat<T> c = new Comunitat<T>(node);
+            Comunitat<T> c = new Comunitat<T>(i, node);
+            i++;
             classificacio.afegirComunitat(c);
             nodeToComunitat.put(node, c);
         }

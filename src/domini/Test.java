@@ -6,14 +6,14 @@ import org.grupwiki.graf.Arc;
 public class Test {
     public static void main(String[] args) {
         GrafWikipedia gw = new GrafWikipedia();
-        NodeWiki n1 = new NodeCategoria("1", true);
-        NodeWiki n2 = new NodeCategoria("2", true);
-        NodeWiki n3 = new NodeCategoria("3", true);
-        NodeWiki n4 = new NodeCategoria("4", true);
-        NodeWiki n5 = new NodeCategoria("5", true);
-        NodeWiki n6 = new NodeCategoria("6", true);
-        NodeWiki n66 = new NodeCategoria("66", true);
-        NodeWiki n678 = new NodeCategoria("678", true);
+        NodeWiki n1 = new NodeCategoria("1");
+        NodeWiki n2 = new NodeCategoria("2");
+        NodeWiki n3 = new NodeCategoria("3");
+        NodeWiki n4 = new NodeCategoria("4");
+        NodeWiki n5 = new NodeCategoria("5");
+        NodeWiki n6 = new NodeCategoria("6");
+        NodeWiki n66 = new NodeCategoria("66");
+        NodeWiki n678 = new NodeCategoria("678");
         gw.afegirNode(n1);
         gw.afegirNode(n2);
         gw.afegirNode(n3);

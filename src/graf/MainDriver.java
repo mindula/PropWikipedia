@@ -2,13 +2,9 @@ package graf;
 
 import domini.AlgorismeLouvain;
 import domini.NodeWiki;
-import graf.graftransform.GrafTransform;
-import graf.graftransform.NomTransform;
-import graf.graftransform.PlainTransform;
 import org.grupwiki.graf.Algoritme;
 import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
-import domini.GrafExeption;
 
 /**
  * Created by gus on 16/04/15.
@@ -20,17 +16,15 @@ public class MainDriver {
         GrafParser parser = new GrafParser();
 
         // no se com es crea un Path, seria millor que agafes string crec..
-        Graf<NodeWiki> grafWikipedia = parser.parse("misc/cats_test");
+        Graf<NodeWiki> grafWikipedia = null;
 
         System.out.println("Graf Parsejat:");
         System.out.println(grafWikipedia);
 
 
 
-        GrafTransform transform = new NomTransform(new PlainTransform()); // primer aplica plainTranform, despres NomTransform
 
 
-        grafWikipedia = transform.transform(grafWikipedia);
 
         System.out.println("Graf Transformat:");
         System.out.println(grafWikipedia);
