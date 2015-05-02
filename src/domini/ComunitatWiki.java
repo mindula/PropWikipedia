@@ -29,7 +29,7 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
      * Edita el nom de la comunitat, Cas d'ús Modificar tema
      * @param s
      */
-    public void editarNom(String s){
+    public void setNom(String s){
         nom = s;
     }
 
@@ -41,16 +41,10 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
      * Edita la descripció de la comunitat, Cas d'ús Modificar Tema
      * @param s
      */
-    public void setrDescripcio(String s){
+    public void setDescripcio(String s){
         descripcio = s;
     }
 
-    /**
-     * Eliminar el NodeWiki node de la comunitat, Cas d'ús Modificar Tema
-     * @param node
-     */
-    public void eliminarNode(NodeWiki node){
-        nodes.remove(node);
-    }
+
 
 }
