@@ -17,7 +17,7 @@ public class TestDomain {
                 "1. Test GrafWikipedia" +
                 "2. Test GrafParser" +
                 "3. Test Algoritme" +
-                "4. Test ConjuntComunitats i Comunitat" +
+                "4. Test ConjuntComunitatsWiki i ComunitatWiki" +
                 "5. Test CercaHistorial" +
                 "6. Finalitzar Test");
         Scanner sc = new Scanner(System.in);
