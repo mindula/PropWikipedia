@@ -1,18 +1,15 @@
 package graf;
 
-import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
- * Data: 5/2/15
+ * Usuari: ricard.gascons
+ * Data: 2/5/15
  */
 public class GrafDirigit<T> extends Graf<T> {
 
