@@ -80,10 +80,18 @@ public class GrafWikipedia {
         return grafWiki.existeixNode(node);
     }
 
-    public boolean existeixNode(String nom) {
+    public boolean existeixNodeCat(String nom) {
         HashSet<NodeWiki> s = grafWiki.getNodes();
         for (NodeWiki node : s) {
-            if (nom.equals(node.getNom())) return true;
+            if (nom.equals(node.getNom()) && node.esCategoria()) return true;
+        }
+        return false;
+    }
+
+    public boolean existeixNodePag(String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && !node.esCategoria()) return true;
         }
         return false;
     }
