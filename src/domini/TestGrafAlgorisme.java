@@ -9,9 +9,15 @@ import java.util.Scanner;
  * Usuari: ricard
  * Data: 4/25/15
  */
-public class DriverGrafAlgorisme {
+public class TestGrafAlgorisme {
+
+    private Graf<NodeWiki> graf;
+
+    public TestGrafAlgorisme(Graf<NodeWiki> graf) {
+        this.graf = graf;
+    }
+
     public static void main (String[] args) {
-        Graf<NodeWiki> g = new Graf<NodeWiki>();
         System.out.println("Escull una opció:\n" +
                 "1.  Afegir Node\n"+
                 "2.  Afegir Arc\n"+
@@ -30,6 +36,10 @@ public class DriverGrafAlgorisme {
         while (opcio != 12) {
             switch (opcio) {
                 case 1:
+                    print("Escriu el nom del node");
+                    String nom = sc.nextLine();
+                    NodeCategoria n = new NodeCategoria(nom);
+                    //graf.afegirNode(n);
                     break;
                 case 2:
                     break;
@@ -54,5 +64,9 @@ public class DriverGrafAlgorisme {
             }
             opcio = sc.nextInt();
         }
+    }
+
+    private static void print(String txt) {
+        System.out.println(txt);
     }
 }

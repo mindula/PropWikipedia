@@ -7,9 +7,10 @@ package domini;
  */
 public class InformacioCjtComunitats {
         private int milisegons;
-        private int nComunitats;
+        private int nombreComunitats;
         private String algoritme;
         private String criteri;
+        private double mitjanaNodesPerComunitat;
 
     public void setMilisegons(int milisegons) {
         this.milisegons = milisegons;
@@ -19,12 +20,12 @@ public class InformacioCjtComunitats {
         return milisegons;
     }
 
-    public void setnComunitats(int nComunitats) {
-        this.nComunitats = nComunitats;
+    public void setNombreComunitats(int nombreComunitats) {
+        this.nombreComunitats = nombreComunitats;
     }
 
-    public int getnComunitats() {
-        return nComunitats;
+    public int getNombreComunitats() {
+        return nombreComunitats;
     }
 
     public void setAlgoritme(String algoritme) {
@@ -41,5 +42,13 @@ public class InformacioCjtComunitats {
 
     public String getCriteri() {
         return criteri;
+    }
+
+    public double getMitjanaNodesPerComunitat() {
+        return mitjanaNodesPerComunitat;
+    }
+
+    public void setMitjanaNodesPerComunitat(double mitjanaNodesPerComunitat) {
+        this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
     }
 }

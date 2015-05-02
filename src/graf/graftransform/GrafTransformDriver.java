@@ -3,7 +3,6 @@ package graf.graftransform;
 import domini.NodeCategoria;
 import domini.NodePagina;
 import domini.NodeWiki;
-import graf.GrafWikipedia;
 import graf.graftransform.Criteris.CriteriFillsComuns;
 import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
@@ -13,7 +12,8 @@ import org.grupwiki.graf.Graf;
  */
 public class GrafTransformDriver  {
     public static void main(String[] args) {
-        Graf<NodeWiki> graf = new GrafWikipedia();
+
+        Graf<NodeWiki> graf = new Graf<NodeWiki>();
         NodeCategoria n1 = new NodeCategoria("Holo");
         NodeCategoria n2 = new NodeCategoria("joder");
         NodeCategoria n3 = new NodeCategoria("jalalalala");
@@ -72,7 +72,6 @@ public class GrafTransformDriver  {
 
         System.out.println("AFTER:");
         System.out.print(newGraf);
-
 
 
     }

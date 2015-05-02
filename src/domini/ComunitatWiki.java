@@ -29,7 +29,7 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
      * Edita el nom de la comunitat, Cas d'ús Modificar tema
      * @param s
      */
-    public void editarNom(String s){
+    public void setNom(String s){
         nom = s;
     }
 
@@ -37,20 +37,21 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
         return descripcio;
     }
 
+    public boolean teNode(String nom) {
+        for (NodeWiki n : nodes) {
+            if (nom.equals(n.getNom())) return true;
+        }
+        return false;
+    }
+
     /**
      * Edita la descripció de la comunitat, Cas d'ús Modificar Tema
      * @param s
      */
-    public void editarDescripcio(String s){
+    public void setDescripcio(String s){
         descripcio = s;
     }
 
-    /**
-     * Eliminar el NodeWiki node de la comunitat, Cas d'ús Modificar Tema
-     * @param node
-     */
-    public void eliminarNode(NodeWiki node){
-        nodes.remove(node);
-    }
+
 
 }

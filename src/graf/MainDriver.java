@@ -1,10 +1,6 @@
 package graf;
 
-import domini.AlgorismeLouvain;
-import domini.NodeWiki;
-import org.grupwiki.graf.Algoritme;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import domini.Sessio;
 
 /**
  * Created by gus on 16/04/15.
@@ -13,10 +9,17 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
-        GrafParser parser = new GrafParser();
+        // Aleix: al parser li has de passar el graf de la sessio
+        GrafParser parser = new GrafParser(Sessio.getInstance().getGrafWiki());
 
         // no se com es crea un Path, seria millor que agafes string crec..
-        Graf<NodeWiki> grafWikipedia = null;
+
+        // Aleix: solucionat, es fa amb Paths.get(String path);
+
+        /* Peta, comentat per fer tests
+
+        GrafWikipedia grafWikipedia = parser.parse(Paths.get("misc/cats_test"));
+
 
         System.out.println("Graf Parsejat:");
         System.out.println(grafWikipedia);
@@ -35,7 +38,7 @@ public class MainDriver {
 
         ConjuntComunitats<NodeWiki> nodeWikiConjuntComunitats = algoritme.cercarComunitats(grafWikipedia, 3, 1);
         System.out.println(nodeWikiConjuntComunitats);
-
+       */
 
     }
 

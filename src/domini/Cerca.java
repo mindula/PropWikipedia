@@ -10,7 +10,11 @@ import graf.GrafWikipedia;
 import java.text.*;
 import java.util.*;
 
-public abstract class Cerca {
+public class Cerca {
+
+    private Cerca() {
+
+    }
 
     public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

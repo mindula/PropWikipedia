@@ -1,32 +1,123 @@
 package graf;
 
+import domini.NodeCategoria;
+import domini.NodePagina;
 import domini.NodeWiki;
 import org.grupwiki.graf.Arc;
-import org.grupwiki.graf.Graf;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
-public class GrafWikipedia extends Graf<NodeWiki> {
+import java.util.HashSet;
+import java.util.List;
 
 
+public class GrafWikipedia {
 
+    private GrafDirigit<NodeWiki> grafWiki;
 
-    @Override
-    public void afegirArc(Arc<NodeWiki> arc) {
-        Map<NodeWiki, Arc<NodeWiki>> adj = adjacencyMap.get(arc.getNodeA());
+    public GrafWikipedia (){
+        grafWiki = new GrafDirigit<NodeWiki>();
+    }
 
-        if(adj == null)
-            adj = new HashMap<NodeWiki, Arc<NodeWiki>>();
+    public void afegirNode(NodeWiki node) {
+        grafWiki.afegirNode(node);
+    }
 
-        adj.put(arc.getNodeA(), arc);
-        adjacencyMap.put(arc.getNodeA(), adj);
-        cjtArcs.add(arc);
+    public void eliminarNode(NodeWiki node) {
+        grafWiki.eliminarNode(node);
+    }
+
+    public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
+        Arc<NodeWiki> arcPC = new Arc<NodeWiki>(0.0, pagina, categoria);
+        Arc<NodeWiki> arcCP = new Arc<NodeWiki>(0.0, categoria, pagina);
+        grafWiki.afegirArc(arcPC);
+        grafWiki.afegirArc(arcCP);
+    }
+
+    public void afegirArcCsupC(NodeCategoria categoriaA, NodeCategoria categoriaB) {
+        if (categoriaA.getNom().equals(categoriaB.getNom())) {
+            throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
+        }
+        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(1, categoriaA, categoriaB);
+        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(-1, categoriaB, categoriaA);
+        grafWiki.afegirArc(arcAsubB);
+        grafWiki.afegirArc(arcBsubA);
+    }
+
+    public void afegirArcCsubC(NodeCategoria categoriaA, NodeCategoria categoriaB) {
+        if (categoriaA.getNom().equals(categoriaB.getNom())) {
+            throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
+        }
+        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(-1, categoriaA, categoriaB);
+        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(1, categoriaB, categoriaA);
+        grafWiki.afegirArc(arcAsubB);
+        grafWiki.afegirArc(arcBsubA);
+    }
+
+    public void eliminarArc(Arc<NodeWiki> arc) {
+        grafWiki.eliminarArc(arc);
+    }
+
+    public HashSet<NodeWiki> getNodes() {
+        return grafWiki.getNodes();
+    }
+
+    public List<Arc<NodeWiki>> getArcs() {
+        return grafWiki.getArcs();
+    }
+
+    public HashSet<Arc<NodeWiki>> getNodesAdjacents(NodeWiki node) {
+        return grafWiki.getNodesAdjacents(node);
+    }
+
+    public Arc<NodeWiki> getArcEntre(NodeWiki nodeA, NodeWiki nodeB) {
+        return grafWiki.getArcEntre(nodeA, nodeB);
+    }
+
+    public int getGrau (NodeWiki node) {
+        return grafWiki.getGrau(node);
+    }
+
+    public boolean existeixNode(NodeWiki node) {
+        return grafWiki.existeixNode(node);
+    }
+
+    public boolean existeixNodeCat(String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && node.esCategoria()) return true;
+        }
+        return false;
+    }
+
+    public boolean existeixNodePag(String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && !node.esCategoria()) return true;
+        }
+        return false;
+    }
+
+    public boolean existeixArc(NodeWiki nodeA, NodeWiki nodeB) {
+        return grafWiki.existeixArc(nodeA, nodeB);
+    }
+
+    public NodeCategoria getNodeCat (String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && node.esCategoria()) return (NodeCategoria) node;
+        }
+        throw new RuntimeException("No existeix una categoria amb aquest nom");
+    }
+
+    public NodePagina getNodePag (String nom) {
+        HashSet<NodeWiki> s = grafWiki.getNodes();
+        for (NodeWiki node : s) {
+            if (nom.equals(node.getNom()) && !node.esCategoria()) return (NodePagina) node;
+        }
+        throw new RuntimeException("No existeix una pàgina amb aquest nom");
     }
 
     @Override
-    public void eliminarArc(Arc<NodeWiki> arc) {
-        adjacencyMap.remove(arc.getNodeA());
+    public String toString() {
+        return grafWiki.toString();
     }
 }
