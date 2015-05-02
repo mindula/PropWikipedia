@@ -31,8 +31,49 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         while(numComunitats > criteriParada){
             System.out.println("Començo");
             //Fase 1
+            //Cada node és una comunitat
             ConjuntComunitats<Integer> conjuntComunitats = new ConjuntComunitats<Integer>();
-            primeraFase(grafLouvain, nodeToComunitat, m2, conjuntComunitats);
+            for(Integer node : grafLouvain.getNodes()){
+                Comunitat<Integer> c = new Comunitat<Integer>(node, node);
+                conjuntComunitats.afegirComunitat(c);
+                nodeToComunitat.put(node, c);
+            }
+
+            boolean canviQ;
+            do {
+                canviQ = false;
+                Set<Integer> nodesGraf = grafLouvain.getNodes();
+                for (Integer node : nodesGraf) {
+                    double maxModularitat = 0;  //assumim que només ens importen guanys positius
+                    Comunitat<Integer> cOriginal = nodeToComunitat.get(node);
+                    Pair <Double, Comunitat<Integer>> deltaQMaxComunitat = new Pair<Double, Comunitat<Integer>>();
+                    deltaQMaxComunitat.setFirst(maxModularitat);
+                    deltaQMaxComunitat.setSecond(cOriginal);
+                    Set<Arc<Integer>> arcsAdjacents = grafLouvain.getNodesAdjacents(node);
+                    for (Arc<Integer> arc: arcsAdjacents) {
+                        Comunitat<Integer> cAdjacent = nodeToComunitat.get(Graf.getNodeOposat(node, arc));
+                        //possible millora: comunitats ja visitades no les tornem a visitar
+                        if (cAdjacent != cOriginal){
+                            double deltaQ = deltaQ(node, cAdjacent, grafLouvain, m2);
+                            maxModularitat = max(maxModularitat, deltaQ);
+                            if (maxModularitat > deltaQMaxComunitat.getFirst()) {
+                                // Movem el node a cAdjacent
+                                deltaQMaxComunitat.setFirst(maxModularitat);
+                                deltaQMaxComunitat.setSecond(cAdjacent);
+                            }
+                        }
+                    }
+                    if (maxModularitat != 0) {
+                        canviQ = true;
+                        Comunitat<Integer> cAdjacent = deltaQMaxComunitat.getSecond();
+                        cOriginal.eliminarNode(node);
+                        cAdjacent.afegirNode(node);
+                        nodeToComunitat.put(node, cAdjacent);
+                        if(cOriginal.estaBuida()) conjuntComunitats.eliminarComunitat(cOriginal);
+                    }
+                }
+            } while(canviQ);
+
             //Fase 2
 
             // conjuntComunitats -> Nodes (amb els seus arcs entre nodes i self-loops)
@@ -45,24 +86,62 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             // Segona passada, Fase 1: Comunitat1(1,2) Comunitat2(3)
             // classificacio = Comunitat1(1,3,7,2,4,5) Comunitat2(6)
 
-            Pair<ConjuntComunitats<Integer>, Graf<Integer>> pair =
-                    segonaFase(conjuntComunitats, classificacio, grafLouvain, nodeToComunitat);
-            Graf<Integer> grafLouvainNou = pair.getSecond();
-            classificacio = pair.getFirst();
 
+            ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
+            ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
+            Integer idNova = 0;
+            for(Comunitat<Integer> comunitatLocal : comunitatsLocals){
+                HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
+                Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
+                unioComunitats.setId(idNova);
+                novaClassificacio.afegirComunitat(unioComunitats);
+                for(Integer i : nodesLocals){
+                    Comunitat<Integer> comunitatNodesAfegir;
+                    try {
+                        comunitatNodesAfegir = classificacio.getComunitat(i);
+                        HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
+                        for(Integer nodeAfegir : nodesAfegir){
+                            unioComunitats.afegirNode(nodeAfegir);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                ++idNova;
+            }
+            classificacio = novaClassificacio;
+
+            // Ara, crear el nou graf
+            Graf<Integer> grafLouvainNou = new Graf<Integer>();
+            for(Comunitat<Integer> comunitat : comunitatsLocals){
+                Integer node = comunitat.getId();
+                //System.out.println(node);
+                grafLouvainNou.afegirNode(node);
+                double selfLoop = sigmaIn(comunitat, grafLouvain);
+                grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
+            }
+            for(Comunitat<Integer> comunitat : comunitatsLocals){
+                // Crear arcs entre comunitats
+                HashSet<Integer> nodes = comunitat.getNodes();
+                for(Integer node : nodes){
+                    HashSet<Arc<Integer>> arcs = grafLouvain.getNodesAdjacents(node);
+                    for(Arc<Integer> arc : arcs){
+                        Integer nodeOposat = Graf.getNodeOposat(node, arc);
+                        Comunitat<Integer> comunitatOposada = nodeToComunitat.get(nodeOposat);
+                        double pes = arc.getPes();
+                        if(!grafLouvainNou.existeixArc(comunitat.getId(), comunitatOposada.getId()))
+                            grafLouvainNou.afegirArc(new Arc<Integer>(pes, comunitat.getId(), comunitatOposada.getId()));
+                        else arc.setPes((arc.getPes()+pes)/2.0);
+                    }
+                }
+            }
             grafLouvain = grafLouvainNou;
             numComunitats = grafLouvainNou.ordre();
             System.out.println("Acabo, i l'ordre es " + numComunitats);
         }
         // Creem el conjunt de comunitats que retornarem i fem la traduccio
-        ConjuntComunitats<T> classificacioT = cjtComunitatsFinalITraduccio(classificacio, traduccioGraf);
-
-        return classificacioT;
-    }
-
-    private ConjuntComunitats<T> cjtComunitatsFinalITraduccio(ConjuntComunitats<Integer> classificacio,
-                                              HashMap<Integer, T> traduccioGraf) {
         ConjuntComunitats<T> classificacioT = new ConjuntComunitats<T>();
+
         ArrayList<Comunitat<Integer>> comunitats = classificacio.getComunitats();
         for(Comunitat<Integer> comunitat : comunitats){
             Comunitat<T> comunitatT = new Comunitat<T>();
@@ -74,133 +153,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
             }
         }
         return classificacioT;
-    }
-
-    private Pair<ConjuntComunitats<Integer>, Graf<Integer>> segonaFase
-            (ConjuntComunitats<Integer> conjuntComunitats,
-             ConjuntComunitats<Integer> classificacio, Graf<Integer> grafLouvain, HashMap<Integer,
-                    Comunitat<Integer>> nodeToComunitat) {
-        Pair<ConjuntComunitats<Integer>, ArrayList<Comunitat<Integer>>> pair =
-                actualitzarClassificacio(conjuntComunitats, classificacio);
-        Graf<Integer> grafLouvainNou = crearNouGraf(pair.getSecond(), grafLouvain, nodeToComunitat);
-        Pair<ConjuntComunitats<Integer>, Graf<Integer>> res =
-                new Pair<ConjuntComunitats<Integer>, Graf<Integer>>();
-        res.setFirst(pair.getFirst());
-        res.setSecond(grafLouvainNou);
-        return res;
-    }
-
-    private Graf<Integer> crearNouGraf(ArrayList<Comunitat<Integer>> comunitatsLocals, Graf<Integer> grafLouvain,
-                              HashMap<Integer, Comunitat<Integer>> nodeToComunitat) {
-        // Ara, crear el nou graf
-        Graf<Integer> grafLouvainNou = new Graf<Integer>();
-        for(Comunitat<Integer> comunitat : comunitatsLocals){
-            Integer node = comunitat.getId();
-            //System.out.println(node);
-            grafLouvainNou.afegirNode(node);
-            double selfLoop = sigmaIn(comunitat, grafLouvain);
-            grafLouvainNou.afegirArc(new Arc<Integer>(selfLoop * 2, node, node));
-        }
-        for(Comunitat<Integer> comunitat : comunitatsLocals){
-            // Crear arcs entre comunitats
-            HashSet<Integer> nodes = comunitat.getNodes();
-            for(Integer node : nodes){
-                HashSet<Arc<Integer>> arcs = grafLouvain.getNodesAdjacents(node);
-                for(Arc<Integer> arc : arcs){
-                    Integer nodeOposat = Graf.getNodeOposat(node, arc);
-                    Comunitat<Integer> comunitatOposada = nodeToComunitat.get(nodeOposat);
-                    double pes = arc.getPes();
-                    if(!grafLouvainNou.existeixArc(comunitat.getId(), comunitatOposada.getId()))
-                        grafLouvainNou.afegirArc(new Arc<Integer>(pes, comunitat.getId(), comunitatOposada.getId()));
-                    else arc.setPes((arc.getPes()+pes)/2.0);
-                }
-            }
-        }
-        return grafLouvainNou;
-    }
-
-    private Pair<ConjuntComunitats<Integer>, ArrayList<Comunitat<Integer>>> actualitzarClassificacio
-            (ConjuntComunitats<Integer> conjuntComunitats, ConjuntComunitats<Integer> classificacio) {
-        //Actualitzem classificació
-        ArrayList<Comunitat<Integer>> comunitatsLocals = conjuntComunitats.getComunitats();
-        ConjuntComunitats<Integer> novaClassificacio = new ConjuntComunitats<Integer>();
-        Integer idNova = 0;
-        for(Comunitat<Integer> comunitatLocal : comunitatsLocals){
-            HashSet<Integer> nodesLocals = comunitatLocal.getNodes();
-            Comunitat<Integer> unioComunitats = new Comunitat<Integer>();
-            unioComunitats.setId(idNova);
-            novaClassificacio.afegirComunitat(unioComunitats);
-            for(Integer i : nodesLocals){
-                Comunitat<Integer> comunitatNodesAfegir;
-                try {
-                    comunitatNodesAfegir = classificacio.getComunitat(i);
-                    HashSet<Integer> nodesAfegir = comunitatNodesAfegir.getNodes();
-                    for(Integer nodeAfegir : nodesAfegir){
-                        unioComunitats.afegirNode(nodeAfegir);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            ++idNova;
-        }
-        classificacio = novaClassificacio;
-        Pair<ConjuntComunitats<Integer>, ArrayList<Comunitat<Integer>>> parellClassificacioComunitatsLocals =
-                new Pair<ConjuntComunitats<Integer>, ArrayList<Comunitat<Integer>>>();
-        parellClassificacioComunitatsLocals.setFirst(classificacio);
-        parellClassificacioComunitatsLocals.setSecond(comunitatsLocals);
-        return parellClassificacioComunitatsLocals;
-    }
-
-    private void primeraFase(Graf<Integer> grafLouvain, HashMap<Integer, Comunitat<Integer>> nodeToComunitat, double m2,
-                             ConjuntComunitats<Integer> conjuntComunitats) {
-        //Cada node és una comunitat
-
-        cadaNodeUnaComunitat(grafLouvain, nodeToComunitat, conjuntComunitats);
-
-        boolean canviQ;
-        do {
-            canviQ = false;
-            Set<Integer> nodesGraf = grafLouvain.getNodes();
-            for (Integer node : nodesGraf) {
-                double maxModularitat = 0;  //assumim que només ens importen guanys positius
-                Comunitat<Integer> cOriginal = nodeToComunitat.get(node);
-                Pair <Double, Comunitat<Integer>> deltaQMaxComunitat = new Pair<Double, Comunitat<Integer>>();
-                deltaQMaxComunitat.setFirst(maxModularitat);
-                deltaQMaxComunitat.setSecond(cOriginal);
-                Set<Arc<Integer>> arcsAdjacents = grafLouvain.getNodesAdjacents(node);
-                for (Arc<Integer> arc: arcsAdjacents) {
-                    Comunitat<Integer> cAdjacent = nodeToComunitat.get(Graf.getNodeOposat(node, arc));
-                    //possible millora: comunitats ja visitades no les tornem a visitar
-                    if (cAdjacent != cOriginal){
-                        double deltaQ = deltaQ(node, cAdjacent, grafLouvain, m2);
-                        maxModularitat = max(maxModularitat, deltaQ);
-                        if (maxModularitat > deltaQMaxComunitat.getFirst()) {
-                            // Movem el node a cAdjacent
-                            deltaQMaxComunitat.setFirst(maxModularitat);
-                            deltaQMaxComunitat.setSecond(cAdjacent);
-                        }
-                    }
-                }
-                if (maxModularitat != 0) {
-                    canviQ = true;
-                    Comunitat<Integer> cAdjacent = deltaQMaxComunitat.getSecond();
-                    cOriginal.eliminarNode(node);
-                    cAdjacent.afegirNode(node);
-                    nodeToComunitat.put(node, cAdjacent);
-                    if(cOriginal.estaBuida()) conjuntComunitats.eliminarComunitat(cOriginal);
-                }
-            }
-        } while(canviQ);
-    }
-
-    private void cadaNodeUnaComunitat(Graf<Integer> grafLouvain, HashMap<Integer, Comunitat<Integer>> nodeToComunitat,
-                                      ConjuntComunitats<Integer> conjuntComunitats) {
-        for(Integer node : grafLouvain.getNodes()){
-            Comunitat<Integer> c = new Comunitat<Integer>(node, node);
-            conjuntComunitats.afegirComunitat(c);
-            nodeToComunitat.put(node, c);
-        }
     }
 
     private Graf<Integer> convertirGraf(Graf<T> grafOriginal, HashMap<Integer, T> traduccioIntegerT,
