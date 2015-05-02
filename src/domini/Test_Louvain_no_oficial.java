@@ -12,12 +12,28 @@ public class Test_Louvain_no_oficial {
         graf.afegirNode('c');
         graf.afegirNode('d');
         graf.afegirNode('e');
+        //Afegit:
+        graf.afegirNode('f');
 
+
+        graf.afegirArc(new Arc<Character>(40, 'a', 'b'));
+        graf.afegirArc(new Arc<Character>(5, 'a', 'c'));
+        graf.afegirArc(new Arc<Character>(10, 'b', 'c'));
+
+        graf.afegirArc(new Arc<Character>(1, 'c', 'e'));
+
+        graf.afegirArc(new Arc<Character>(3, 'e', 'd'));
+        graf.afegirArc(new Arc<Character>(50, 'e', 'f'));
+        graf.afegirArc(new Arc<Character>(100, 'f', 'd'));
+
+        /*
         graf.afegirArc(new Arc<Character>(30, 'a', 'b'));
         //graf.afegirArc(new Arc<Character>(1, 'b', 'e'));
         graf.afegirArc(new Arc<Character>(30, 'e', 'c'));
         graf.afegirArc(new Arc<Character>(30, 'e', 'd'));
         graf.afegirArc(new Arc<Character>(30, 'c', 'd'));
+        */
+
 
         AlgorismeLouvain<Character> algorismeLouvain = new AlgorismeLouvain<Character>();
         ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 10, 0);

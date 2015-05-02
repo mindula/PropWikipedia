@@ -16,6 +16,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criteriParada, int nul){
 
         int numComunitats = grafOriginal.ordre();
+        final double MIN_MODULARITAT = 0.01;
 
         HashMap<Integer, Comunitat<Integer>> nodeToComunitat = new HashMap<Integer, Comunitat<Integer>>();
         HashMap<Integer, T> traduccioGraf = new HashMap<Integer, T>();
@@ -26,7 +27,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
         Graf<Integer> grafLouvain = convertirGraf(grafOriginal, traduccioGraf/*, classificacio*/);
 
         System.out.println("graf Louvain: \n" + grafLouvain);
-        System.out.println("classificacio: \n" + classificacio);
 
         double m2 = m2(grafLouvain); // només cal calcular m2 un cop
 
@@ -70,7 +70,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T>{
                             }
                         }
                     }
-                    if (maxModularitat != 0) {
+                    if (maxModularitat > MIN_MODULARITAT) {
+                        System.out.println("Node: " + node + ": " + maxModularitat);
                         canviQ = true;
                         canviExtern = true;
                         Comunitat<Integer> cAdjacent = deltaQMaxComunitat.getSecond();
