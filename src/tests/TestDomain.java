@@ -24,6 +24,7 @@ public class TestDomain {
                 "1.  Test GrafWikipedia\n" +
                 "2.  Test GrafParser\n" +
                 "3.  Test GrafCompartit\n" +
+
                 "4.  Test GrafDirigit\n" +
                 "5.  Test GrafGenerator\n" +
                 "6.  Test ComunitatWiki i OpConjunt\n" +
@@ -40,6 +41,7 @@ public class TestDomain {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
         while (opcio != 16) {
+
             switch (opcio) {
                 case 1:
                     TestGrafWikipedia.main(null);
