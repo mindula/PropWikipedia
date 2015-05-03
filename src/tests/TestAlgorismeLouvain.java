@@ -71,23 +71,18 @@ public class TestAlgorismeLouvain{
                 graf.afegirNode('A');
                 graf.afegirNode('B');
                 graf.afegirNode('C');
+                graf.afegirNode('D');
+                graf.afegirNode('E');
+                graf.afegirNode('F');
 
-                graf.afegirArc(new Arc<Character>(1, '0', '1'));
-                graf.afegirArc(new Arc<Character>(1, '1', '2'));
-                graf.afegirArc(new Arc<Character>(1, '2', '3'));
-                graf.afegirArc(new Arc<Character>(1, '3', '1'));
+                graf.afegirArc(new Arc<Character>(1, '0', '2'));
+                graf.afegirArc(new Arc<Character>(1, '0', '3'));
                 graf.afegirArc(new Arc<Character>(1, '0', '4'));
-                graf.afegirArc(new Arc<Character>(1, '4', '5'));
-                graf.afegirArc(new Arc<Character>(1, '5', '6'));
-                graf.afegirArc(new Arc<Character>(1, '6', '4'));
-                graf.afegirArc(new Arc<Character>(1, '0', '7'));
-                graf.afegirArc(new Arc<Character>(1, '7', '8'));
-                graf.afegirArc(new Arc<Character>(1, '8', '9'));
-                graf.afegirArc(new Arc<Character>(1, '9', '7'));
-                graf.afegirArc(new Arc<Character>(1, '0', 'A'));
-                graf.afegirArc(new Arc<Character>(1, 'A', 'B'));
-                graf.afegirArc(new Arc<Character>(1, 'B', 'C'));
-                graf.afegirArc(new Arc<Character>(1, 'C', 'A'));
+                graf.afegirArc(new Arc<Character>(1, '0', '5'));
+                graf.afegirArc(new Arc<Character>(1, '1', '2'));
+                graf.afegirArc(new Arc<Character>(1, '1', '4'));
+                graf.afegirArc(new Arc<Character>(1, '1', '7'));
+
 
                 break;
             default:
