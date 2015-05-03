@@ -25,11 +25,12 @@ public class TestDomain {
                 "8. Test Navegacio\n" +
                 "9. Test CercarComunitats\n" +
                 "10. Test InformacioCjtComunitats" +
-                "11. Finalitzar Test\n");
+                "11. Test Infocerca" +
+                "20. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 11) {
+        while (opcio != 20) {
             switch (opcio) {
                 case 0:
                     System.out.println("Escull una opcio:\n" +
@@ -75,6 +76,9 @@ public class TestDomain {
                     break;
                 case 10:
                     TestInformacioCjtComunitats.main(null);
+                    break;
+                case 11:
+                    TestInfoCerca.main(null);
                     break;
             }
             opcio = sc.nextInt();
