@@ -1,5 +1,6 @@
 package tests;
 
+import domini.InformacioCjtComunitats;
 import org.grupwiki.graf.Graf;
 
 import java.util.Scanner;
@@ -22,13 +23,14 @@ public class TestDomain {
                 "5. Test CercaHistorial\n" +
                 "6. Test Categoria\n" +
                 "7. Test Pagina\n" +
-                "8. Test Navegacio" +
-                "9. Test CercarComunitats" +
-                "10. Finalitzar Test\n");
+                "8. Test Navegacio\n" +
+                "9. Test CercarComunitats\n" +
+                "10. Test InformacioCjtComunitats" +
+                "11. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 20) {
+        while (opcio != 11) {
             switch (opcio) {
                 case 0:
                     System.out.println("Escull una opcio:\n" +
@@ -40,9 +42,10 @@ public class TestDomain {
                             "5. Test CercaHistorial\n" +
                             "6. Test Categoria\n" +
                             "7. Test Pagina\n" +
-                            "8. Test Navegacio" +
-                            "9. Test CercarComunitats" +
-                            "10. Finalitzar Test\n");
+                            "8. Test Navegacio\n" +
+                            "9. Test CercarComunitats\n" +
+                            "10. Test InformacioCjtComunitats" +
+                            "11. Finalitzar Test\n");
                     break;
                 case 1:
 
@@ -69,6 +72,9 @@ public class TestDomain {
                     TestNavegacio.main(null);
                     break;
                 case 9:
+
+                    break;
+                case 10:
 
                     break;
             }

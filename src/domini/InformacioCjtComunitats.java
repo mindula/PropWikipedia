@@ -6,38 +6,32 @@ package domini;
  * Data: 29/04/15
  */
 public class InformacioCjtComunitats {
-        private int milisegons;
-        private int nombreComunitats;
-        private String algoritme;
-        private String criteri;
-        private double mitjanaNodesPerComunitat;
+        private final long  milisegons;
+        private final int nombreComunitats;
+        private final String algoritme;
+        private final String criteri;
+        private final double mitjanaNodesPerComunitat;
 
-    public void setMilisegons(int milisegons) {
+    public InformacioCjtComunitats(long milisegons, int nombreComunitats, String algoritme, String criteri, double mitjanaNodesPerComunitat) {
         this.milisegons = milisegons;
+        this.nombreComunitats = nombreComunitats;
+        this.algoritme = algoritme;
+        this.criteri = criteri;
+        this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
     }
 
-    public int getMilisegons() {
+
+    public long getMilisegons() {
         return milisegons;
     }
 
-    public void setNombreComunitats(int nombreComunitats) {
-        this.nombreComunitats = nombreComunitats;
-    }
 
     public int getNombreComunitats() {
         return nombreComunitats;
     }
 
-    public void setAlgoritme(String algoritme) {
-        this.algoritme = algoritme;
-    }
-
     public String getAlgoritme() {
         return algoritme;
-    }
-
-    public void setCriteri(String criteri) {
-        this.criteri = criteri;
     }
 
     public String getCriteri() {
@@ -48,7 +42,5 @@ public class InformacioCjtComunitats {
         return mitjanaNodesPerComunitat;
     }
 
-    public void setMitjanaNodesPerComunitat(double mitjanaNodesPerComunitat) {
-        this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
-    }
+
 }
