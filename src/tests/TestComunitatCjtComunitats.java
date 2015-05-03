@@ -139,6 +139,7 @@ public class TestComunitatCjtComunitats {
                             case 14:
                                 System.out.println("Escriu la nova descripció");
                                 // paraula = "holaaa";
+                                sc.nextLine();
                                 paraula = sc.nextLine();
                                 C.setDescripcio(paraula);
                                 break;
