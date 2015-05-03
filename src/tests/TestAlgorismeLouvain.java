@@ -17,8 +17,8 @@ public class TestAlgorismeLouvain{
     public static void main(String args[]){
         Graf<Character> graf = new Graf<Character>();
         System.out.println("Escriu el numero del test:");
-        System.out.println("test 0: ");
-        System.out.println("test 1: 6 nodes, agrupats de 3 en 3 (2 comunitats)");
+        System.out.println("test 0: 5 nodes, agrupats en 2 comunitats separades");
+        System.out.println("test 1: 6 nodes, agrupats de 3 en 3 (2 comunitats unides amb un arc)");
         System.out.println("test 2: pdf Louvain");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
@@ -32,7 +32,6 @@ public class TestAlgorismeLouvain{
                 graf.afegirNode('e');
 
                 graf.afegirArc(new Arc<Character>(30, 'a', 'b'));
-                //graf.afegirArc(new Arc<Character>(1, 'b', 'e'));
                 graf.afegirArc(new Arc<Character>(30, 'e', 'c'));
                 graf.afegirArc(new Arc<Character>(30, 'e', 'd'));
                 graf.afegirArc(new Arc<Character>(30, 'c', 'd'));

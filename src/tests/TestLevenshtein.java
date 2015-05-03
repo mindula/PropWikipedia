@@ -1,6 +1,5 @@
 package tests;
 
-import domini.Levenshtein;
 import domini.LevenshteinDistance;
 
 /**
@@ -15,7 +14,7 @@ public class TestLevenshtein {
 
         for(String s1 : testValues){
             for (String s2 :testValues){
-                System.out.println(s1+":"+s2+"="+Levenshtein.distancia(s1, s2)+ ":"+LevenshteinDistance.calculate(s1, s2));
+                System.out.println(s1+":"+s2+"="+ ":"+LevenshteinDistance.calculate(s1, s2));
 
             }
         }
