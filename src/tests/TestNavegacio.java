@@ -26,6 +26,7 @@ public class TestNavegacio {
         option = sc.nextInt();
         while(option != -1) {
             System.out.println("Escriu el nom:");
+            sc.nextLine();
             String nom = sc.nextLine();
             try {
                 switch (option) {
