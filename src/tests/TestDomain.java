@@ -32,7 +32,7 @@ public class TestDomain {
                 "8.  Test Navegacio\n" +
                 "9.  Test CercarComunitats\n" +
                 "10. Test InformacioCjtComunitats\n" +
-                "11." +
+                "11. Test InfoCerca" +
                 "12. Test Cercarcomunitats\n" +
                 "20. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -145,17 +145,19 @@ public class TestDomain {
                     System.out.println(comunitats);
             }
             System.out.println("Escull una opcio:\n" +
-                    "0. Veure Opcions\n" +
-                    "1. Test GrafWikipedia\n" +
-                    "2. Test GrafParser\n" +
-                    "3. Test GrafCompartit\n" +
-                    "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
-                    "5. Test CercaHistorial\n" +
-                    "6. Test Categoria\n" +
-                    "7. Test Pagina\n" +
-                    "8. Test Navegacio\n" +
-                    "9. Test CercarComunitats\n" +
+                    "0.  Veure Opcions\n" +
+                    "1.  Test GrafWikipedia\n" +
+                    "2.  Test GrafParser\n" +
+                    "3.  Test GrafCompartit\n" +
+                    "4.  Test ConjuntComunitatsWiki i ComunitatWiki\n" +
+                    "5.  Test CercaHistorial\n" +
+                    "6.  Test Categoria\n" +
+                    "7.  Test Pagina\n" +
+                    "8.  Test Navegacio\n" +
+                    "9.  Test CercarComunitats\n" +
                     "10. Test InformacioCjtComunitats\n" +
+                    "11. Test InfoCerca" +
+                    "12. Test Cercarcomunitats\n" +
                     "20. Finalitzar Test\n");
             opcio = sc.nextInt();
         }

@@ -24,6 +24,8 @@ public class GrafGenerator  {
 
 
         for (NodeWiki n1 : graf.getNodes()) {
+            if(n1.esCategoria() && !newGraf.existeixNode((NodeCategoria)n1))
+                newGraf.afegirNode((NodeCategoria)n1);
             for (NodeWiki n2 : graf.getNodes()) { // si no fossin sets, podria millorar aixo.
                 // actualment es mira cada parella de nodes a-b dos cops
                 if (n1 != n2) {
