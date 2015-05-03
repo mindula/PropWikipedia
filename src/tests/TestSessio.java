@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard.gascons
- * Data: 5/3/15
+ * Data: 03/05/2015
  */
 
 public class TestSessio {

@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
- * Data: 2/5/15
+ * Data: 02/05/15
  *
  */
 public class TestGrafGenerator {

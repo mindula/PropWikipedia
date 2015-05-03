@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
- * Data: 4/25/15
+ * Usuari: ricard.gascons
+ * Data: 25/04/15
  */
 public class TestGrafCompartit {
 

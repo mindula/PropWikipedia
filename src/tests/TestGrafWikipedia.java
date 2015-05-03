@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
- * Data: 03/05/2015.
+ * Data: 03/05/2015
  */
 public class TestGrafWikipedia {
         public static void main(String[] args) {
