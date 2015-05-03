@@ -20,12 +20,11 @@ public class CriteriFillsComuns extends Criteri{
         double fillsComuns = 0;
         for(Arc<NodeWiki> a1 : graf.getNodesAdjacents(n1)){
             NodeWiki successor = Graf.getNodeOposat(n1, a1);
-            if(graf.getArcEntre(n2, successor) != null){ // potser tira exepcio
+            if(graf.getArcEntre(successor, n2) != null){ // potser tira exepcio
                 System.out.println("SUCCESSOR COMU!");
                 fillsComuns++;
             }
         }
-
 
         return fillsComuns;
     }
