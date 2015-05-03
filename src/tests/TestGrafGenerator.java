@@ -1,14 +1,14 @@
 package tests;
 
+import domini.Sessio;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
-import graf.NodePagina;
-import graf.grafgenerator.Criteris.Criteri;
-import graf.grafgenerator.Criteris.CriteriParesComuns;
+import graf.grafgenerator.Criteris.*;
 import graf.grafgenerator.GrafGenerator;
 import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by gus on 26/04/15.
@@ -16,79 +16,68 @@ import java.util.ArrayList;
 public class TestGrafGenerator {
     public static void main(String[] args) {
 
-        GrafWikipedia graf = new GrafWikipedia();
-        NodeCategoria n1 = new NodeCategoria("Holo");
-        NodeCategoria n2 = new NodeCategoria("joder");
-        NodeCategoria n3 = new NodeCategoria("jalalalala");
-        NodeCategoria n4 = new NodeCategoria("papapapap");
-        NodeCategoria n5 = new NodeCategoria("palalala");
-        NodeCategoria n6 = new NodeCategoria("agus");
+        System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:");
+        System.out.println("0: Criteri Nom");
+        System.out.println("1: Criteri supercategories comunes");
+        System.out.println("2: Criteri subcategories comunes");
+        System.out.println("3: Criteri pagines comunes");
+        System.out.println("\nper exemple (1 0.8) -> afegir criteri subcategories amb ponderacio 0.8");
 
-
-        graf.afegirNode(n1);
-        graf.afegirNode(n2);
-        graf.afegirNode(n3);
-        graf.afegirNode(n4);
-        graf.afegirNode(n5);
-        graf.afegirNode(n6);
-
-
-        graf.afegirArcCsupC(n1, n3);
-        graf.afegirArcCsupC(n1, n4);
-        graf.afegirArcCsupC(n1, n5);
-
-        graf.afegirArcCsupC(n2, n3);
-        graf.afegirArcCsupC(n2, n4);
-        graf.afegirArcCsupC(n2, n5);
-
-
-
-        NodePagina p1 = new NodePagina("hololo.1");
-        NodePagina p2 = new NodePagina("hololo.2");
-        NodePagina p3 = new NodePagina("hololo.3");
-
-
-        graf.afegirNode(p1);
-        graf.afegirNode(p2);
-        graf.afegirNode(p3);
-
-        graf.afegirArcPC(p1, n1);
-        graf.afegirArcPC(p2, n1);
-        graf.afegirArcPC(p3, n1);
-
-        graf.afegirArcPC(p1, n4);
-        graf.afegirArcPC(p2, n4);
-        graf.afegirArcPC(p3, n4);
-
-
-
-        NodePagina p4 = new NodePagina("joder.1");
-        NodePagina p5 = new NodePagina("joder.2");
-        NodePagina p6 = new NodePagina("joder.3");
-
-        graf.afegirNode(p4);
-        graf.afegirNode(p5);
-        graf.afegirNode(p6);
-
-
-        graf.afegirArcPC(p4, n2);
-        graf.afegirArcPC(p5, n2);
-        graf.afegirArcPC(p6, n2);
-
-
-
-        System.out.println("BEFORE:");
-        System.out.println(graf);
 
         ArrayList<Criteri> criteris = new ArrayList<Criteri>();
-        criteris.add(new CriteriParesComuns(1));
+        Scanner sc = new Scanner(System.in);
+        boolean continuar = true;
+        while(continuar) {
+            int opcio = sc.nextInt();
+            double ponderacio = sc.nextDouble();
+
+            Criteri c = null;
+            switch (opcio) {
+                case 0:
+                    System.out.println("Introdueix el nombre maxim de diferencia entre noms");
+                    int maxCost = sc.nextInt();
+                    System.out.println("max"+maxCost);
+                    c= new CriteriNom(ponderacio,maxCost);
+                    break;
+
+                case 1:
+                    c = new CriteriSuperCategoriesComuns(ponderacio);
+                    break;
+
+                case 2:
+                    c = new CriteriSubCategoriesComuns(ponderacio);
+                    break;
+
+                case 3:
+                    c = new CriteriPaginesComuns(ponderacio);
+                    break;
+
+                case -1:
+                    continuar = false;
+                    break;
+
+                default:
+                    System.out.println("No es una opcio correcta");
+                    continue;
+            }
+            if(continuar) {
+                criteris.add(c);
+
+            }
+        }
+
+        System.out.println("Criteris afegits: " + criteris.size());
+
+        GrafWikipedia g = Sessio.getInstance().getGrafWiki();
 
         GrafGenerator generator = new GrafGenerator();
-        Graf<NodeCategoria> newGraf = generator.generate(graf,criteris);
+        Graf<NodeCategoria> grafAlgoritme = generator.generate(g, criteris);
+        Sessio.getInstance().setGrafAlgoritme(grafAlgoritme);
 
-
-        System.out.println("AFTER:");
-        System.out.print(newGraf);
+        System.out.println("Vols mostrar el graf generat? 1 - si/2 - no");
+        int mostrar = sc.nextInt();
+        if( mostrar == 1 )
+            System.out.println(grafAlgoritme);
 
 
     }

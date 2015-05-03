@@ -13,9 +13,9 @@ import java.util.HashSet;
  * Data: 2/5/15
  *
  */
-public class CriteriParesComuns extends Criteri{
+public class CriteriSuperCategoriesComuns extends Criteri{
 
-    public CriteriParesComuns(double ponderacio) {
+    public CriteriSuperCategoriesComuns(double ponderacio) {
         super(ponderacio);
     }
 
@@ -26,7 +26,7 @@ public class CriteriParesComuns extends Criteri{
         for(Arc<NodeWiki> arc : arcs1){
             if(arc.getPes() > 0) {
                 NodeWiki pare = Graf.getNodeOposat(n1, arc);
-                if(graf.existeixArc(pare,n2)){
+                if(graf.existeixArc(pare,n2)){ // tot
                     paresComuns++;
                 }
             }
