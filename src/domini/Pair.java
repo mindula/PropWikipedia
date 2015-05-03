@@ -33,4 +33,9 @@ public class Pair<X, Y> {
     public void setSecond(Y second) {
         this.second = second;
     }
+
+    @Override
+    public String toString() {
+        return first.toString() + " " + second.toString();
+    }
 }
