@@ -58,4 +58,9 @@ public class GrafDirigit<T> extends Graf<T> {
         cjtArcs.remove(arc);
         --E;
     }
+
+    @Override
+    public boolean existeixArc(T origen, T desti) {
+        return super.existeixArc(origen, desti);
+    }
 }

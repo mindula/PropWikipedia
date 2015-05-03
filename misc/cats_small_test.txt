@@ -11,3 +11,4 @@ cat2	cat	CP	pagina22	page
 page99	page	PC	cat1	cat
 page99	page	PC	cat2	cat
 cat2	cat	CP	page99	page
+cat100	cat	CP	cat100	page

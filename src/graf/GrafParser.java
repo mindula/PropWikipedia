@@ -1,10 +1,8 @@
 package graf;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
+import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
@@ -19,26 +17,37 @@ public class GrafParser {
         grafWikipedia = graf;
     }
 
-    public GrafWikipedia parse(Path path){
+    public GrafWikipedia parse(String path){
+        FileInputStream inputStream;
+        Scanner sc;
         try{
-            List<String> l = Files.readAllLines(path, Charset.defaultCharset()); // canviar la implementacio, fitxers grans
-            for(String s: l){
+            inputStream = new FileInputStream(path);
+            sc = new Scanner(inputStream);
+            while (sc.hasNextLine()) {
+                String s = sc.nextLine();
                 parseLine(s);
             }
+            if (sc.ioException() != null) {
+                throw sc.ioException();
+            }
+            /*
+            List<String> l = Files.readAllLines(path, Charset.defaultCharset());
+            for(String s: l)
+                parseLine(s);
+            */
+            inputStream.close();
+            sc.close();
         }
         catch(IOException e) {
             e.printStackTrace();
-            //e.getCause();
-            //e.getMessage();
         }
         return grafWikipedia;
     }
 
     private void parseLine(String s){
         String[] parts = s.split("\\t");
-        // Tipus d�arc: "CsubC", "CsupC", "CP" i "PC"
+        // Tipus d'arc: "CsubC", "CsupC", "CP" i "PC"
 
-        //System.out.println(parts[0] + " " + parts[2] + " " + parts[3])
         String elemA = parts[0];
         String elemB = parts[3];
         String tipusArc = parts[2];

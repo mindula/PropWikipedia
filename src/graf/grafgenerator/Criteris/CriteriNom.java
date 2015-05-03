@@ -1,8 +1,8 @@
-package graf.graftransform.Criteris;
+package graf.grafgenerator.Criteris;
 
-import graf.NodeWiki;
 import domini.LevenshteinDistance;
-import org.grupwiki.graf.Graf;
+import graf.GrafWikipedia;
+import graf.NodeWiki;
 
 /**
  * Grup 3: Wikipedia
@@ -21,7 +21,7 @@ public class CriteriNom extends Criteri{
     }
 
     @Override
-    public double getPes(NodeWiki n1, NodeWiki n2, Graf<NodeWiki> graf) {
+    public double getPes(NodeWiki n1, NodeWiki n2, GrafWikipedia graf) {
         int cost = LevenshteinDistance.calculate(n1.getNom(), n2.getNom());
 
         int maximCost = (int) (Math.max(n1.getNom().length(), n2.getNom().length()) * maximGrauDiferencia);

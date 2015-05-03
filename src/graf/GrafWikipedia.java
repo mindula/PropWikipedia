@@ -29,22 +29,22 @@ public class GrafWikipedia {
         grafWiki.afegirArc(arcCP);
     }
 
-    public void afegirArcCsupC(NodeCategoria categoriaA, NodeCategoria categoriaB) {
-        if (categoriaA.getNom().equals(categoriaB.getNom())) {
+    public void afegirArcCsupC(NodeCategoria subCategoria, NodeCategoria superCategoria) {
+        if (subCategoria.getNom().equals(superCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
         }
-        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(1, categoriaA, categoriaB);
-        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(-1, categoriaB, categoriaA);
+        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(1, subCategoria, superCategoria);
+        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(-1, superCategoria, subCategoria);
         grafWiki.afegirArc(arcAsubB);
         grafWiki.afegirArc(arcBsubA);
     }
 
-    public void afegirArcCsubC(NodeCategoria categoriaA, NodeCategoria categoriaB) {
-        if (categoriaA.getNom().equals(categoriaB.getNom())) {
+    public void afegirArcCsubC(NodeCategoria superCategoria, NodeCategoria subCategoria) {
+        if (superCategoria.getNom().equals(subCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
         }
-        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(-1, categoriaA, categoriaB);
-        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(1, categoriaB, categoriaA);
+        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(-1, superCategoria, subCategoria);
+        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(1, subCategoria, superCategoria);
         grafWiki.afegirArc(arcAsubB);
         grafWiki.afegirArc(arcBsubA);
     }

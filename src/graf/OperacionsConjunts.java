@@ -1,4 +1,4 @@
-package domini;
+package graf;
 
 import org.grupwiki.graf.Comunitat;
 
