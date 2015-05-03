@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
- * Data: 24/4/15
+ * Data: 24/04/15
  */
 
 public class TestGrafParser {

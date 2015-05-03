@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
- * Data: 5/2/15
+ * Data: 02/05/15
  */
 public class TestGrafDirigit {
     public static void main(String args[]) {
