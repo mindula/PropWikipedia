@@ -17,12 +17,12 @@ import java.util.Scanner;
 public class TestGrafParser {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Escriu 0 per provar un test per defecte, 1 per un test predeterminat i 2 per sortir");
+        System.out.println("Escriu 0 per provar un test per defecte, 1 per escriure el path d'un fitxer en concret i 2 per sortir");
         int opcio = sc.nextInt();
         if(opcio == 2) return;
         String path = "";
         switch(opcio) {
-            case 0:
+            case 0: // test default
                 System.out.println("Escriu el numero del test:");
                 System.out.println("test 0: misc/cats_test.txt");
                 System.out.println("test 1: misc/cats_small_test.txt");
@@ -40,7 +40,7 @@ public class TestGrafParser {
                         break;
                 }
                 break;
-            case 1:
+            case 1: // test fitxer concret
                 System.out.println("Escriu el path del fitxer:");
                 path = sc.nextLine();
                 break;
