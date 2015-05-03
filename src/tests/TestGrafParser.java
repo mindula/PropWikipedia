@@ -1,11 +1,10 @@
 package tests;
 
-import graf.NodeCategoria;
-import graf.NodePagina;
 import domini.Sessio;
 import graf.GrafParser;
 import graf.GrafWikipedia;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -49,9 +48,13 @@ public class TestGrafParser {
 
         GrafWikipedia g = Sessio.getInstance().getGrafWiki();
         GrafParser grafParser = new GrafParser(g);
-        grafParser.parse(path);
-        System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
-        opcio = sc.nextInt();
-        if (opcio == 1) System.out.println(g);
+        try {
+            grafParser.parse(path);
+            System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
+            opcio = sc.nextInt();
+            if (opcio == 1) System.out.println(g);
+        } catch (IOException e) {
+            System.out.println("Error, no s'ha trobat el fitxer " + e.getMessage());
+        }
     }
 }
