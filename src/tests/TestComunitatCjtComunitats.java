@@ -13,11 +13,11 @@ import java.util.Scanner;
  * Usuari: eduard.casellas
  * Data: 29/04/15
  */
-public class TestComnunitatCjtComunitats {
+public class TestComunitatCjtComunitats {
 
     private Graf<NodeWiki> graf;
 
-    public TestComnunitatCjtComunitats(Graf<NodeWiki> graf) {
+    public TestComunitatCjtComunitats(Graf<NodeWiki> graf) {
         this.graf = graf;
     }
 
@@ -36,6 +36,7 @@ public class TestComnunitatCjtComunitats {
                 case 1:
                     ComunitatWiki C = new ComunitatWiki();
                     System.out.println("Escull opcio:\n" +
+                            "0. Veure opcions\n" +
                             "1. Afegir Node\n" +
                             "2. Afegir conjunt de Nodes\n" +
                             "3. Eliminar Node\n" +
@@ -54,6 +55,25 @@ public class TestComnunitatCjtComunitats {
                     int opcio2 = sc.nextInt();
                     while(opcio2 != 15){
                         switch(opcio2){
+                            case 0:
+                                System.out.println("Escull opcio:\n" +
+                                        "0. Veure opcions\n" +
+                                        "1. Afegir Node\n" +
+                                        "2. Afegir conjunt de Nodes\n" +
+                                        "3. Eliminar Node\n" +
+                                        "4. Obtenir la mida\n" +
+                                        "5. Obtenir tots els nodes\n" +
+                                        "6. Obtenir el identificador\n" +
+                                        "7. Canviar el identificador\n" +
+                                        "8. Consultar si es buida\n" +
+                                        "9. Consultar si té un Node n\n" +
+                                        "10. Consultar si té un Node amb nom s\n" +
+                                        "11. Obtenir el nom de la comunitat\n" +
+                                        "12. Canviar el nom de la comunitat\n" +
+                                        "13. Obtenir la descripció\n" +
+                                        "14. Editar la descripció\n" +
+                                        "15. Finalitzar el Test");
+                                break;
                             case 1:
                                 System.out.println("Escriu el nom del node que volguis inserir");
                                 paraula = sc.next();
@@ -73,6 +93,9 @@ public class TestComnunitatCjtComunitats {
                                 break;
                             case 3:
                                 System.out.println("Escriu el nom del node a eliminar");
+
+                                //falta fer
+
                                 break;
                             case 4:
                                 System.out.println(C.mida());
@@ -116,7 +139,7 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println(C.getDescripcio());
                                 break;
                             case 14:
-                                System.out.println("Esciu la nova descripció");
+                                System.out.println("Escriu la nova descripció");
                                 paraula = sc.nextLine();
                                 C.setDescripcio(paraula);
                                 break;
@@ -127,6 +150,7 @@ public class TestComnunitatCjtComunitats {
                 case 2:
                     ConjuntComunitats<NodeWiki> comunitats = new ConjuntComunitats<NodeWiki>();
                     System.out.println("Escull una opció:\n" +
+                            "0. Veure opcions\n" +
                             "1. Afegir Comunitat\n" +
                             "2. Obtenir el nombre de Comunitats\n" +
                             "3. Obtenir la comunitat amb id s\n" +
@@ -140,8 +164,23 @@ public class TestComnunitatCjtComunitats {
                     ComunitatWiki com;
                     while (opcio3 != 9){
                         switch (opcio3){
+                            case 0:
+                                System.out.println("Escull una opció:\n" +
+                                        "0. Veure opcions\n" +
+                                        "1. Afegir Comunitat\n" +
+                                        "2. Obtenir el nombre de Comunitats\n" +
+                                        "3. Obtenir la comunitat amb id s\n" +
+                                        "4. Eliminar una comunitat\n" +
+                                        "5. Unió de dos comunitats\n" +
+                                        "6. Intersecció de dos comunitats\n" +
+                                        "7. Diferència de dos comunitats\n" +
+                                        "8. Obtenir comunitats" +
+                                        "9. Finalitzar el test");
+                                break;
                             case 1:
-                               com = new ComunitatWiki();
+                                System.out.println("Escriu el id de la comunitat");
+                                ident = sc.nextInt();
+                                com = new ComunitatWiki();
                                 comunitats.afegirComunitat(com);
                                 break;
                             case 2:
@@ -182,9 +221,14 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println(comunitats.getComunitats());
                                 break;
                         }
+                        opcio3 = sc.nextInt();
                     }
                     break;
             }
+            System.out.println("Escull una opció:\n" +
+                    "1. Provar ComunitatWiki\n" +
+                    "2. Provar ConjuntComunitatWiki\n" +
+                    "3. Finalitzar el Test");
             opcio = sc.nextInt();
         }
 
