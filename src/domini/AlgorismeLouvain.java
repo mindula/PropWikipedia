@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris, ricard.gascons
- * Data: 23/4/15
+ * Data: 23/04/15
  */
 
 /**

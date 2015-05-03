@@ -8,15 +8,15 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
- * Data: 03/05/2015.
+ * Data: 03/05/2015
  */
 public class TestInformacioCjtComunitats {
 
     public static void main(String[] args) {
         InformacioCjtComunitats I;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Inicialitza la informacio: milisegons, numero de comunitats, Algoritme," +
-                "Criteri i Mitjana de nombres per comunitat");
+        System.out.println("Inicialitza la informacio: milisegons(long), numero de comunitats(int), Algoritme(string)," +
+                "Criteri(string), i Mitjana de nombres per comunitat(long)");
         long mil = sc.nextLong();
         int nCom = sc.nextInt();
         String alg = sc.next();
@@ -26,7 +26,7 @@ public class TestInformacioCjtComunitats {
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el temps\n" +
-                "2. Obtenir el nombre de comunitat\ns" +
+                "2. Obtenir el nombre de comunitat\n" +
                 "3. Obtenir el algoritme\n" +
                 "4. Obtenri el criteri\n" +
                 "5. Obtenir la mitjana de nodes per comunitat\n" +

@@ -10,10 +10,17 @@ import java.util.List;
  * Usuari: ricard.gascons
  * Data: 2/5/15
  */
+
+/**
+ * Graf de la Wikipedia
+ */
 public class GrafWikipedia {
 
     private GrafDirigit<NodeWiki> grafWiki;
 
+    /**
+     * Constructora per defecte
+     */
     public GrafWikipedia (){
         grafWiki = new GrafDirigit<NodeWiki>();
     }
@@ -26,6 +33,11 @@ public class GrafWikipedia {
         grafWiki.eliminarNode(node);
     }
 
+    /**
+     * Afegeix una aresta entre pagina i categoria (i viceversa)
+     * @param pagina
+     * @param categoria
+     */
     public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
         Arc<NodeWiki> arcPC = new Arc<NodeWiki>(0.0, pagina, categoria);
         Arc<NodeWiki> arcCP = new Arc<NodeWiki>(0.0, categoria, pagina);
@@ -33,6 +45,11 @@ public class GrafWikipedia {
         grafWiki.afegirArc(arcCP);
     }
 
+    /**
+     * Afegeix una aresta entre subcategoria i supercategoria
+     * @param subCategoria
+     * @param superCategoria
+     */
     public void afegirArcCsupC(NodeCategoria subCategoria, NodeCategoria superCategoria) {
         if (subCategoria.getNom().equals(superCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
@@ -43,6 +60,11 @@ public class GrafWikipedia {
         grafWiki.afegirArc(arcBsubA);
     }
 
+    /**
+     * Afegeix una aresta entre supercategoria i subcategoria
+     * @param superCategoria
+     * @param subCategoria
+     */
     public void afegirArcCsubC(NodeCategoria superCategoria, NodeCategoria subCategoria) {
         if (superCategoria.getNom().equals(subCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");

@@ -9,7 +9,10 @@ import org.grupwiki.graf.Graf;
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
  * Data: 2/5/15
- *
+ */
+
+/**
+ * Criteri per pagines comunes entre categories
  */
 public class CriteriPaginesComuns extends Criteri{
     public CriteriPaginesComuns(double ponderacio) {

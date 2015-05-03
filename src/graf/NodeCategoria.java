@@ -6,6 +6,9 @@ package graf;
  * Date: 18/04/15
  */
 
+/**
+ * Node tipus categoria
+ */
 public class NodeCategoria extends NodeWiki {
 
 

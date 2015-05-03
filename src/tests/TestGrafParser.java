@@ -10,13 +10,16 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
- * Data: 24/4/15
+ * Data: 24/04/15
  */
 
 public class TestGrafParser {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Escriu 0 per provar un test per defecte, 1 per escriure el path d'un fitxer en concret i 2 per sortir");
+        System.out.println("Escriu:\n" +
+                "0 per provar un test per defecte\n" +
+                "1 per escriure el path d'un fitxer en concret\n" +
+                "2 per acabar el test\n");
         int opcio = sc.nextInt();
         if(opcio == 2) return;
         String path = "";

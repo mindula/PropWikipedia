@@ -2,12 +2,12 @@ package domini;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
+ * Usuari: ricard.gascons
  * Data: 4/30/15
  */
 
 /**
- * Conté un parell d'elements
+ * Conte un parell d'elements
  * @param <X>
  * @param <Y>
  */
@@ -15,7 +15,7 @@ public class Pair<X, Y> {
     X first;
     Y second;
 
-    public Pair() {
+    private Pair() {
 
     }
 

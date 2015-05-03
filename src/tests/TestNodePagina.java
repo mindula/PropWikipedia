@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
- * Data: 03/05/2015.
+ * Data: 03/05/2015
  */
 public class TestNodePagina {
     public static void main(String[] args) {
@@ -16,8 +16,8 @@ public class TestNodePagina {
                 "2. Canviar el nom\n" +
                 "3. Obtenir si ha estat creat manualment\n" +
                 "4. Definir si ha estat creat manualment\n" +
-                "5. Obtenir el URL" +
-                "6. Obtenir si es categoria" +
+                "5. Obtenir el URL\n" +
+                "6. Obtenir si es categoria\n" +
                 "7. Finalitzar Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();

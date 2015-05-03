@@ -11,8 +11,12 @@ import java.util.Set;
  * Usuari: ricard.gascons
  * Data: 2/5/15
  */
-public class GrafDirigit<T> extends Graf<T> {
 
+/**
+ * Graf dirigit per la Wikipedia. Exten la majoria de funcions de Graf
+ * @param <T>
+ */
+public class GrafDirigit<T> extends Graf<T> {
 
     @Override
     public void eliminarNode(T node) {

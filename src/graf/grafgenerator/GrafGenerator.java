@@ -13,7 +13,10 @@ import java.util.ArrayList;
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
  * Data: 2/5/15
- *
+ */
+
+/**
+ * Generador del graf pels algorismes a partir del graf de la Wikipedia
  */
 public class GrafGenerator  {
     public Graf<NodeCategoria> generate(GrafWikipedia graf, ArrayList<Criteri> criteris) {

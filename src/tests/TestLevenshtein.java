@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
- * Data: 5/2/15
+ * Data: 02/05/15
  */
 public class TestLevenshtein {
     public static void main(String args[]) {

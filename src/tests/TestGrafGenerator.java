@@ -14,13 +14,14 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
- * Data: 2/5/15
+ * Data: 02/05/15
  *
  */
 public class TestGrafGenerator {
     public static void main(String[] args) {
 
-        System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:");
+        System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:\n" +
+                "(prem -1 per acabar el test)");
         System.out.println("0: Criteri Nom");
         System.out.println("1: Criteri supercategories comunes");
         System.out.println("2: Criteri subcategories comunes");
