@@ -1,7 +1,7 @@
-package graf.graftransform.Criteris;
+package graf.grafgenerator.Criteris;
 
+import graf.GrafWikipedia;
 import graf.NodeWiki;
-import org.grupwiki.graf.Graf;
 
 /**
  * Grup 3: Wikipedia
@@ -16,7 +16,7 @@ public  abstract class Criteri {
     }
 
     private double ponderacio;
-    public abstract double getPes(NodeWiki n1, NodeWiki n2, Graf<NodeWiki> graf);
+    public abstract double getPes(NodeWiki n1, NodeWiki n2, GrafWikipedia graf);
 
     public double getPonderacio() {
         return ponderacio;
