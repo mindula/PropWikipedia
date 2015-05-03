@@ -16,5 +16,10 @@ public class NodePagina extends NodeWiki {
        return "www.wikipedia.org/wiki/"+getNom().replaceAll(" ","_");
     }
 
+    @Override
+    public String toString() {
+        return this.getNom() + "(P)";
+    }
+
 
 }

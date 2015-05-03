@@ -1,11 +1,12 @@
 package domini;
 
 import graf.GrafWikipedia;
-import graf.NodeWiki;
-import graf.graftransform.Criteris.Criteri;
-import graf.graftransform.GrafGenerator;
+import graf.NodeCategoria;
+import graf.grafgenerator.Criteris.Criteri;
+import graf.grafgenerator.GrafGenerator;
 import org.grupwiki.graf.Algoritme;
 import org.grupwiki.graf.ConjuntComunitats;
+import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
 
@@ -29,22 +30,22 @@ public class CtrlAlgorisme{
         this.criteris = criteris;
     }
 
-    public ConjuntComunitats<NodeWiki> cercarComunitats(){
-        Algoritme<NodeWiki> algorisme;
-        ConjuntComunitats<NodeWiki> comunitats;
+    public ConjuntComunitats<NodeCategoria> cercarComunitats(){
+        Algoritme<NodeCategoria> algorisme;
+
         if(tipusAlgorisme.equals("Louvain")) {
-            algorisme = new AlgorismeLouvain<NodeWiki>();
+            algorisme = new AlgorismeLouvain<NodeCategoria>();
         }
         else if(tipusAlgorisme.equals("Girvan")){
-            algorisme = new AlgorismeGirvan<NodeWiki>();
+            algorisme = new AlgorismeGirvan<NodeCategoria>();
         }
         else{ // Clique
-            algorisme = new AlgorismeClique<NodeWiki>();
+            algorisme = new AlgorismeClique<NodeCategoria>();
         }
 
         GrafGenerator generator = new GrafGenerator();
-        generator.generate(grafWikipedia, criteris);
-
+        Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
+        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1,par2);
         return comunitats;
     }
 

@@ -14,19 +14,36 @@ public class TestDomain {
     public static void main(String args[]) throws Exception {
         Graf g = new Graf();
         System.out.println("Escull una opcio:\n" +
+                "0. Veure Opcions\n" +
                 "1. Test GrafWikipedia\n" +
                 "2. Test GrafParser\n" +
-                "3. Test Algoritme\n" +
+                "3. Test GrafCompartit\n" +
                 "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
                 "5. Test CercaHistorial\n" +
                 "6. Test Categoria\n" +
                 "7. Test Pagina\n" +
-                "8. Finalitzar Test\n");
+                "8. Test Navegacio" +
+                "9. Test CercarComunitats" +
+                "10. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 8) {
+        while (opcio != 20) {
             switch (opcio) {
+                case 0:
+                    System.out.println("Escull una opcio:\n" +
+                            "0. Veure Opcions\n" +
+                            "1. Test GrafWikipedia\n" +
+                            "2. Test GrafParser\n" +
+                            "3. Test GrafCompartit\n" +
+                            "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
+                            "5. Test CercaHistorial\n" +
+                            "6. Test Categoria\n" +
+                            "7. Test Pagina\n" +
+                            "8. Test Navegacio" +
+                            "9. Test CercarComunitats" +
+                            "10. Finalitzar Test\n");
+                    break;
                 case 1:
 
                     break;
@@ -34,7 +51,7 @@ public class TestDomain {
                     TestGrafParser.main(null);
                     break;
                 case 3:
-                    TestGrafAlgorisme.main(null);
+                    TestGrafCompartit.main(null);
                     break;
                 case 4:
                     TestComunitatCjtComunitats.main(null);
@@ -47,7 +64,15 @@ public class TestDomain {
                     break;
                 case 7:
                     TestNodePagina.main(null);
+                    break;
+                case 8:
+                    TestNavegacio.main(null);
+                    break;
+                case 9:
+
+                    break;
             }
+            opcio = sc.nextInt();
         }
     }
 }

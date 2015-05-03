@@ -17,4 +17,9 @@ public class NodeCategoria extends NodeWiki {
         return "www.wikipedia.org/wiki/Category:"+getNom().replaceAll(" ","_");
     }
 
+    @Override
+    public String toString() {
+        return this.getNom() + "(C)";
+    }
+
 }
