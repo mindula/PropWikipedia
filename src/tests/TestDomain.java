@@ -1,6 +1,5 @@
 package tests;
 
-import domini.InformacioCjtComunitats;
 import org.grupwiki.graf.Graf;
 
 import java.util.Scanner;
