@@ -36,7 +36,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         for (Pair<Integer, Integer> p : solucioIntegers) hs.add(p.getSecond());
         for (Integer i : hs) {
             cc.afegirComunitat(new Comunitat<T>(i));
-            //System.out.println(i);
         }
         for (Pair<Integer, Integer> p : solucioIntegers) {
             try {
@@ -74,7 +73,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         return grafFinal;
     }
 
-    private void metodeLouvain () {
+    private void metodeLouvain() {
         ComunitatLouvain c = new ComunitatLouvain(grafIntern, nPassades, minModularity);
 
         double mod = c.modularity();
@@ -149,7 +148,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
     private class ComunitatLouvain {
         // network to compute communities for
-        private Graf<Integer> g;     //guarrada, sha de canviar
+        private Graf<Integer> g;
 
         // nummber of nodes in the network and size of all vectors
         private int size;
@@ -247,7 +246,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             for (Arc<Integer> a : arcs) {
                 sumaArcs += a.getPes();
             }
-            return sumaArcs;        //és correcte així com està, es la suma total dels arcs (definició)
+            return sumaArcs;
         }
 
         // compute the set of neighboring communities of node
