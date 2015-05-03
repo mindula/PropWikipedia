@@ -26,7 +26,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
-        System.out.println(imprimirSolucio());
+        //System.out.println(imprimirSolucio());
         return formarComunitats(imprimirSolucio());
     }
 
@@ -78,13 +78,13 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
         double mod = c.modularity();
 
-        System.out.println("xarxa : "
+        /*System.out.println("xarxa : "
                 + c.getGraf().ordre() + " nodes, "
-                + c.getGraf().mida() + " arestes, ");
+                + c.getGraf().mida() + " arestes, ");*/
 
         double new_mod = c.oneLevel();
 
-        System.out.println("la modularitat ha variat de " + mod + " a " + new_mod);
+        //System.out.println("la modularitat ha variat de " + mod + " a " + new_mod);
 
         graphTree.addAll(c.mostrarParticioActual());
 
@@ -94,20 +94,20 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             mod=new_mod;
             ComunitatLouvain c1 = new ComunitatLouvain(g, -1, minModularity);
 
-            System.out.println ( "\nxarxa : "
+            /*System.out.println ( "\nxarxa : "
                     + c1.getGraf().ordre() + " nodes, "
-                    + c1.getGraf().mida() + " arestes, ");
+                    + c1.getGraf().mida() + " arestes, ");*/
 
             new_mod = c1.oneLevel();
 
-            System.out.println("la modularitat ha variat de " + mod + " to " + new_mod);
+            //System.out.println("la modularitat ha variat de " + mod + " to " + new_mod);
 
 
             graphTree.addAll(c1.mostrarParticioActual());
 
             g = c1.convertirParticioAGraf();
 
-            System.out.println(g);
+            //System.out.println(g);
 
             ++lastLevel;
 
@@ -338,7 +338,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             }
 
 
-            System.out.println(g2);
+            //System.out.println(g2);
             return g2;
         }
 
@@ -404,8 +404,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                 }
 
                 new_mod = modularity();
-                System.out.println("passada número " + nb_pass_done + " de " + nb_pass +
-                        " : " + new_mod + " " + cur_mod);
+                /*System.out.println("passada número " + nb_pass_done + " de " + nb_pass +
+                        " : " + new_mod + " " + cur_mod);*/
 
             } while (improvement && new_mod-cur_mod>min_modularity && nb_pass_done!=nb_pass);
 
@@ -434,7 +434,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
             for (int i=0 ; i<size ; i++) {
                 graphtree.add(new Pair<Integer, Integer>(i, renumber[n2c[i]]));
-                System.out.println(i + " " + renumber[n2c[i]]);
+                //System.out.println(i + " " + renumber[n2c[i]]);
             }
             return graphtree;
         }
