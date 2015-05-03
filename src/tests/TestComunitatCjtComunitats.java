@@ -5,9 +5,9 @@ import domini.Sessio;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodeWiki;
-import domini.OperacionsConjunts;
+import graf.OperacionsConjunts;
 import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+
 import java.util.Scanner;
 
 /**

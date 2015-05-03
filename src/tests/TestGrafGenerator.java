@@ -3,9 +3,9 @@ package tests;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
-import graf.graftransform.Criteris.Criteri;
-import graf.graftransform.Criteris.CriteriParesComuns;
-import graf.graftransform.GrafGenerator;
+import graf.grafgenerator.Criteris.Criteri;
+import graf.grafgenerator.Criteris.CriteriParesComuns;
+import graf.grafgenerator.GrafGenerator;
 import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
