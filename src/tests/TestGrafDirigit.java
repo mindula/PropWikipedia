@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
+ * Usuari: eduard.casellas
  * Data: 5/2/15
  */
 public class TestGrafDirigit {
