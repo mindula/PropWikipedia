@@ -22,7 +22,10 @@ public class TestNavegacio {
         Navegacio navegacio = new Navegacio(grafWikipedia);
         Scanner sc = new Scanner(System.in);
         int option;
-        System.out.println("Escriu 0 per buscar una pagina o 1 per categoria. -1 per sortir:");
+        System.out.println("Escriu:\n" +
+                "0 per buscar una pagina\n" +
+                "1 per categoria\n" +
+                "-1 per sortir:");
         option = sc.nextInt();
         while(option != -1) {
             System.out.println("Escriu el nom:");

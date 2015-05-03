@@ -16,8 +16,8 @@ public class TestNodePagina {
                 "2. Canviar el nom\n" +
                 "3. Obtenir si ha estat creat manualment\n" +
                 "4. Definir si ha estat creat manualment\n" +
-                "5. Obtenir el URL" +
-                "6. Obtenir si es categoria" +
+                "5. Obtenir el URL\n" +
+                "6. Obtenir si es categoria\n" +
                 "7. Finalitzar Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();

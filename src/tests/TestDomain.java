@@ -169,7 +169,7 @@ public class TestDomain {
                     "11. Test CercarComunitats\n" +
                     "12. Test InformacioCjtComunitats\n" +
                     "13. Test InfoCerca\n" +
-                    "14. Test Cercarcomunitats\n" +
+                    "14. Test AlgorismeLouvain\n" +
                     "15. Test Levenshtein\n" +
                     "16. Finalitzar Test\n");
             opcio = sc.nextInt();
