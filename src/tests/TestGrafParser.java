@@ -1,7 +1,5 @@
 package tests;
 
-import graf.NodeCategoria;
-import graf.NodePagina;
 import domini.Sessio;
 import graf.GrafParser;
 import graf.GrafWikipedia;
@@ -48,8 +46,12 @@ public class TestGrafParser {
         g.afegirArcPC(nodep1, nodec1);
         */
 
+        long startTime = System.currentTimeMillis();
         GrafParser grafParser = new GrafParser(g);
         grafParser.parse(path);
+        long elapsedTime = System.currentTimeMillis() -startTime;
+        System.out.println("Temps transcorregut en parsejar:"+elapsedTime+"ms");
+
         System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
         int opcio = sc.nextInt();
         if(opcio == 1) System.out.println(g);
