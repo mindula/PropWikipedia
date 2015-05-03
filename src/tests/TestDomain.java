@@ -13,13 +13,13 @@ public class TestDomain {
 
     public static void main(String args[]) throws Exception {
         Graf g = new Graf();
-        System.out.println("Escull una opci�:" +
-                "1. Test GrafWikipedia" +
-                "2. Test GrafParser" +
-                "3. Test Algoritme" +
-                "4. Test ConjuntComunitatsWiki i ComunitatWiki" +
-                "5. Test CercaHistorial" +
-                "6. Finalitzar Test");
+        System.out.println("Escull una opcio:\n" +
+                "1. Test GrafWikipedia\n" +
+                "2. Test GrafParser\n" +
+                "3. Test Algoritme\n" +
+                "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
+                "5. Test CercaHistorial\n" +
+                "6. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
@@ -35,7 +35,7 @@ public class TestDomain {
                     TestGrafAlgorisme.main(null);
                     break;
                 case 4:
-                    TestComnunitatCjtComunitats.main(null);
+                    TestComunitatCjtComunitats.main(null);
                     break;
                 case 5:
                     TestCercaHistorial.main(null);

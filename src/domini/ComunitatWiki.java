@@ -22,6 +22,8 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
         super();
     }
 
+
+
     public String getNom() {
         return nom;
     }
