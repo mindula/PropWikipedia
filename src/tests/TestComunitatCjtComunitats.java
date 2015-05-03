@@ -88,6 +88,7 @@ public class TestComunitatCjtComunitats {
                                     paraula = sc.next();
                                     n1 = new NodeCategoria(paraula);
                                     C2.afegirNode(n1);
+                                    graf.afegirNode(n1);
                                 }
                                 C.afegirCjtNodes(C2);
                                 System.out.println("Conjunt de nodes afegit");
