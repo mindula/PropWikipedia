@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard.gascons
- * Data: 4/25/15
+ * Data: 25/04/15
  */
 public class TestCercaHistorial {
 
