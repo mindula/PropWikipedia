@@ -207,4 +207,5 @@ public class TestGrafWikipedia {
                 opcio = sc.nextInt();
             }
         }
+
 }
