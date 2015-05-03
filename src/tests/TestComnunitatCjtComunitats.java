@@ -92,11 +92,12 @@ public class TestComnunitatCjtComunitats {
                                 System.out.println(C.estaBuida());
                                 break;
                             case 9:
-                                System.out.println("Escriu el nom del node");
-                                paraula = sc.next();
-
-                                //falta fer
-
+                                NodeCategoria n = new NodeCategoria("nodenou");
+                                System.out.println("Nou node no afegit a la comunitat");
+                                System.out.println(C.teNode(n));
+                                C.afegirNode(n);
+                                System.out.println("Hem afegit el node a la comunitat");
+                                System.out.println(C.teNode(n));
                                 break;
                             case 10:
                                 System.out.println("Escriu el nom del node");

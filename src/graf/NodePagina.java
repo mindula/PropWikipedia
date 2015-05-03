@@ -7,7 +7,6 @@ package graf;
  */
 
 public class NodePagina extends NodeWiki {
-    //falta l'associacio 'té predecessor' .
 
     public NodePagina(String nom) {
         super(nom, false);
