@@ -21,27 +21,28 @@ public class TestDomain {
     public static void main(String args[]) throws Exception {
         Graf g = new Graf();
         System.out.println("Escull una opcio:\n" +
-                "0.  Veure Opcions\n" +
                 "1.  Test GrafWikipedia\n" +
                 "2.  Test GrafParser\n" +
                 "3.  Test GrafCompartit\n" +
-                "4.  Test ConjuntComunitatsWiki i ComunitatWiki\n" +
-                "5.  Test CercaHistorial\n" +
-                "6.  Test Categoria\n" +
-                "7.  Test Pagina\n" +
-                "8.  Test Navegacio\n" +
-                "9.  Test CercarComunitats\n" +
-                "10. Test InformacioCjtComunitats\n" +
-                "11. Test InfoCerca" +
-                "12. Test Cercarcomunitats\n" +
-                "20. Finalitzar Test\n");
+                "4.  Test GrafDirigit\n" +
+                "5.  Test GrafGenerator\n" +
+                "6.  Test ComunitatWiki i OpConjunt\n" +
+                "7.  Test CercaHistorial\n" +
+                "8.  Test Categoria\n" +
+                "9.  Test Pagina\n" +
+                "10. Test Navegacio\n" +
+                "11. Test CercarComunitats\n" +
+                "12. Test InformacioCjtComunitats\n" +
+                "13. Test InfoCerca\n" +
+                "14. Test Algoritme Louvain\n" +
+                "15. Test Levenshtein\n" +
+                "16. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
-        //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 20) {
+        while (opcio != 16) {
             switch (opcio) {
                 case 1:
-
+                    TestGrafWikipedia.main(null);
                     break;
                 case 2:
                     TestGrafParser.main(null);
@@ -50,30 +51,27 @@ public class TestDomain {
                     TestGrafCompartit.main(null);
                     break;
                 case 4:
-                    TestComunitatOpConjunts.main(null);
+                    TestGrafDirigit.main(null);
                     break;
                 case 5:
-                    TestCercaHistorial.main(null);
+                    TestGrafGenerator.main(null);
                     break;
                 case 6:
-                    TestNodeCategoria.main(null);
+                    TestComunitatOpConjunts.main(null);
                     break;
                 case 7:
-                    TestNodePagina.main(null);
+                    TestCercaHistorial.main(null);
                     break;
                 case 8:
-                    TestNavegacio.main(null);
+                    TestNodeCategoria.main(null);
                     break;
                 case 9:
-
+                    TestNodePagina.main(null);
                     break;
                 case 10:
-                    TestInformacioCjtComunitats.main(null);
+                    TestNavegacio.main(null);
                     break;
                 case 11:
-                    TestInfoCerca.main(null);
-                    break;
-                case 12:
                     System.out.println("Escull algorisme: Clique, Girvan o Louvain. " +
                                        "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
@@ -143,22 +141,37 @@ public class TestDomain {
                     ConjuntComunitats<NodeCategoria> comunitats = c.cercarComunitats();
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats);
+                    break;
+                case 12:
+                    TestInformacioCjtComunitats.main(null);
+                    break;
+                case 13:
+                    TestInfoCerca.main(null);
+                    break;
+                case 14:
+                    TestAlgorismeLouvain.main(null);
+                    break;
+                case 15:
+                    TestLevenshtein.main(null);
+                    break;
             }
             System.out.println("Escull una opcio:\n" +
-                    "0.  Veure Opcions\n" +
                     "1.  Test GrafWikipedia\n" +
                     "2.  Test GrafParser\n" +
                     "3.  Test GrafCompartit\n" +
-                    "4.  Test ConjuntComunitatsWiki i ComunitatWiki\n" +
-                    "5.  Test CercaHistorial\n" +
-                    "6.  Test Categoria\n" +
-                    "7.  Test Pagina\n" +
-                    "8.  Test Navegacio\n" +
-                    "9.  Test CercarComunitats\n" +
-                    "10. Test InformacioCjtComunitats\n" +
-                    "11. Test InfoCerca" +
-                    "12. Test Cercarcomunitats\n" +
-                    "20. Finalitzar Test\n");
+                    "4.  Test GrafDirigit\n" +
+                    "5.  Test GrafGenerator\n" +
+                    "6.  Test ComunitatWiki i OpConjunt\n" +
+                    "7.  Test CercaHistorial\n" +
+                    "8.  Test Categoria\n" +
+                    "9.  Test Pagina\n" +
+                    "10. Test Navegacio\n" +
+                    "11. Test CercarComunitats\n" +
+                    "12. Test InformacioCjtComunitats\n" +
+                    "13. Test InfoCerca\n" +
+                    "14. Test AlgorismeLouvain\n" +
+                    "15. Test Levenshtein\n" +
+                    "16. Finalitzar Test\n");
             opcio = sc.nextInt();
         }
     }

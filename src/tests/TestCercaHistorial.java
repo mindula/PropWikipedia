@@ -18,11 +18,11 @@ public class TestCercaHistorial {
     public static void main (String[] args) {
         GrafWikipedia g = Sessio.getInstance().getGrafWiki();
         Historial h = Historial.getInstance();
-        System.out.println("Escull una opció:" +
-                "1. Buscar categoria    " +
-                "2. Buscar pàgina       " +
-                "3. Historial de cerques    " +
-                "4. Finalitzar el Test");
+        System.out.println("Escull una opció:\n" +
+                "1. Buscar categoria\n" +
+                "2. Buscar pàgina\n" +
+                "3. Historial de cerques\n" +
+                "4. Finalitzar el Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         while (opcio != 4) {

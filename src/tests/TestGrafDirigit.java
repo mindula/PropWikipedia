@@ -17,7 +17,7 @@ public class TestGrafDirigit {
         String nom2;
         Arc<String> a;
         System.out.println("Escull una opció:\n" +
-                "0.  Verue opcions\n" +
+                "0.  Veure opcions\n" +
                 "1.  Afegir Node\n" +
                 "2.  Afegir Arc\n" +
                 "3.  Eliminar Node\n" +
@@ -36,7 +36,7 @@ public class TestGrafDirigit {
             switch (opcio) {
                 case 0:
                     System.out.println("Escull una opció:\n" +
-                            "0.  Verue opcions\n" +
+                            "0.  Veure opcions\n" +
                             "1.  Afegir Node\n" +
                             "2.  Afegir Arc\n" +
                             "3.  Eliminar Node\n" +
