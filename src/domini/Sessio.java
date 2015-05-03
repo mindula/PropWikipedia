@@ -1,6 +1,8 @@
 package domini;
 
 import graf.GrafWikipedia;
+import graf.NodeCategoria;
+import org.grupwiki.graf.Graf;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,12 +20,14 @@ public class Sessio {
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
+    private Graf<NodeCategoria> grafAlgoritme;
 
     private Sessio() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
+        grafAlgoritme = new Graf<NodeCategoria>();
     }
 
     public static Sessio getInstance() {
@@ -43,5 +47,13 @@ public class Sessio {
 
     public void setGrafWiki(GrafWikipedia grafWiki) {
         this.grafWiki = grafWiki;
+    }
+
+    public Graf<NodeCategoria> getGrafAlgoritme() {
+        return grafAlgoritme;
+    }
+
+    public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {
+        this.grafAlgoritme = grafAlgoritme;
     }
 }
