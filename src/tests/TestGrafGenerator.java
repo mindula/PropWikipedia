@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by gus on 26/04/15.
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 2/5/15
+ *
  */
 public class TestGrafGenerator {
     public static void main(String[] args) {
@@ -36,7 +39,6 @@ public class TestGrafGenerator {
                 case 0:
                     System.out.println("Introdueix el nombre maxim de diferencia entre noms");
                     int maxCost = sc.nextInt();
-                    System.out.println("max"+maxCost);
                     c= new CriteriNom(ponderacio,maxCost);
                     break;
 
@@ -66,7 +68,7 @@ public class TestGrafGenerator {
             }
         }
 
-        System.out.println("Criteris afegits: " + criteris.size());
+        System.out.println(criteris.size()+ " Criteris afegits");
 
         GrafWikipedia g = Sessio.getInstance().getGrafWiki();
 
