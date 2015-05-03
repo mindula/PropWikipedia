@@ -19,9 +19,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
 
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int nPassades, int nul){
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criterioParada, int nul){
         graphTree = new ArrayList<Pair<Integer, Integer>>();
-        this.nPassades = nPassades;
+        this.nPassades = criterioParada;
         this.minModularity = 0.000001;
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
