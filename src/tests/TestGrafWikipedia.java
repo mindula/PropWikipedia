@@ -2,6 +2,8 @@ package tests;
 
 import domini.Sessio;
 import graf.GrafWikipedia;
+import graf.NodeCategoria;
+import graf.NodePagina;
 
 import java.util.Scanner;
 
@@ -13,6 +15,8 @@ import java.util.Scanner;
 public class TestGrafWikipedia {
         public static void main(String[] args) {
             GrafWikipedia graf = Sessio.getInstance().getGrafWiki();
+            NodeCategoria n1;
+            NodePagina n2;
             String nom;
             String nom2;
             System.out.println("Escull una opcio:\n" +
@@ -25,7 +29,7 @@ public class TestGrafWikipedia {
                     "6.  Afegir ArcCsupC\n" +
                     "7.  Afegir ArcCsubC\n" +
                     "8.  Eliminar Arc PC\n" +
-                    "9.  Eliminar Arc entre dos Categories" +
+                    "9.  Eliminar Arc entre dos Categories\n" +
                     "10. Obtenir tots els nodes\n" +
                     "11. Obtenir tots els arcs\n" +
                     "12. Obtenir nodes adjacents d'una Categoria\n" +
@@ -34,9 +38,9 @@ public class TestGrafWikipedia {
                     "15. Obtenir l'arc entre una pagina i una categoria\n" +
                     "16. Consultar el grau d'una categoria\n" +
                     "17. Consultar el grau d'una pagina\n" +
-                    "18. Existeix aquesta categoria?\n" +
-                    "19. Existeix aquesta pagina?\n" +
-                    "20. Existeix aquest node? (Depen de que funcioni el punt 18 i 19)\n" +
+                    "18. Existeix aquesta categoria en el graf?\n" +
+                    "19. Existeix aquesta pagina en el graf?\n" +
+                    "20. Existeix aquest node en el graf? (Depen de que funcioni el punt 18 i 19)\n" +
                     "21. Existeix aquest arc PC?\n" +
                     "22. Existeix aquest arc entre dos categories?\n" +
                     "23. Obtenir Categoria\n" +
@@ -57,7 +61,7 @@ public class TestGrafWikipedia {
                                 "6.  Afegir ArcCsupC\n" +
                                 "7.  Afegir ArcCsubC\n" +
                                 "8.  Eliminar Arc PC\n" +
-                                "9.  Eliminar Arc entre dos Categories" +
+                                "9.  Eliminar Arc entre dos Categories\n" +
                                 "10. Obtenir tots els nodes\n" +
                                 "11. Obtenir tots els arcs\n" +
                                 "12. Obtenir nodes adjacents d'una Categoria\n" +
@@ -78,12 +82,14 @@ public class TestGrafWikipedia {
                     case 1:
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
-                        graf.afegirNode(graf.getNodeCat(nom));
+                        n1 = new NodeCategoria(nom);
+                        graf.afegirNode(n1);
                         break;
                     case 2:
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
-                        graf.afegirNode(graf.getNodePag(nom));
+                        n2 = new NodePagina(nom);
+                        graf.afegirNode(n2);
                         break;
                     case 3:
                         System.out.println("Escriu el nom del node");
@@ -166,12 +172,12 @@ public class TestGrafWikipedia {
                     case 18:
                         System.out.println("Escriu el nom de la categoria");
                         nom = sc.next();
-                        System.out.println(graf.existeixNode(graf.getNodeCat(nom)));
+                        System.out.println(graf.existeixNodeCat(nom));
                         break;
                     case 19:
                         System.out.println("Escriu el nom de la pagina");
                         nom = sc.next();
-                        System.out.println(graf.existeixNode(graf.getNodePag(nom)));
+                        System.out.println(graf.existeixNodePag(nom));
                         break;
                     case 20:
                         System.out.println("Escriu el nom del node");
