@@ -3,6 +3,7 @@ package tests;
 import domini.Cerca;
 import domini.Historial;
 import domini.InfoCerca;
+import domini.Sessio;
 import graf.GrafWikipedia;
 
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 public class TestCercaHistorial {
 
     public static void main (String[] args) {
-        GrafWikipedia g = new GrafWikipedia();         //solucionar graf q li passo
+        GrafWikipedia g = Sessio.getInstance().getGrafWiki();
         Historial h = Historial.getInstance();
         System.out.println("Escull una opció:" +
                 "1. Buscar categoria    " +
