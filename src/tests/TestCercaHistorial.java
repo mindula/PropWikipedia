@@ -18,26 +18,41 @@ public class TestCercaHistorial {
         GrafWikipedia g = new GrafWikipedia();         //solucionar graf q li passo
         Historial h = Historial.getInstance();
         System.out.println("Escull una opció:" +
-                "1. Buscar     " +
-                "2. Historial de cerques    " +
-                "3. Finalitzar el Test");
+                "1. Buscar categoria    " +
+                "2. Buscar pàgina       " +
+                "3. Historial de cerques    " +
+                "4. Finalitzar el Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
-        while (opcio != 3) {
+        while (opcio != 4) {
             switch (opcio) {
                 case 1:
-                    System.out.println("Escriu un nom que vulguis buscar a la Wikipedia:");
-                    String paraula = sc.nextLine();
-                    InfoCerca i;
+                    System.out.println("Escriu la cateogoria que vulguis buscar a la Wikipedia:");
+                    String paraulaC = sc.nextLine();
+                    InfoCerca iC;
                     try {
-                        i = Cerca.cercarWikipedia(g, paraula);
-                        System.out.println("S'ha trobat el node " + i.getResultat() + " amb data " + i.getDataCerca());
-                        h.afegirCerca(i);
+                        iC = Cerca.cercarWikipediaC(g, paraulaC);
+                        System.out.println("S'ha trobat la categoria "
+                                + iC.getResultat() + " amb data " + iC.getDataCerca());
+                        h.afegirCerca(iC);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case 2:
+                    System.out.println("Escriu la cateogoria que vulguis buscar a la Wikipedia:");
+                    String paraulaP = sc.nextLine();
+                    InfoCerca iP;
+                    try {
+                        iP = Cerca.cercarWikipediaC(g, paraulaP);
+                        System.out.println("S'ha trobat la categoria "
+                                + iP.getResultat() + " amb data " + iP.getDataCerca());
+                        h.afegirCerca(iP);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 3:
                     System.out.println(h);
                     break;
             }
