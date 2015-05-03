@@ -42,6 +42,7 @@ public class TestGrafParser {
                 break;
             case 1: // test fitxer concret
                 System.out.println("Escriu el path del fitxer:");
+                sc.nextLine();
                 path = sc.nextLine();
                 break;
         }
