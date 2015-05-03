@@ -29,7 +29,7 @@ public class TestGrafGenerator {
 
 
         ArrayList<Criteri> criteris = new ArrayList<Criteri>();
-        Scanner sc = new Scanner(System.in).useLocale(Locale.US);;
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         boolean continuar = true;
         while(continuar) {
             int opcio = sc.nextInt();
