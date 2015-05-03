@@ -6,20 +6,16 @@ package graf;
  * Date: 3/04/15
  */
 
-
+/**
+ * Node genèric de la Wikipedia
+ */
 public abstract class NodeWiki {
 
     private String nom;
-    /**
-     * Creat: creat manualment (segueixo sense trobarli el sentit)
-     */
     private boolean creat;
     private boolean isCategoria;
-    /*
-     * isCreat = True si el node és una Categoria, si és False és una pàgina
-     *
-     */
-    //private String color;  //aixo anira en una extensio. crec yo vaya
+
+    //private String color;
 
     public NodeWiki(String nom, boolean isCategoria){
         this.nom = nom;
@@ -33,7 +29,7 @@ public abstract class NodeWiki {
 
     public void setNom(String nom) {        //modificar node
         this.nom = nom;
-    }  //Modificar nom node
+    }
 
     public void setCreat(boolean creat) {
         this.creat = creat;
@@ -45,6 +41,10 @@ public abstract class NodeWiki {
 
     abstract public String getUrl();
 
+    /**
+     * Retorna cert si el node en questio es una categoria
+     * @return cert si el node en questio es una categoria
+     */
     public boolean esCategoria() {
         return isCategoria;
     }

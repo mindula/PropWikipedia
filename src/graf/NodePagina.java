@@ -6,6 +6,10 @@ package graf;
  * Date: 18/04/15
  */
 
+/**
+ * Node tipus pagina
+ */
+
 public class NodePagina extends NodeWiki {
 
     public NodePagina(String nom) {

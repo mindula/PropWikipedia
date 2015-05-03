@@ -10,13 +10,26 @@ import java.util.Scanner;
  * Data: 23/4/15
  */
 
+/**
+ * A partir d'un input en un fitxer de dades, forma el graf de la Wikipedia
+ */
 public class GrafParser {
     private GrafWikipedia grafWikipedia;
 
+    /**
+     * Constructora per defecte
+     * @param graf
+     */
     public GrafParser(GrafWikipedia graf){
         grafWikipedia = graf;
     }
 
+    /**
+     * Construeix un graf a partir d'un arxiu de dades localitzat a un path determinat
+     * @param path
+     * @return el graf de la Wikipedia
+     * @throws IOException
+     */
     public GrafWikipedia parse(String path) throws IOException{
         FileInputStream inputStream;
         Scanner sc;

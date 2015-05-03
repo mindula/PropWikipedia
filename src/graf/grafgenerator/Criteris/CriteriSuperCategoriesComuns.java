@@ -11,7 +11,10 @@ import java.util.HashSet;
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
  * Data: 2/5/15
- *
+ */
+
+/**
+ * Criter per super categories comunes comunes entre categories
  */
 public class CriteriSuperCategoriesComuns extends Criteri{
 

@@ -8,10 +8,12 @@ import graf.NodeWiki;
  * Grup 3: Wikipedia
  * Usuari: agusti.bau
  * Data: 2/5/15
- *
+ */
+
+/**
+ * Criteri per afinitat entre noms de categories
  */
 public class CriteriNom extends Criteri{
-
 
     private final double maximGrauDiferencia;
 
