@@ -15,7 +15,7 @@ public class Pair<X, Y> {
     X first;
     Y second;
 
-    public Pair() {
+    private Pair() {
 
     }
 
