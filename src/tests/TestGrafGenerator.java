@@ -32,7 +32,10 @@ public class TestGrafGenerator {
         boolean continuar = true;
         while(continuar) {
             int opcio = sc.nextInt();
-            double ponderacio = sc.nextDouble();
+            double ponderacio = 0;
+
+            if(opcio != -1)
+                ponderacio= sc.nextDouble();
 
             Criteri c = null;
             switch (opcio) {
