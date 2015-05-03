@@ -6,7 +6,6 @@ import domini.Sessio;
 import graf.GrafParser;
 import graf.GrafWikipedia;
 
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -37,7 +36,7 @@ public class TestGrafParser {
         }
         GrafWikipedia g = Sessio.getInstance().getGrafWiki();
         // Test extra:
-
+        /*
         NodePagina nodep1 = new NodePagina("TESTP1");
         NodePagina nodep2 = new NodePagina("TESTP2");
         NodeCategoria nodec1 = new NodeCategoria("TESTC1");
@@ -47,9 +46,12 @@ public class TestGrafParser {
         g.afegirArcPC(nodep1, nodec1);
         g.afegirArcPC(nodep2, nodec1);
         g.afegirArcPC(nodep1, nodec1);
+        */
 
         GrafParser grafParser = new GrafParser(g);
-        grafParser.parse(Paths.get(path));
-        //System.out.println(g);
+        grafParser.parse(path);
+        System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
+        int opcio = sc.nextInt();
+        if(opcio == 1) System.out.println(g);
     }
 }
