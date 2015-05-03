@@ -184,7 +184,8 @@ public class TestGrafWikipedia {
                         nom = sc.next();
                         if (graf.existeixNodeCat(nom))
                             System.out.println(graf.existeixNode(graf.getNodeCat(nom)));
-                        else System.out.println(graf.existeixNode(graf.getNodePag(nom)));
+                        else if (graf.existeixNodePag(nom))System.out.println(graf.existeixNode(graf.getNodePag(nom)));
+                        else System.out.println("false");
                         break;
                     case 21:
                         System.out.println("Escriu el nom de la pagina i de la Categoria");
