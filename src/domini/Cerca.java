@@ -18,18 +18,36 @@ public class Cerca {
 
     }
 
-    public static InfoCerca cercarWikipedia (GrafWikipedia g, String query) throws Exception {
+    public static InfoCerca cercarWikipediaP (GrafWikipedia g, String query) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        return new InfoCerca(cercaGraf(g, query), dateFormat.format(date));
+        return new InfoCerca(cercarPagina(g, query), dateFormat.format(date));
     }
 
-    //Atenció: Retorna NULL si no troba res
-    private static NodeWiki cercaGraf (GrafWikipedia g, String query) throws Exception {
+    public static InfoCerca cercarWikipediaC (GrafWikipedia g, String query) throws Exception {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return new InfoCerca(cercaCategoria(g, query), dateFormat.format(date));
+    }
+
+    private static NodeWiki cercaCategoria (GrafWikipedia g, String query) throws Exception {
         int size = query.length();
         Set<NodeWiki> s = g.getNodes();
         for (NodeWiki n : s) {
-            if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
+            if (n.esCategoria()) {
+                if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
+            }
+        }
+        throw new Exception("No s'ha trobat cap resultat");
+    }
+
+    private static NodeWiki cercarPagina (GrafWikipedia g, String query) throws Exception {
+        int size = query.length();
+        Set<NodeWiki> s = g.getNodes();
+        for (NodeWiki n : s) {
+            if (!n.esCategoria()) {
+                if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
+            }
         }
         throw new Exception("No s'ha trobat cap resultat");
     }

@@ -78,34 +78,34 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
         double mod = c.modularity();
 
-        System.out.println("network : "
+        System.out.println("xarxa : "
                 + c.getGraf().ordre() + " nodes, "
-                + c.getGraf().mida() + " links, ");
+                + c.getGraf().mida() + " arestes, ");
 
         double new_mod = c.oneLevel();
 
-        System.out.println("modularity increased from " + mod + " to " + new_mod);
+        System.out.println("la modularitat ha variat de " + mod + " a " + new_mod);
 
-        graphTree.addAll(c.displayPartition());
+        graphTree.addAll(c.mostrarParticioActual());
 
-        Graf<Integer> g = c.CreatepartitionToGraph();
+        Graf<Integer> g = c.convertirParticioAGraf();
 
         while(new_mod-mod>minModularity) {
             mod=new_mod;
             ComunitatLouvain c1 = new ComunitatLouvain(g, -1, minModularity);
 
-            System.out.println ( "\nnetwork : "
+            System.out.println ( "\nxarxa : "
                     + c1.getGraf().ordre() + " nodes, "
-                    + c1.getGraf().mida() + " links, ");
+                    + c1.getGraf().mida() + " arestes, ");
 
             new_mod = c1.oneLevel();
 
-            System.out.println("modularity increased from " + mod + " to " + new_mod);
+            System.out.println("la modularitat ha variat de " + mod + " to " + new_mod);
 
 
-            graphTree.addAll(c1.displayPartition());
+            graphTree.addAll(c1.mostrarParticioActual());
 
-            g = c1.CreatepartitionToGraph();
+            g = c1.convertirParticioAGraf();
 
             System.out.println(g);
 
@@ -282,7 +282,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return q;
         }
 
-        public Graf<Integer> CreatepartitionToGraph() {
+        public Graf<Integer> convertirParticioAGraf() {
             int[] renumber = new int[size];
             for (int i = 0; i < size; ++i) {
                 renumber[i] = -1;
@@ -297,7 +297,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                     renumber[i]=Final++;
 
             // Compute communities
-            int[][] comm_nodes = new int[Final][Final];     //quedara una matriu molt més gran
+            int[][] comm_nodes = new int[Final][Final];
             int[] size_comm_nodes = new int[Final];
             for (int i = 0; i < Final; ++i) size_comm_nodes[i] = 0;
             for (int node=0 ; node<size ; node++) {
@@ -306,9 +306,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             }
 
             Graf<Integer> g2 = new Graf<Integer>();
-            for (int comm = 0; comm < Final; comm++) g2.afegirNode(comm);   //primer shan d'afegir els nodes al graf
+            for (int comm = 0; comm < Final; comm++) g2.afegirNode(comm);
 
-            int comm_deg = Final;       //traduit de comm_nodes.size()
+            int comm_deg = Final;
             for (int comm=0 ; comm<comm_deg ; comm++) {
                 HashMap<Integer,Double> m = new HashMap<Integer, Double>();
 
@@ -359,7 +359,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             for (int i=0 ; i<size-1 ; i++) {
                 Random random = new Random();
                 int rand_pos = random.nextInt()%(size-i)+i;
-                if (rand_pos < 0) rand_pos *= -1;   //a java no hi ha unsigned ints :(
+                if (rand_pos < 0) rand_pos *= -1;
                 int tmp      = random_order[i];
                 random_order[i] = random_order[rand_pos];
                 random_order[rand_pos] = tmp;
@@ -404,7 +404,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                 }
 
                 new_mod = modularity();
-                System.out.println("pass number " + nb_pass_done + " of " + nb_pass +
+                System.out.println("passada número " + nb_pass_done + " de " + nb_pass +
                         " : " + new_mod + " " + cur_mod);
 
             } while (improvement && new_mod-cur_mod>min_modularity && nb_pass_done!=nb_pass);
@@ -412,14 +412,14 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return new_mod;
         }
 
-        // display the community of each node
-        public void display() {
+        // shows the community of each node
+        public void mostrarComunitats() {
             for (int i=0 ; i<size ; i++)
                 System.out.println(i + "/" + n2c[i] + "/" + in[i] + "/" + tot[i]);
         }
 
-        // displays the current partition (with communities renumbered from 0 to k-1)
-        public ArrayList<Pair<Integer, Integer>> displayPartition() {
+        // shows the current partition (with communities renumbered from 0 to k-1)
+        public ArrayList<Pair<Integer, Integer>> mostrarParticioActual() {
             ArrayList<Pair<Integer, Integer>> graphtree = new ArrayList<Pair<Integer, Integer>>();
             int[] renumber = new int[size];
             for (int i = 0; i < size; ++i) renumber[i] = -1;
