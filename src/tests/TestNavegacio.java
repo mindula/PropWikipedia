@@ -25,6 +25,7 @@ public class TestNavegacio {
         while(option != -1) {
             System.out.println("Escriu el nom:");
             String nom = sc.nextLine();
+            /*
             switch (option) {
                 case 0:
                     // Cercar pag
@@ -52,6 +53,7 @@ public class TestNavegacio {
                         System.out.println(subcategoria);
                     break;
             }
+            */
             System.out.println("Escriu 0 per buscar una pagina o 1 per categoria. -1 per sortir:");
             option = sc.nextInt();
         }
