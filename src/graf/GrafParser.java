@@ -17,30 +17,22 @@ public class GrafParser {
         grafWikipedia = graf;
     }
 
-    public GrafWikipedia parse(String path){
+    public GrafWikipedia parse(String path) throws IOException{
         FileInputStream inputStream;
         Scanner sc;
-        try{
-            inputStream = new FileInputStream(path);
-            sc = new Scanner(inputStream);
-            while (sc.hasNextLine()) {
-                String s = sc.nextLine();
-                parseLine(s);
-            }
-            if (sc.ioException() != null) {
-                throw sc.ioException();
-            }
-            /*
-            List<String> l = Files.readAllLines(path, Charset.defaultCharset());
-            for(String s: l)
-                parseLine(s);
-            */
-            inputStream.close();
-            sc.close();
+        inputStream = new FileInputStream(path);
+        sc = new Scanner(inputStream);
+        while (sc.hasNextLine()) {
+            String s = sc.nextLine();
+            parseLine(s);
         }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        /*
+        List<String> l = Files.readAllLines(path, Charset.defaultCharset());
+        for(String s: l)
+            parseLine(s);
+        */
+        inputStream.close();
+        sc.close();
         return grafWikipedia;
     }
 
