@@ -32,12 +32,12 @@ public class TestDomain {
                 "8.  Test Navegacio\n" +
                 "9.  Test CercarComunitats\n" +
                 "10. Test InformacioCjtComunitats\n" +
-                "11. Test InfoCerca" +
+                "11. Test InfoCerca\n" +
                 "12. Test Cercarcomunitats\n" +
                 "20. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
-        //String[] arguments = new String[]; no volem arguments null
+
         while (opcio != 20) {
             switch (opcio) {
                 case 1:

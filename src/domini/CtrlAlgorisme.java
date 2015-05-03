@@ -61,7 +61,14 @@ public class CtrlAlgorisme{
 
         GrafGenerator generator = new GrafGenerator();
         Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
-        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1,par2);
+
+        long startTime = System.currentTimeMillis();
+        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1, par2);
+        long elapsedTime = System.currentTimeMillis() - startTime;
+
+        InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
+        // TODO: afegir crtieris i mitjana
+        // i s'ha de posar en algun lloc
         return comunitats;
     }
 
