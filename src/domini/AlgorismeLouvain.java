@@ -147,20 +147,20 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
 
     private class ComunitatLouvain {
-        // network to compute communities for
+        // Graf de comunitats
         private Graf<Integer> g;
 
-        // nummber of nodes in the network and size of all vectors
+        // Nombre de nodes del graf i mida de tots els vectors
         private int size;
 
-        // community to which each node belongs
+        // Comunitat a la qual cada node pertany
         private int[] n2c;
 
-        // used to compute the modularity participation of each community
+        // S'utilitza per calcular la modularitat de cada comunitat
         private double[] in,tot;
 
-        // number of pass for one level computation
-        // if -1, compute as many pass as needed to increase modularity
+        // Nombre de passades realitzades per nivell
+        // si val -1, es fan tantes passes com es vegi necessari per incrementar la modularitat
         private int nb_pass;
 
         // a new pass is computed if the last one has generated an increase
@@ -168,7 +168,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         // if 0. even a minor increase is enough to go for one more pass
         private double min_modularity;
 
-        //IMPORTANT: Note that nodes are renumbered to be consecutive AND starting from 0.
+        //Els nodes estan anometats consecutivament desde 0
         public ComunitatLouvain (Graf<Integer> g, int nb_pass, double min_modularity) {
             this.g = g;
             size = g.ordre();
