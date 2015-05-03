@@ -74,7 +74,7 @@ public class TestDomain {
 
                     break;
                 case 10:
-
+                    TestInformacioCjtComunitats.main(null);
                     break;
             }
             opcio = sc.nextInt();
