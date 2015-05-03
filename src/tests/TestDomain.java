@@ -24,28 +24,13 @@ public class TestDomain {
                 "7. Test Pagina\n" +
                 "8. Test Navegacio\n" +
                 "9. Test CercarComunitats\n" +
-                "10. Test InformacioCjtComunitats" +
+                "10. Test InformacioCjtComunitats\n" +
                 "11. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 11) {
+        while (opcio != 20) {
             switch (opcio) {
-                case 0:
-                    System.out.println("Escull una opcio:\n" +
-                            "0. Veure Opcions\n" +
-                            "1. Test GrafWikipedia\n" +
-                            "2. Test GrafParser\n" +
-                            "3. Test GrafCompartit\n" +
-                            "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
-                            "5. Test CercaHistorial\n" +
-                            "6. Test Categoria\n" +
-                            "7. Test Pagina\n" +
-                            "8. Test Navegacio\n" +
-                            "9. Test CercarComunitats\n" +
-                            "10. Test InformacioCjtComunitats" +
-                            "11. Finalitzar Test\n");
-                    break;
                 case 1:
 
                     break;
@@ -76,7 +61,23 @@ public class TestDomain {
                 case 10:
                     TestInformacioCjtComunitats.main(null);
                     break;
+                case 11:
+                    TestInfoCerca.main(null);
+                    break;
             }
+            System.out.println("Escull una opcio:\n" +
+                    "0. Veure Opcions\n" +
+                    "1. Test GrafWikipedia\n" +
+                    "2. Test GrafParser\n" +
+                    "3. Test GrafCompartit\n" +
+                    "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
+                    "5. Test CercaHistorial\n" +
+                    "6. Test Categoria\n" +
+                    "7. Test Pagina\n" +
+                    "8. Test Navegacio\n" +
+                    "9. Test CercarComunitats\n" +
+                    "10. Test InformacioCjtComunitats\n" +
+                    "11. Finalitzar Test\n");
             opcio = sc.nextInt();
         }
     }

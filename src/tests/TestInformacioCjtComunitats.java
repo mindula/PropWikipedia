@@ -15,7 +15,7 @@ public class TestInformacioCjtComunitats {
     public static void main(String[] args) {
         InformacioCjtComunitats I;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Inicialitza la informacio: mil·lisegons, numero de comunitats, Algoritme," +
+        System.out.println("Inicialitza la informacio: milisegons, numero de comunitats, Algoritme," +
                 "Criteri i Mitjana de nombres per comunitat");
         long mil = sc.nextLong();
         int nCom = sc.nextInt();
@@ -23,7 +23,7 @@ public class TestInformacioCjtComunitats {
         String cri = sc.next();
         long mitj = sc.nextLong();
         I = new InformacioCjtComunitats(mil,nCom,alg,cri,mitj);
-        System.out.println("Escull una opció:\n" +
+        System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el temps\n" +
                 "2. Obtenir el nombre de comunitat\ns" +
@@ -39,7 +39,7 @@ public class TestInformacioCjtComunitats {
         while (opcio != 6) {
             switch (opcio) {
                 case 0:
-                    System.out.println("Escull una opció:\n" +
+                    System.out.println("Escull una opcio:\n" +
                             "0. Veure opcions\n" +
                             "1. Obtenir el temps\n" +
                             "2. Obtenir el nombre de comunitat\ns" +
