@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class TestNodeCategoria {
     public static void main(String[] args) {
-        System.out.println("Escull una opció:\n" +
+        System.out.println("Escull una opcio:\n" +
                 "1. Obtenir el nom\n" +
                 "2. Canviar el nom\n" +
                 "3. Obtenir si ha estat creat manualment\n" +
