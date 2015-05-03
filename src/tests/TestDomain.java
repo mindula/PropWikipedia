@@ -19,11 +19,13 @@ public class TestDomain {
                 "3. Test Algoritme\n" +
                 "4. Test ConjuntComunitatsWiki i ComunitatWiki\n" +
                 "5. Test CercaHistorial\n" +
-                "6. Finalitzar Test\n");
+                "6. Test Categoria\n" +
+                "7. Test Pagina\n" +
+                "8. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
-        while (opcio != 6) {
+        while (opcio != 8) {
             switch (opcio) {
                 case 1:
 
@@ -40,6 +42,11 @@ public class TestDomain {
                 case 5:
                     TestCercaHistorial.main(null);
                     break;
+                case 6:
+                    TestNodeCategoria.main(null);
+                    break;
+                case 7:
+                    TestNodePagina.main(null);
             }
         }
     }
