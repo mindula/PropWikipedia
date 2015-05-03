@@ -296,13 +296,17 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                     renumber[i]=Final++;
 
             // Calcula les comunitats
-            int[][] comm_nodes = new int[Final][Final*Final];
-            int[] size_comm_nodes = new int[Final];
-            for (int i = 0; i < Final; ++i) size_comm_nodes[i] = 0;
+            ArrayList<Integer>[] comm_nodes = new ArrayList[size];
+            for(int i = 0; i< size ; i++)
+                comm_nodes[i] = new ArrayList<Integer>();
+
+
             for (int node=0 ; node<size ; node++) {
-                comm_nodes[renumber[n2c[node]]][size_comm_nodes[renumber[n2c[node]]]] = node;
-                ++size_comm_nodes[renumber[n2c[node]]];
+                comm_nodes[renumber[n2c[node]]].add(node);
             }
+
+
+
 
             Graf<Integer> g2 = new Graf<Integer>();
             for (int comm = 0; comm < Final; comm++) g2.afegirNode(comm);
@@ -311,9 +315,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             for (int comm=0 ; comm<comm_deg ; comm++) {
                 HashMap<Integer,Double> m = new HashMap<Integer, Double>();
 
-                int comm_size = size_comm_nodes[comm];
+                int comm_size = comm_nodes[comm].size();
                 for (int node=0 ; node<comm_size ; node++) {
-                    HashSet<Arc<Integer>> h = g.getNodesAdjacents(comm_nodes[comm][node]);
+                    HashSet<Arc<Integer>> h = g.getNodesAdjacents(comm_nodes[comm].get(node));
                     for (Arc<Integer> a: h) {
                         int neigh        = Graf.getNodeOposat(node, a);
                         int neigh_comm   = renumber[n2c[neigh]];

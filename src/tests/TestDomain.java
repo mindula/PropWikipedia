@@ -35,7 +35,7 @@ public class TestDomain {
                 "11." +
                 "12. Test Cercarcomunitats\n" +
                 "20. Finalitzar Test\n");
-        Scanner sc = new Scanner(System.in).useLocale(Locale.US);;
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
         while (opcio != 20) {
