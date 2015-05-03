@@ -71,10 +71,11 @@ public class TestDomain {
                     TestInfoCerca.main(null);
                     break;
                 case 12:
-                    System.out.println("Quin algoritme vols utilitzar? Clique, Girvan o Louvain." +
-                                       "Escriu el seu nom tal com s'indica, sino s'utilitzara en Clique.");
+                    System.out.println("Escull algorisme: Clique, Girvan o Louvain. " +
+                                       "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
-                    System.out.println("Escriu els dos parametres necessaris. ( En el cas de Louvain escriu 0 en el segon paramatre)");
+                    System.out.println("Escriu els dos parametres de l'algoritme.");
+                    System.out.println("En el cas de Louvain, el primer parametre es el nombre de passades i el segon paramatre no es rellevant");
                     int par1 = sc.nextInt();
                     int par2 = sc.nextInt();
 
@@ -130,9 +131,7 @@ public class TestDomain {
 
                     System.out.println(criteris.size()+ " Criteris afegits");
 
-
-
-
+                    // Fi de la obtencio de criteris
 
                     CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), alg, par1, par2, criteris);
             }
