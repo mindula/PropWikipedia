@@ -26,7 +26,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
-        //System.out.println(imprimirSolucio());
         return formarComunitats(imprimirSolucio());
     }
 
@@ -160,12 +159,12 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         private double[] in,tot;
 
         // Nombre de passades realitzades per nivell
-        // si val -1, es fan tantes passes com es vegi necessari per incrementar la modularitat
+        // si latribut val -1, es fan tantes passes com es vegi necessari per incrementar la modularitat
         private int nb_pass;
 
-        // a new pass is computed if the last one has generated an increase
-        // greater than min_modularity
-        // if 0. even a minor increase is enough to go for one more pass
+        // una nova passada es calcula si lultima ha generat un increment
+        // major que min_modularity
+        // si latribut val 0, un increment molt petit pot resultar en una nova passada
         private double min_modularity;
 
         //Els nodes estan anometats consecutivament desde 0
@@ -202,7 +201,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return weightNeigthbours;
         }
 
-        // remove the node from its current community with which it has dnodecomm links
+        // Elimina el node de la seva comunitat actual el qual comparteix dnodecomm arestes
         public void remove(int node, int comm, double dnodecomm) {
             if (!(node>=0 && node<size))
                 throw new RuntimeException("No s'ha complert que node>=0 && node<size");
@@ -212,7 +211,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             n2c[node]  = -1;
         }
 
-        // insert the node in comm with which it shares dnodecomm links
+        // Inserta un node a comm el qual comparteix dnodecomm arestes
         public void insert(int node, int comm, double dnodecomm) {
             if (!(node>=0 && node<size))
                 throw new RuntimeException("No s'ha complert que node>=0 && node<size");
@@ -222,15 +221,15 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             n2c[node]=comm;
         }
 
-        // compute the gain of modularity if node where inserted in comm
-        // given that node has dnodecomm links to comm.  The formula is:
+        // Computa el guany en modularitat en cas que un node fos inserit a comm
+        // Donat que un node te dnodecomm arestes a comm, la formula es la seguent:
         // [(In(comm)+2d(node,comm))/2m - ((tot(comm)+deg(node))/2m)^2]-
         // [In(comm)/2m - (tot(comm)/2m)^2 - (deg(node)/2m)^2]
-        // where In(comm)    = number of half-links strictly inside comm
-        //       Tot(comm)   = number of half-links inside or outside comm (sum(degrees))
-        //       d(node,com) = number of links from node to comm
-        //       deg(node)   = node degree
-        //       m           = number of links
+        // on    In(comm)    = nombre de mitges-arestes dins de comm
+        //       tot(comm)   = nombre de mitges-arestes dins o fora de comm (sum(degrees))
+        //       d(node,comm)= nombre de les arestes de node a comm
+        //       deg(node)   = el nombre d'arestes que surten d'un node
+        //       m           = numbre d'arestes
         public double modularityGain(int node, int comm, double dnodecomm) {
             double totc = tot[comm];
             double degc = weightedDegree(node);
@@ -249,14 +248,13 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return sumaArcs;
         }
 
-        // compute the set of neighboring communities of node
-        // for each community, gives the number of links from node to comm
+        // Calcula el conjutnt de comunitats veines d'un node
+        // Per cada comunitat, dona el nombre d'arestes d'un node a comm
         public HashMap<Integer,Double> neighCommunity(int node) {
             HashMap<Integer,Double> res = new HashMap<Integer, Double>();
             HashSet<Arc<Integer>> h = g.getNodesAdjacents(node);
 
             res.put(n2c[node],0.0);
-            //make_pair(links, weights);
             for (Arc<Integer> a : h) {
                 int neigh = Graf.getNodeOposat(node, a);
                 int neight_comm = n2c[neigh];
@@ -282,6 +280,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return q;
         }
 
+        // Converteix la particio actual a un Graf d'Integers
         public Graf<Integer> convertirParticioAGraf() {
             int[] renumber = new int[size];
             for (int i = 0; i < size; ++i) {
@@ -296,7 +295,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                 if (renumber[i]!=-1)
                     renumber[i]=Final++;
 
-            // Compute communities
+            // Calcula les comunitats
             int[][] comm_nodes = new int[Final][Final*Final];
             int[] size_comm_nodes = new int[Final];
             for (int i = 0; i < Final; ++i) size_comm_nodes[i] = 0;
@@ -348,11 +347,9 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             double new_mod   = modularity();
             double cur_mod   = new_mod;
 
-            // repeat while
-            //   there is an improvement of modularity
-            //   or there is an improvement of modularity greater than a given epsilon
-            //   or a predefined number of pass have been done
-
+            // repetir mentres hi ha una millora en modularitat
+            // o hi ha una millora de modularitat mes gran que epsilon
+            // o un nombre predefinit de passades ha succeit
             int[] random_order = new int[size];
             for (int i=0 ; i<size ; i++)
                 random_order[i]=i;
@@ -370,23 +367,23 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                 improvement = false;
                 nb_pass_done++;
 
-                // for each node: remove the node from its community and insert it in the best community
+                // Per cada node: elimina un node de la seva comunitat i sinserta a la 'millor' comunitat
                 for (int node_tmp=0 ; node_tmp<size ; node_tmp++) {
                     int node = node_tmp;
 
                     int node_comm = n2c[node];
 
-                    // computation of all neighboring communities of current node
+                    // Calcul de totes les comunitats veines del node actual
                     HashMap<Integer,Double> ncomm   = neighCommunity(node);
 
-                    // remove node from its current community
+                    // Elimina el node de la seva comunitat actual
                     remove(node, node_comm, ncomm.get(node_comm));
 
-                    // compute the nearest community for node
-                    // default choice for future insertion is the former community
+                    // Calcula la comunitat mes propera del node
+                    // La opcio per defecte per una futura insersio es la comunitat on resideix actualment
                     int best_comm        = node_comm;
-                    double best_nblinks     = 0;//ncomm.find(node_comm)->second;
-                    double best_increase = 0.;//modularity_gain(node, best_comm, best_nblinks);
+                    double best_nblinks     = 0;
+                    double best_increase = 0.;
                     for (Map.Entry<Integer, Double> entry : ncomm.entrySet()) {
                         double increase = modularityGain(node, entry.getKey(), entry.getValue());
                         if (increase>best_increase) {
@@ -396,7 +393,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                         }
                     }
 
-                    // insert node in the nearest community
+                    // Inserta el node a la comunitat mes propera
                     insert(node, best_comm, best_nblinks);
 
                     if (best_comm!=node_comm)
@@ -412,13 +409,13 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return new_mod;
         }
 
-        // shows the community of each node
+        // Mostra la comunitat a la qual cada node hi pertany
         public void mostrarComunitats() {
             for (int i=0 ; i<size ; i++)
                 System.out.println(i + "/" + n2c[i] + "/" + in[i] + "/" + tot[i]);
         }
 
-        // shows the current partition (with communities renumbered from 0 to k-1)
+        // Mostra la particio actual. Les comunitats estan numerades desde 0 fins k-1
         public ArrayList<Pair<Integer, Integer>> mostrarParticioActual() {
             ArrayList<Pair<Integer, Integer>> graphtree = new ArrayList<Pair<Integer, Integer>>();
             int[] renumber = new int[size];
@@ -439,7 +436,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
             return graphtree;
         }
 
-        // displays the graph of communities as computed by one_level
+        // Mostra el graf de comunitats
         public void DisplayPartitionToGraph() {
             int[] renumber = new int[size];
             for (int i = 0; i < size; ++i) renumber[i] = -1;

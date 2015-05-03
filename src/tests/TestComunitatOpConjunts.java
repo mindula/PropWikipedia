@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Usuari: eduard.casellas
  * Data: 29/04/15
  */
-public class TestComunitatCjtComunitats {
+public class TestComunitatOpConjunts {
 
     public static void main (String[] args) throws Exception {
         GrafWikipedia graf = Sessio.getInstance().getGrafWiki();
@@ -25,7 +25,7 @@ public class TestComunitatCjtComunitats {
         NodeCategoria n1;
         System.out.println("Escull una opció:\n" +
                 "1. Provar ComunitatWiki\n" +
-                "2. Provar ConjuntComunitatWiki\n" +
+                "2. Provar OperacioDeConjunts\n" +
                 "3. Finalitzar el Test");
         Scanner sc = new Scanner(System.in);
         int opcio = sc.nextInt();
