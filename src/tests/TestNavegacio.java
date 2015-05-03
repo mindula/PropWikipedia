@@ -26,33 +26,39 @@ public class TestNavegacio {
         option = sc.nextInt();
         while(option != -1) {
             System.out.println("Escriu el nom:");
+            sc.nextLine();
             String nom = sc.nextLine();
             try {
                 switch (option) {
                     case 0:
                         // Cercar pag
                         NodePagina nodePagina = (NodePagina) Cerca.cercarWikipediaP(grafWikipedia, nom).getResultat();
-                        System.out.println("Pagina: " + nodePagina);
+                        System.out.println("Pagina: " + nodePagina.getNom());
                         // Mostrar categories
                         HashSet<NodeCategoria> categories = navegacio.getCategories(nodePagina);
                         System.out.println("Aquesta pagina te les categories seguents:");
                         for (NodeCategoria categoria : categories)
-                            System.out.println(categoria);
+                            System.out.println(categoria.getNom());
                         break;
                     case 1:
                         // Cercar cat
                         NodeCategoria nodeCategoria = (NodeCategoria) Cerca.cercarWikipediaC(grafWikipedia, nom).getResultat();
-                        System.out.println("Categoria: " + nodeCategoria);
+                        System.out.println("Categoria: " + nodeCategoria.getNom());
+                        // Mostrar pagines
+                        HashSet<NodePagina> pagines = navegacio.getPagines(nodeCategoria);
+                        System.out.println("Aquesta categoria te les pagines seguents:");
+                        for (NodePagina pagina : pagines)
+                            System.out.println(pagina.getNom());
                         //Mostrar supercategories
                         HashSet<NodeCategoria> supercategories = navegacio.getSupercategories(nodeCategoria);
                         System.out.println("Aquesta categoria te les supercategories seguents:");
                         for (NodeCategoria supercategoria : supercategories)
-                            System.out.println(supercategoria);
+                            System.out.println(supercategoria.getNom());
                         //Mostrar subcategories
                         HashSet<NodeCategoria> subcategories = navegacio.getSubcategories(nodeCategoria);
                         System.out.println("Aquesta categoria te les subcategories seguents:");
                         for (NodeCategoria subcategoria : subcategories)
-                            System.out.println(subcategoria);
+                            System.out.println(subcategoria.getNom());
                         break;
                 }
             }catch(Exception e){
