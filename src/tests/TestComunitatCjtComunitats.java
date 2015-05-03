@@ -1,6 +1,7 @@
 package tests;
 
 import domini.ComunitatWiki;
+import domini.Sessio;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodeWiki;
@@ -16,13 +17,8 @@ import java.util.Scanner;
  */
 public class TestComunitatCjtComunitats {
 
-    private GrafWikipedia graf;
-
-    public TestComunitatCjtComunitats(GrafWikipedia graf) {
-        this.graf = graf;
-    }
-
     public static void main (String[] args) throws Exception {
+        GrafWikipedia graf = Sessio.getInstance().getGrafWiki();
         String paraula;
         int ident;
         int ident2;
@@ -81,7 +77,7 @@ public class TestComunitatCjtComunitats {
                                 paraula = sc.next();
                                 n1 = new NodeCategoria(paraula);
                                 C.afegirNode(n1);
-                                //graf.afegirNode(n1);
+                                graf.afegirNode(n1);
                                 break;
                             case 2:
                                 System.out.println("Escriu la mida del conjunt de nodes");
@@ -99,7 +95,7 @@ public class TestComunitatCjtComunitats {
                             case 3:
                                 System.out.println("Escriu el nom del node a eliminar");
                                 paraula = sc.next();
-                                //C.eliminarNode(graf.getNodeCat(paraula));
+                                C.eliminarNode(graf.getNodeCat(paraula));
                                 break;
                             case 4:
                                 System.out.println(C.mida());
@@ -121,7 +117,7 @@ public class TestComunitatCjtComunitats {
                             case 9:
                                 System.out.println("Escriu el nopm del node");
                                 paraula = sc.next();
-                                //System.out.println(C.teNode(graf.getNodeCat(paraula)));
+                                System.out.println(C.teNode(graf.getNodeCat(paraula)));
                                 break;
                             case 10:
                                 System.out.println("Escriu el nom del node");
