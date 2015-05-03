@@ -82,8 +82,55 @@ public class TestAlgorismeLouvain{
                 graf.afegirArc(new Arc<Character>(1, '1', '2'));
                 graf.afegirArc(new Arc<Character>(1, '1', '4'));
                 graf.afegirArc(new Arc<Character>(1, '1', '7'));
-
-
+                graf.afegirArc(new Arc<Character>(1, '2', '0'));
+                graf.afegirArc(new Arc<Character>(1, '2', '1'));
+                graf.afegirArc(new Arc<Character>(1, '2', '4'));
+                graf.afegirArc(new Arc<Character>(1, '2', '5'));
+                graf.afegirArc(new Arc<Character>(1, '2', '6'));
+                graf.afegirArc(new Arc<Character>(1, '3', '0'));
+                graf.afegirArc(new Arc<Character>(1, '3', '7'));
+                graf.afegirArc(new Arc<Character>(1, '4', '0'));
+                graf.afegirArc(new Arc<Character>(1, '4', '1'));
+                graf.afegirArc(new Arc<Character>(1, '4', '2'));
+                graf.afegirArc(new Arc<Character>(1, '4', 'A'));
+                graf.afegirArc(new Arc<Character>(1, '5', '0'));
+                graf.afegirArc(new Arc<Character>(1, '5', '2'));
+                graf.afegirArc(new Arc<Character>(1, '5', '7'));
+                graf.afegirArc(new Arc<Character>(1, '5', 'B'));
+                graf.afegirArc(new Arc<Character>(1, '6', '2'));
+                graf.afegirArc(new Arc<Character>(1, '6', '7'));
+                graf.afegirArc(new Arc<Character>(1, '6', 'B'));
+                graf.afegirArc(new Arc<Character>(1, '7', '1'));
+                graf.afegirArc(new Arc<Character>(1, '7', '3'));
+                graf.afegirArc(new Arc<Character>(1, '7', '5'));
+                graf.afegirArc(new Arc<Character>(1, '7', '6'));
+                graf.afegirArc(new Arc<Character>(1, '8', '9'));
+                graf.afegirArc(new Arc<Character>(1, '8', 'A'));
+                graf.afegirArc(new Arc<Character>(1, '8', 'B'));
+                graf.afegirArc(new Arc<Character>(1, '8', 'E'));
+                graf.afegirArc(new Arc<Character>(1, '8', 'F'));
+                graf.afegirArc(new Arc<Character>(1, '9', '8'));
+                graf.afegirArc(new Arc<Character>(1, '9', 'C'));
+                graf.afegirArc(new Arc<Character>(1, '9', 'E'));
+                graf.afegirArc(new Arc<Character>(1, 'A', 'C'));
+                graf.afegirArc(new Arc<Character>(1, 'A', 'E'));
+                graf.afegirArc(new Arc<Character>(1, 'A', '4'));
+                graf.afegirArc(new Arc<Character>(1, 'A', '8'));
+                graf.afegirArc(new Arc<Character>(1, 'A', 'B'));
+                graf.afegirArc(new Arc<Character>(1, 'A', 'D'));
+                graf.afegirArc(new Arc<Character>(1, 'B', '6'));
+                graf.afegirArc(new Arc<Character>(1, 'B', '5'));
+                graf.afegirArc(new Arc<Character>(1, 'B', '8'));
+                graf.afegirArc(new Arc<Character>(1, 'B', 'A'));
+                graf.afegirArc(new Arc<Character>(1, 'B', 'D'));
+                graf.afegirArc(new Arc<Character>(1, 'C', '9'));
+                graf.afegirArc(new Arc<Character>(1, 'C', 'A'));
+                graf.afegirArc(new Arc<Character>(1, 'D', 'A'));
+                graf.afegirArc(new Arc<Character>(1, 'D', 'B'));
+                graf.afegirArc(new Arc<Character>(1, 'E', '8'));
+                graf.afegirArc(new Arc<Character>(1, 'E', '9'));
+                graf.afegirArc(new Arc<Character>(1, 'E', 'D'));
+                graf.afegirArc(new Arc<Character>(1, 'F', '8'));
                 break;
             default:
         }
