@@ -10,12 +10,12 @@ import java.util.Date;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
+ * Usuari: ricard.gascons
  * Data: 22/3/15
  */
 
 /**
- * Sessió de la Wikipedia
+ * Sessio de la Wikipedia
  */
 
 public class Sessio {
