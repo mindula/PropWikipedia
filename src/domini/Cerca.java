@@ -6,6 +6,10 @@ package domini;
  * Data: 15/4/15
  */
 
+/**
+ * Cerca de nodes dins la Wikipedia.
+ */
+
 import graf.GrafWikipedia;
 import graf.NodeWiki;
 

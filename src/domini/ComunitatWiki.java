@@ -9,6 +9,9 @@ import org.grupwiki.graf.Comunitat;
  * Date: 24/04/15
  */
 
+/**
+ * Comunitat de nodes de la wikipedia. Aquesta classe exten una part de les seves funcions de Comunitat
+ */
 
 public class ComunitatWiki extends Comunitat<NodeWiki> {
     private String nom;
@@ -16,14 +19,16 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
 
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
-     *
      */
     public ComunitatWiki() {
         super();
     }
 
 
-
+    /**
+     * Retorna el nom de la comunitat
+     * @return el nom de la comunitat
+     */
     public String getNom() {
         return nom;
     }
@@ -36,10 +41,19 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
         nom = s;
     }
 
+    /**
+     * Retorna la descripcio de la comunitat
+     * @return la descripcio de la comunitat
+     */
     public String getDescripcio() {
         return descripcio;
     }
 
+    /**
+     * Retorna cert si existeix un node amb un nom <tt>nom</tt>
+     * @param nom
+     * @return cert si existeix un node amb un nom <tt>nom</tt>
+     */
     public boolean teNode(String nom) {
         for (NodeWiki n : nodes) {
             if (nom.equals(n.getNom())) return true;
