@@ -2,10 +2,13 @@ package tests;
 
 import domini.CtrlAlgorisme;
 import domini.Sessio;
+import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
+import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -32,7 +35,7 @@ public class TestDomain {
                 "11." +
                 "12. Test Cercarcomunitats\n" +
                 "20. Finalitzar Test\n");
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
         while (opcio != 20) {
@@ -71,10 +74,11 @@ public class TestDomain {
                     TestInfoCerca.main(null);
                     break;
                 case 12:
-                    System.out.println("Quin algoritme vols utilitzar? Clique, Girvan o Louvain." +
-                                       "Escriu el seu nom tal com s'indica, sino s'utilitzara en Clique.");
+                    System.out.println("Escull algorisme: Clique, Girvan o Louvain. " +
+                                       "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
-                    System.out.println("Escriu els dos parametres necessaris. ( En el cas de Louvain escriu 0 en el segon paramatre)");
+                    System.out.println("Escriu els dos parametres de l'algoritme.");
+                    System.out.println("En el cas de Louvain, el primer parametre es el nombre de passades i el segon paramatre no es rellevant.");
                     int par1 = sc.nextInt();
                     int par2 = sc.nextInt();
 
@@ -92,7 +96,10 @@ public class TestDomain {
                     boolean continuar = true;
                     while(continuar) {
                         opcio = sc.nextInt();
-                        double ponderacio = sc.nextDouble();
+                        double ponderacio = 0;
+
+                        if(opcio != -1)
+                            ponderacio= sc.nextDouble();
 
                         Criteri c = null;
                         switch (opcio) {
@@ -130,11 +137,12 @@ public class TestDomain {
 
                     System.out.println(criteris.size()+ " Criteris afegits");
 
-
-
-
+                    // Fi de la obtencio de criteris
 
                     CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), alg, par1, par2, criteris);
+                    ConjuntComunitats<NodeCategoria> comunitats = c.cercarComunitats();
+                    System.out.println("Comunitats trobades:");
+                    System.out.println(comunitats);
             }
             System.out.println("Escull una opcio:\n" +
                     "0. Veure Opcions\n" +

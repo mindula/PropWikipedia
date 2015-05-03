@@ -8,6 +8,7 @@ import graf.grafgenerator.GrafGenerator;
 import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -28,11 +29,14 @@ public class TestGrafGenerator {
 
 
         ArrayList<Criteri> criteris = new ArrayList<Criteri>();
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         boolean continuar = true;
         while(continuar) {
             int opcio = sc.nextInt();
-            double ponderacio = sc.nextDouble();
+            double ponderacio = 0;
+
+            if(opcio != -1)
+                ponderacio= sc.nextDouble();
 
             Criteri c = null;
             switch (opcio) {
