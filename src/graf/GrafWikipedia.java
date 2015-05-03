@@ -5,7 +5,11 @@ import org.grupwiki.graf.Arc;
 import java.util.HashSet;
 import java.util.List;
 
-
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard.gascons
+ * Data: 2/5/15
+ */
 public class GrafWikipedia {
 
     private GrafDirigit<NodeWiki> grafWiki;

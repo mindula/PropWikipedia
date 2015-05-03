@@ -8,6 +8,7 @@ import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -34,7 +35,7 @@ public class TestDomain {
                 "11." +
                 "12. Test Cercarcomunitats\n" +
                 "20. Finalitzar Test\n");
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);;
         int opcio = sc.nextInt();
         //String[] arguments = new String[]; no volem arguments null
         while (opcio != 20) {
