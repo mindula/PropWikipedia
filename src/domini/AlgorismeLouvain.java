@@ -297,7 +297,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
                     renumber[i]=Final++;
 
             // Compute communities
-            int[][] comm_nodes = new int[Final][Final];
+            int[][] comm_nodes = new int[Final][Final*Final];
             int[] size_comm_nodes = new int[Final];
             for (int i = 0; i < Final; ++i) size_comm_nodes[i] = 0;
             for (int node=0 ; node<size ; node++) {
