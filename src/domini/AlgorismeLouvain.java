@@ -9,6 +9,11 @@ import java.util.*;
  * Usuari: aleix.paris, ricard.gascons
  * Data: 23/4/15
  */
+
+/**
+ * Algorisme Louvain per la generacio de Comunitats
+ * @param <T>
+ */
 public class AlgorismeLouvain<T> extends Algoritme<T> {
     private ArrayList<Pair<Integer, Integer>> graphTree;
     private Graf<Integer> grafIntern;
@@ -17,7 +22,13 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
     private int nPassades;
     private HashMap<Integer, T> traduccioIntegerT;
 
-
+    /**
+     *
+     * @param grafOriginal representa el graf en el que es vol trobar les comunitats
+     * @param criterioParada representa el nombre de passades de l'algorisme. Recomanat: |V|*2
+     * @param nul no s'utilitza en aquest algorisme
+     * @return un conjunt de comunitats, formades pels nodes del graf
+     */
     @Override
     public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criterioParada, int nul){
         graphTree = new ArrayList<Pair<Integer, Integer>>();
@@ -26,7 +37,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
-        //System.out.println(imprimirSolucio());
         return formarComunitats(imprimirSolucio());
     }
 

@@ -6,6 +6,10 @@ package domini;
  * Data: 15/4/15
  */
 
+/**
+ * Cerca de nodes dins la Wikipedia.
+ */
+
 import graf.GrafWikipedia;
 import graf.NodeWiki;
 
@@ -18,12 +22,26 @@ public class Cerca {
 
     }
 
+    /**
+     * Cerca una Pagina dins la Wikipedia
+     * @param g
+     * @param query
+     * @return un objecte tipus InfoCerca, compost per una data de cerca i el resultat
+     * @throws Exception si no sha trobat el resultat desitjat
+     */
     public static InfoCerca cercarWikipediaP (GrafWikipedia g, String query) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return new InfoCerca(cercarPagina(g, query), dateFormat.format(date));
     }
 
+    /**
+     * Cerca una Categoria dins la Wikipedia
+     * @param g
+     * @param query
+     * @return un objecte tipus InfoCerca, compost per una data de cerca i el resultat
+     * @throws Exception si no sha trobat el resultat desitjat
+     */
     public static InfoCerca cercarWikipediaC (GrafWikipedia g, String query) throws Exception {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();

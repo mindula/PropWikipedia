@@ -16,12 +16,24 @@ import java.util.ArrayList;
  * Data: 02/05/2015
  */
 
+/**
+ * Controlador d'Algorisme
+ */
+
 public class CtrlAlgorisme{
     GrafWikipedia grafWikipedia;
     String tipusAlgorisme; // "Louvain", "Girvan", "Clique"
     int par1, par2;
     ArrayList<Criteri> criteris;
 
+    /**
+     * Constructora per defecte de la classe
+     * @param grafWikipedia
+     * @param tipusAlgorisme
+     * @param par1
+     * @param par2
+     * @param criteris
+     */
     public CtrlAlgorisme(GrafWikipedia grafWikipedia, String tipusAlgorisme, int par1, int par2, ArrayList<Criteri> criteris){
         this.grafWikipedia = grafWikipedia;
         this.tipusAlgorisme = tipusAlgorisme;
@@ -30,6 +42,10 @@ public class CtrlAlgorisme{
         this.criteris = criteris;
     }
 
+    /**
+     * Cerca comunitats en un graf seguint un dels 3 algorismes definits
+     * @return
+     */
     public ConjuntComunitats<NodeCategoria> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
 
