@@ -7,14 +7,6 @@ import java.util.HashSet;
 
 
 public class GrafWikipedia extends Graf<NodeWiki> {
-    
-    public void afegirNode(NodeWiki node) {
-        super.afegirNode(node);
-    }
-
-    public void eliminarNode(NodeWiki node) {
-        super.eliminarNode(node);
-    }
 
     public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
         Arc<NodeWiki> arcPC = new Arc<NodeWiki>(0.0, pagina, categoria);
