@@ -10,7 +10,10 @@ import org.grupwiki.graf.Graf;
  * Data: 03/05/2015
  */
 
-// Stub de l'algorisme de Clique percolation
+/**
+ * Stub de l'algorisme de Clique percolation
+ * @param <T>
+ */
 public class AlgorismeClique<T> extends Algoritme<T> {
 
     @Override

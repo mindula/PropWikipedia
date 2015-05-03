@@ -16,7 +16,7 @@ public class TestGrafWikipedia {
             String nom;
             String nom2;
             int n;
-            System.out.println("Escull una opció:\n" +
+            System.out.println("Escull una opcio:\n" +
                     "0.  Verue opcions\n" +
                     "1.  Afegir Node\n" +
                     "2.  Eliminar Node\n" +
@@ -43,7 +43,7 @@ public class TestGrafWikipedia {
             while (opcio != 21) {
                 switch (opcio) {
                     case 0:
-                        System.out.println("Escull una opció:\n" +
+                        System.out.println("Escull una opcio:\n" +
                                 "0.  Verue opcions\n" +
                                 "1.  Afegir NodeCategoria\n" +
                                 "2.  Afegir NodePagina\n" +

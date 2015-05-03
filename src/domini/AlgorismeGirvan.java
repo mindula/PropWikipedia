@@ -10,7 +10,10 @@ import org.grupwiki.graf.Graf;
  * Data: 03/05/2015
  */
 
-// Stub de l'algorisme de Girvan-Newman
+/**
+ * Stub de l'algorisme de Girvan-Newman
+ * @param <T>
+ */
 public class AlgorismeGirvan<T> extends Algoritme<T> {
 
     @Override
