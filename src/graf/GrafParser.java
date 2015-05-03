@@ -40,8 +40,6 @@ public class GrafParser {
         }
         catch(IOException e) {
             e.printStackTrace();
-            //e.getCause();
-            //e.getMessage();
         }
         return grafWikipedia;
     }
