@@ -40,8 +40,8 @@ public class TestDomain {
                             "5. Test CercaHistorial\n" +
                             "6. Test Categoria\n" +
                             "7. Test Pagina\n" +
-                            "8. Test Navegacio" +
-                            "9. Test CercarComunitats" +
+                            "8. Test Navegacio\n" +
+                            "9. Test CercarComunitats\n" +
                             "10. Finalitzar Test\n");
                     break;
                 case 1:
