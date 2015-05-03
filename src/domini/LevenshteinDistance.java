@@ -1,15 +1,23 @@
 package domini;
 
 /**
- * Grup 3: Wikipedia
+ *  Grup 3: Wikipedia
  * Usuari: agusti.bau
  * Data: 2/5/15
- *
- * basat en el algoritme Levenshtein mostrat aqui:
+ */
+
+ /**
+ * Distancia de Levenshtein: basat en el algoritme Levenshtein mostrat aqui:
  * http://www.codeproject.com/Articles/13525/Fast-memory-efficient-Levenshtein-algorithm
  */
 public class LevenshteinDistance {
-    
+
+     /**
+      * Calcula la distancia de Louvain
+      * @param s1
+      * @param s2
+      * @return la distancia de Louvain
+      */
     public static int calculate(String s1, String s2){
         if (s1 == s2) return 0;
         if (s1.length() == 0) return s2.length();

@@ -14,6 +14,10 @@ import java.util.Date;
  * Data: 22/3/15
  */
 
+/**
+ * Sessió de la Wikipedia
+ */
+
 public class Sessio {
 
     private static Sessio INSTANCE;
@@ -30,6 +34,11 @@ public class Sessio {
         grafAlgoritme = new Graf<NodeCategoria>();
     }
 
+    /**
+     * /**
+     * Retorna una instancia de Sessio
+     * @return una instancia de Sessio
+     */
     public static Sessio getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Sessio();
@@ -37,10 +46,18 @@ public class Sessio {
         return INSTANCE;
     }
 
+    /**
+     * Retorna la data de creació de la sessió
+     * @return la data de creació de la sessió
+     */
     public String getDataCreacio() {
         return dataCreacio;
     }
 
+    /**
+     * Retorna el Graf de la Wikipedia
+     * @return el graf de la Wikipedia
+     */
     public GrafWikipedia getGrafWiki() {
         return grafWiki;
     }
@@ -49,6 +66,10 @@ public class Sessio {
         this.grafWiki = grafWiki;
     }
 
+    /**
+     * Retorna el graf de categories pels algorismes
+     * @return el graf de categories pels algorismes
+     */
     public Graf<NodeCategoria> getGrafAlgoritme() {
         return grafAlgoritme;
     }

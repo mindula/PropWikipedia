@@ -5,6 +5,12 @@ package domini;
  * Usuari: ricard
  * Data: 4/30/15
  */
+
+/**
+ * Conté un parell d'elements
+ * @param <X>
+ * @param <Y>
+ */
 public class Pair<X, Y> {
     X first;
     Y second;
