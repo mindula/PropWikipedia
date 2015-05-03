@@ -1,12 +1,11 @@
 package graf;
 
 import org.grupwiki.graf.Arc;
-import org.grupwiki.graf.Graf;
 
 import java.util.HashSet;
 
 
-public class GrafWikipedia extends Graf<NodeWiki> {
+public class GrafWikipedia extends GrafDirigit<NodeWiki> {
 
     public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
         Arc<NodeWiki> arcPC = new Arc<NodeWiki>(0.0, pagina, categoria);
