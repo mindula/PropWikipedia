@@ -27,8 +27,8 @@ public class CriteriNom extends Criteri{
         int maximCost = (int) (Math.max(n1.getNom().length(), n2.getNom().length()) * maximGrauDiferencia);
 
         if (cost >  maximCost)
-            return -1;
+            return 0;
         else
-            return cost;
+            return maximCost - cost;
     }
 }

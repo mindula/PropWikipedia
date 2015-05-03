@@ -11,8 +11,8 @@ import org.grupwiki.graf.Graf;
  * Data: 2/5/15
  *
  */
-public class CriteriFillsComuns extends Criteri{
-    public CriteriFillsComuns(double ponderacio) {
+public class CriteriPaginesComuns extends Criteri{
+    public CriteriPaginesComuns(double ponderacio) {
         super(ponderacio);
     }
 
@@ -24,7 +24,7 @@ public class CriteriFillsComuns extends Criteri{
         for(Arc<NodeWiki> a1 : graf.getNodesAdjacents(n1)){
             NodeWiki successor = Graf.getNodeOposat(n1, a1);
 
-            if(graf.existeixArc(n2, successor)){
+            if(!successor.esCategoria() &&  graf.existeixArc(n2, successor)){
 
                 fillsComuns++;
             }
