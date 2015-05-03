@@ -26,7 +26,6 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
-        //System.out.println(imprimirSolucio());
         return formarComunitats(imprimirSolucio());
     }
 
