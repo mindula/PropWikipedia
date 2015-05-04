@@ -9,7 +9,7 @@ import graf.NodeWiki;
  */
 
 /**
- * Conté un NodeWiki i la data de realització de la cerca. Veure classe Cerca per mes informació
+ * Conte un NodeWiki i la data de realitzacio de la cerca. Veure classe Cerca per mes informacio
  */
 public class InfoCerca {
     private NodeWiki a;
