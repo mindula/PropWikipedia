@@ -2,7 +2,6 @@ package tests;
 
 import domini.Sessio;
 
-import java.awt.peer.SystemTrayPeer;
 import java.util.Scanner;
 
 /**

@@ -16,7 +16,7 @@ public class TestGrafDirigit {
         String nom;
         String nom2;
         Arc<String> a;
-        System.out.println("Escull una opció:\n" +
+        System.out.println("Escull una opcio:\n" +
                 "0.  Veure opcions\n" +
                 "1.  Afegir Node\n" +
                 "2.  Afegir Arc\n" +
@@ -35,7 +35,7 @@ public class TestGrafDirigit {
         while (opcio != 12) {
             switch (opcio) {
                 case 0:
-                    System.out.println("Escull una opció:\n" +
+                    System.out.println("Escull una opcio:\n" +
                             "0.  Veure opcions\n" +
                             "1.  Afegir Node\n" +
                             "2.  Afegir Arc\n" +
