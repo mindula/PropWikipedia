@@ -1,4 +1,4 @@
-package domini;
+package prop.classescompartides.utils;
 
 /**
  * Grup 3: Wikipedia
@@ -19,6 +19,11 @@ public class Pair<X, Y> {
 
     }
 
+    /**
+     * Constructor per defecte
+     * @param first
+     * @param second
+     */
     public Pair(X first, Y second) {
         this.first = first;
         this.second = second;

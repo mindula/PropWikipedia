@@ -1,6 +1,6 @@
 package prop.classescompartides.algorismes;
 
-import domini.Pair;
+import prop.classescompartides.utils.Pair;
 import prop.classescompartides.graf.*;
 
 import java.util.*;
