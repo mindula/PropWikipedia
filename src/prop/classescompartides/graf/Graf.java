@@ -1,4 +1,4 @@
-package org.grupwiki.graf;
+package prop.classescompartides.graf;
 
 /**
  * Grup 3: Wikipedia

@@ -1,7 +1,7 @@
 package graf;
 
-import org.grupwiki.graf.Arc;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.graf.Arc;
+import prop.classescompartides.graf.Graf;
 
 import java.util.Collection;
 import java.util.Set;

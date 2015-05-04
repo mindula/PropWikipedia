@@ -6,7 +6,7 @@ import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodeWiki;
 import graf.OperacionsConjunts;
-import org.grupwiki.graf.ConjuntComunitats;
+import prop.classescompartides.graf.ConjuntComunitats;
 
 import java.util.Scanner;
 

@@ -4,9 +4,12 @@ import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.Criteri;
 import graf.grafgenerator.GrafGenerator;
-import org.grupwiki.graf.Algoritme;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.algorismes.AlgorismeClique;
+import prop.classescompartides.algorismes.AlgorismeGirvan;
+import prop.classescompartides.algorismes.AlgorismeLouvain;
+import prop.classescompartides.graf.Algoritme;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 

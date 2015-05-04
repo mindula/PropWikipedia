@@ -2,7 +2,7 @@ package domini;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.graf.Graf;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

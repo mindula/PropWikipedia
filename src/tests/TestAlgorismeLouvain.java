@@ -1,10 +1,10 @@
 package tests;
 
-import domini.AlgorismeLouvain;
-import org.grupwiki.graf.Arc;
-import org.grupwiki.graf.Comunitat;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.algorismes.AlgorismeLouvain;
+import prop.classescompartides.graf.Arc;
+import prop.classescompartides.graf.Comunitat;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 import java.util.HashSet;

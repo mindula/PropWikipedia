@@ -1,7 +1,7 @@
 package tests;
 
 import graf.GrafDirigit;
-import org.grupwiki.graf.Arc;
+import prop.classescompartides.graf.Arc;
 
 import java.util.Scanner;
 

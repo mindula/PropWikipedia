@@ -4,8 +4,8 @@ import domini.CtrlAlgorisme;
 import domini.Sessio;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 import java.util.Locale;

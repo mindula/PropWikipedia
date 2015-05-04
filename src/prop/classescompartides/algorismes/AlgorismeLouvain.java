@@ -1,6 +1,7 @@
-package domini;
+package prop.classescompartides.algorismes;
 
-import org.grupwiki.graf.*;
+import domini.Pair;
+import prop.classescompartides.graf.*;
 
 import java.util.*;
 

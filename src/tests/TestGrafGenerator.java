@@ -5,7 +5,7 @@ import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
 import graf.grafgenerator.GrafGenerator;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 import java.util.Locale;

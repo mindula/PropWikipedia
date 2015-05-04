@@ -1,8 +1,8 @@
-package domini;
+package prop.classescompartides.algorismes;
 
-import org.grupwiki.graf.Algoritme;
-import org.grupwiki.graf.ConjuntComunitats;
-import org.grupwiki.graf.Graf;
+import prop.classescompartides.graf.Algoritme;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
 
 /**
  * Grup 3: Wikipedia

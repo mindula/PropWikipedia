@@ -1,4 +1,4 @@
-package org.grupwiki.graf; /*************************************************************************
+package prop.classescompartides.graf; /*************************************************************************
  *  Compilació:   javac Arc.java
  *  Execució:     java Arc
  *

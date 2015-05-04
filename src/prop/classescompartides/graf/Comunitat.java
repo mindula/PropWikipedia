@@ -1,8 +1,6 @@
-package org.grupwiki.graf;
+package prop.classescompartides.graf;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Aquesta classe representa una Comunitat, la qual és un conjunt de nodes.

@@ -1,7 +1,7 @@
 package domini;
 
 import graf.NodeWiki;
-import org.grupwiki.graf.Comunitat;
+import prop.classescompartides.graf.Comunitat;
 
 /**
  * Grup 3: Wikipedia

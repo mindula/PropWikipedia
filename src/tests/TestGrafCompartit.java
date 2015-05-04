@@ -1,8 +1,8 @@
 package tests;
 
 
-import org.grupwiki.graf.Graf;
-import org.grupwiki.graf.Arc;
+import prop.classescompartides.graf.Graf;
+import prop.classescompartides.graf.Arc;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
 package graf;
 
-import org.grupwiki.graf.Arc;
+import prop.classescompartides.graf.Arc;
 
 import java.util.HashSet;
 import java.util.List;
