@@ -158,9 +158,9 @@ public class TestComunitatOpConjunts {
                             "3. Obtenir la comunitat amb id s\n" +
                             "4. Eliminar una comunitat\n" +
                             "5. Preparar comunitats per operacions de conjunts\n" +
-                            "6. Unió de dos comunitats\n" +
-                            "7. Intersecció de dos comunitats\n" +
-                            "8. Diferència de dos comunitats\n" +
+                            "6. Unió de dos comunitats (fer punt 5 previamet)\n" +
+                            "7. Intersecció de dos comunitats (fer punt 5 previamet)\n" +
+                            "8. Diferència de dos comunitats (fer punt 5 previamet)\n" +
                             "9. Obtenir comunitats\n" +
                             "10. Finalitzar el test");
                     int opcio3 = sc.nextInt();
@@ -175,9 +175,9 @@ public class TestComunitatOpConjunts {
                                         "3. Obtenir la comunitat amb id s\n" +
                                         "4. Eliminar una comunitat\n" +
                                         "5. Preparar comunitats per operacions de conjunts" +
-                                        "6. Unió de dos comunitats\n" +
-                                        "7. Intersecció de dos comunitats\n" +
-                                        "8. Diferència de dos comunitats\n" +
+                                        "6. Unió de dos comunitats (fer punt 5 previamet)\n" +
+                                        "7. Intersecció de dos comunitats (fer punt 5 previamet)\n" +
+                                        "8. Diferència de dos comunitats (fer punt 5 previamet)\n" +
                                         "9. Obtenir comunitats\n" +
                                         "10. Finalitzar el test");
                                 break;
@@ -202,6 +202,7 @@ public class TestComunitatOpConjunts {
                                 comunitats.eliminarComunitat(comunitats.getComunitat(ident));
                                 break;
                             case 5:
+                                System.out.println("Comunitats preparades. Son les comunitats 222, 333 i 444");
                                 NodeCategoria n = new NodeCategoria("n1");
                                 com = new ComunitatWiki();
                                 comunitats.afegirComunitat(com);
