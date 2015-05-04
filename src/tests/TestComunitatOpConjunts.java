@@ -116,9 +116,11 @@ public class TestComunitatOpConjunts {
                                 System.out.println(C.estaBuida());
                                 break;
                             case 9:
-                                System.out.println("Escriu el nopm del node");
+                                System.out.println("Escriu el nom del node");
                                 paraula = sc.next();
-                                System.out.println(C.teNode(graf.getNodeCat(paraula)));
+                                if (graf.existeixNodeCat(paraula))
+                                    System.out.println(C.teNode(graf.getNodeCat(paraula)));
+                                else System.out.println("false");
                                 break;
                             case 10:
                                 System.out.println("Escriu el nom del node");
@@ -155,14 +157,15 @@ public class TestComunitatOpConjunts {
                             "2. Obtenir el nombre de Comunitats\n" +
                             "3. Obtenir la comunitat amb id s\n" +
                             "4. Eliminar una comunitat\n" +
-                            "5. Unió de dos comunitats\n" +
-                            "6. Intersecció de dos comunitats\n" +
-                            "7. Diferència de dos comunitats\n" +
-                            "8.Obtenir comunitats" +
-                            "9. Finalitzar el test");
+                            "5. Preparar comunitats per operacions de conjunts\n" +
+                            "6. Unió de dos comunitats (fer punt 5 previamet)\n" +
+                            "7. Intersecció de dos comunitats (fer punt 5 previamet)\n" +
+                            "8. Diferència de dos comunitats (fer punt 5 previamet)\n" +
+                            "9. Obtenir comunitats\n" +
+                            "10. Finalitzar el test");
                     int opcio3 = sc.nextInt();
                     ComunitatWiki com;
-                    while (opcio3 != 9){
+                    while (opcio3 != 10){
                         switch (opcio3){
                             case 0:
                                 System.out.println("Escull una opció:\n" +
@@ -171,17 +174,19 @@ public class TestComunitatOpConjunts {
                                         "2. Obtenir el nombre de Comunitats\n" +
                                         "3. Obtenir la comunitat amb id s\n" +
                                         "4. Eliminar una comunitat\n" +
-                                        "5. Unió de dos comunitats\n" +
-                                        "6. Intersecció de dos comunitats\n" +
-                                        "7. Diferència de dos comunitats\n" +
-                                        "8. Obtenir comunitats" +
-                                        "9. Finalitzar el test");
+                                        "5. Preparar comunitats per operacions de conjunts" +
+                                        "6. Unió de dos comunitats (fer punt 5 previamet)\n" +
+                                        "7. Intersecció de dos comunitats (fer punt 5 previamet)\n" +
+                                        "8. Diferència de dos comunitats (fer punt 5 previamet)\n" +
+                                        "9. Obtenir comunitats\n" +
+                                        "10. Finalitzar el test");
                                 break;
                             case 1:
-                                System.out.println("Escriu el id de la comunitat");
-                                ident = sc.nextInt();
                                 com = new ComunitatWiki();
                                 comunitats.afegirComunitat(com);
+                                System.out.println("Escriu el seu id");
+                                ident = sc.nextInt();
+                                com.setId(ident);
                                 break;
                             case 2:
                                 System.out.println(comunitats.getNumComunitats());
@@ -197,27 +202,65 @@ public class TestComunitatOpConjunts {
                                 comunitats.eliminarComunitat(comunitats.getComunitat(ident));
                                 break;
                             case 5:
-                                System.out.println("Escriu els id de les dues comunitats");
+                                System.out.println("Comunitats preparades. Son les comunitats 222, 333 i 444");
+                                NodeCategoria n = new NodeCategoria("n1");
+                                com = new ComunitatWiki();
+                                comunitats.afegirComunitat(com);
+                                com.setId(222);
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n2");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n3");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n4");
+                                com.afegirNode(n);
+
+                                com = new ComunitatWiki();
+                                comunitats.afegirComunitat(com);
+                                com.setId(333);
+                                n = new NodeCategoria("n2");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n3");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n5");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n6");
+                                com.afegirNode(n);
+
+                                com = new ComunitatWiki();
+                                comunitats.afegirComunitat(com);
+                                com.setId(444);
+                                n = new NodeCategoria("n1");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n4");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n5");
+                                com.afegirNode(n);
+                                n = new NodeCategoria("n7");
+                                com.afegirNode(n);
+                                break;
+                            case 6:
+                                System.out.println("Escriu els id de les dues comunitats, han de ser 222, 333 o 444 (Comunitats preparades)");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
                                 System.out.println(OperacionsConjunts.unio(comunitats.getComunitat(ident), comunitats.getComunitat(ident2)));
 
                                 break;
-                            case 6:
-                                System.out.println("Escriu els id de les dues comunitats");
+                            case 7:
+                                System.out.println("Escriu els id de les dues comunitats, han de ser 222, 333 o 444 (Comunitats preparades)");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
                                 System.out.println(OperacionsConjunts.interseccio(comunitats.getComunitat(ident), comunitats.getComunitat(ident2)));
 
                                 break;
-                            case 7:
-                                System.out.println("Escriu els id de les dues comunitats");
+                            case 8:
+                                System.out.println("Escriu els id de les dues comunitats, han de ser 222, 333 o 444 (Comunitats preparades)");
                                 ident = sc.nextInt();
                                 ident2 = sc.nextInt();
                                 System.out.println(OperacionsConjunts.diferencia(comunitats.getComunitat(ident), comunitats.getComunitat(ident2)));
 
                                 break;
-                            case 8:
+                            case 9:
                                 System.out.println(comunitats.getComunitats());
                                 break;
                         }

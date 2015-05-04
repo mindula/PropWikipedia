@@ -44,7 +44,7 @@ public class CtrlAlgorisme{
 
     /**
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
-     * @return
+     * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
     public ConjuntComunitats<NodeCategoria> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;

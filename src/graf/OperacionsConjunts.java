@@ -24,6 +24,11 @@ public class OperacionsConjunts{
     public static<T> Comunitat<T> unio(Comunitat<T> a, Comunitat<T>  b){
         Comunitat<T>  c = new Comunitat<T>();
         c.getNodes().addAll(a.getNodes());
+        for(T i: b.getNodes())
+            if (!c.teNode(i)) {
+                c.afegirNode(i);
+            }
+
         c.getNodes().addAll(b.getNodes());
         return c;
     }
