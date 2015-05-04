@@ -9,16 +9,6 @@ FILE=
 		$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		src/org/grupwiki/graf/Arc.java \
-		src/org/grupwiki/graf/Graf.java \
-		src/org/grupwiki/graf/Algoritme.java \
-		src/org/grupwiki/graf/Comunitat.java \
-		src/org/grupwiki/graf/ConjuntComunitats.java \
-		src/org/grupwiki/louvain/AlgoritmeLouvain.java \
-		src/org/grupwiki/louvain/NodeLovain.java \
-		src/domini/AlgorismeClique.java \
-		src/domini/AlgorismeGirvan.java \
-		src/domini/AlgorismeLouvain.java \
 		src/domini/Cerca.java \
 		src/domini/ComunitatWiki.java \
 		src/domini/CtrlAlgorisme.java \
@@ -27,7 +17,6 @@ CLASSES = \
 		src/domini/InformacioCjtComunitats.java \
 		src/domini/LevenshteinDistance.java \
 		src/domini/Navegacio.java \
-		src/domini/Pair.java \
 		src/domini/Sessio.java \
 		src/graf/GrafDirigit.java \
 		src/graf/grafgenerator/Criteris/Criteri.java \
@@ -42,6 +31,15 @@ CLASSES = \
 		src/graf/NodePagina.java \
 		src/graf/NodeWiki.java \
 		src/graf/OperacionsConjunts.java \
+		src/prop/classescompartides/algorismes/AlgorismeClique.java \
+		src/prop/classescompartides/algorismes/AlgorismeGirvan.java \
+		src/prop/classescompartides/algorismes/AlgorismeLouvain.java \
+		src/prop/classescompartides/graf/Algoritme.java \
+		src/prop/classescompartides/graf/Arc.java \
+		src/prop/classescompartides/graf/Comunitat.java \
+		src/prop/classescompartides/graf/ConjuntComunitats.java \
+		src/prop/classescompartides/graf/Graf.java \
+		src/prop/classescompartides/utils/Pair.java \
 		src/tests/TestAlgorismeLouvain.java \
 		src/tests/TestCercaHistorial.java \
 		src/tests/TestComunitatOpConjunts.java \
