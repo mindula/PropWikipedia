@@ -64,11 +64,11 @@ public class GirvanNewman<T> {
 
 
 	/**
-	 * Aplica l'algorisme Dijkstra calculant els camins m�nim del <tt>nodeInici</tt> a tots els altres nodes del graf.
+	 * Aplica l'algorisme Dijkstra calculant els camins minim del <tt>nodeInici</tt> a tots els altres nodes del graf.
 	 * @param g Graf on s'aplica l'algorisme.
 	 * @param nodeInici 
 	 * @param dists Distancia del <tt>nodeInici</tt> als altres nodes.
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
 	 */
 	
 	private void stage1Dijkstra(Graf<T> g,T nodeInici ,HashMap<T,Double> dists, HashMap<T,HashSet<T>> anteriors ){
@@ -109,14 +109,14 @@ public class GirvanNewman<T> {
 	}
 	
 	/**
-	 * Recomposa els camins m�nims calculats pr�viament en el Dijkstra.
+	 * Recomposa els camins minims calculats previament en el Dijkstra.
 	 * @param g Graf on s'aplica l'algorisme.
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
 	 * @param camins Conjunt d'arcs que representen els camins per arribar a cada node.
 	 * @param nodeInici
 	 * @param nodeFi
 	 * @param nodeActual
-	 * @param aristes Conjunt d'arcs del cam� per arribar fins el <tt>nodeActual</tt>.
+	 * @param aristes Conjunt d'arcs del cami per arribar fins el <tt>nodeActual</tt>.
 	 */
 	
 	private  void recomposarCamins(Graf<T> g,HashMap<T,HashSet<T>> anteriors, HashMap<T,HashSet<HashSet<Arc<T>>>> camins ,T nodeInici, T nodeFi, T nodeActual , HashSet<Arc<T>> aristes ){
@@ -139,7 +139,7 @@ public class GirvanNewman<T> {
 	 * Calcula la betwenness de les aristes.
 	 * @param g Graf on s'aplica l'algorisme.
 	 * @param nodeInici
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
 	 * @param betweeness Valor de betweeness de cada arc.
 	 */
 	
@@ -173,7 +173,7 @@ public class GirvanNewman<T> {
 	}
 	
 	
-	//Classe privada auxiliar per a l'�s de la priorityQueue.
+	//Classe privada auxiliar per a l'us de la priorityQueue.
 	private class AristaGirvan{
 		public T nodo;
 		public Double peso;

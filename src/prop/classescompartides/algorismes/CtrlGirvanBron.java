@@ -15,18 +15,18 @@ import java.util.Iterator;
 public class CtrlGirvanBron<T> extends Algoritme<T> {
 	
 	/**
-	 * Aquesta classe �s l'encarregada de gestionar els algorismes GirvanNewman i BronKerbosch
+	 * Aquesta classe es l'encarregada de gestionar els algorismes GirvanNewman i BronKerbosch
 	 * i de retornar les comunitats trobades dins del graf
 	 * 
 	 */
 
 	
 	/**
-	 * Donat un graf simple no dirigit i el criteriDeParada, retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjan�ant l'algorisme de GirvanNewman.
+	 * Donat un graf simple no dirigit i el criteriDeParada, retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
 	 * @param graf Graf on s'aplia l'algorisme.
-	 * @param criteriDeParada Nombre m�nim de comunitats diferents que trobar� l'algorisme.
+	 * @param criteriDeParada Nombre minim de comunitats diferents que trobara l'algorisme.
 	 * @param noUsada
-	 * @return Retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjan�ant l'algorisme de GirvanNewman.
+	 * @return Retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
 	 */
 	
 	@Override
