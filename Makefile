@@ -2,6 +2,7 @@ JFLAGS = -g -d ./class -sourcepath ./src
 JC = javac
 JVM= java -cp ./class
 FILE=
+RM= rm -r
 
 .SUFFIXES: .java .class
 
@@ -71,4 +72,4 @@ run:
 
 
 clean:
-		$(RM) class/*.class
+		$(RM) ./class/*

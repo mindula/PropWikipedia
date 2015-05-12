@@ -1,6 +1,8 @@
 package tests;
 
 import prop.classescompartides.algorismes.AlgorismeLouvain;
+import prop.classescompartides.algorismes.CtrlGirvanBron;
+import prop.classescompartides.algorismes.GirvanNewman;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
 import prop.classescompartides.graf.ConjuntComunitats;
@@ -135,7 +137,7 @@ public class TestAlgorismeLouvain{
             default:
         }
         AlgorismeLouvain<Character> algorismeLouvain = new AlgorismeLouvain<Character>();
-        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 50, 0);
+        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 4, 0);
         imprimirComunitats(resultat);
     }
 
