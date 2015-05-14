@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
  * Data: 5/14/15
  */
 public class MainWindow implements Initializable{
-    public MainWindow() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
