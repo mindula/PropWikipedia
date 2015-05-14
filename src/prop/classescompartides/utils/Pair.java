@@ -46,6 +46,25 @@ public class Pair<X, Y> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pair)) return false;
+
+        Pair<?, ?> pair = (Pair<?, ?>) o;
+
+        if (!first.equals(pair.first)) return false;
+        return second.equals(pair.second);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = first.hashCode();
+        result = 31 * result + second.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return first.toString() + " " + second.toString();
     }

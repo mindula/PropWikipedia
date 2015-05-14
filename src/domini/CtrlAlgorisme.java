@@ -23,9 +23,10 @@ import java.util.ArrayList;
  * Controlador d'Algorisme
  */
 
+
 public class CtrlAlgorisme{
     GrafWikipedia grafWikipedia;
-    String tipusAlgorisme; // "Louvain", "Girvan", "Clique"
+    TipusAlgorisme tipusAlgorisme;
     int par1, par2;
     ArrayList<Criteri> criteris;
 
@@ -37,7 +38,7 @@ public class CtrlAlgorisme{
      * @param par2
      * @param criteris
      */
-    public CtrlAlgorisme(GrafWikipedia grafWikipedia, String tipusAlgorisme, int par1, int par2, ArrayList<Criteri> criteris){
+    public CtrlAlgorisme(GrafWikipedia grafWikipedia, TipusAlgorisme tipusAlgorisme, int par1, int par2, ArrayList<Criteri> criteris){
         this.grafWikipedia = grafWikipedia;
         this.tipusAlgorisme = tipusAlgorisme;
         this.par1 = par1;
@@ -52,10 +53,11 @@ public class CtrlAlgorisme{
     public ConjuntComunitats<NodeCategoria> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
 
-        if(tipusAlgorisme.toLowerCase().equals("louvain")) {
+
+        if(tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
             algorisme = new AlgorismeLouvain<NodeCategoria>();
         }
-        else if(tipusAlgorisme.toLowerCase().equals("girvan")){
+        else if(tipusAlgorisme == TipusAlgorisme.GIRVAN){
             algorisme = new CtrlGirvanBron<>();
         }
         else{ // Clique
@@ -70,8 +72,7 @@ public class CtrlAlgorisme{
         long elapsedTime = System.currentTimeMillis() - startTime;
 
         InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
-        // TODO: afegir crtieris i mitjana
-        // i s'ha de posar en algun lloc
+        // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc
         return comunitats;
     }
 

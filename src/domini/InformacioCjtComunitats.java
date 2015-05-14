@@ -12,7 +12,7 @@ package domini;
 public class InformacioCjtComunitats {
         private final long  milisegons;
         private final int nombreComunitats;
-        private final String algoritme;
+        private final TipusAlgorisme algoritme;
         private final String criteri;
         private final double mitjanaNodesPerComunitat;
 
@@ -24,7 +24,7 @@ public class InformacioCjtComunitats {
      * @param criteri
      * @param mitjanaNodesPerComunitat
      */
-    public InformacioCjtComunitats(long milisegons, int nombreComunitats, String algoritme, String criteri, double mitjanaNodesPerComunitat) {
+    public InformacioCjtComunitats(long milisegons, int nombreComunitats, TipusAlgorisme algoritme, String criteri, double mitjanaNodesPerComunitat) {
         this.milisegons = milisegons;
         this.nombreComunitats = nombreComunitats;
         this.algoritme = algoritme;
@@ -42,7 +42,7 @@ public class InformacioCjtComunitats {
         return nombreComunitats;
     }
 
-    public String getAlgoritme() {
+    public TipusAlgorisme getAlgoritme() {
         return algoritme;
     }
 

@@ -2,6 +2,7 @@ package tests;
 
 import domini.CtrlAlgorisme;
 import domini.Sessio;
+import domini.TipusAlgorisme;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
 import prop.classescompartides.graf.ConjuntComunitats;
@@ -77,6 +78,13 @@ public class TestDomain {
                     System.out.println("Escull algorisme: Clique, Girvan o Louvain. " +
                                        "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
+                    TipusAlgorisme algorisme;
+                    if(alg.equals("Louvain"))
+                        algorisme = TipusAlgorisme.LOUVAIN;
+                    else if(alg.equals("Girvan"))
+                        algorisme = TipusAlgorisme.GIRVAN;
+                    else algorisme = TipusAlgorisme.CLIQUE;
+
                     System.out.println("Escriu els dos parametres de l'algoritme.");
                     System.out.println("En el cas de Louvain, el primer parametre es el nombre de passades i el segon paramatre no es rellevant.");
                     int par1 = sc.nextInt();
@@ -139,7 +147,7 @@ public class TestDomain {
 
                     // Fi de la obtencio de criteris
 
-                    CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), alg, par1, par2, criteris);
+                    CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), algorisme, par1, par2, criteris);
                     ConjuntComunitats<NodeCategoria> comunitats = c.cercarComunitats();
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats);
