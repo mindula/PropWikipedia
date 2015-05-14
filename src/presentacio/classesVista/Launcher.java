@@ -14,6 +14,7 @@ public class Launcher {
     private static Launcher INSTANCE;
     private Stage primaryStage;
 
+
     public static Launcher getInstance() {
         if (INSTANCE == null)
             INSTANCE = new Launcher();
