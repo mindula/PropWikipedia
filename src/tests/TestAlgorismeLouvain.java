@@ -1,6 +1,7 @@
 package tests;
 
 import prop.classescompartides.algorismes.AlgorismeLouvain;
+
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
 import prop.classescompartides.graf.ConjuntComunitats;

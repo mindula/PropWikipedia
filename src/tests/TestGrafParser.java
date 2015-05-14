@@ -29,6 +29,7 @@ public class TestGrafParser {
                 System.out.println("test 0: misc/cats_test.txt");
                 System.out.println("test 1: misc/cats_small_test.txt");
                 System.out.println("test 2: misc/cats.txt (fitxer molt gran)");
+                System.out.println("test 3: misc/cats_10000.txt");
                 opcio = sc.nextInt();
                 switch (opcio) {
                     case 0:
@@ -40,6 +41,8 @@ public class TestGrafParser {
                     case 2:
                         path = "misc/cats.txt";
                         break;
+                    case 3:
+                        path = "misc/cats_10000.txt";
                 }
                 break;
             case 1: // test fitxer concret
