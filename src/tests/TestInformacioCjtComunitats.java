@@ -1,6 +1,7 @@
 package tests;
 
 import domini.InformacioCjtComunitats;
+import domini.TipusAlgorisme;
 import graf.NodeCategoria;
 
 import java.util.Scanner;
@@ -20,9 +21,15 @@ public class TestInformacioCjtComunitats {
         long mil = sc.nextLong();
         int nCom = sc.nextInt();
         String alg = sc.next();
+        TipusAlgorisme algorisme;
+        if(alg.equals("Louvain"))
+            algorisme = TipusAlgorisme.LOUVAIN;
+        else if(alg.equals("Girvan"))
+            algorisme = TipusAlgorisme.GIRVAN;
+        else algorisme = TipusAlgorisme.CLIQUE;
         String cri = sc.next();
         long mitj = sc.nextLong();
-        I = new InformacioCjtComunitats(mil,nCom,alg,cri,mitj);
+        I = new InformacioCjtComunitats(mil,nCom,algorisme,cri,mitj);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el temps\n" +
@@ -42,11 +49,12 @@ public class TestInformacioCjtComunitats {
                     System.out.println("Escull una opcio:\n" +
                             "0. Veure opcions\n" +
                             "1. Obtenir el temps\n" +
-                            "2. Obtenir el nombre de comunitat\ns" +
+                            "2. Obtenir el nombre de comunitat\n" +
                             "3. Obtenir el algoritme\n" +
                             "4. Obtenri el criteri\n" +
                             "5. Obtenir la mitjana de nodes per comunitat\n" +
                             "6. Finalitzar Test\n");
+                    break;
                 case 1:
                     System.out.println(I.getMilisegons());
                     break;
