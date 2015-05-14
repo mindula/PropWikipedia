@@ -1,7 +1,7 @@
 package tests;
 
 import prop.classescompartides.algorismes.AlgorismeLouvain;
-import prop.classescompartides.algorismes.AlgoritmoClique;
+import prop.classescompartides.algorismes.grupclique.AlgoritmoClique;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
 import prop.classescompartides.algorismes.GirvanNewman;
 import prop.classescompartides.graf.Arc;

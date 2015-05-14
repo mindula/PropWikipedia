@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="presentacio.classesVista.MainWindow">
   <children>
     <Button layoutX="281.0" layoutY="105.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="158.0" text="Navegar Wikipedia" />
-    <Button layoutX="281.0" layoutY="260.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="158.0" text="Carregar Dades" />
+    <Button fx:id="carregarDades" layoutX="281.0" layoutY="260.0" mnemonicParsing="false" onAction="#carregarDades" prefHeight="56.0" prefWidth="158.0" text="Carregar Dades" />
     <Button layoutX="281.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="158.0" text="Modificar Wikipedia" />
   </children>
 </AnchorPane>

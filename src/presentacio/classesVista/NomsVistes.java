@@ -10,4 +10,5 @@ public final class NomsVistes {
     private NomsVistes() {}
 
     public static final String MainWindow = "MainWindow";
+    public static final String AfegirDades = "AfegirDades";
 }

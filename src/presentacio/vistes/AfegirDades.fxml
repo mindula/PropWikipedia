@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ProgressBar layoutX="584.0" layoutY="544.0" prefHeight="18.0" prefWidth="122.0" progress="0.0" />
+    <TextField layoutX="186.0" layoutY="132.0" prefWidth="200.0" style="" />
+    <Button layoutX="386.0" layoutY="132.0" mnemonicParsing="false" text="Examinar.." />
+    <Text layoutX="186.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carregar fitxer" />
+    <Pane layoutX="134.0" layoutY="233.0" prefHeight="186.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5;&#10;-fx-border-color: black;">
+      <children>
+        <Line endX="70.0" endY="-1.0" layoutX="118.0" layoutY="43.0" startX="-106.0" startY="0.0">
+          <stroke>
+            <Color blue="1.000" green="0.878" red="0.000" fx:id="x1" />
+          </stroke>
+        </Line>
+        <Text layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+        <TextField layoutX="11.0" layoutY="74.0" prefHeight="32.1328125" prefWidth="177.41408457031503" />
+        <Button layoutX="11.0" layoutY="128.0" mnemonicParsing="false" text="Crear" />
+        <Text layoutX="11.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova categoria" />
+      </children>
+    </Pane>
+    <Pane layoutX="384.0" layoutY="233.0" prefHeight="186.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5;&#10;-fx-border-color: black;">
+      <children>
+        <Line endX="70.0" endY="-1.0" layoutX="118.0" layoutY="43.0" startX="-106.0" startY="0.0" stroke="$x1" />
+        <Text layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+        <TextField layoutX="11.0" layoutY="74.0" prefHeight="32.1328125" prefWidth="177.41408457031503" />
+        <Button layoutX="11.0" layoutY="128.0" mnemonicParsing="false" text="Crear" />
+        <Text layoutX="11.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova pagina" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
