@@ -7,11 +7,8 @@ package presentacio;
  */
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import presentacio.classesVista.EnumVistes;
+import presentacio.classesVista.NomsVistes;
 import presentacio.classesVista.LauncherVistes;
 
 public class Main extends Application {
@@ -19,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         LauncherVistes lv = new LauncherVistes();
-        lv.launchVista(EnumVistes.MainWindow.toString());
+        lv.launchVista(NomsVistes.MainWindow);
     }
 
 

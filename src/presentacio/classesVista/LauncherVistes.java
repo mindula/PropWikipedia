@@ -15,10 +15,9 @@ import java.util.HashMap;
 public class LauncherVistes {
 
 
-    public void launchVista(String vista) throws Exception{
-        String s;
+    public void launchVista(String nomVista) throws Exception{
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../vistes/" + vista + ".fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../vistes/" + nomVista + ".fxml"));
         primaryStage.setTitle("Wikipedia");
         primaryStage.setScene(new Scene(root, 720, 576));
         primaryStage.show();
