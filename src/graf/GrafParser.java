@@ -57,7 +57,7 @@ public class GrafParser {
         String elemB = parts[3];
         String tipusArc = parts[2];
 
-        if(tipusArc.equals("CP")){
+        if(tipusArc.equals("CP") || tipusArc.equals("PC")){
             NodeCategoria nodeA;
             NodePagina nodeB;
             if(!grafWikipedia.existeixNodeCat(elemA)){
@@ -69,26 +69,32 @@ public class GrafParser {
 
             if(!grafWikipedia.existeixNodePag(elemB)){
                 nodeB = new NodePagina(elemB);
+                grafWikipedia.afegirPagina(nodeB);
             }
             else
                 nodeB = grafWikipedia.getNodePag(elemB);
+
             if(!grafWikipedia.existeixArcCP(nodeA, nodeB))
                 grafWikipedia.afegirArcPC(nodeB, nodeA); // CAT-PAGINA
         }
 
-        else if(!tipusArc.equals("PC")) { // CsubC, CsupC
+        else { // CsubC, CsupC
             NodeCategoria nodeA;
             NodeCategoria nodeB;
             if(!grafWikipedia.existeixNodeCat(elemA)){
                 nodeA = new NodeCategoria(elemA);
                 grafWikipedia.afegirCategoria(nodeA);
             }
-            else nodeA = grafWikipedia.getNodeCat(elemA);
+            else
+                nodeA = grafWikipedia.getNodeCat(elemA);
+
             if(!grafWikipedia.existeixNodeCat(elemB)){
                 nodeB = new NodeCategoria(elemB);
                 grafWikipedia.afegirCategoria(nodeB);
             }
-            else nodeB = grafWikipedia.getNodeCat(elemB);
+            else
+                nodeB = grafWikipedia.getNodeCat(elemB);
+
             if (tipusArc.equals("CsubC")) {
                 grafWikipedia.afegirArcCsubC(nodeA, nodeB); // SUBCATEGORIA
             }

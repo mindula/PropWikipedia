@@ -3,6 +3,7 @@ package graf;
 import prop.classescompartides.graf.Arc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -18,25 +19,33 @@ import java.util.List;
 public class GrafWikipedia {
 
     private GrafDirigit<NodeCategoria> grafWiki;
-    private HashSet<NodePagina> pagines;
+
+    private HashMap<String, NodeCategoria> categoriesMap;
+    private HashMap<String, NodePagina> paginesMap;
+    private ArrayList<NodePagina> pagines;
     private ArrayList<NodeCategoria> categories;
     /**
      * Constructora per defecte
      */
     public GrafWikipedia (){
         grafWiki = new GrafDirigit<NodeCategoria>();
-        pagines = new HashSet<>();
+        pagines = new ArrayList<>();
         categories = new ArrayList<>();
+        categoriesMap = new HashMap<>();
+        paginesMap =  new HashMap<>();
+
     }
 
     public void afegirCategoria(NodeCategoria node) {
         grafWiki.afegirNode(node);
         categories.add(node);
+        categoriesMap.put(node.getNom(), node);
     }
 
-    public void eliminarNode(NodeCategoria node) {
+    public void eliminarCategoria(NodeCategoria node) {
         grafWiki.eliminarNode(node);
         categories.remove(node);
+        categoriesMap.remove(node.getNom());
     }
 
     /**
@@ -104,18 +113,14 @@ public class GrafWikipedia {
     }
 
     public boolean existeixNodeCat(String nom) {
-        HashSet<NodeCategoria> s = grafWiki.getNodes();
-        for (NodeCategoria node : s) {
-            if (nom.equals(node.getNom())) return true;
-        }
-        return false;
+
+
+        return categoriesMap.containsKey(nom);
     }
 
     public boolean existeixNodePag(String nom) {
-        for (NodePagina node : pagines) {
-            if (nom.equals(node.getNom())) return true;
-        }
-        return false;
+
+        return paginesMap.containsKey(nom);
     }
 
     public boolean existeixArcCC(NodeCategoria nodeA, NodeCategoria nodeB) {
@@ -135,9 +140,9 @@ public class GrafWikipedia {
     }
 
     public NodePagina getNodePag (String nom) {
-        for (NodePagina node : pagines) {
-            if (nom.equals(node.getNom()) ) return  node;
-        }
+        if(paginesMap.containsKey(nom))
+            return paginesMap.get(nom);
+
         throw new RuntimeException("No existeix una pàgina amb aquest nom");
     }
 
@@ -152,9 +157,11 @@ public class GrafWikipedia {
 
     public void afegirPagina(NodePagina pag) {
         pagines.add(pag);
+        paginesMap.put(pag.getNom(), pag);
     }
 
     public void eliminarPagina(NodePagina pag){
         pagines.remove(pag);
+        paginesMap.remove(pag.getNom());
     }
 }
