@@ -25,7 +25,7 @@ public class CriteriPaginesComuns extends Criteri{
         double fillsComuns = 0;
         for(NodePagina p1 : n1.getPagines()){
             for(NodePagina p2 : n2.getPagines()){
-                if(p1.equals(p2))
+                if(p1 == p2)
                     fillsComuns++;
             }
         }

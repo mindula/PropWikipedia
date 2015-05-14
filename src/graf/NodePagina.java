@@ -37,4 +37,6 @@ public class NodePagina extends NodeWiki{
     public HashSet<NodeCategoria> getCategories() {
         return pertanyA;
     }
+
+
 }

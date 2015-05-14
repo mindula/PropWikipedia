@@ -32,4 +32,9 @@ public abstract class NodeWiki {
     public boolean equals(Object obj) {
         return nom.equals(((NodeWiki)obj).nom);
     }
+
+    @Override
+    public int hashCode() {
+        return getNom().hashCode();
+    }
 }
