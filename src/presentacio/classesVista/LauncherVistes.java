@@ -5,15 +5,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
+ * Usuari: ricard.gascons
  * Data: 5/14/15
  */
 public class LauncherVistes {
-
 
     public void launchVista(String nomVista) throws Exception{
         Stage primaryStage = new Stage();

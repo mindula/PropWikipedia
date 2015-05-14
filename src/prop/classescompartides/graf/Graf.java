@@ -69,6 +69,7 @@ public class Graf<T> {
     public Graf(Graf<T> other) {
         adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
         cjtArcs = new ArrayList<Arc<T>>();
+        cjtNodes = new HashSet<T>();
         for (T n : other.adjacencyMap.keySet()) {
             Map<T, Arc<T>> otherAdjacents = other.adjacencyMap.get(n);
             Map<T, Arc<T>> adjacents = new HashMap<T, Arc<T>>();
@@ -83,6 +84,7 @@ public class Graf<T> {
                 adjacents.put(otherArc.getKey(), arc);
             }
             adjacencyMap.put(n, adjacents);
+            cjtNodes.add(n);
         }
         for (Arc<T> a : other.cjtArcs) {
             Arc<T> arc = new Arc<T>(a.getPes(),a.getNodeA(),a.getNodeB());

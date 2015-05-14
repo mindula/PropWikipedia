@@ -6,7 +6,8 @@ package presentacio.classesVista;
  * Data: 5/14/15
  */
 
-//interfaces have every field public, static and final
-public interface NomsVistes {
-    String MainWindow = "MainWindow";
+public final class NomsVistes {
+    private NomsVistes() {}
+
+    public static final String MainWindow = "MainWindow";
 }
