@@ -11,10 +11,11 @@ package domini;
  */
 
 import graf.GrafWikipedia;
-import graf.NodeWiki;
+import graf.NodeCategoria;
 
-import java.text.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Cerca {
 
@@ -48,24 +49,22 @@ public class Cerca {
         return new InfoCerca(cercaCategoria(g, query), dateFormat.format(date));
     }
 
-    private static NodeWiki cercaCategoria (GrafWikipedia g, String query) throws Exception {
+    private static NodeCategoria cercaCategoria (GrafWikipedia g, String query) throws Exception {
         int size = query.length();
-        Set<NodeWiki> s = g.getNodes();
-        for (NodeWiki n : s) {
-            if (n.esCategoria()) {
-                if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
-            }
+        for (NodeCategoria n : g.getCategories()) {
+
+             if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
+
         }
         throw new Exception("No s'ha trobat cap resultat");
     }
 
-    private static NodeWiki cercarPagina (GrafWikipedia g, String query) throws Exception {
+    private static NodeCategoria cercarPagina (GrafWikipedia g, String query) throws Exception {
         int size = query.length();
-        Set<NodeWiki> s = g.getNodes();
-        for (NodeWiki n : s) {
-            if (!n.esCategoria()) {
-                if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
-            }
+        for (NodeCategoria n : g.getCategories()) {
+
+            if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
+
         }
         throw new Exception("No s'ha trobat cap resultat");
     }

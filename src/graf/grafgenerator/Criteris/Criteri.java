@@ -1,7 +1,7 @@
 package graf.grafgenerator.Criteris;
 
 import graf.GrafWikipedia;
-import graf.NodeWiki;
+import graf.NodeCategoria;
 
 /**
  * Grup 3: Wikipedia
@@ -31,7 +31,7 @@ public  abstract class Criteri {
      * @param graf
      * @return el pes entre dos nodes dins el graf
      */
-    public abstract double getPes(NodeWiki n1, NodeWiki n2, GrafWikipedia graf);
+    public abstract double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf);
 
     /**
      * Retorna la ponderació aplicada al criteri

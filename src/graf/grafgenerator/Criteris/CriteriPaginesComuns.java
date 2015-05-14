@@ -1,9 +1,8 @@
 package graf.grafgenerator.Criteris;
 
 import graf.GrafWikipedia;
-import graf.NodeWiki;
-import prop.classescompartides.graf.Arc;
-import prop.classescompartides.graf.Graf;
+import graf.NodeCategoria;
+import graf.NodePagina;
 
 /**
  * Grup 3: Wikipedia
@@ -20,16 +19,14 @@ public class CriteriPaginesComuns extends Criteri{
     }
 
     @Override
-    public double getPes(NodeWiki n1, NodeWiki n2, GrafWikipedia graf) {
+    public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
 
 
         double fillsComuns = 0;
-        for(Arc<NodeWiki> a1 : graf.getNodesAdjacents(n1)){
-            NodeWiki successor = Graf.getNodeOposat(n1, a1);
-
-            if(!successor.esCategoria() &&  graf.existeixArc(n2, successor)){
-
-                fillsComuns++;
+        for(NodePagina p1 : n1.getPagines()){
+            for(NodePagina p2 : n2.getPagines()){
+                if(p1.equals(p2))
+                    fillsComuns++;
             }
         }
 

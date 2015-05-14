@@ -77,7 +77,7 @@ public class TestComunitatOpConjunts {
                                 paraula = sc.next();
                                 n1 = new NodeCategoria(paraula);
                                 C.afegirNode(n1);
-                                graf.afegirNode(n1);
+                                graf.afegirCategoria(n1);
                                 break;
                             case 2:
                                 System.out.println("Escriu la mida del conjunt de nodes");
@@ -88,7 +88,7 @@ public class TestComunitatOpConjunts {
                                     paraula = sc.next();
                                     n1 = new NodeCategoria(paraula);
                                     C2.afegirNode(n1);
-                                    graf.afegirNode(n1);
+                                    graf.afegirCategoria(n1);
                                 }
                                 C.afegirCjtNodes(C2);
                                 System.out.println("Conjunt de nodes afegit");

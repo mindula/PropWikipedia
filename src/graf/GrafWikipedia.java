@@ -2,6 +2,7 @@ package graf;
 
 import prop.classescompartides.graf.Arc;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,21 +17,26 @@ import java.util.List;
  */
 public class GrafWikipedia {
 
-    private GrafDirigit<NodeWiki> grafWiki;
-
+    private GrafDirigit<NodeCategoria> grafWiki;
+    private HashSet<NodePagina> pagines;
+    private ArrayList<NodeCategoria> categories;
     /**
      * Constructora per defecte
      */
     public GrafWikipedia (){
-        grafWiki = new GrafDirigit<NodeWiki>();
+        grafWiki = new GrafDirigit<NodeCategoria>();
+        pagines = new HashSet<>();
+        categories = new ArrayList<>();
     }
 
-    public void afegirNode(NodeWiki node) {
+    public void afegirCategoria(NodeCategoria node) {
         grafWiki.afegirNode(node);
+        categories.add(node);
     }
 
-    public void eliminarNode(NodeWiki node) {
+    public void eliminarNode(NodeCategoria node) {
         grafWiki.eliminarNode(node);
+        categories.remove(node);
     }
 
     /**
@@ -39,10 +45,8 @@ public class GrafWikipedia {
      * @param categoria
      */
     public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
-        Arc<NodeWiki> arcPC = new Arc<NodeWiki>(0.0, pagina, categoria);
-        Arc<NodeWiki> arcCP = new Arc<NodeWiki>(0.0, categoria, pagina);
-        grafWiki.afegirArc(arcPC);
-        grafWiki.afegirArc(arcCP);
+        categoria.afegirPagina(pagina);
+        pagina.afegirCategoria(categoria);
     }
 
     /**
@@ -54,8 +58,8 @@ public class GrafWikipedia {
         if (subCategoria.getNom().equals(superCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
         }
-        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(1, subCategoria, superCategoria);
-        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(-1, superCategoria, subCategoria);
+        Arc<NodeCategoria> arcAsubB = new Arc<>(1, subCategoria, superCategoria);
+        Arc<NodeCategoria> arcBsubA = new Arc<>(-1, superCategoria, subCategoria);
         grafWiki.afegirArc(arcAsubB);
         grafWiki.afegirArc(arcBsubA);
     }
@@ -69,78 +73,88 @@ public class GrafWikipedia {
         if (superCategoria.getNom().equals(subCategoria.getNom())) {
             throw new RuntimeException("No es pot enllaçar dues categories amb el mateix nom");
         }
-        Arc<NodeWiki> arcAsubB = new Arc<NodeWiki>(-1, superCategoria, subCategoria);
-        Arc<NodeWiki> arcBsubA = new Arc<NodeWiki>(1, subCategoria, superCategoria);
+        Arc<NodeCategoria> arcAsubB = new Arc<>(-1, superCategoria, subCategoria);
+        Arc<NodeCategoria> arcBsubA = new Arc<>(1, subCategoria, superCategoria);
         grafWiki.afegirArc(arcAsubB);
         grafWiki.afegirArc(arcBsubA);
     }
 
-    public void eliminarArc(Arc<NodeWiki> arc) {
+    public void eliminarArc(Arc<NodeCategoria> arc) {
         grafWiki.eliminarArc(arc);
     }
 
-    public HashSet<NodeWiki> getNodes() {
-        return grafWiki.getNodes();
-    }
-
-    public List<Arc<NodeWiki>> getArcs() {
+    public List<Arc<NodeCategoria>> getArcs() {
         return grafWiki.getArcs();
     }
 
-    public HashSet<Arc<NodeWiki>> getNodesAdjacents(NodeWiki node) {
+    public HashSet<Arc<NodeCategoria>> getNodesAdjacents(NodeCategoria node) {
         return grafWiki.getNodesAdjacents(node);
     }
 
-    public Arc<NodeWiki> getArcEntre(NodeWiki nodeA, NodeWiki nodeB) {
+    public Arc<NodeCategoria> getArcEntre(NodeCategoria nodeA, NodeCategoria nodeB) {
         return grafWiki.getArcEntre(nodeA, nodeB);
     }
 
-    public int getGrau (NodeWiki node) {
+    public int getGrau (NodeCategoria node) {
         return grafWiki.getGrau(node);
     }
 
-    public boolean existeixNode(NodeWiki node) {
+    public boolean existeixNode(NodeCategoria node) {
         return grafWiki.existeixNode(node);
     }
 
     public boolean existeixNodeCat(String nom) {
-        HashSet<NodeWiki> s = grafWiki.getNodes();
-        for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && node.esCategoria()) return true;
+        HashSet<NodeCategoria> s = grafWiki.getNodes();
+        for (NodeCategoria node : s) {
+            if (nom.equals(node.getNom())) return true;
         }
         return false;
     }
 
     public boolean existeixNodePag(String nom) {
-        HashSet<NodeWiki> s = grafWiki.getNodes();
-        for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && !node.esCategoria()) return true;
+        for (NodePagina node : pagines) {
+            if (nom.equals(node.getNom())) return true;
         }
         return false;
     }
 
-    public boolean existeixArc(NodeWiki nodeA, NodeWiki nodeB) {
+    public boolean existeixArcCC(NodeCategoria nodeA, NodeCategoria nodeB) {
         return grafWiki.existeixArc(nodeA, nodeB);
     }
 
+    public boolean existeixArcCP(NodeCategoria cat, NodePagina pag){
+        return pag.getCategories().contains(cat);
+    }
+
     public NodeCategoria getNodeCat (String nom) {
-        HashSet<NodeWiki> s = grafWiki.getNodes();
-        for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && node.esCategoria()) return (NodeCategoria) node;
+        HashSet<NodeCategoria> s = grafWiki.getNodes();
+        for (NodeCategoria node : s) {
+            if (nom.equals(node.getNom())) return  node;
         }
         throw new RuntimeException("No existeix una categoria amb aquest nom");
     }
 
     public NodePagina getNodePag (String nom) {
-        HashSet<NodeWiki> s = grafWiki.getNodes();
-        for (NodeWiki node : s) {
-            if (nom.equals(node.getNom()) && !node.esCategoria()) return (NodePagina) node;
+        for (NodePagina node : pagines) {
+            if (nom.equals(node.getNom()) ) return  node;
         }
         throw new RuntimeException("No existeix una pàgina amb aquest nom");
+    }
+
+    public ArrayList<NodeCategoria> getCategories(){
+        return categories;
     }
 
     @Override
     public String toString() {
         return grafWiki.toString();
+    }
+
+    public void afegirPagina(NodePagina pag) {
+        pagines.add(pag);
+    }
+
+    public void eliminarPagina(NodePagina pag){
+        pagines.remove(pag);
     }
 }

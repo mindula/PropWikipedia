@@ -1,7 +1,7 @@
 package graf.grafgenerator.Criteris;
 
 import graf.GrafWikipedia;
-import graf.NodeWiki;
+import graf.NodeCategoria;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 
@@ -23,13 +23,13 @@ public class CriteriSuperCategoriesComuns extends Criteri{
     }
 
     @Override
-    public double getPes(NodeWiki n1, NodeWiki n2, GrafWikipedia graf) {
-        HashSet<Arc<NodeWiki>> arcs1 = graf.getNodesAdjacents(n1);
+    public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
+        HashSet<Arc<NodeCategoria>> arcs1 = graf.getNodesAdjacents(n1);
         double paresComuns = 0;
-        for(Arc<NodeWiki> arc : arcs1){
+        for(Arc<NodeCategoria> arc : arcs1){
             if(arc.getPes() > 0) {
-                NodeWiki pare = Graf.getNodeOposat(n1, arc);
-                if(graf.existeixArc(pare,n2)){ // tot
+                NodeCategoria pare = Graf.getNodeOposat(n1, arc);
+                if(graf.existeixArcCC(pare, n2)){ // tot
                     paresComuns++;
                 }
             }

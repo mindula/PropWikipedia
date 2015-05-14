@@ -3,10 +3,10 @@ package domini;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
-import graf.NodeWiki;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -37,10 +37,10 @@ public class Navegacio {
      * @return les superpacetories d'un node determinat
      */
     public HashSet<NodeCategoria> getSupercategories(NodeCategoria nodeCategoria){
-        HashSet<Arc<NodeWiki>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
+        HashSet<Arc<NodeCategoria>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
         HashSet<NodeCategoria> supercategories = new HashSet<NodeCategoria>();
-        for(Arc<NodeWiki> arc : arcs){
-            if(arc.getPes() > 0) supercategories.add((NodeCategoria)Graf.getNodeOposat(nodeCategoria, arc));
+        for(Arc<NodeCategoria> arc : arcs){
+            if(arc.getPes() > 0) supercategories.add(Graf.getNodeOposat(nodeCategoria, arc));
         }
         return supercategories;
     }
@@ -51,9 +51,9 @@ public class Navegacio {
      * @return les subcategories d'un node determinat
      */
     public HashSet<NodeCategoria> getSubcategories(NodeCategoria nodeCategoria){
-        HashSet<Arc<NodeWiki>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
+        HashSet<Arc<NodeCategoria>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
         HashSet<NodeCategoria> subcategories = new HashSet<NodeCategoria>();
-        for(Arc<NodeWiki> arc : arcs){
+        for(Arc<NodeCategoria> arc : arcs){
             if(arc.getPes() < 0) subcategories.add((NodeCategoria)Graf.getNodeOposat(nodeCategoria, arc));
         }
         return subcategories;
@@ -64,13 +64,8 @@ public class Navegacio {
      * @param nodeCategoria
      * @return les pagines associades a una categoria
      */
-    public HashSet<NodePagina> getPagines(NodeCategoria nodeCategoria){
-        HashSet<Arc<NodeWiki>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
-        HashSet<NodePagina> pagines = new HashSet<NodePagina>();
-        for(Arc<NodeWiki> arc : arcs){
-            if(arc.getPes() == 0) pagines.add((NodePagina)Graf.getNodeOposat(nodeCategoria, arc));
-        }
-        return pagines;
+    public ArrayList<NodePagina> getPagines(NodeCategoria nodeCategoria){
+        return nodeCategoria.getPagines();
     }
 
     /**
@@ -79,12 +74,7 @@ public class Navegacio {
      * @return les categories associades a una pagina
      */
     public HashSet<NodeCategoria> getCategories(NodePagina nodePagina){
-        HashSet<Arc<NodeWiki>> arcs = grafWikipedia.getNodesAdjacents(nodePagina);
-        HashSet<NodeCategoria> categories = new HashSet<NodeCategoria>();
-        for(Arc<NodeWiki> arc : arcs){
-            categories.add((NodeCategoria)Graf.getNodeOposat(nodePagina, arc)); // no cal comprobar pes
-        }
-        return categories;
+        return nodePagina.getCategories();
     }
 
 }

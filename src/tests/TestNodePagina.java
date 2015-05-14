@@ -29,6 +29,7 @@ public class TestNodePagina {
                 case 1:
                     System.out.println(n.getNom());
                     break;
+                /*
                 case 2:
                     System.out.println("Escriu el nou nom");
                     paraula = sc.next();
@@ -48,6 +49,7 @@ public class TestNodePagina {
                 case 6:
                     System.out.println(n.esCategoria());
                     break;
+                    */
             }
             opcio = sc.nextInt();
         }

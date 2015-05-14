@@ -83,13 +83,13 @@ public class TestGrafWikipedia {
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
                         n1 = new NodeCategoria(nom);
-                        graf.afegirNode(n1);
+                        graf.afegirCategoria(n1);
                         break;
-                    case 2:
+            /*        case 2:
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
                         n2 = new NodePagina(nom);
-                        graf.afegirNode(n2);
+                        graf.afegirPagina(n2);
                         break;
                     case 3:
                         System.out.println("Escriu el nom del node");
@@ -99,7 +99,7 @@ public class TestGrafWikipedia {
                     case 4:
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
-                        graf.eliminarNode(graf.getNodePag(nom));
+                        graf.eliminarPagina(graf.getNodePag(nom));
                         break;
                     case 5:
                         System.out.println("Escriu el nom de la pagina i de la categoria");
@@ -137,15 +137,16 @@ public class TestGrafWikipedia {
                     case 11:
                         System.out.println(graf.getArcs());
                         break;
+                        */
                     case 12:
                         System.out.println("Escriu el nom de la categoria");
                         nom = sc.next();
                         System.out.println(graf.getNodesAdjacents(graf.getNodeCat(nom)));
                         break;
                     case 13:
-                        System.out.println("Escriu el nom de la categoria");
+                        System.out.println("Escriu el nom de la pagina");
                         nom = sc.next();
-                        System.out.println(graf.getNodesAdjacents(graf.getNodePag(nom)));
+                        System.out.println(graf.getNodePag(nom));
                         break;
                     case 14:
                         System.out.println("Escriu el nom de les dos categories");
@@ -153,6 +154,7 @@ public class TestGrafWikipedia {
                         nom2 = sc.next();
                         System.out.println(graf.getArcEntre(graf.getNodeCat(nom), graf.getNodeCat(nom2)));
                         break;
+                    /*
                     case 15:
                         System.out.println("Escriu el nom de la pagina i de la categoria");
                         nom = sc.next();
@@ -169,6 +171,7 @@ public class TestGrafWikipedia {
                         nom = sc.next();
                         System.out.println(graf.getGrau(graf.getNodePag(nom)));
                         break;
+                        */
                     case 18:
                         System.out.println("Escriu el nom de la categoria");
                         nom = sc.next();
@@ -179,6 +182,7 @@ public class TestGrafWikipedia {
                         nom = sc.next();
                         System.out.println(graf.existeixNodePag(nom));
                         break;
+                    /*
                     case 20:
                         System.out.println("Escriu el nom del node");
                         nom = sc.next();
@@ -191,13 +195,15 @@ public class TestGrafWikipedia {
                         System.out.println("Escriu el nom de la pagina i de la Categoria");
                         nom = sc.next();
                         nom2 = sc.next();
-                        System.out.println(graf.existeixArc(graf.getNodePag(nom), graf.getNodeCat(nom2)));
+                        System.out.println(graf.existeixArcCC(graf.getNodePag(nom), graf.getNodeCat(nom2)));
+
                         break;
+                        */
                     case 22:
                         System.out.println("Escriu el nom de les dos categories");
                         nom = sc.next();
                         nom2 = sc.next();
-                        System.out.println(graf.existeixArc(graf.getNodeCat(nom), graf.getNodeCat(nom2)));
+                        System.out.println(graf.existeixArcCC(graf.getNodeCat(nom), graf.getNodeCat(nom2)));
                         break;
                     case 23:
                         System.out.println("Escriu el nom de la categoria");

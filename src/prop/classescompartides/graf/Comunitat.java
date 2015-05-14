@@ -88,4 +88,8 @@ public class Comunitat<T> {
         s+=")";
         return s;
     }
+
+    public int getMida(){
+        return nodes.size();
+    }
 }

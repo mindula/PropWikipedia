@@ -7,6 +7,7 @@ import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -48,7 +49,7 @@ public class TestNavegacio {
                         NodeCategoria nodeCategoria = (NodeCategoria) Cerca.cercarWikipediaC(grafWikipedia, nom).getResultat();
                         System.out.println("Categoria: " + nodeCategoria.getNom());
                         // Mostrar pagines
-                        HashSet<NodePagina> pagines = navegacio.getPagines(nodeCategoria);
+                        ArrayList<NodePagina> pagines = navegacio.getPagines(nodeCategoria);
                         System.out.println("Aquesta categoria te les pagines seguents:");
                         for (NodePagina pagina : pagines)
                             System.out.println(pagina.getNom());

@@ -105,7 +105,7 @@ public class TestDomain {
                         switch (opcio) {
                             case 0:
                                 System.out.println("Introdueix el nombre maxim de diferencia entre noms");
-                                int maxCost = sc.nextInt();
+                                double maxCost = sc.nextDouble();
                                 c= new CriteriNom(ponderacio,maxCost);
                                 break;
 

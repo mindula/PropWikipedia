@@ -6,24 +6,35 @@ package graf;
  * Date: 18/04/15
  */
 
+import java.util.HashSet;
+
 /**
  * Node tipus pagina
  */
 
-public class NodePagina extends NodeWiki {
+public class NodePagina extends NodeWiki{
+
+    private HashSet<NodeCategoria> pertanyA = new HashSet<>();
 
     public NodePagina(String nom) {
-        super(nom, false);
-    }
-
-    public String getUrl(){
-       return "www.wikipedia.org/wiki/"+getNom().replaceAll(" ","_");
+        super(nom);
     }
 
     @Override
     public String toString() {
-        return this.getNom() + "(P)";
+        return getNom() +"(P)";
+    }
+
+    public void afegirCategoria(NodeCategoria cat){
+        pertanyA.add(cat);
     }
 
 
+    public String getUrl(){
+        return "www.wikipedia.org/wiki/"+getNom().replaceAll(" ","_");
+    }
+
+    public HashSet<NodeCategoria> getCategories() {
+        return pertanyA;
+    }
 }

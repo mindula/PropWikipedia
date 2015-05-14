@@ -2,7 +2,6 @@ package graf.grafgenerator;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
-import graf.NodeWiki;
 import graf.grafgenerator.Criteris.Criteri;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
@@ -22,31 +21,25 @@ public class GrafGenerator  {
     public Graf<NodeCategoria> generate(GrafWikipedia graf, ArrayList<Criteri> criteris) {
         Graf<NodeCategoria> newGraf = new Graf<NodeCategoria>();
 
+        for (int i = 0; i < graf.getCategories().size(); i++) {
+            NodeCategoria n1 = graf.getCategories().get(i);
+            if(!newGraf.existeixNode(n1))
+                newGraf.afegirNode(n1);
+            for (int j = i+1 ; j<graf.getCategories().size(); j++) {
+                NodeCategoria n2 = graf.getCategories().get(j);
+                if (!newGraf.existeixNode(n2))
+                    newGraf.afegirNode(n2);
 
-        for (NodeWiki n1 : graf.getNodes()) {
-            if(n1.esCategoria() && !newGraf.existeixNode((NodeCategoria)n1))
-                newGraf.afegirNode((NodeCategoria)n1);
-            for (NodeWiki n2 : graf.getNodes()) { // si no fossin sets, podria millorar aixo.
-                // actualment es mira cada parella de nodes a-b dos cops
-                if (n1 != n2) {
-                    if (n1.esCategoria() && n2.esCategoria()) {
-                        NodeCategoria n1cat = (NodeCategoria) n1;
-                        NodeCategoria n2cat = (NodeCategoria) n2;
+                double pes = 0;
+                for(Criteri c  :criteris)
+                    pes += c.getPes(n1, n2, graf) * c.getPonderacio();
 
-                        double pes = 0;
-                        for(Criteri c  :criteris)
-                            pes += c.getPes(n1, n2, graf) * c.getPonderacio();
-
-                        if (pes > 0) {
-                            Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1cat, n2cat);
-                            if (!newGraf.existeixNode(n1cat))
-                                newGraf.afegirNode(n1cat);
-                            if (!newGraf.existeixNode(n2cat))
-                                newGraf.afegirNode(n2cat);
-                            newGraf.afegirArc(a);
-                        }
-                    }
+                if (pes > 0) {
+                    Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);
+                    newGraf.afegirArc(a);
                 }
+
+
             }
         }
 

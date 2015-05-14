@@ -6,23 +6,35 @@ package graf;
  * Date: 18/04/15
  */
 
+import java.util.ArrayList;
+
 /**
  * Node tipus categoria
  */
-public class NodeCategoria extends NodeWiki {
+public class NodeCategoria extends NodeWiki{
 
+
+    private ArrayList<NodePagina> pagines = new ArrayList<>();
 
     public NodeCategoria(String nom) {
-        super(nom, true);
+        super(nom);
+    }
+
+    @Override
+    public String toString() {
+        String s = getNom() +"(C) amb "+pagines.size()+"p";
+        return s;
+    }
+
+    public void afegirPagina(NodePagina pag){
+        pagines.add(pag);
     }
 
     public String getUrl(){
         return "www.wikipedia.org/wiki/Category:"+getNom().replaceAll(" ","_");
     }
 
-    @Override
-    public String toString() {
-        return this.getNom() + "(C)";
+    public ArrayList<NodePagina> getPagines() {
+        return pagines;
     }
-
 }

@@ -4,9 +4,9 @@ import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.Criteri;
 import graf.grafgenerator.GrafGenerator;
-import prop.classescompartides.algorismes.AlgorismeGirvan;
 import prop.classescompartides.algorismes.AlgorismeLouvain;
-import prop.classescompartides.algorismes.AlgoritmoClique;
+import prop.classescompartides.algorismes.CtrlGirvanBron;
+import prop.classescompartides.algorismes.grupclique.AlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
@@ -52,11 +52,11 @@ public class CtrlAlgorisme{
     public ConjuntComunitats<NodeCategoria> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
 
-        if(tipusAlgorisme.equals("Louvain")) {
+        if(tipusAlgorisme.toLowerCase().equals("louvain")) {
             algorisme = new AlgorismeLouvain<NodeCategoria>();
         }
-        else if(tipusAlgorisme.equals("Girvan")){
-            algorisme = new AlgorismeGirvan<NodeCategoria>();
+        else if(tipusAlgorisme.toLowerCase().equals("girvan")){
+            algorisme = new CtrlGirvanBron<>();
         }
         else{ // Clique
             algorisme = new AlgoritmoClique<NodeCategoria>();

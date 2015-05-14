@@ -1,7 +1,6 @@
-package prop.classescompartides.algorismes;
+package prop.classescompartides.algorismes.grupclique;
 
 import prop.classescompartides.graf.*;
-import prop.classescompartides.utils.Pair;
 
 import java.util.*;
 
@@ -29,18 +28,18 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
      * @param l Es un Integer que represenat la talla.
      */
     private void transform(Graf<T> g, int l) {
-        nodes = new ArrayList<T>(g.getNodes());
-        adjacency = new ArrayList<ArrayList<Integer>>();
+        nodes = new ArrayList<>(g.getNodes());
+        adjacency = new ArrayList<>();
         for (int i = 0; i < g.ordre(); ++i) {
-            ArrayList<Integer> row = new ArrayList<Integer>();
+            ArrayList<Integer> row = new ArrayList<>();
             for (int j = 0; j < g.ordre(); ++j) {
                 row.add(0);
             }
             adjacency.add(row);
         }
         for (int i = 0; i < nodes.size(); ++i) {
-            ArrayList<Arc<T>> sac = new ArrayList<Arc<T>>(g.getNodesAdjacents(nodes.get(i)));
-            ArrayList<Integer> als = new ArrayList<Integer>();
+            ArrayList<Arc<T>> sac = new ArrayList<>(g.getNodesAdjacents(nodes.get(i)));
+            ArrayList<Integer> als = new ArrayList<>();
             for (int k = 0; k < g.ordre(); ++k) {
                 als.add(0);
             }
@@ -67,13 +66,13 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
     public ConjuntComunitats<T> cercarComunitats(Graf<T> gr, int k2, int l) {
         Integer n, K, edge, i, j;
         transform(gr,l); //Transforma g en un matriz de adyacencias y la rellena en el atributo privado
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         n = gr.ordre();
         /*
          * Transforma la matriz de adyacencias en su complementaria y la guarda en "graph" que es el que usara Clique
          */
         for (i = 0; i < n; ++i){
-            ArrayList<Integer> row = new ArrayList<Integer>();
+            ArrayList<Integer> row = new ArrayList<>();
             for (j = 0; j < n; ++j){
                 edge = adjacency.get(i).get(j);
                 if (edge == 0){
@@ -86,17 +85,17 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
             graph.add(row);
         }
         K = k2+2;
-        ArrayList<Pair<Integer,Integer>> aristasDeCliques = new ArrayList<Pair<Integer, Integer>>();
+        ArrayList<Pair<Integer,Integer>> aristasDeCliques = new ArrayList<>();
         boolean primero = true;
         Integer f = 0;
-        ArrayList<ArrayList<Integer>> cliquesEncontrados = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> cliquesEncontrados = new ArrayList<>();
         while (primero || f < aristasDeCliques.size()) {
             if (!primero) {
                 Pair<Integer,Integer> Ar = aristasDeCliques.get(f);
                 if ( f > 0) {
                     Pair<Integer,Integer> Arnueva = aristasDeCliques.get(f-1);
-                    Integer R = Arnueva.getSecond();
-                    Integer L = Arnueva.getFirst();
+                    Integer R = Arnueva.getR();
+                    Integer L = Arnueva.getL();
                     ArrayList<Integer> newRow = graph.get(R);
                     newRow.set(L,0);
                     graph.set(R,newRow);
@@ -104,8 +103,8 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                     newRow.set(R,0);
                     graph.set(L,newRow);
                 }
-                Integer R = Ar.getSecond();
-                Integer L = Ar.getFirst();
+                Integer R = Ar.getR();
+                Integer L = Ar.getL();
                 ArrayList<Integer> newRow = graph.get(R);
                 newRow.set(L,1);
                 graph.set(R,newRow);
@@ -114,11 +113,11 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                 graph.set(L,newRow);
                 ++f;
             }
-            Set<Integer> nodosCliquesEncontrados = new TreeSet<Integer>();
+            Set<Integer> nodosCliquesEncontrados = new TreeSet<>();
             Integer k, p, q, r, s, min, counter = 0;
-            ArrayList<ArrayList<Integer>> vecinos = new ArrayList<ArrayList<Integer>>();
+            ArrayList<ArrayList<Integer>> vecinos = new ArrayList<>();
             for (i = 0; i < graph.size(); ++i){
-                ArrayList<Integer> vecino = new ArrayList<Integer>();
+                ArrayList<Integer> vecino = new ArrayList<>();
                 for (j = 0; j < graph.get(i).size(); ++j){
                     if (graph.get(i).get(j) == 1) vecino.add(j);
                 }
@@ -127,8 +126,8 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
             k = n - K;
             boolean found = false;
             min = n + 1;
-            ArrayList<ArrayList<Integer>> covers = new ArrayList<ArrayList<Integer>>();
-            ArrayList<Integer> allcover = new ArrayList<Integer>();
+            ArrayList<ArrayList<Integer>> covers = new ArrayList<>();
+            ArrayList<Integer> allcover = new ArrayList<>();
             for (i = 0; i < graph.size(); ++i) {
                 allcover.add(1);
             }
@@ -144,16 +143,16 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                     break;
                 }
                 counter++;
-                ArrayList<Integer> cover = new ArrayList<Integer>(allcover);
+                ArrayList<Integer> cover = new ArrayList<>(allcover);
                 cover.set(i, 0);
                 cover = funcion1(vecinos, cover);
                 s = cover_size(cover);
                 if (s < min) min = s;
                 if (s <= k) {
-                    ArrayList<Integer> aux = new ArrayList<Integer>();
+                    ArrayList<Integer> aux = new ArrayList<>();
                     for (j = 0; j < cover.size(); ++j) {
                         if (cover.get(j) == 0) {
-                            System.out.print((j + 1) + " .");
+                            //System.out.print((j + 1) + " .");
                             nodosCliquesEncontrados.add(j+1);
                             aux.add(j);
                         }
@@ -163,7 +162,9 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                             cliquesEncontrados.add(aux);
                             for(Integer g=0; g<aux.size(); ++g) {
                                 for (Integer u = g+1; u<aux.size(); ++u){
-                                    Pair<Integer,Integer> auxpair = new Pair<Integer, Integer>(aux.get(g), aux.get(u));
+                                    Pair<Integer,Integer> auxpair = new Pair<>();
+                                    auxpair.setL(aux.get(g));
+                                    auxpair.setR(aux.get(u));
                                     if (!aristasDeCliques.contains(auxpair)) {
                                         aristasDeCliques.add(auxpair);
                                     }
@@ -182,7 +183,7 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                 if (s < min) {
                     min = s;
                 }
-                ArrayList<Integer> aux = new ArrayList<Integer>();
+                ArrayList<Integer> aux = new ArrayList<>();
                 for (j = 0; j < cover.size(); ++j) {
                     if (cover.get(j) == 0) {
                         nodosCliquesEncontrados.add(j + 1);
@@ -194,7 +195,9 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                         cliquesEncontrados.add(aux);
                         for(Integer g=0; g<aux.size(); ++g) {
                             for (Integer u = g+1; u<aux.size(); ++u){
-                                Pair<Integer,Integer> auxpair = new Pair<Integer, Integer>(aux.get(g), aux.get(u));
+                                Pair<Integer,Integer> auxpair = new Pair<>();
+                                auxpair.setL(aux.get(g));
+                                auxpair.setR(aux.get(u));
                                 if (!aristasDeCliques.contains(auxpair)) {
                                     aristasDeCliques.add(auxpair);
                                 }
@@ -219,7 +222,7 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
      * Funcion privada para el algotitmo Clique
      */
     private ArrayList<Integer> funcion1(ArrayList<ArrayList<Integer>> vecinos, ArrayList<Integer> cover){
-        ArrayList<Integer> temp = new ArrayList<Integer>(cover);
+        ArrayList<Integer> temp = new ArrayList<>(cover);
         Integer r = 0;
         while (r!=-1){
             r = maximoEliminable(vecinos, temp);
@@ -236,7 +239,7 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
         Integer max = -1;
         for (int i = 0; i < cover.size(); ++i){
             if (cover.get(i) == 1 && esEliminable(vecinos.get(i),cover)){
-                ArrayList<Integer> temp = new ArrayList<Integer>(cover);
+                ArrayList<Integer> temp = new ArrayList<>(cover);
                 temp.set(i,0);
                 Integer sum = 0;
 
@@ -287,7 +290,7 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
      */
     private ArrayList<Integer> funcion2(ArrayList<ArrayList<Integer>> vecinos, ArrayList<Integer> cover, Integer k){
         Integer count = 0;
-        ArrayList<Integer> temp_cover = new ArrayList<Integer>(cover);
+        ArrayList<Integer> temp_cover = new ArrayList<>(cover);
         Integer i = 0, j = 0;
         for (i = 0; i < temp_cover.size(); ++i){
             if (temp_cover.get(i) == 1){
@@ -358,17 +361,17 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
      */
     private ConjuntComunitats<T> CC(ArrayList<ArrayList<Integer>> cliques2, int k2){
         //ignorar de clique las filas que tengan size() diferente de k2
-        ArrayList<ArrayList<Integer>> cliques = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> cliques = new ArrayList<>();
         for (ArrayList<Integer> ar : cliques2) {
             if (ar.size() == k2) {
                 cliques.add(ar);
             }
         }
-        ConjuntComunitats<T> cc = new ConjuntComunitats<T>();
+        ConjuntComunitats<T> cc = new ConjuntComunitats<>();
         Integer nCliques = cliques.size();
 
         //inicializamos a 0 el vector cliquesUsados
-        ArrayList<Integer> cliquesUsados = new ArrayList<Integer>();
+        ArrayList<Integer> cliquesUsados = new ArrayList<>();
         for(int k = 0; k<nCliques; ++k) {
             cliquesUsados.add(0);
         }
@@ -381,7 +384,7 @@ public class AlgoritmoClique<T> extends Algoritme<T> {
                 c.setId(idCom);
 
                 //creamos una cola para poder buscar los cliques adyacentes de los cliques que son adyacentes
-                Queue<Integer> q = new LinkedList<Integer>();
+                Queue<Integer> q = new LinkedList<>();
                 q.add(i);
                 while(!q.isEmpty()){
                     int k = q.peek();

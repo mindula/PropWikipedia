@@ -59,10 +59,13 @@ public class ConjuntComunitats<T> {
     public String toString() {
         String s = "{";
         for(int i = 0; i<cjtComunitats.size(); i++){
-            s+=cjtComunitats.get(i).toString();
-            if(i != cjtComunitats.size()-1)
-                s+="\n";
+            if(cjtComunitats.get(i).getMida() > 1) {
+                s += cjtComunitats.get(i).toString();
+                if (i != cjtComunitats.size() - 1)
+                    s += "\n";
+            }
         }
+
         s+="}";
         return s;
     }
