@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet vista.css?>
 
-<VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="presentacio.classesVista.MainController">
+<VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="presentacio.classesVista.MainController">
   <children>
-    <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" text="" VBox.vgrow="NEVER" />
+    <Label fx:id="headerLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="" VBox.vgrow="NEVER" />
     <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />
   </children>
 </VBox>

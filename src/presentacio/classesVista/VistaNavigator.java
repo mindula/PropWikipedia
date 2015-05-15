@@ -49,7 +49,8 @@ public class VistaNavigator {
      */
     public static void loadVista(String fxml) {
         try {
-            mainController.setVista((Node) FXMLLoader.load(VistaNavigator.class.getResource("../vistes/"+fxml+".fxml")));
+            mainController.setVista((Node) FXMLLoader.load(VistaNavigator.class.getResource("../vistes/"+fxml+".fxml")),
+                    fxml);
         } catch (IOException e) {
             e.printStackTrace();
         }

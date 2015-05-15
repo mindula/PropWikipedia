@@ -7,15 +7,9 @@ package presentacio;
  */
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import presentacio.classesVista.*;
 
@@ -23,14 +17,12 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private static final String APP_NAME = "Wikipedia";
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //Launcher.getInstance().launchVista(NomsVistes.MainWindow, "Wikipedia");
-        primaryStage.setScene(
-                createScene(
-                        loadMainPane()
-                )
-        );
+        primaryStage.setScene(createScene(loadMainPane()));
+        primaryStage.setTitle(APP_NAME);
         primaryStage.show();
     }
 
@@ -52,9 +44,9 @@ public class Main extends Application {
                 mainPane
         );
 
-        /*scene.getStylesheets().setAll(
+        scene.getStylesheets().setAll(
                 getClass().getResource("./vistes/vista.css").toExternalForm()
-        );*/
+        );
 
         return scene;
     }
