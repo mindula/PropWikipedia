@@ -15,6 +15,7 @@ import prop.classescompartides.graf.Graf;
  * Criteri per subcategories comunes entre categories
  */
 public class CriteriSubCategoriesComuns extends Criteri{
+
     public CriteriSubCategoriesComuns(double ponderacio) {
         super(ponderacio);
     }
@@ -34,5 +35,10 @@ public class CriteriSubCategoriesComuns extends Criteri{
         }
 
         return fillsComuns;
+    }
+
+    @Override
+    public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
+        return Math.min(graf.getGrau(n1), graf.getGrau(n2));
     }
 }

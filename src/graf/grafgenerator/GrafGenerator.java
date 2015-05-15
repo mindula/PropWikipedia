@@ -27,12 +27,12 @@ public class GrafGenerator  {
                 newGraf.afegirNode(n1);
             for (int j = i+1 ; j<graf.getCategories().size(); j++) {
                 NodeCategoria n2 = graf.getCategories().get(j);
-                if (!newGraf.existeixNode(n2))
+               if (!newGraf.existeixNode(n2))
                     newGraf.afegirNode(n2);
 
                 double pes = 0;
                 for(Criteri c  :criteris)
-                    pes += c.getPes(n1, n2, graf) * c.getPonderacio();
+                    pes += c.getPes(n1, n2, graf)/c.getMaxPes(n1, n2, graf) * c.getPonderacio();
 
                 if (pes > 0) {
                     Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);

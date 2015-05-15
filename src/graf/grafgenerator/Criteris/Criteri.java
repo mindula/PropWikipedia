@@ -25,7 +25,7 @@ public  abstract class Criteri {
     private double ponderacio;
 
     /**
-     * Retorna el pes entre dos nodes dins el graf
+     * Calcula el pes entre dos nodes dins el graf
      * @param n1
      * @param n2
      * @param graf
@@ -40,4 +40,13 @@ public  abstract class Criteri {
     public double getPonderacio() {
         return ponderacio;
     }
+
+    /**
+     * Calcula el maxim pes possible entre dos nodes, utilitzat per normalitzar el valor de getPes
+     * @param n1
+     * @param n2
+     * @param graf
+     * @return
+     */
+    public abstract double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf);
 }
