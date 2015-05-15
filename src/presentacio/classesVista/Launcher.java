@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class Launcher {
     private static Launcher INSTANCE;
     private Stage primaryStage;
+    private Scene scene;
 
 
     public static Launcher getInstance() {
@@ -33,3 +34,5 @@ public class Launcher {
         primaryStage.show();
     }
 }
+
+

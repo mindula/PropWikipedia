@@ -9,6 +9,7 @@ package presentacio.classesVista;
 public final class NomsVistes {
     private NomsVistes() {}
 
-    public static final String MainWindow = "MainWindow";
+    public static final String MainWindow = "MenuPrincipal";
     public static final String AfegirDades = "AfegirDades";
+    public static final String MainController = "MainController";
 }
