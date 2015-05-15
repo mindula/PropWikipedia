@@ -7,24 +7,23 @@ package presentacio.classesVista;
  */
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-
 import java.io.IOException;
 
 /**
- * Utility class for controlling navigation between vistas.
+ * Classe que controla la navegacio entre vistes
  *
- * All methods on the navigator are static to facilitate
- * simple access from anywhere in the application.
+ * Tots els metodes de la classe son estatics per facilitar
+ * un acces simple des de tota l'aplicacio
  */
 public class VistaNavigator {
 
-    /** The main application layout controller. */
+    /** EL layout principal de l'aplicacio */
     private static MainController mainController;
 
     /**
-     * Stores the main controller for later use in navigation tasks.
+     * Guarda el controlador principal per utilitzarlo posteriorment en tasques de navegacio
      *
-     * @param mainController the main application layout controller.
+     * @param mainController el layout principal de l'aplicacio
      */
     public static void setMainController(MainController mainController) {
         VistaNavigator.mainController = mainController;
@@ -45,7 +44,7 @@ public class VistaNavigator {
      *   allow a user to specify vista node reuse or new creation
      *   allow back and forward history like a browser
      *
-     * @param fxml the fxml file to be loaded.
+     * @param fxml el fitxer fxml a ser carregat
      */
     public static void loadVista(String fxml) {
         try {

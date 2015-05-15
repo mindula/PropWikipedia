@@ -6,6 +6,10 @@ package presentacio.classesVista;
  * Data: 5/14/15
  */
 
+/**
+ * Classe que conte els noms de les vistes de l'aplicacio
+ */
+
 public final class NomsVistes {
     private NomsVistes() {}
 

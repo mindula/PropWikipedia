@@ -11,20 +11,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 /**
- * Main controller class for the entire layout.
+ * Classe Main controller per tot el layout.
  */
 public class MainController {
 
-    /** Holder of a switchable vista. */
+    /** Holder per vistes canviables */
     @FXML
     private StackPane vistaHolder;
+    /** Label per mostrar el titol de la vista actual*/
     @FXML
     private Label headerLabel;
 
     /**
-     * Replaces the vista displayed in the vista holder with a new vista.
-     *
-     * @param node the vista node to be swapped in.
+     * Substitueix la vista mostrada a vistaHolder per una nova vista
+     * @param node la vista que substiituira la actual a vistaHolder
+     * @param nomVista el nom de la vista que sera el nou titol
      */
     public void setVista(Node node, String nomVista) {
         headerLabel.setText(nomVista);
