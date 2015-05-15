@@ -33,4 +33,9 @@ public class CriteriNom extends Criteri{
         else
             return maximCost - cost;
     }
+
+    @Override
+    public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
+        return Math.max(n1.getNom().length(), n2.getNom().length());
+    }
 }

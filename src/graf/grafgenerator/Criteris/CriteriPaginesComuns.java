@@ -32,4 +32,9 @@ public class CriteriPaginesComuns extends Criteri{
 
         return fillsComuns;
     }
+
+    @Override
+    public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
+        return Math.max(n1.getPagines().size(), n2.getPagines().size());
+    }
 }
