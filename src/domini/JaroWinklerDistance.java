@@ -3,7 +3,7 @@ package domini;
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
- * Data: 24/04/15
+ * Data: 15/05/15
  */
 public class JaroWinklerDistance {
 
@@ -25,7 +25,7 @@ public class JaroWinklerDistance {
         boolean fiPrefix = false;
         for (int i = 0; i < s1.length(); ++i){
             char c = s1.charAt(i);
-            for (int j = Math.min(0, i - dmax); i < Math.min(s2.length(), i+dmax); ++j){
+            for (int j = Math.max(0, i - dmax); j < Math.min(s2.length(), i+dmax); ++j){
                 if (c == s2.charAt(j)){
                     ++m;
                     if (i != j) ++t;
@@ -34,10 +34,9 @@ public class JaroWinklerDistance {
                 else if(i == j && !fiPrefix) fiPrefix = true;
             }
         }
-
         if (m == 0) return 0.0;
         t /= 2;
-        double dj = ((m/s1.length()) + (m/s2.length()) + ((m-t)/m))/3;
+        double dj = ((m/(double)s1.length()) + (m/(double)s2.length()) + ((m-t)/(double)m))/3;
         if (dj < 0.7) return dj;
         return dj+(l*0.1*(1-dj));
     }
