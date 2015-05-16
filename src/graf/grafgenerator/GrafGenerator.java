@@ -37,13 +37,15 @@ public class GrafGenerator  {
                 if (pes > 0) {
                     Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);
                     newGraf.afegirArc(a);
+                    //System.out.println(pes);
                 }
 
 
             }
         }
 
-
+        //System.out.println(newGraf.mida());
+        //System.out.println(newGraf.ordre());
         return newGraf;
     }
 }
