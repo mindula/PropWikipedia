@@ -27,14 +27,14 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
      *
      * @param grafOriginal representa el graf en el que es vol trobar les comunitats
      * @param criterioParada representa el nombre de passades de l'algorisme. Recomanat: |V|*2
-     * @param nul no s'utilitza en aquest algorisme
      * @return un conjunt de comunitats, formades pels nodes del graf
      */
     @Override
-    public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, int criterioParada, int nul){
+    public ConjuntComunitats<T> cercarComunitats(Graf<T> grafOriginal, double criterioParada){
         graphTree = new ArrayList<Pair<Integer, Integer>>();
-        this.nPassades = criterioParada;
-        this.minModularity = 0.000001;
+        this.nPassades = (int) criterioParada*grafOriginal.ordre();
+        // minModularity augmenta amb el nombre de nodes amb un limit
+        this.minModularity = 0.000001 + Math.min(0.01, 0.000001*grafOriginal.ordre());
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
