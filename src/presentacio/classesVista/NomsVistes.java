@@ -18,5 +18,8 @@ public final class NomsVistes {
 
     public static final String MenuPrincipal = "MenuPrincipal";
     public static final String AfegirDades = "AfegirDades";
+    public static final String NavegacioWikipedia = "NavegacioWikipedia";
+    public static final String VisualitzacioPagina = "VisualitzacioPagina";
+    public static final String ModificarPagina = "ModificarPagina";
 
 }
