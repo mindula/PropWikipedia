@@ -22,7 +22,7 @@ public class JaroWinklerDistance {
         int m = 0;
         int t = 0;
         int l = 0;
-        int w = 0;
+        int aux = 0;
         boolean fiPrefix = false;
         for (int i = 0; i < s1.length(); ++i){
             char c = s1.charAt(i);
@@ -34,7 +34,7 @@ public class JaroWinklerDistance {
                         ++t;
                         if (j < s1.length()){
                             if (s2.charAt(i) == s1.charAt(j)) {
-                                ++w;
+                                ++aux;
                             }
                         }
                     }
@@ -44,12 +44,12 @@ public class JaroWinklerDistance {
                 else if(i == j && !fiPrefix) fiPrefix = true;
             }
         }
-        l = Math.min (4, l);
+        l = Math.min(4, l);
         if (m == 0) return 0.0;
         System.out.println(m);
         System.out.println(t);
-        w /= 2;
-        t -= w;
+        aux /= 2;
+        t -= aux;
         System.out.println(t);
         int x = m-t;
         System.out.println(m/(double)s1.length());
