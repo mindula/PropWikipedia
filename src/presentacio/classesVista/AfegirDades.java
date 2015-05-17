@@ -3,6 +3,7 @@ package presentacio.classesVista;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 public class AfegirDades implements Initializable {
     @FXML
     TextField pathFitxer;
+    @FXML
+    Button menuPrincipal;
 
 
     @Override
@@ -32,8 +35,12 @@ public class AfegirDades implements Initializable {
         final FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(fileChooserStage);
         if (file != null) {
-            System.out.println(file);
             pathFitxer.setText(file.toString());
         }
+    }
+
+    @FXML
+    public void anarMenuPrincipal(ActionEvent event) throws Exception {
+        NavegadorVistes.loadVista(NomsVistes.MenuPrincipal);
     }
 }

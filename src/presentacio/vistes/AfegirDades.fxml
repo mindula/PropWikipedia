@@ -36,5 +36,6 @@
         <Text layoutX="11.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova pagina" />
       </children>
     </Pane>
+    <Button fx:id="menuPrincipal" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#anarMenuPrincipal" text="Menu principal" />
   </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ import java.io.IOException;
  * Tots els metodes de la classe son estatics per facilitar
  * un acces simple des de tota l'aplicacio
  */
-public class VistaNavigator {
+public class NavegadorVistes {
 
     /** EL layout principal de l'aplicacio */
     private static MainController mainController;
@@ -26,7 +26,7 @@ public class VistaNavigator {
      * @param mainController el layout principal de l'aplicacio
      */
     public static void setMainController(MainController mainController) {
-        VistaNavigator.mainController = mainController;
+        NavegadorVistes.mainController = mainController;
     }
 
     /**
@@ -48,7 +48,7 @@ public class VistaNavigator {
      */
     public static void loadVista(String fxml) {
         try {
-            mainController.setVista((Node) FXMLLoader.load(VistaNavigator.class.getResource("../vistes/"+fxml+".fxml")),
+            mainController.setVista((Node) FXMLLoader.load(NavegadorVistes.class.getResource("../vistes/"+fxml+".fxml")),
                     fxml);
         } catch (IOException e) {
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class Main extends Application {
     private static final String APP_NAME = "Wikipedia";
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(createScene(loadMainPane()));
         primaryStage.setTitle(APP_NAME);
         primaryStage.show();
@@ -29,12 +29,14 @@ public class Main extends Application {
     private Pane loadMainPane() throws IOException {
         FXMLLoader loader = new FXMLLoader();
 
-        Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream("./vistes/"+NomsVistes.MainController+".fxml"));
+        Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream(
+                "./vistes/" + NomsVistes.MainController + ".fxml"
+        ));
 
         MainController mainController = loader.getController();
 
-        VistaNavigator.setMainController(mainController);
-        VistaNavigator.loadVista(NomsVistes.MainWindow);
+        NavegadorVistes.setMainController(mainController);
+        NavegadorVistes.loadVista(NomsVistes.MenuPrincipal);
 
         return mainPane;
     }
