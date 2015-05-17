@@ -269,17 +269,7 @@ public class Graf<T> {
      */
     @Override
     public String toString() {
-        String s = "";
-        for (T node : adjacencyMap.keySet()){
-            s += node + ": { ";
-            HashSet<Arc<T>> adjacents = getNodesAdjacents(node);
-            for(Arc<T> adjacentAT : adjacents){
-                T adjacent = getNodeOposat(node, adjacentAT);
-                s+=adjacent+"("+adjacentAT.getPes()+") ";
-            }
-            s+="}\n";
-        }
-        return s;
+        return "NODES: "+V+"\nARESTES: "+E + "\n"+super.toString();
     }
 
 }
