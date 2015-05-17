@@ -68,7 +68,7 @@ public class CtrlAlgorisme{
         Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
 
         long startTime = System.currentTimeMillis();
-        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1, par2);
+        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
         long elapsedTime = System.currentTimeMillis() - startTime;
 
         InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
