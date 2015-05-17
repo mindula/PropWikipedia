@@ -1,6 +1,10 @@
 package prop.classescompartides.algorismes.grupclique;
 
-import java.lang.reflect.Array;
+import prop.classescompartides.graf.Arc;
+import prop.classescompartides.graf.Comunitat;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
+
 import java.util.*;
 
 /**

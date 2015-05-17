@@ -1,5 +1,9 @@
 package prop.classescompartides.algorismes.grupclique;
 
+import prop.classescompartides.graf.Algoritme;
+import prop.classescompartides.graf.ConjuntComunitats;
+import prop.classescompartides.graf.Graf;
+
 /**
  * Created by Bernat
  */
