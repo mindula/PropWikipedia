@@ -156,4 +156,8 @@ public class GrafWikipedia {
         pagines.remove(pag);
         paginesMap.remove(pag.getNom());
     }
+
+    public int getNumCategories(){
+       return grafWiki.ordre();
+    }
 }

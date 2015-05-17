@@ -6,7 +6,6 @@ import graf.grafgenerator.Criteris.Criteri;
 import graf.grafgenerator.GrafGenerator;
 import prop.classescompartides.algorismes.AlgorismeLouvain;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
-import prop.classescompartides.algorismes.grupclique.AlgoritmoClique;
 import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
@@ -69,7 +68,7 @@ public class CtrlAlgorisme{
         long generatorTime = System.currentTimeMillis() - startTime;
 
         System.out.println("Temps en generar: "+generatorTime+"ms");
-
+        System.out.println("Graf generat: "+graf.toString());
         ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;

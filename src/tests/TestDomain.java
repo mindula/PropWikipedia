@@ -79,12 +79,13 @@ public class TestDomain {
                                        "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
                     TipusAlgorisme algorisme;
-                    if(alg.equals("Louvain"))
+                    if(alg.toLowerCase().equals("louvain"))
                         algorisme = TipusAlgorisme.LOUVAIN;
-                    else if(alg.equals("Girvan"))
+                    else if(alg.toLowerCase().equals("girvan"))
                         algorisme = TipusAlgorisme.GIRVAN;
                     else algorisme = TipusAlgorisme.CLIQUE;
 
+                    System.out.println("Algoritme : "+algorisme.name());
                     System.out.println("Escriu el parametre del Algorisme.");
                     double par1 = sc.nextDouble();
 

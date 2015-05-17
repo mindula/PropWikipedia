@@ -62,6 +62,13 @@ public class Graf<T> {
         V = E = 0;
     }
 
+    public Graf(int initialCapacity) {
+        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>(initialCapacity);
+        cjtArcs = new ArrayList<Arc<T>>(initialCapacity);
+        cjtNodes = new HashSet<T>(initialCapacity);
+        V = E = 0;
+    }
+
     /**
      * Constructor còpia. Còpia un graf <tt>other</tt> al paràmetre implicit
      * @param other
