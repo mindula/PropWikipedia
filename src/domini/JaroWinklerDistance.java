@@ -19,11 +19,12 @@ public class JaroWinklerDistance {
 
 
         int dmax = (s2.length()/2)-1;
-        int m = 0;
-        int t = 0;
-        int l = 0;
+        int m = 0;  //matching
+        int t = 0;  //transpositions
+        int l = 0;  //length del prefix
         int aux = 0;
         boolean fiPrefix = false;
+
         for (int i = 0; i < s1.length(); ++i){
             char c = s1.charAt(i);
 
@@ -46,18 +47,12 @@ public class JaroWinklerDistance {
         }
         l = Math.min(4, l);
         if (m == 0) return 0.0;
-        System.out.println(m);
-        System.out.println(t);
         aux /= 2;
         t -= aux;
-        System.out.println(t);
-        int x = m-t;
-        System.out.println(m/(double)s1.length());
-        System.out.println(m/(double)s2.length());
-        System.out.println(x);
+        //dj = distancia Jaro
         double dj = ((m/(double)s1.length()) + (m/(double)s2.length()) + ((m-t)/(double)m))/3;
-        System.out.println(dj);
         if (dj < 0.7) return dj;
+        //Calcul distancia Winkler
         return dj+(l*0.1*(1-dj));
     }
 
