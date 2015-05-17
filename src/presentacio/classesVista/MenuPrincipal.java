@@ -21,6 +21,6 @@ public class MenuPrincipal implements Initializable{
 
     @FXML
     public void carregarDades(ActionEvent event) throws Exception {
-        VistaNavigator.loadVista(NomsVistes.AfegirDades);
+        NavegadorVistes.loadVista(NomsVistes.AfegirDades);
     }
 }

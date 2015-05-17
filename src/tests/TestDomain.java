@@ -79,75 +79,25 @@ public class TestDomain {
                                        "Escriu el seu nom tal com s'indica. Si no, s'utilitzara per defecte el Clique.");
                     String alg = sc.next();
                     TipusAlgorisme algorisme;
-                    if(alg.equals("Louvain"))
+                    if(alg.toLowerCase().equals("louvain"))
                         algorisme = TipusAlgorisme.LOUVAIN;
-                    else if(alg.equals("Girvan"))
+                    else if(alg.toLowerCase().equals("girvan"))
                         algorisme = TipusAlgorisme.GIRVAN;
                     else algorisme = TipusAlgorisme.CLIQUE;
 
-                    System.out.println("Escriu els dos parametres de l'algoritme.");
-                    System.out.println("En el cas de Louvain, el primer parametre es el nombre de passades i el segon paramatre no es rellevant.");
-                    int par1 = sc.nextInt();
-                    int par2 = sc.nextInt();
+                    System.out.println("Algoritme : "+algorisme.name());
+                    System.out.println("Escriu el parametre del Algorisme.");
+                    double par1 = sc.nextDouble();
+
 
                     //Obtencio de criteris
 
-                    System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:");
-                    System.out.println("0: Criteri Nom");
-                    System.out.println("1: Criteri supercategories comunes");
-                    System.out.println("2: Criteri subcategories comunes");
-                    System.out.println("3: Criteri pagines comunes");
-                    System.out.println("\nper exemple (1 0.8) -> afegir criteri subcategories amb ponderacio 0.8");
 
-
-                    ArrayList<Criteri> criteris = new ArrayList<Criteri>();
-                    boolean continuar = true;
-                    while(continuar) {
-                        opcio = sc.nextInt();
-                        double ponderacio = 0;
-
-                        if(opcio != -1)
-                            ponderacio= sc.nextDouble();
-
-                        Criteri c = null;
-                        switch (opcio) {
-                            case 0:
-                                System.out.println("Introdueix el nombre maxim de diferencia entre noms");
-                                double maxCost = sc.nextDouble();
-                                c= new CriteriNom(ponderacio,maxCost);
-                                break;
-
-                            case 1:
-                                c = new CriteriSuperCategoriesComuns(ponderacio);
-                                break;
-
-                            case 2:
-                                c = new CriteriSubCategoriesComuns(ponderacio);
-                                break;
-
-                            case 3:
-                                c = new CriteriPaginesComuns(ponderacio);
-                                break;
-
-                            case -1:
-                                continuar = false;
-                                break;
-
-                            default:
-                                System.out.println("No es una opcio correcta");
-                                continue;
-                        }
-                        if(continuar) {
-                            criteris.add(c);
-
-                        }
-                    }
-
-                    System.out.println(criteris.size()+ " Criteris afegits");
+                    ArrayList<Criteri> criteris = TestGrafGenerator.getCriteris(sc);
 
                     // Fi de la obtencio de criteris
 
-                    CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), algorisme, par1, par2, criteris);
+                    CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), algorisme, par1, criteris);
                     ConjuntComunitats<NodeCategoria> comunitats = c.cercarComunitats();
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats);

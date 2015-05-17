@@ -62,6 +62,13 @@ public class Graf<T> {
         V = E = 0;
     }
 
+    public Graf(int initialCapacity) {
+        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>(initialCapacity);
+        cjtArcs = new ArrayList<Arc<T>>(initialCapacity);
+        cjtNodes = new HashSet<T>(initialCapacity);
+        V = E = 0;
+    }
+
     /**
      * Constructor còpia. Còpia un graf <tt>other</tt> al paràmetre implicit
      * @param other
@@ -269,17 +276,7 @@ public class Graf<T> {
      */
     @Override
     public String toString() {
-        String s = "";
-        for (T node : adjacencyMap.keySet()){
-            s += node + ": { ";
-            HashSet<Arc<T>> adjacents = getNodesAdjacents(node);
-            for(Arc<T> adjacentAT : adjacents){
-                T adjacent = getNodeOposat(node, adjacentAT);
-                s+=adjacent+"("+adjacentAT.getPes()+") ";
-            }
-            s+="}\n";
-        }
-        return s;
+        return "NODES: "+V+"\nARESTES: "+E + "\n"+super.toString();
     }
 
 }

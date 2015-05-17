@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class GrafGenerator  {
     public Graf<NodeCategoria> generate(GrafWikipedia graf, ArrayList<Criteri> criteris) {
-        Graf<NodeCategoria> newGraf = new Graf<NodeCategoria>();
+        Graf<NodeCategoria> newGraf = new Graf<NodeCategoria>(graf.getNumCategories());
 
         for (int i = 0; i < graf.getCategories().size(); i++) {
             NodeCategoria n1 = graf.getCategories().get(i);

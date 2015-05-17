@@ -13,7 +13,10 @@ package presentacio.classesVista;
 public final class NomsVistes {
     private NomsVistes() {}
 
-    public static final String MainWindow = "MenuPrincipal";
-    public static final String AfegirDades = "AfegirDades";
+    //En principi nomes s'ha d'utilitzar un sol cop, al Main
     public static final String MainController = "MainController";
+
+    public static final String MenuPrincipal = "MenuPrincipal";
+    public static final String AfegirDades = "AfegirDades";
+
 }

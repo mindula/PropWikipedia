@@ -7,5 +7,5 @@ package prop.classescompartides.graf;
  */
 
 public abstract class Algoritme<T>  {
-    public abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l);
+    public abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, double k);
 }

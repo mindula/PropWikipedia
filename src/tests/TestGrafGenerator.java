@@ -20,6 +20,29 @@ import java.util.Scanner;
 public class TestGrafGenerator {
     public static void main(String[] args) {
 
+
+
+
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+        ArrayList<Criteri> criteris = getCriteris(sc);
+
+
+
+        GrafWikipedia g = Sessio.getInstance().getGrafWiki();
+
+        GrafGenerator generator = new GrafGenerator();
+        Graf<NodeCategoria> grafAlgoritme = generator.generate(g, criteris);
+        Sessio.getInstance().setGrafAlgoritme(grafAlgoritme);
+
+        System.out.println("Vols mostrar el graf generat? 1 - si/2 - no");
+        int mostrar = sc.nextInt();
+        if( mostrar == 1 )
+            System.out.println(grafAlgoritme);
+
+
+    }
+
+    public static ArrayList<Criteri> getCriteris(Scanner sc) {
         System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:\n" +
                 "(prem -1 per acabar el test)");
         System.out.println("0: Criteri Nom");
@@ -29,8 +52,7 @@ public class TestGrafGenerator {
         System.out.println("\nper exemple (1 0.8) -> afegir criteri subcategories amb ponderacio 0.8");
 
 
-        ArrayList<Criteri> criteris = new ArrayList<Criteri>();
-        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+        ArrayList<Criteri> criteris = new ArrayList<>() ;
         boolean continuar = true;
         while(continuar) {
             int opcio = sc.nextInt();
@@ -42,9 +64,7 @@ public class TestGrafGenerator {
             Criteri c = null;
             switch (opcio) {
                 case 0:
-                    System.out.println("Introdueix el nombre maxim de diferencia entre noms");
-                    int maxCost = sc.nextInt();
-                    c= new CriteriNom(ponderacio,maxCost);
+                    c= new CriteriNom(ponderacio);
                     break;
 
                 case 1:
@@ -72,20 +92,7 @@ public class TestGrafGenerator {
 
             }
         }
-
         System.out.println(criteris.size()+ " Criteris afegits");
-
-        GrafWikipedia g = Sessio.getInstance().getGrafWiki();
-
-        GrafGenerator generator = new GrafGenerator();
-        Graf<NodeCategoria> grafAlgoritme = generator.generate(g, criteris);
-        Sessio.getInstance().setGrafAlgoritme(grafAlgoritme);
-
-        System.out.println("Vols mostrar el graf generat? 1 - si/2 - no");
-        int mostrar = sc.nextInt();
-        if( mostrar == 1 )
-            System.out.println(grafAlgoritme);
-
-
+        return criteris;
     }
 }

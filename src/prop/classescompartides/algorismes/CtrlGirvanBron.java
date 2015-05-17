@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class CtrlGirvanBron<T> extends Algoritme<T> {
-	
+
 	/**
 	 * Aquesta classe es l'encarregada de gestionar els algorismes GirvanNewman i BronKerbosch
 	 * i de retornar les comunitats trobades dins del graf
@@ -24,13 +24,12 @@ public class CtrlGirvanBron<T> extends Algoritme<T> {
 	/**
 	 * Donat un graf simple no dirigit i el criteriDeParada, retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
 	 * @param graf Graf on s'aplia l'algorisme.
-	 * @param criteriDeParada Nombre minim de comunitats diferents que trobara l'algorisme.
-	 * @param noUsada
 	 * @return Retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
 	 */
-	
+
 	@Override
-	public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int criteriDeParada, int noUsada){
+	public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, double k){
+		int criteriDeParada = (int) (k *10);
 		ConjuntComunitats<T> resultat;
 		int nComunitats = 0;
 		int vertexTotal = graf.ordre();

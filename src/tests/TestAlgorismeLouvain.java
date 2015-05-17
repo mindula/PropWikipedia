@@ -136,7 +136,7 @@ public class TestAlgorismeLouvain{
             default:
         }
         AlgorismeLouvain<Character> algorismeLouvain = new AlgorismeLouvain<Character>();
-        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 10, 2);
+        ConjuntComunitats<Character> resultat = algorismeLouvain.cercarComunitats(graf, 1);
         imprimirComunitats(resultat);
     }
 

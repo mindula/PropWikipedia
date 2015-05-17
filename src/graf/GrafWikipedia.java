@@ -108,18 +108,11 @@ public class GrafWikipedia {
         return grafWiki.getGrau(node);
     }
 
-    public boolean existeixNode(NodeCategoria node) {
-        return grafWiki.existeixNode(node);
-    }
-
     public boolean existeixNodeCat(String nom) {
-
-
         return categoriesMap.containsKey(nom);
     }
 
     public boolean existeixNodePag(String nom) {
-
         return paginesMap.containsKey(nom);
     }
 
@@ -132,10 +125,9 @@ public class GrafWikipedia {
     }
 
     public NodeCategoria getNodeCat (String nom) {
-        HashSet<NodeCategoria> s = grafWiki.getNodes();
-        for (NodeCategoria node : s) {
-            if (nom.equals(node.getNom())) return  node;
-        }
+        if(categoriesMap.containsKey(nom))
+            return categoriesMap.get(nom);
+
         throw new RuntimeException("No existeix una categoria amb aquest nom");
     }
 
@@ -152,7 +144,7 @@ public class GrafWikipedia {
 
     @Override
     public String toString() {
-        return grafWiki.toString();
+        return "Categories: "+categories.size() + "\nPagines: "+pagines.size()+"\nRelacions: "+grafWiki.mida();
     }
 
     public void afegirPagina(NodePagina pag) {
@@ -163,5 +155,9 @@ public class GrafWikipedia {
     public void eliminarPagina(NodePagina pag){
         pagines.remove(pag);
         paginesMap.remove(pag.getNom());
+    }
+
+    public int getNumCategories(){
+       return grafWiki.ordre();
     }
 }
