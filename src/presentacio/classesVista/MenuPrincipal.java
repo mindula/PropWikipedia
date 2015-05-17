@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
  * Usuari: ricard
  * Data: 5/14/15
  */
-public class MainWindow implements Initializable{
+public class MenuPrincipal implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -21,6 +21,6 @@ public class MainWindow implements Initializable{
 
     @FXML
     public void carregarDades(ActionEvent event) throws Exception {
-        Launcher.getInstance().launchVista(NomsVistes.AfegirDades, "Carregar Dades");
+        VistaNavigator.loadVista(NomsVistes.AfegirDades);
     }
 }

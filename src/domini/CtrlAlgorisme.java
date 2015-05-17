@@ -7,6 +7,7 @@ import graf.grafgenerator.GrafGenerator;
 import prop.classescompartides.algorismes.AlgorismeLouvain;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
 import prop.classescompartides.algorismes.grupclique.AlgoritmoClique;
+import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 public class CtrlAlgorisme{
     GrafWikipedia grafWikipedia;
     TipusAlgorisme tipusAlgorisme;
-    int par1, par2;
+    double par1;
     ArrayList<Criteri> criteris;
 
     /**
@@ -35,14 +36,12 @@ public class CtrlAlgorisme{
      * @param grafWikipedia
      * @param tipusAlgorisme
      * @param par1
-     * @param par2
      * @param criteris
      */
-    public CtrlAlgorisme(GrafWikipedia grafWikipedia, TipusAlgorisme tipusAlgorisme, int par1, int par2, ArrayList<Criteri> criteris){
+    public CtrlAlgorisme(GrafWikipedia grafWikipedia, TipusAlgorisme tipusAlgorisme, double par1, ArrayList<Criteri> criteris){
         this.grafWikipedia = grafWikipedia;
         this.tipusAlgorisme = tipusAlgorisme;
         this.par1 = par1;
-        this.par2 = par2;
         this.criteris = criteris;
     }
 
@@ -61,7 +60,7 @@ public class CtrlAlgorisme{
             algorisme = new CtrlGirvanBron<>();
         }
         else{ // Clique
-            algorisme = new AlgoritmoClique<NodeCategoria>();
+            algorisme = new CtrlAlgoritmoClique<>();
         }
 
         long startTime = System.currentTimeMillis();
@@ -71,10 +70,11 @@ public class CtrlAlgorisme{
 
         System.out.println("Temps en generar: "+generatorTime+"ms");
 
-        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1, par2);
+        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
         System.out.println("Temps en cercar comunitats: " +elapsedTime+"ms");
+
 
         InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
         // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc

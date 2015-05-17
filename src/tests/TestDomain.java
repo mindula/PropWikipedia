@@ -37,7 +37,7 @@ public class TestDomain {
                 "12. Test InformacioCjtComunitats\n" +
                 "13. Test InfoCerca\n" +
                 "14. Test Algoritme Louvain\n" +
-                "15. Test Levenshtein\n" +
+                "15. Test Jaro-Winkler\n" +
                 "16. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = sc.nextInt();
@@ -162,7 +162,7 @@ public class TestDomain {
                     TestAlgorismeLouvain.main(null);
                     break;
                 case 15:
-                    TestLevenshtein.main(null);
+                    TestJaroWinkler.main(null);
                     break;
             }
             System.out.println("Escull una opcio:\n" +
@@ -180,7 +180,7 @@ public class TestDomain {
                     "12. Test InformacioCjtComunitats\n" +
                     "13. Test InfoCerca\n" +
                     "14. Test AlgorismeLouvain\n" +
-                    "15. Test Levenshtein\n" +
+                    "15. Test Jaro-Winkler\n" +
                     "16. Finalitzar Test\n");
             opcio = sc.nextInt();
         }
