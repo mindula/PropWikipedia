@@ -34,7 +34,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
         graphTree = new ArrayList<Pair<Integer, Integer>>();
         this.nPassades = (int) criterioParada*grafOriginal.ordre();
         // minModularity augmenta amb el nombre de nodes amb un limit
-        this.minModularity = 0.000001 + Math.min(0.01, 0.000001*grafOriginal.ordre());
+        this.minModularity = 0.0001 + Math.min(0.1, 0.0001*grafOriginal.ordre());
         traduccioIntegerT = new HashMap<Integer, T>();
         grafIntern = convertirGraf(grafOriginal);
         metodeLouvain();
