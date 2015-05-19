@@ -43,11 +43,11 @@ public class TestNavegacio {
                                 Cerca.cercarWikipediaP(grafWikipedia, nom).getResultats();
                         for (NodePagina np : nodesPagina) {
                             System.out.println("Pagina: " + np.getNom());
-                            // Mostrar categories
+                            /*// Mostrar categories
                             HashSet<NodeCategoria> categories = navegacio.getCategories(np);
                             System.out.println("Aquesta pagina te les categories seguents:");
                             for (NodeCategoria categoria : categories)
-                                System.out.println(categoria.getNom());
+                                System.out.println(categoria.getNom());*/
                         }
 
                         break;
@@ -57,7 +57,7 @@ public class TestNavegacio {
                                 Cerca.cercarWikipediaC(grafWikipedia, nom).getResultats();
                         for (NodeCategoria nodeCategoria : nodesCategoria) {
                             System.out.println("Categoria: " + nodeCategoria.getNom());
-                            // Mostrar pagines
+                            /*// Mostrar pagines
                             ArrayList<NodePagina> pagines = navegacio.getPagines(nodeCategoria);
                             System.out.println("Aquesta categoria te les pagines seguents:");
                             for (NodePagina pagina : pagines)
@@ -71,7 +71,7 @@ public class TestNavegacio {
                             HashSet<NodeCategoria> subcategories = navegacio.getSubcategories(nodeCategoria);
                             System.out.println("Aquesta categoria te les subcategories seguents:");
                             for (NodeCategoria subcategoria : subcategories)
-                                System.out.println(subcategoria.getNom());
+                                System.out.println(subcategoria.getNom());*/
                         }
                         break;
                 }

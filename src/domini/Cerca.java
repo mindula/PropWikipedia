@@ -58,6 +58,7 @@ public class Cerca {
         for (NodeCategoria n : g.getCategories()) {
              if (JaroWinklerDistance.calculate(query, n.getNom()) >= 0.7) {
                  llistaResultats.add(n);
+                 if (llistaResultats.size() > 20) break;
              }
 
         }
@@ -81,6 +82,7 @@ public class Cerca {
         for (NodePagina n : g.getPagines()) {
             if (JaroWinklerDistance.calculate(query, n.getNom()) >= 0.7) {
                 llistaResultats.add(n);
+                if (llistaResultats.size() > 20) break;
             }
 
         }
