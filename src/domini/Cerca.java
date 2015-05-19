@@ -12,6 +12,8 @@ package domini;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
+import graf.NodePagina;
+import graf.NodeWiki;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,9 +61,9 @@ public class Cerca {
         throw new Exception("No s'ha trobat cap resultat");
     }
 
-    private static NodeCategoria cercarPagina (GrafWikipedia g, String query) throws Exception {
+    private static NodePagina cercarPagina (GrafWikipedia g, String query) throws Exception {
         int size = query.length();
-        for (NodeCategoria n : g.getCategories()) {
+        for (NodePagina n : g.getPagines()) {
 
             if (LevenshteinDistance.calculate(query, n.getNom()) == 0) return n;
 
