@@ -34,7 +34,7 @@ public class TestCercaHistorial {
                     try {
                         iC = Cerca.cercarWikipediaC(g, paraulaC);
                         System.out.println("S'ha trobat la categoria "
-                                + iC.getResultat() + " amb data " + iC.getDataCerca());
+                                + iC.getResultats() + " amb data " + iC.getDataCerca());
                         h.afegirCerca(iC);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -47,7 +47,7 @@ public class TestCercaHistorial {
                     try {
                         iP = Cerca.cercarWikipediaC(g, paraulaP);
                         System.out.println("S'ha trobat la categoria "
-                                + iP.getResultat() + " amb data " + iP.getDataCerca());
+                                + iP.getResultats() + " amb data " + iP.getDataCerca());
                         h.afegirCerca(iP);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());

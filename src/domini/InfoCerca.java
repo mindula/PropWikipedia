@@ -1,6 +1,9 @@
 package domini;
 
+import graf.NodeCategoria;
 import graf.NodeWiki;
+
+import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia
@@ -12,19 +15,17 @@ import graf.NodeWiki;
  * Conte un NodeWiki i la data de realitzacio de la cerca. Veure classe Cerca per mes informacio
  */
 public class InfoCerca {
-    private NodeWiki a;
+    private ArrayList<? extends NodeWiki> a;
     private String data;
 
-    private InfoCerca() {
-        super();
-    }
+    private InfoCerca() {}
 
     /**
      * Constructor per defecte
      * @param a
      * @param data
      */
-    public InfoCerca(NodeWiki a, String data) {
+    public InfoCerca(ArrayList<? extends NodeWiki> a, String data) {
         this.a = a;
         this.data = data;
     }
@@ -33,7 +34,7 @@ public class InfoCerca {
      * Retorna el NodeWiki de la instancia
      * @return el NodeWiki de la instancia
      */
-    public NodeWiki getResultat() {
+    public ArrayList<? extends NodeWiki> getResultats() {
         return a;
     }
 

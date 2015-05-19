@@ -1,8 +1,10 @@
 package tests;
 
 import domini.InfoCerca;
+import domini.Sessio;
 import graf.NodeCategoria;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,7 +20,8 @@ public class TestInfoCerca {
         String nom = sc.next();
         NodeCategoria a = new NodeCategoria(nom);
         String data = sc.next();
-        InfoCerca I = new InfoCerca(a,data);
+        Sessio s = Sessio.getInstance();
+        InfoCerca I = new InfoCerca(s.getGrafWiki().getCategories(),data);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el resultat\n" +
@@ -35,7 +38,7 @@ public class TestInfoCerca {
                             "3. Finalitzar Test\n");
                     break;
                 case 1:
-                    System.out.println(I.getResultat());
+                    System.out.println(I.getResultats());
                     break;
                 case 2:
                     System.out.println(I.getDataCerca());
