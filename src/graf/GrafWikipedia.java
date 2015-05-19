@@ -9,7 +9,8 @@ import java.util.List;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard.gascons
+ * Autor versio 1: ricard.gascons
+ * Autor versio 2: agusti.bau
  * Data: 2/5/15
  */
 
@@ -140,6 +141,10 @@ public class GrafWikipedia {
 
     public ArrayList<NodeCategoria> getCategories(){
         return categories;
+    }
+
+    public ArrayList<NodePagina> getPagines() {
+        return pagines;
     }
 
     @Override
