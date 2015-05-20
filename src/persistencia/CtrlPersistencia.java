@@ -25,18 +25,15 @@ public class CtrlPersistencia {
 
         ArrayList<String> list = new ArrayList<String>();
 
-        FileInputStream inputStream;
-        Scanner sc;
-        inputStream = new FileInputStream(path);
-        sc = new Scanner(inputStream);
+        FileReader fReader = new FileReader(path);
+        BufferedReader reader = new BufferedReader(fReader);
 
-        while (sc.hasNextLine()) {
-            String s = sc.nextLine();
-            list.add(s);
+        String linia;
+        while ((linia = reader.readLine()) != null) {
+            list.add(linia);
         }
 
-        inputStream.close();
-        sc.close();
+        reader.close();
 
         return list;
     }

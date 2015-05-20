@@ -3,9 +3,11 @@ package graf;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
+import persistencia.CtrlPersistencia;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,21 +37,10 @@ public class GrafParser {
      * @throws IOException
      */
     public GrafWikipedia parse(String path) throws IOException {
-        FileInputStream inputStream;
-        Scanner sc;
-        inputStream = new FileInputStream(path);
-        sc = new Scanner(inputStream);
-        while (sc.hasNextLine()) {
-            String s = sc.nextLine();
+        ArrayList<String> array = CtrlPersistencia.carregarDades(path);
+        for (String s : array) {
             parseLine(s);
         }
-        /*
-        List<String> l = Files.readAllLines(path, Charset.defaultCharset());
-        for(String s: l)
-            parseLine(s);
-        */
-        inputStream.close();
-        sc.close();
         return grafWikipedia;
     }
 
