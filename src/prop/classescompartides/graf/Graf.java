@@ -6,18 +6,6 @@ package prop.classescompartides.graf;
  * Data: 10/3/15
  */
 
-/*************************************************************************
- *  Compilació:   javac Graf.java
- *  Execució:     java Graf
- *  Dependències: Map.java Arc.java
- *
- *  Un graf no dirigit amb pesos a les arestes, implementat utilitzant un mapa
- *  d'adjacències
- *
- *************************************************************************/
-
-
-
 /**
  *  La classe <tt>Graf</tt> representa un graf NO dirigit amb pesos als arcs,
  *  amb vèrtex parametritzats; cada arc és del tipus {@link Arc}

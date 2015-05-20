@@ -1,5 +1,9 @@
 package graf;
 
+import graf.GrafWikipedia;
+import graf.NodeCategoria;
+import graf.NodePagina;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
@@ -30,7 +34,7 @@ public class GrafParser {
      * @return el graf de la Wikipedia
      * @throws IOException
      */
-    public GrafWikipedia parse(String path) throws IOException{
+    public GrafWikipedia parse(String path) throws IOException {
         FileInputStream inputStream;
         Scanner sc;
         inputStream = new FileInputStream(path);

@@ -1,6 +1,5 @@
 package domini;
 
-import graf.NodeCategoria;
 import graf.NodeWiki;
 
 import java.util.ArrayList;

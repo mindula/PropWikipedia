@@ -25,10 +25,10 @@ import java.util.ArrayList;
 
 
 public class CtrlAlgorisme{
-    GrafWikipedia grafWikipedia;
-    TipusAlgorisme tipusAlgorisme;
-    double par1;
-    ArrayList<Criteri> criteris;
+    private GrafWikipedia grafWikipedia;
+    private TipusAlgorisme tipusAlgorisme;
+    private double par1;
+    private ArrayList<Criteri> criteris;
 
     /**
      * Constructora per defecte de la classe
