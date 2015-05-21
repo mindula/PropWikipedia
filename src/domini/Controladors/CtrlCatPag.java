@@ -56,6 +56,12 @@ public class CtrlCatPag {
         grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom1),grafWiki.getNodeCat(nom2)));
     }
 
-    //TODO: Crear metode esborrarArcPC
+    /**
+     * Cas d'us Relacionar categories i pagines. Eliminar arc PC
+     */
+    public void esborrarArcPC(String cat, String pag){
+        grafWiki.eliminarArcPC(cat, pag, grafWiki.getNodeCat(cat),grafWiki.getNodePag(pag));
+    }
+
 
 }
