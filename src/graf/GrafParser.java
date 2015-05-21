@@ -15,9 +15,7 @@ import java.util.ArrayList;
  * A partir d'un input en un fitxer de dades, forma el graf de la Wikipedia
  */
 public class GrafParser {
-
-    static private GrafWikipedia grafWikipedia;
-
+    private static GrafWikipedia grafWikipedia;
     /**
      * Constructora per defecte
      * @param graf
@@ -27,14 +25,13 @@ public class GrafParser {
 
     /**
      * Construeix un graf a partir d'un arxiu de dades localitzat a un path determinat
-     * @param path
+     * @param graf
      * @return el graf de la Wikipedia
      * @throws IOException
      */
-    public static GrafWikipedia parse(String path) throws IOException {
+    public static GrafWikipedia parse(ArrayList<String> graf) throws IOException {
         grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
-        ArrayList<String> array = CtrlWikipedia.getInstance().getGrafWikiFromFile(path);
-        for (String s : array) {
+        for (String s : graf) {
             parseLine(s);
         }
         return grafWikipedia;

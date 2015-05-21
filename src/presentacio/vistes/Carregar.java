@@ -1,6 +1,9 @@
 package presentacio.vistes;
 
+import domini.Controladors.CtrlWikipedia;
+
 import javax.swing.*;
+import java.io.IOException;
 import java.nio.file.Path;
 
 /**
@@ -16,6 +19,7 @@ public class Carregar extends javax.swing.JPanel {
     public Carregar() {
         initComponents();
         jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
     }
 
     /**
@@ -32,6 +36,7 @@ public class Carregar extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton1.setText("Examinar...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +54,8 @@ public class Carregar extends javax.swing.JPanel {
 
         jLabel1.setText("Fitxer carregat!");
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,6 +72,10 @@ public class Carregar extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +88,9 @@ public class Carregar extends javax.swing.JPanel {
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addContainerGap(72, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>
 
@@ -94,7 +107,15 @@ public class Carregar extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO falta fer merda
+        CtrlWikipedia ctrlWikipedia = CtrlWikipedia.getInstance();
+        try {
+            ctrlWikipedia.getGrafWikiFromFile(jTextField1.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         jLabel1.setVisible(true);
+        jLabel2.setText(ctrlWikipedia.getGrafWiki().toString());
+        jLabel2.setVisible(true);
     }
 
 
@@ -103,6 +124,7 @@ public class Carregar extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration
 }

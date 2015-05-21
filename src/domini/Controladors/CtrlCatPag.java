@@ -10,6 +10,7 @@ import graf.GrafWikipedia;
 public class CtrlCatPag {
     private GrafWikipedia grafWiki;
 
+    //TODO aixo no es crida mai
     private CtrlCatPag(){
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
     }

@@ -1,5 +1,6 @@
 package domini.Controladors;
 
+import graf.GrafParser;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
@@ -86,8 +87,10 @@ public class CtrlWikipedia {
     /**
      * Cas d'us Importar Fitxer
      */
-    public ArrayList<String> getGrafWikiFromFile(String path) throws IOException {
-        return CtrlPersistencia.carregarDades(path);
+    public void getGrafWikiFromFile(String path) throws IOException {
+        ArrayList<String> a = CtrlPersistencia.carregarDades(path);
+        grafWiki = GrafParser.parse(a);
+        System.out.println(grafWiki);
     }
 
     /**

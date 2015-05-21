@@ -57,7 +57,7 @@ public class TestGrafParser {
 
         GrafWikipedia grafWikipedia;
 
-        try {
+        /*try {
             grafWikipedia = GrafParser.parse(path);
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");
@@ -67,6 +67,6 @@ public class TestGrafParser {
             if (opcio == 1) System.out.println(grafWikipedia);
         } catch (IOException e) {
             System.out.println("Error, no s'ha trobat el fitxer " + e.getMessage());
-        }
+        }*/
     }
 }
