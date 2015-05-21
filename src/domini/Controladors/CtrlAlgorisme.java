@@ -1,5 +1,7 @@
-package domini;
+package domini.Controladors;
 
+import domini.InformacioCjtComunitats;
+import domini.TipusAlgorisme;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.Criteri;
@@ -10,6 +12,7 @@ import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
+import prop.classescompartides.utils.Pair;
 
 import java.util.ArrayList;
 
@@ -48,7 +51,7 @@ public class CtrlAlgorisme{
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
-    public ConjuntComunitats<NodeCategoria> cercarComunitats(){
+    public Pair<ConjuntComunitats<NodeCategoria>, InformacioCjtComunitats> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
 
 
@@ -77,7 +80,8 @@ public class CtrlAlgorisme{
 
         InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
         // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc
-        return comunitats;
+
+        return new Pair<> (comunitats, informacioCjtComunitats);
     }
 
 }

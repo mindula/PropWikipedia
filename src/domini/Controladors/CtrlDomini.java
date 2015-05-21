@@ -1,4 +1,4 @@
-package domini;
+package domini.Controladors;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
@@ -15,18 +15,18 @@ import java.util.Date;
  */
 
 /**
- * Sessio de la Wikipedia
+ * CtrlDomini de la Wikipedia
  */
 
-public class Sessio {
+public class CtrlDomini {
 
-    private static Sessio INSTANCE;
+    private static CtrlDomini INSTANCE;
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
 
-    private Sessio() {
+    private CtrlDomini() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
         this.dataCreacio = dateFormat.format(dataCreacio);
@@ -36,12 +36,12 @@ public class Sessio {
 
     /**
      * /**
-     * Retorna una instancia de Sessio
-     * @return una instancia de Sessio
+     * Retorna una instancia de CtrlDomini
+     * @return una instancia de CtrlDomini
      */
-    public static Sessio getInstance() {
+    public static CtrlDomini getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new Sessio();
+            INSTANCE = new CtrlDomini();
         }
         return INSTANCE;
     }
