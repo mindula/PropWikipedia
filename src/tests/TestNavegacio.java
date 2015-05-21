@@ -1,16 +1,13 @@
 package tests;
 
 import domini.Cerca;
-import domini.InfoCerca;
+import domini.Controladors.CtrlDomini;
 import domini.Navegacio;
-import domini.Sessio;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
-import graf.NodeWiki;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -21,7 +18,7 @@ import java.util.Scanner;
 
 public class TestNavegacio {
     public static void main(String[] args){
-        GrafWikipedia grafWikipedia = Sessio.getInstance().getGrafWiki();
+        GrafWikipedia grafWikipedia = CtrlDomini.getInstance().getGrafWiki();
         Navegacio navegacio = new Navegacio(grafWikipedia);
         Scanner sc = new Scanner(System.in);
         int option;

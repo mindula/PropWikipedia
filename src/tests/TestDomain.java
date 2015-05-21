@@ -1,10 +1,12 @@
 package tests;
 
-import domini.CtrlAlgorisme;
-import domini.Sessio;
+import domini.Controladors.CtrlAlgorisme;
+import domini.Controladors.CtrlDomini;
+import domini.InformacioCjtComunitats;
 import domini.TipusAlgorisme;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
+import prop.classescompartides.algorismes.grupclique.Pair;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
@@ -97,10 +99,11 @@ public class TestDomain {
 
                     // Fi de la obtencio de criteris
 
-                    CtrlAlgorisme c = new CtrlAlgorisme(Sessio.getInstance().getGrafWiki(), algorisme, par1, criteris);
-                    ConjuntComunitats<NodeCategoria> comunitats = c.cercarComunitats();
+                    CtrlAlgorisme c = new CtrlAlgorisme(CtrlDomini.getInstance().getGrafWiki(), algorisme, par1, criteris);
+                    prop.classescompartides.utils.Pair<ConjuntComunitats<NodeCategoria>, InformacioCjtComunitats>
+                            comunitats = c.cercarComunitats();
                     System.out.println("Comunitats trobades:");
-                    System.out.println(comunitats);
+                    System.out.println(comunitats.getFirst());
                     break;
                 case 12:
                     TestInformacioCjtComunitats.main(null);

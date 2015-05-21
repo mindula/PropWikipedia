@@ -54,6 +54,7 @@ public class CtrlDomini {
         return dataCreacio;
     }
 
+
     /**
      * Retorna el Graf de la Wikipedia
      * @return el graf de la Wikipedia

@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Sessio;
+import domini.Controladors.CtrlDomini;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.grafgenerator.Criteris.*;
@@ -28,11 +28,11 @@ public class TestGrafGenerator {
 
 
 
-        GrafWikipedia g = Sessio.getInstance().getGrafWiki();
+        GrafWikipedia g = CtrlDomini.getInstance().getGrafWiki();
 
         GrafGenerator generator = new GrafGenerator();
         Graf<NodeCategoria> grafAlgoritme = generator.generate(g, criteris);
-        Sessio.getInstance().setGrafAlgoritme(grafAlgoritme);
+        CtrlDomini.getInstance().setGrafAlgoritme(grafAlgoritme);
 
         System.out.println("Vols mostrar el graf generat? 1 - si/2 - no");
         int mostrar = sc.nextInt();
