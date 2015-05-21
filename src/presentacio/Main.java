@@ -15,6 +15,7 @@ import presentacio.classesVista.*;
 
 import java.io.IOException;
 
+
 public class Main extends Application {
 
     private static final String APP_NAME = "Wikipedia";
