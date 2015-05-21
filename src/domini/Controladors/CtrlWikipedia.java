@@ -2,6 +2,7 @@ package domini.Controladors;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
+import graf.NodePagina;
 import persistencia.CtrlPersistencia;
 import prop.classescompartides.graf.Graf;
 
@@ -78,11 +79,49 @@ public class CtrlWikipedia {
         return grafAlgoritme;
     }
 
+    public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {
+        this.grafAlgoritme = grafAlgoritme;
+    }
+
+    /**
+     * Cas d'us Importar Fitxer
+     */
     public ArrayList<String> getGrafWikiFromFile(String path) throws IOException {
         return CtrlPersistencia.carregarDades(path);
     }
 
-    public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {
-        this.grafAlgoritme = grafAlgoritme;
+    /**
+     * Cas d'us Afegir Categoria
+     */
+    public void afegirCat(String nom){
+        NodeCategoria nodeC = new NodeCategoria(nom);
+        grafWiki.afegirCategoria(nodeC);
     }
+
+    /**
+     * Cas d'us Afegir Pagina
+     */
+    public void afegirPag(String nom){
+        NodePagina nodeC = new NodePagina(nom);
+        grafWiki.afegirPagina(nodeC);
+    }
+
+    /**
+     * Cas d'us Eliminar Categoria
+     */
+    public void elimCat(String nom){
+        grafWiki.eliminarCategoria(grafWiki.getNodeCat(nom));
+    }
+
+    /**
+     * Cas d'us Eliminar Pagina
+     */
+    public void elimPag(String nom){
+        grafWiki.eliminarPagina(grafWiki.getNodePag(nom));
+    }
+
+
+
+
+
 }

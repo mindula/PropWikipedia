@@ -5,7 +5,7 @@
   </component>
   <component name="IdProvider" IDEtalkID="9CD0BA4D84090BE5577710AC222B2198" />
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/JavaDoc" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../JavaDoc" />
     <option name="OPTION_SCOPE" value="protected" />
     <option name="OPTION_HIERARCHY" value="true" />
     <option name="OPTION_NAVIGATOR" value="true" />
@@ -29,3 +29,4 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
+
