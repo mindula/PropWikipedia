@@ -57,9 +57,8 @@ public class MenuPrincipal implements Initializable{
     public void mostrarGraf(ActionEvent event) {
         Stage stage = new Stage();
         GrafWikipedia grafWikipedia = new GrafWikipedia();
-        GrafParser grafParser = new GrafParser(grafWikipedia);
         try {
-            grafWikipedia = grafParser.parse("misc/cats_small_test.txt");
+            grafWikipedia = GrafParser.parse("misc/cats_small_test.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

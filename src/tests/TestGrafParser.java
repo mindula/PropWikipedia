@@ -55,16 +55,16 @@ public class TestGrafParser {
 
         long startTime = System.currentTimeMillis();
 
-        GrafWikipedia g = CtrlWikipedia.getInstance().getGrafWiki();
-        GrafParser grafParser = new GrafParser(g);
+        GrafWikipedia grafWikipedia;
+
         try {
-            grafParser.parse(path);
+            grafWikipedia = GrafParser.parse(path);
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");
 
             System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
             opcio = sc.nextInt();
-            if (opcio == 1) System.out.println(g);
+            if (opcio == 1) System.out.println(grafWikipedia);
         } catch (IOException e) {
             System.out.println("Error, no s'ha trobat el fitxer " + e.getMessage());
         }
