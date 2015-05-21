@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import graf.GrafParser;
 import graf.GrafWikipedia;
 
@@ -55,7 +55,7 @@ public class TestGrafParser {
 
         long startTime = System.currentTimeMillis();
 
-        GrafWikipedia g = CtrlDomini.getInstance().getGrafWiki();
+        GrafWikipedia g = CtrlWikipedia.getInstance().getGrafWiki();
         GrafParser grafParser = new GrafParser(g);
         try {
             grafParser.parse(path);

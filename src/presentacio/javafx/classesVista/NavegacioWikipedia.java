@@ -1,4 +1,4 @@
-package presentacio.classesVista;
+package presentacio.javafx.classesVista;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,13 +12,14 @@ import java.util.ResourceBundle;
  * Usuari: ricard
  * Data: 5/17/15
  */
-public class ModificarPagina implements Initializable {
+public class NavegacioWikipedia implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
     @FXML
-    public void anarEnrere(ActionEvent event) {
+    public void visualitzarPagina(ActionEvent event) {
         NavegadorVistes.loadVista(NomsVistes.VisualitzacioPagina);
     }
 }

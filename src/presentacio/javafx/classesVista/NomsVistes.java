@@ -1,4 +1,4 @@
-package presentacio.classesVista;
+package presentacio.javafx.classesVista;
 
 /**
  * Grup 3: Wikipedia

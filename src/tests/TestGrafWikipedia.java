@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodePagina;
@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class TestGrafWikipedia {
         public static void main(String[] args) {
-            GrafWikipedia graf = CtrlDomini.getInstance().getGrafWiki();
+            GrafWikipedia graf = CtrlWikipedia.getInstance().getGrafWiki();
             NodeCategoria n1;
             NodePagina n2;
             String nom;

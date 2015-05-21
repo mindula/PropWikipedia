@@ -1,7 +1,7 @@
 package tests;
 
 import domini.ComunitatWiki;
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
 import graf.NodeWiki;
@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class TestComunitatOpConjunts {
 
     public static void main (String[] args) throws Exception {
-        GrafWikipedia graf = CtrlDomini.getInstance().getGrafWiki();
+        GrafWikipedia graf = CtrlWikipedia.getInstance().getGrafWiki();
         String paraula;
         int ident;
         int ident2;

@@ -1,32 +1,30 @@
-package presentacio.classesVista;
+package presentacio.javafx.classesVista;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard
- * Data: 5/14/15
+ * Data: 5/17/15
  */
-public class MenuPrincipal implements Initializable{
-
+public class VisualitzacioPagina implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
     @FXML
-    public void carregarDades(ActionEvent event) {
-        NavegadorVistes.loadVista(NomsVistes.AfegirDades);
+    public void editarPagina(ActionEvent event) {
+        NavegadorVistes.loadVista(NomsVistes.ModificarPagina);
     }
 
     @FXML
-    public void navegarWikipedia(ActionEvent event) {
+    public void anarEnrere(ActionEvent event) {
         NavegadorVistes.loadVista(NomsVistes.NavegacioWikipedia);
     }
 }

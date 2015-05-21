@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TestSessio {
     public static void main(String[] args){
-        CtrlDomini s = CtrlDomini.getInstance();
+        CtrlWikipedia s = CtrlWikipedia.getInstance();
         System.out.println("Escriu l'opcio que vols realitzar:");
         System.out.println("1. Veure data de creacio");
         System.out.println("2. Acabar test");

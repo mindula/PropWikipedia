@@ -2,10 +2,13 @@ package domini.Controladors;
 
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
+import persistencia.CtrlPersistencia;
 import prop.classescompartides.graf.Graf;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,18 +18,18 @@ import java.util.Date;
  */
 
 /**
- * CtrlDomini de la Wikipedia
+ * CtrlWikipedia de la Wikipedia
  */
 
-public class CtrlDomini {
+public class CtrlWikipedia {
 
-    private static CtrlDomini INSTANCE;
+    private static CtrlWikipedia INSTANCE;
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
 
-    private CtrlDomini() {
+    private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
         this.dataCreacio = dateFormat.format(dataCreacio);
@@ -36,12 +39,12 @@ public class CtrlDomini {
 
     /**
      * /**
-     * Retorna una instancia de CtrlDomini
-     * @return una instancia de CtrlDomini
+     * Retorna una instancia de CtrlWikipedia
+     * @return una instancia de CtrlWikipedia
      */
-    public static CtrlDomini getInstance() {
+    public static CtrlWikipedia getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new CtrlDomini();
+            INSTANCE = new CtrlWikipedia();
         }
         return INSTANCE;
     }
@@ -73,6 +76,10 @@ public class CtrlDomini {
      */
     public Graf<NodeCategoria> getGrafAlgoritme() {
         return grafAlgoritme;
+    }
+
+    public ArrayList<String> getGrafWikiFromFile(String path) throws IOException {
+        return CtrlPersistencia.carregarDades(path);
     }
 
     public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {

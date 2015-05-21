@@ -1,4 +1,4 @@
-package presentacio.classesVista;
+package presentacio.javafx.classesVista;
 
 /**
  * Grup 3: Wikipedia
@@ -48,7 +48,7 @@ public class NavegadorVistes {
      */
     public static void loadVista(String fxml) {
         try {
-            mainController.setVista((Node) FXMLLoader.load(NavegadorVistes.class.getResource("../vistes/"+fxml+".fxml")),
+            mainController.setVista((Node) FXMLLoader.load(NavegadorVistes.class.getResource("../vistes/" +fxml+".fxml")),
                     fxml);
         } catch (IOException e) {
             e.printStackTrace();

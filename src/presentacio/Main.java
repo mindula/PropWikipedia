@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import presentacio.classesVista.*;
+import presentacio.javafx.classesVista.*;
 
 import java.io.IOException;
 

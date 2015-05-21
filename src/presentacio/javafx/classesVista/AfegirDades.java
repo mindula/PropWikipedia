@@ -1,4 +1,4 @@
-package presentacio.classesVista;
+package presentacio.javafx.classesVista;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
