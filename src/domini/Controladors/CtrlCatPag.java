@@ -56,4 +56,6 @@ public class CtrlCatPag {
         grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom1),grafWiki.getNodeCat(nom2)));
     }
 
+    //TODO: Crear metode esborrarArcPC
+
 }
