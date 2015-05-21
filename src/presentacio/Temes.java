@@ -1,4 +1,4 @@
-package presentacio.vistes;
+package presentacio;
 
 /**
  * Grup 3: Wikipedia
@@ -32,16 +32,16 @@ public class Temes extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(179, Short.MAX_VALUE))
+                    .addContainerGap(130, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(134, Short.MAX_VALUE))
+                    .addContainerGap(149, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addContainerGap(134, Short.MAX_VALUE))
         );
     }// </editor-fold>
 

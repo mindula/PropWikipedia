@@ -1,4 +1,4 @@
-package presentacio.vistes;
+package presentacio;
 
 import domini.Controladors.CtrlWikipedia;
 

@@ -1,4 +1,4 @@
-package presentacio.vistes;
+package presentacio;
 
 /**
  * Grup 3: Wikipedia
