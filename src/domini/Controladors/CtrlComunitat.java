@@ -10,7 +10,7 @@ import prop.classescompartides.graf.ConjuntComunitats;
  * Data: 21/05/15
  */
 public class CtrlComunitat {
-    public ConjuntComunitats<NodeWiki> Cjt;
+    private ConjuntComunitats<NodeWiki> Cjt;
 
     public CtrlComunitat(){
         this.Cjt = new ConjuntComunitats<NodeWiki>();
