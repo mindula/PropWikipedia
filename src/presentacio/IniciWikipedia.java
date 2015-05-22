@@ -204,7 +204,6 @@ public class IniciWikipedia extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO falta fer merda
         String pathSessioImportada = jTextField1.getText();
         try {
             CtrlSessio.getInstance().setNovaSessio(nomSessioImportada);

@@ -91,6 +91,7 @@ public class CtrlWikipedia {
         ArrayList<String> a = CtrlPersistencia.getFitxer(path);
         grafWiki = GrafParser.parse(a);
         System.out.println(grafWiki);
+        //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format
     }
 
     /**
