@@ -1,6 +1,5 @@
 package tests;
 
-import domini.Controladors.CtrlWikipedia;
 import graf.GrafParser;
 import graf.GrafWikipedia;
 import persistencia.CtrlPersistencia;
@@ -60,7 +59,7 @@ public class TestGrafParser {
         GrafWikipedia grafWikipedia;
 
         try {
-            ArrayList<String> a = CtrlPersistencia.importarGrafWikipedia(path);
+            ArrayList<String> a = CtrlPersistencia.getFitxer(path);
             grafWikipedia = GrafParser.parse(a);
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");

@@ -88,7 +88,7 @@ public class CtrlWikipedia {
      * Cas d'us Importar Fitxer
      */
     public void getGrafWikiFromFile(String path) throws IOException {
-        ArrayList<String> a = CtrlPersistencia.importarGrafWikipedia(path);
+        ArrayList<String> a = CtrlPersistencia.getFitxer(path);
         grafWiki = GrafParser.parse(a);
         System.out.println(grafWiki);
     }

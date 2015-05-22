@@ -21,7 +21,7 @@ public class CtrlPersistencia {
      * @return
      * @throws IOException
      */
-    public static ArrayList<String> importarGrafWikipedia(String path) throws IOException {
+    public static ArrayList<String> getFitxer(String path) throws IOException {
 
         ArrayList<String> list = new ArrayList<String>();
 
@@ -44,7 +44,7 @@ public class CtrlPersistencia {
      * @param list
      * @throws IOException
      */
-    public static void guardarDades(String path, ArrayList<String> list) throws IOException {
+    public static void setFitxer(String path, ArrayList<String> list) throws IOException {
 
         FileWriter writer = new FileWriter(path);
 
@@ -101,5 +101,9 @@ public class CtrlPersistencia {
         w.write(novaLinia);
         w.write("\r\n");
         w.close();
+    }
+
+    public static void crearDirectoriData(String nomDirectori) throws IOException {
+        new File("./data/" + nomDirectori).mkdir();
     }
 }
