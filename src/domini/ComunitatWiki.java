@@ -3,6 +3,8 @@ package domini;
 import graf.NodeWiki;
 import prop.classescompartides.graf.Comunitat;
 
+import java.util.HashSet;
+
 /**
  * Grup 3: Wikipedia
  * User: eduard.casellas
@@ -14,7 +16,7 @@ import prop.classescompartides.graf.Comunitat;
  */
 
 public class ComunitatWiki extends Comunitat<NodeWiki> {
-    private String nom;
+    public String nom;
     private String descripcio;
 
     /**
@@ -24,6 +26,9 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
         super();
     }
 
+    public ComunitatWiki(int id) {
+        super(id);
+    }
 
     /**
      * Retorna el nom de la comunitat

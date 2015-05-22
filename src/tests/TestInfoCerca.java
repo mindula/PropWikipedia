@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import domini.InfoCerca;
 import graf.NodeCategoria;
 
@@ -19,7 +19,7 @@ public class TestInfoCerca {
         String nom = sc.next();
         NodeCategoria a = new NodeCategoria(nom);
         String data = sc.next();
-        CtrlDomini s = CtrlDomini.getInstance();
+        CtrlWikipedia s = CtrlWikipedia.getInstance();
         InfoCerca I = new InfoCerca(s.getGrafWiki().getCategories(),data);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +

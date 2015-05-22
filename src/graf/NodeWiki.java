@@ -13,9 +13,12 @@ public abstract class NodeWiki {
 
     private String nom;
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public NodeWiki(String nom) {
+        this.nom = nom;
+    }
+
+    public void setNom(String nom) {        //modificar node
+        this.nom = nom;
     }
 
     public abstract String getUrl();
@@ -24,8 +27,9 @@ public abstract class NodeWiki {
         return nom;
     }
 
-    public NodeWiki(String nom) {
-        this.nom = nom;
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     @Override

@@ -93,6 +93,11 @@ public class GrafWikipedia {
         grafWiki.eliminarArc(arc);
     }
 
+    public void eliminarArcPC(String cat, String pag, NodeCategoria nc, NodePagina np) {
+        this.getNodeCat(cat).getPagines().remove(np);
+        this.getNodePag(pag).getCategories().remove(nc);
+    }
+
     public List<Arc<NodeCategoria>> getArcs() {
         return grafWiki.getArcs();
     }

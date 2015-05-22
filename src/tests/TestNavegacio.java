@@ -1,7 +1,7 @@
 package tests;
 
 import domini.Cerca;
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import domini.Navegacio;
 import graf.GrafWikipedia;
 import graf.NodeCategoria;
@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class TestNavegacio {
     public static void main(String[] args){
-        GrafWikipedia grafWikipedia = CtrlDomini.getInstance().getGrafWiki();
+        GrafWikipedia grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
         Navegacio navegacio = new Navegacio(grafWikipedia);
         Scanner sc = new Scanner(System.in);
         int option;

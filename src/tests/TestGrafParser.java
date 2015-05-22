@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlDomini;
+import domini.Controladors.CtrlWikipedia;
 import graf.GrafParser;
 import graf.GrafWikipedia;
 
@@ -55,18 +55,18 @@ public class TestGrafParser {
 
         long startTime = System.currentTimeMillis();
 
-        GrafWikipedia g = CtrlDomini.getInstance().getGrafWiki();
-        GrafParser grafParser = new GrafParser(g);
-        try {
-            grafParser.parse(path);
+        GrafWikipedia grafWikipedia;
+
+        /*try {
+            grafWikipedia = GrafParser.parse(path);
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");
 
             System.out.println("Vols mostrar el graf resultat? 1 - Si, 0 - No");
             opcio = sc.nextInt();
-            if (opcio == 1) System.out.println(g);
+            if (opcio == 1) System.out.println(grafWikipedia);
         } catch (IOException e) {
             System.out.println("Error, no s'ha trobat el fitxer " + e.getMessage());
-        }
+        }*/
     }
 }

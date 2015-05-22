@@ -1,14 +1,9 @@
 package graf;
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
-import persistencia.CtrlPersistencia;
+import domini.Controladors.CtrlWikipedia;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
@@ -20,31 +15,29 @@ import java.util.Scanner;
  * A partir d'un input en un fitxer de dades, forma el graf de la Wikipedia
  */
 public class GrafParser {
-    private GrafWikipedia grafWikipedia;
-
+    private static GrafWikipedia grafWikipedia;
     /**
      * Constructora per defecte
      * @param graf
      */
-    public GrafParser(GrafWikipedia graf){
-        grafWikipedia = graf;
+    private GrafParser(GrafWikipedia graf){
     }
 
     /**
      * Construeix un graf a partir d'un arxiu de dades localitzat a un path determinat
-     * @param path
+     * @param graf
      * @return el graf de la Wikipedia
      * @throws IOException
      */
-    public GrafWikipedia parse(String path) throws IOException {
-        ArrayList<String> array = CtrlPersistencia.carregarDades(path);
-        for (String s : array) {
+    public static GrafWikipedia parse(ArrayList<String> graf) throws IOException {
+        grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
+        for (String s : graf) {
             parseLine(s);
         }
         return grafWikipedia;
     }
 
-    private void parseLine(String s){
+    private static void parseLine(String s){
         String[] parts = s.split("\\t");
         // Tipus d'arc: "CsubC", "CsupC", "CP" i "PC"
 
