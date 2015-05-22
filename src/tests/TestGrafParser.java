@@ -3,8 +3,10 @@ package tests;
 import domini.Controladors.CtrlWikipedia;
 import graf.GrafParser;
 import graf.GrafWikipedia;
+import persistencia.CtrlPersistencia;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -57,8 +59,9 @@ public class TestGrafParser {
 
         GrafWikipedia grafWikipedia;
 
-        /*try {
-            grafWikipedia = GrafParser.parse(path);
+        try {
+            ArrayList<String> a = CtrlPersistencia.importarGrafWikipedia(path);
+            grafWikipedia = GrafParser.parse(a);
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");
 
@@ -67,6 +70,6 @@ public class TestGrafParser {
             if (opcio == 1) System.out.println(grafWikipedia);
         } catch (IOException e) {
             System.out.println("Error, no s'ha trobat el fitxer " + e.getMessage());
-        }*/
+        }
     }
 }
