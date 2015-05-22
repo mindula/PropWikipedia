@@ -76,6 +76,7 @@ public class CtrlWikipedia {
      * Retorna el graf de categories pels algorismes
      * @return el graf de categories pels algorismes
      */
+    //TODO: probablement ja no fa falta aqui, crec que te mes sentit a CtrlAlgorisme
     public Graf<NodeCategoria> getGrafAlgoritme() {
         return grafAlgoritme;
     }
@@ -91,7 +92,7 @@ public class CtrlWikipedia {
         ArrayList<String> a = CtrlPersistencia.getFitxer(path);
         grafWiki = GrafParser.parse(a);
         System.out.println(grafWiki);
-        //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format
+        //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format. No se si s'hauria de fer aqui o a CtrlSessio
     }
 
     /**

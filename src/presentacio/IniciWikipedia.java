@@ -34,15 +34,15 @@ public class IniciWikipedia extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        textExaminar = new javax.swing.JTextField();
+        examinar = new javax.swing.JButton();
+        importarICrearSessio = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jTextField2 = new javax.swing.JTextField();
+        crearNovaSessio = new javax.swing.JButton();
+        carregarSessio = new javax.swing.JButton();
+        llistatSessions = new javax.swing.JComboBox();
+        textNomSessioNova = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel2.setVisible(false);
@@ -52,23 +52,23 @@ public class IniciWikipedia extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textExaminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                listenerTextExaminar(evt);
             }
         });
 
-        jButton1.setText("Examinar...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        examinar.setText("Examinar...");
+        examinar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                listenerExaminar(evt);
             }
         });
 
-        jButton2.setText("Importar i crear");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        importarICrearSessio.setText("Importar i crear");
+        importarICrearSessio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                listenerImportarICrearSessio(evt);
             }
         });
 
@@ -86,12 +86,12 @@ public class IniciWikipedia extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jTextField1)
+                                                .addComponent(textExaminar)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(examinar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(importarICrearSessio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
@@ -101,36 +101,36 @@ public class IniciWikipedia extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton1))
+                                        .addComponent(textExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(examinar))
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(importarICrearSessio)
                                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jButton3.setLabel("Crear Sessió");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        crearNovaSessio.setLabel("Crear Sessió");
+        crearNovaSessio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                listenerCrearNovaSessio(evt);
             }
         });
 
-        jButton4.setText("Carregar Sessió");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        carregarSessio.setText("Carregar Sessió");
+        carregarSessio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                listenerCarregarSessio(evt);
             }
         });
 
         actualitzarNomsSessio();
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        llistatSessions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                listenerLlistatSessions(evt);
             }
         });
 
-        jTextField2.setToolTipText("Nom sessió..");
+        textNomSessioNova.setToolTipText("Nom sessió..");
 
         jLabel2.setText("Nova sessió creada!");
 
@@ -139,13 +139,13 @@ public class IniciWikipedia extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNomSessioNova, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(crearNovaSessio, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(llistatSessions, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(carregarSessio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(119, 119, 119))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -156,16 +156,16 @@ public class IniciWikipedia extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap(38, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton3)
-                                        .addComponent(jButton4)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(crearNovaSessio)
+                                        .addComponent(carregarSessio)
+                                        .addComponent(llistatSessions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textNomSessioNova, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jTextField2.getAccessibleContext().setAccessibleName("");
+        textNomSessioNova.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,24 +189,23 @@ public class IniciWikipedia extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void listenerExaminar(java.awt.event.ActionEvent evt) {
         int returnVal = jFileChooser1.showOpenDialog(IniciWikipedia.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path path = jFileChooser1.getSelectedFile().toPath();
             nomSessioImportada = jFileChooser1.getSelectedFile().getName();
-            jTextField1.setText(path.toString());
+            textExaminar.setText(path.toString());
             //This is where a real application would open the file.
 
         }
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        String pathSessioImportada = jTextField1.getText();
+    private void listenerImportarICrearSessio(java.awt.event.ActionEvent evt) {
+        String pathSessioImportada = textExaminar.getText();
         try {
-            CtrlSessio.getInstance().setNovaSessio(nomSessioImportada);
+            CtrlSessio.getInstance().crearNovaSessio(nomSessioImportada);
             CtrlWikipedia.getInstance().getGrafWikiFromFile(pathSessioImportada);
             MainWindow mainWindow = new MainWindow();
             mainWindow.setVisible(true);
@@ -216,16 +215,15 @@ public class IniciWikipedia extends javax.swing.JFrame {
         }
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void listenerTextExaminar(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        if (!jTextField2.getText().isEmpty()) {
-            String nomSessio = jTextField2.getText();
+    private void listenerCrearNovaSessio(java.awt.event.ActionEvent evt) {
+        if (!textNomSessioNova.getText().isEmpty()) {
+            String nomSessio = textNomSessioNova.getText();
             try {
-                if (CtrlSessio.getInstance().setNovaSessio(nomSessio)) {
+                if (CtrlSessio.getInstance().crearNovaSessio(nomSessio)) {
                     actualitzarNomsSessio();
                     jLabel2.setVisible(true);
                 } else {
@@ -238,14 +236,13 @@ public class IniciWikipedia extends javax.swing.JFrame {
         }
     }
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void listenerLlistatSessions(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        String nomSessioSeleccionat = jComboBox1.getSelectedItem().toString();
-        CtrlSessio.setSessio(nomSessioSeleccionat);
+    private void listenerCarregarSessio(java.awt.event.ActionEvent evt) {
+        String nomSessioSeleccionat = llistatSessions.getSelectedItem().toString();
+        CtrlSessio.setSessioJaCreada(nomSessioSeleccionat);
         MainWindow mainWindow = new MainWindow();
         setVisible(false);
         mainWindow.setVisible(true);
@@ -260,7 +257,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(nomsSessio.toArray()));
+        llistatSessions.setModel(new javax.swing.DefaultComboBoxModel(nomsSessio.toArray()));
     }
 
     /**
@@ -288,7 +285,6 @@ public class IniciWikipedia extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IniciWikipedia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,17 +295,17 @@ public class IniciWikipedia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton examinar;
+    private javax.swing.JButton importarICrearSessio;
+    private javax.swing.JButton crearNovaSessio;
+    private javax.swing.JButton carregarSessio;
+    private javax.swing.JComboBox llistatSessions;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField textExaminar;
+    private javax.swing.JTextField textNomSessioNova;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration
 

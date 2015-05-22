@@ -29,13 +29,13 @@ public class CtrlSessio {
         return CtrlPersistencia.getFitxer("./data/sessions.users");
     }
 
-    public boolean setNovaSessio(String usuari) throws IOException{
+    public boolean crearNovaSessio(String usuari) throws IOException{
         ArrayList<String> nomsSessio = CtrlPersistencia.getFitxer("./data/sessions.users");
-        for (String nom : nomsSessio) if (nom.equals(usuari)) return false;
+        for (String nom : nomsSessio)
+            if (nom.equals(usuari))
+                return false;
         CtrlPersistencia.afegirDada("./data/sessions.users", usuari);
         CtrlPersistencia.crearDirectoriData(usuari);
-        directoriSessio = "./data/" + usuari;
-        nomSessio = usuari;
         return true;
     }
 
@@ -47,7 +47,7 @@ public class CtrlSessio {
         return nomSessio;
     }
 
-    public static void setSessio(String nSessio) {
+    public static void setSessioJaCreada(String nSessio) {
         nomSessio = nSessio;
         directoriSessio = "./data/" + nSessio;
     }
