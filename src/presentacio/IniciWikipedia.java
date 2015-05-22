@@ -1,6 +1,7 @@
 package presentacio;
 
 import domini.Controladors.CtrlSessio;
+import domini.Controladors.CtrlWikipedia;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -195,6 +196,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
         int returnVal = jFileChooser1.showOpenDialog(IniciWikipedia.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path path = jFileChooser1.getSelectedFile().toPath();
+            nomSessioImportada = jFileChooser1.getSelectedFile().getName();
             jTextField1.setText(path.toString());
             //This is where a real application would open the file.
 
@@ -203,6 +205,16 @@ public class IniciWikipedia extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO falta fer merda
+        String pathSessioImportada = jTextField1.getText();
+        try {
+            CtrlSessio.getInstance().setNovaSessio(nomSessioImportada);
+            CtrlWikipedia.getInstance().getGrafWikiFromFile(pathSessioImportada);
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.setVisible(true);
+            setVisible(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +226,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
         if (!jTextField2.getText().isEmpty()) {
             String nomSessio = jTextField2.getText();
             try {
-                if (CtrlSessio.getInstance().setNouNomSessio(nomSessio)) {
+                if (CtrlSessio.getInstance().setNovaSessio(nomSessio)) {
                     actualitzarNomsSessio();
                     jLabel2.setVisible(true);
                 } else {
@@ -303,6 +315,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
     // End of variables declaration
 
     private ArrayList<String> nomsSessio;
+    private String nomSessioImportada;
 
     private class HintTextField extends JTextField implements FocusListener {
 

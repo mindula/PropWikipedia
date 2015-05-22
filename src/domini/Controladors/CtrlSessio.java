@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard
+ * Usuari: ricard.gascons
  * Data: 5/22/15
  */
 public class CtrlSessio {
@@ -29,7 +29,7 @@ public class CtrlSessio {
         return CtrlPersistencia.getFitxer("./data/sessions.users");
     }
 
-    public boolean setNouNomSessio(String usuari) throws IOException{
+    public boolean setNovaSessio(String usuari) throws IOException{
         ArrayList<String> nomsSessio = CtrlPersistencia.getFitxer("./data/sessions.users");
         for (String nom : nomsSessio) if (nom.equals(usuari)) return false;
         CtrlPersistencia.afegirDada("./data/sessions.users", usuari);
