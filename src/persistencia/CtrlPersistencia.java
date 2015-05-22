@@ -21,7 +21,7 @@ public class CtrlPersistencia {
      * @return
      * @throws IOException
      */
-    public static ArrayList<String> carregarDades(String path) throws IOException {
+    public static ArrayList<String> importarGrafWikipedia(String path) throws IOException {
 
         ArrayList<String> list = new ArrayList<String>();
 

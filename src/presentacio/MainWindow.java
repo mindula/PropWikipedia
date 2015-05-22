@@ -72,7 +72,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gestionar pàgines", jPanel2);
         jTabbedPane1.addTab("Gestionar temes", temes2);
-        jTabbedPane1.addTab("Carregar", carregar1);
+        jTabbedPane1.addTab("Carregar/Importar", carregar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
