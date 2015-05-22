@@ -1,8 +1,8 @@
 package tests;
 
-import domini.Controladors.CtrlWikipedia;
-import domini.InfoCerca;
-import graf.NodeCategoria;
+import domini.controladors.CtrlWikipedia;
+import domini.modeldades.InfoCerca;
+import domini.modeldades.graf.NodeCategoria;
 
 import java.util.Scanner;
 

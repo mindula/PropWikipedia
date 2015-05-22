@@ -1,11 +1,11 @@
 package tests;
 
-import domini.ComunitatWiki;
-import domini.Controladors.CtrlWikipedia;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodeWiki;
-import graf.OperacionsConjunts;
+import domini.modeldades.ComunitatWiki;
+import domini.controladors.CtrlWikipedia;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodeWiki;
+import domini.controladors.graf.OperacionsConjunts;
 import prop.classescompartides.graf.ConjuntComunitats;
 
 import java.util.Scanner;

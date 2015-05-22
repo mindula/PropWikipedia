@@ -1,10 +1,10 @@
 package tests;
 
-import domini.Controladors.CtrlWikipedia;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.grafgenerator.Criteris.*;
-import graf.grafgenerator.GrafGenerator;
+import domini.controladors.CtrlWikipedia;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.controladors.graf.grafgenerator.Criteris.*;
+import domini.controladors.graf.grafgenerator.GrafGenerator;
 import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;

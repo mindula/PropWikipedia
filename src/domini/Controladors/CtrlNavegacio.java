@@ -1,4 +1,4 @@
-package domini.Controladors;
+package domini.controladors;
 
 /**
  * Grup 3: Wikipedia

@@ -1,6 +1,6 @@
 package tests;
 
-import domini.Controladors.CtrlWikipedia;
+import domini.controladors.CtrlWikipedia;
 
 import java.util.Scanner;
 

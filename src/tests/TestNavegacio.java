@@ -1,11 +1,11 @@
 package tests;
 
-import domini.Cerca;
-import domini.Controladors.CtrlWikipedia;
-import domini.Navegacio;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
+import domini.controladors.Cerca;
+import domini.controladors.CtrlWikipedia;
+import domini.controladors.Navegacio;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
 import java.util.ArrayList;
 import java.util.Scanner;

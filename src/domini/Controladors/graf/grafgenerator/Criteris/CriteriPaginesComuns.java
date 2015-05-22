@@ -1,8 +1,8 @@
-package graf.grafgenerator.Criteris;
+package domini.controladors.graf.grafgenerator.Criteris;
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
 /**
  * Grup 3: Wikipedia
@@ -35,6 +35,6 @@ public class CriteriPaginesComuns extends Criteri{
 
     @Override
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return Math.max(n1.getPagines().size(), n2.getPagines().size());
+        return Math.min(n1.getPagines().size(), n2.getPagines().size());
     }
 }

@@ -1,8 +1,8 @@
-package graf.grafgenerator;
+package domini.controladors.graf.grafgenerator;
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.grafgenerator.Criteris.Criteri;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class GrafGenerator  {
     public Graf<NodeCategoria> generate(GrafWikipedia graf, ArrayList<Criteri> criteris) {
         Graf<NodeCategoria> newGraf = new Graf<NodeCategoria>(graf.getNumCategories());
-
+        
         for (int i = 0; i < graf.getCategories().size(); i++) {
             NodeCategoria n1 = graf.getCategories().get(i);
             if(!newGraf.existeixNode(n1))
@@ -37,15 +37,13 @@ public class GrafGenerator  {
                 if (pes > 0) {
                     Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);
                     newGraf.afegirArc(a);
-                    //System.out.println(pes);
+
                 }
 
 
             }
         }
 
-        //System.out.println(newGraf.mida());
-        //System.out.println(newGraf.ordre());
         return newGraf;
     }
 }

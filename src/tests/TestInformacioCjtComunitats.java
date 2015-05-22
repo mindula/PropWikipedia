@@ -1,8 +1,8 @@
 package tests;
 
-import domini.InformacioCjtComunitats;
-import domini.TipusAlgorisme;
-import graf.NodeCategoria;
+import domini.modeldades.InformacioCjtComunitats;
+import domini.modeldades.TipusAlgorisme;
+import domini.modeldades.graf.NodeCategoria;
 
 import java.util.Scanner;
 

@@ -1,9 +1,12 @@
-package graf;
+package domini.controladors.graf;
 
-import domini.Controladors.CtrlWikipedia;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
@@ -15,29 +18,42 @@ import java.util.ArrayList;
  * A partir d'un input en un fitxer de dades, forma el graf de la Wikipedia
  */
 public class GrafParser {
-    private static GrafWikipedia grafWikipedia;
+    private GrafWikipedia grafWikipedia;
+
     /**
      * Constructora per defecte
      * @param graf
      */
-    private GrafParser(GrafWikipedia graf){
+    public GrafParser(GrafWikipedia graf){
+        grafWikipedia = graf;
     }
 
     /**
      * Construeix un graf a partir d'un arxiu de dades localitzat a un path determinat
-     * @param graf
+     * @param path
      * @return el graf de la Wikipedia
      * @throws IOException
      */
-    public static GrafWikipedia parse(ArrayList<String> graf) throws IOException {
-        grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
-        for (String s : graf) {
+    public void parse(String path) throws IOException{
+        FileInputStream inputStream;
+        Scanner sc;
+        inputStream = new FileInputStream(path);
+        sc = new Scanner(inputStream);
+        while (sc.hasNextLine()) {
+            String s = sc.nextLine();
             parseLine(s);
         }
-        return grafWikipedia;
+        /*
+        List<String> l = Files.readAllLines(path, Charset.defaultCharset());
+        for(String s: l)
+            parseLine(s);
+        */
+        inputStream.close();
+        sc.close();
+
     }
 
-    private static void parseLine(String s){
+    private void parseLine(String s){
         String[] parts = s.split("\\t");
         // Tipus d'arc: "CsubC", "CsupC", "CP" i "PC"
 

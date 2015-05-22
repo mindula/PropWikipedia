@@ -1,10 +1,10 @@
 package tests;
 
-import domini.Cerca;
-import domini.Controladors.CtrlWikipedia;
-import domini.Historial;
-import domini.InfoCerca;
-import graf.GrafWikipedia;
+import domini.controladors.Cerca;
+import domini.controladors.CtrlWikipedia;
+import domini.controladors.Historial;
+import domini.modeldades.InfoCerca;
+import domini.modeldades.graf.GrafWikipedia;
 
 import java.util.Scanner;
 

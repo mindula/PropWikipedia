@@ -1,4 +1,4 @@
-package graf;
+package domini.modeldades.graf;
 
 /**
  * Grup 3: Wikipedia

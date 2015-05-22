@@ -46,7 +46,8 @@ public class Arc<T> {
         if (o == null || getClass() != o.getClass()) return false;
 
         Arc arc = (Arc) o;
-
+        if(getNodeA() == arc.getNodeA() && getNodeB() == arc.getNodeB()) return true;
+        if(getNodeB() == arc.getNodeA() && getNodeA() == arc.getNodeB()) return true;
         if (!nodeA.equals(arc.nodeA)) return false;
         if (!nodeB.equals(arc.nodeB)) return false;
 

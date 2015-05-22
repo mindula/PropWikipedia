@@ -1,11 +1,11 @@
-package domini.Controladors;
+package domini.controladors;
 
-import domini.InformacioCjtComunitats;
-import domini.TipusAlgorisme;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.grafgenerator.Criteris.Criteri;
-import graf.grafgenerator.GrafGenerator;
+import domini.modeldades.InformacioCjtComunitats;
+import domini.modeldades.TipusAlgorisme;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.controladors.graf.grafgenerator.Criteris.Criteri;
+import domini.controladors.graf.grafgenerator.GrafGenerator;
 import prop.classescompartides.algorismes.AlgorismeLouvain;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
 import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;

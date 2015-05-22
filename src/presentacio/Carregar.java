@@ -1,6 +1,6 @@
 package presentacio;
 
-import domini.Controladors.CtrlWikipedia;
+import domini.controladors.CtrlWikipedia;
 
 import javax.swing.*;
 import java.io.IOException;

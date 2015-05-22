@@ -1,6 +1,6 @@
 package tests;
 
-import graf.GrafDirigit;
+import domini.modeldades.graf.GrafDirigit;
 import prop.classescompartides.graf.Arc;
 
 import java.util.Scanner;

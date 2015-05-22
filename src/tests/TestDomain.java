@@ -1,11 +1,11 @@
 package tests;
 
-import domini.Controladors.CtrlAlgorisme;
-import domini.Controladors.CtrlWikipedia;
-import domini.InformacioCjtComunitats;
-import domini.TipusAlgorisme;
-import graf.NodeCategoria;
-import graf.grafgenerator.Criteris.*;
+import domini.controladors.CtrlAlgorisme;
+import domini.controladors.CtrlWikipedia;
+import domini.modeldades.InformacioCjtComunitats;
+import domini.modeldades.TipusAlgorisme;
+import domini.modeldades.graf.NodeCategoria;
+import domini.controladors.graf.grafgenerator.Criteris.*;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 

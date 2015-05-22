@@ -1,9 +1,9 @@
 package tests;
 
-import domini.Controladors.CtrlWikipedia;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
+import domini.controladors.CtrlWikipedia;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
 import java.util.Scanner;
 

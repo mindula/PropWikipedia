@@ -1,8 +1,8 @@
-package graf.grafgenerator.Criteris;
+package domini.controladors.graf.grafgenerator.Criteris;
 
 import domini.JaroWinklerDistance;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
 
 /**
  * Grup 3: Wikipedia

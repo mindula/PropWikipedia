@@ -1,9 +1,7 @@
-package domini;
+package domini.modeldades;
 
-import graf.NodeWiki;
+import domini.modeldades.graf.NodeWiki;
 import prop.classescompartides.graf.Comunitat;
-
-import java.util.HashSet;
 
 /**
  * Grup 3: Wikipedia
@@ -60,7 +58,7 @@ public class ComunitatWiki extends Comunitat<NodeWiki> {
      * @return cert si existeix un node amb un nom <tt>nom</tt>
      */
     public boolean teNode(String nom) {
-        for (NodeWiki n : nodes) {
+        for (NodeWiki n : nodes) { // TODO: MUY MAL PLAN
             if (nom.equals(n.getNom())) return true;
         }
         return false;

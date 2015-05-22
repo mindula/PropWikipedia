@@ -1,8 +1,8 @@
-package domini;
+package domini.controladors;
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 

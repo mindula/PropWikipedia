@@ -1,7 +1,7 @@
-package graf.grafgenerator.Criteris;
+package domini.controladors.graf.grafgenerator.Criteris;
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 

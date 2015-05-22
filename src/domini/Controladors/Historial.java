@@ -1,4 +1,6 @@
-package domini;
+package domini.controladors;
+
+import domini.modeldades.InfoCerca;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,6 @@
 package tests;
 
-import graf.NodePagina;
+import domini.modeldades.graf.NodePagina;
 
 import java.util.Scanner;
 

@@ -4,7 +4,6 @@ package persistencia;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
@@ -15,28 +14,7 @@ public class CtrlPersistencia {
 
     private CtrlPersistencia() {}
 
-    /**
-     *
-     * @param path
-     * @return
-     * @throws IOException
-     */
-    public static ArrayList<String> carregarDades(String path) throws IOException {
 
-        ArrayList<String> list = new ArrayList<String>();
-
-        FileReader fReader = new FileReader(path);
-        BufferedReader reader = new BufferedReader(fReader);
-
-        String linia;
-        while ((linia = reader.readLine()) != null) {
-            list.add(linia);
-        }
-
-        reader.close();
-
-        return list;
-    }
 
     /**
      *

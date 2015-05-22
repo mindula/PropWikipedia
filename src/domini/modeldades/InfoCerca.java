@@ -1,6 +1,6 @@
-package domini;
+package domini.modeldades;
 
-import graf.NodeWiki;
+import domini.modeldades.graf.NodeWiki;
 
 import java.util.ArrayList;
 

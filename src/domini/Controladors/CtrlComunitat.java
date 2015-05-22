@@ -1,7 +1,7 @@
-package domini.Controladors;
+package domini.controladors;
 
-import domini.ComunitatWiki;
-import graf.NodeWiki;
+import domini.modeldades.ComunitatWiki;
+import domini.modeldades.graf.NodeWiki;
 import prop.classescompartides.graf.ConjuntComunitats;
 
 /**

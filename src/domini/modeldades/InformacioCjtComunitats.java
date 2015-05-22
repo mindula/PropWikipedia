@@ -1,4 +1,4 @@
-package domini;
+package domini.modeldades;
 
 /**
  * Grup 3: Wikipedia

@@ -1,16 +1,14 @@
-package domini.Controladors;
+package domini.controladors;
 
-import graf.GrafParser;
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
-import persistencia.CtrlPersistencia;
+import domini.controladors.graf.GrafParser;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 import prop.classescompartides.graf.Graf;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -88,8 +86,9 @@ public class CtrlWikipedia {
      * Cas d'us Importar Fitxer
      */
     public void getGrafWikiFromFile(String path) throws IOException {
-        ArrayList<String> a = CtrlPersistencia.carregarDades(path);
-        grafWiki = GrafParser.parse(a);
+
+        GrafParser parser = new GrafParser(grafWiki);
+        parser.parse(path);
         System.out.println(grafWiki);
     }
 

@@ -1,6 +1,6 @@
 package tests;
 
-import graf.NodeCategoria;
+import domini.modeldades.graf.NodeCategoria;
 
 import java.util.Scanner;
 

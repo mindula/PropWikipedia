@@ -1,4 +1,4 @@
-package domini;
+package domini.controladors;
 
 /**
  * Grup 3: Wikipedia
@@ -10,10 +10,11 @@ package domini;
  * Cerca de nodes dins la Wikipedia.
  */
 
-import graf.GrafWikipedia;
-import graf.NodeCategoria;
-import graf.NodePagina;
-import graf.NodeWiki;
+import domini.JaroWinklerDistance;
+import domini.modeldades.InfoCerca;
+import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -1,6 +1,6 @@
-package domini.Controladors;
+package domini.controladors;
 
-import graf.GrafWikipedia;
+import domini.modeldades.graf.GrafWikipedia;
 
 /**
  * Grup 3: Wikipedia

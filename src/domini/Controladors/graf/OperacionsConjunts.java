@@ -1,4 +1,4 @@
-package graf;
+package domini.controladors.graf;
 
 import prop.classescompartides.graf.Comunitat;
 

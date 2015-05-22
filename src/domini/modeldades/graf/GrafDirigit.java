@@ -1,4 +1,4 @@
-package graf;
+package domini.modeldades.graf;
 
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;

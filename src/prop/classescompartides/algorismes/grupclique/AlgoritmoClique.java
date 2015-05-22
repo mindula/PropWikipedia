@@ -66,12 +66,8 @@ public class AlgoritmoClique<T> {
         HashSet<Arc<T>> nodesAdj = g.getNodesAdjacents(v);
         ArrayList<T> result = new ArrayList<>();
         for (Arc<T> arc: nodesAdj){
-            if (arc.getNodeA().equals(v)){
-                result.add(arc.getNodeB());
-            }
-            else if (arc.getNodeB().equals(v)){
-                result.add(arc.getNodeA());
-            }
+            result.add(Graf.getNodeOposat(v,arc));
+
         }
 
         return result;
