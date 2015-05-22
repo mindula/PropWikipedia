@@ -11,14 +11,25 @@ import java.util.ArrayList;
  * Data: 5/22/15
  */
 public class CtrlSessio {
+    static private CtrlSessio INSTANCE;
+
     private static String directoriSessio;
     private static String nomSessio;
+
+    private CtrlSessio() {}
+
+    public static CtrlSessio getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new CtrlSessio();
+        }
+        return INSTANCE;
+    }
 
     public static ArrayList<String> getNomsSessions() throws IOException{
         return CtrlPersistencia.getFitxer("./data/sessions.users");
     }
 
-    public static boolean setNouNomSessio(String usuari) throws IOException{
+    public boolean setNouNomSessio(String usuari) throws IOException{
         ArrayList<String> nomsSessio = CtrlPersistencia.getFitxer("./data/sessions.users");
         for (String nom : nomsSessio) if (nom.equals(usuari)) return false;
         CtrlPersistencia.afegirDada("./data/sessions.users", usuari);
@@ -29,12 +40,15 @@ public class CtrlSessio {
     }
 
     public String getDirectoriSessio() {
-        if (directoriSessio.isEmpty()) return "#";
         return directoriSessio;
     }
 
     public String getNomSessio() {
-        if (nomSessio.isEmpty()) return "#";
         return nomSessio;
+    }
+
+    public static void setSessio(String nSessio) {
+        nomSessio = nSessio;
+        directoriSessio = "./data/" + nSessio;
     }
 }

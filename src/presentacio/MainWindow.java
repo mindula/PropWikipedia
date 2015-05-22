@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
         temes2 = new Temes();
         carregar1 = new Carregar();
 
+        setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addTab("Navegar", jPanel1);

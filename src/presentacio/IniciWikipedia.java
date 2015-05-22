@@ -3,6 +3,7 @@ package presentacio;
 import domini.Controladors.CtrlSessio;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
@@ -44,6 +45,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         jLabel2.setVisible(false);
+        setTitle("Wikipedia");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(640, 480));
@@ -113,6 +115,11 @@ public class IniciWikipedia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Carregar Sessió");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         actualitzarNomsSessio();
 
@@ -207,7 +214,7 @@ public class IniciWikipedia extends javax.swing.JFrame {
         if (!jTextField2.getText().isEmpty()) {
             String nomSessio = jTextField2.getText();
             try {
-                if (CtrlSessio.setNouNomSessio(nomSessio)) {
+                if (CtrlSessio.getInstance().setNouNomSessio(nomSessio)) {
                     actualitzarNomsSessio();
                     jLabel2.setVisible(true);
                 } else {
@@ -222,6 +229,15 @@ public class IniciWikipedia extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        String nomSessioSeleccionat = jComboBox1.getSelectedItem().toString();
+        CtrlSessio.setSessio(nomSessioSeleccionat);
+        MainWindow mainWindow = new MainWindow();
+        setVisible(false);
+        mainWindow.setVisible(true);
     }
 
     private void actualitzarNomsSessio() {
