@@ -82,7 +82,7 @@ public class GeneraTemes extends javax.swing.JFrame {
     private GenerarTemes generarTemes2;
     // End of variables declaration
 
-    private static class GenerarTemes extends javax.swing.JPanel {
+    public class GenerarTemes extends javax.swing.JPanel {
 
         /**
          * Creates new form GenerarTemes
@@ -120,6 +120,11 @@ public class GeneraTemes extends javax.swing.JFrame {
             jCheckBox3 = new javax.swing.JCheckBox();
             jCheckBox4 = new javax.swing.JCheckBox();
             jSpinner4 = new javax.swing.JSpinner();
+
+            jSpinner1.setEnabled(false);
+            jSpinner2.setEnabled(false);
+            jSpinner3.setEnabled(false);
+            jSpinner4.setEnabled(false);
 
             setPreferredSize(new java.awt.Dimension(640, 480));
 
@@ -197,12 +202,32 @@ public class GeneraTemes extends javax.swing.JFrame {
             jLabel3.setText("Criteris");
 
             jCheckBox1.setText("Nom");
+            jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jCheckBox1ActionPerformed(evt);
+                }
+            });
 
             jCheckBox2.setText("Supercategories comunes");
+            jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jCheckBox2ActionPerformed(evt);
+                }
+            });
 
             jCheckBox3.setText("Subcategories comunes");
+            jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jCheckBox3ActionPerformed(evt);
+                }
+            });
 
             jCheckBox4.setText("Pàgines comunes");
+            jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jCheckBox4ActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
@@ -235,7 +260,6 @@ public class GeneraTemes extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                     .addGap(102, 102, 102)
@@ -284,6 +308,31 @@ public class GeneraTemes extends javax.swing.JFrame {
                                     .addGap(55, 55, 55))
             );
         }// </editor-fold>
+
+        private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
+            if (!jSpinner3.isEnabled())
+                jSpinner3.setEnabled(true);
+            else jSpinner3.setEnabled(false);
+        }
+
+        private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+            if (!jSpinner1.isEnabled())
+                jSpinner1.setEnabled(true);
+            else jSpinner1.setEnabled(false);
+
+        }
+
+        private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {
+            if (!jSpinner2.isEnabled())
+                jSpinner2.setEnabled(true);
+            else jSpinner2.setEnabled(false);
+        }
+
+        private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {
+            if (!jSpinner4.isEnabled())
+                jSpinner4.setEnabled(true);
+            else jSpinner4.setEnabled(false);
+        }
 
 
         // Variables declaration - do not modify
