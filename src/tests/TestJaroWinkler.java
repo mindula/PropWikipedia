@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class TestJaroWinkler {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Comença a introduir strings");
+        System.out.println("Comensa a introduir strings");
         String s1 = sc.next();
         String s2 = sc.next();
         System.out.println("\nRESULTATS:");

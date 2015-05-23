@@ -10,7 +10,7 @@ public class JaroWinklerDistance {
     public static double calculate(String s1, String s2){
         if (s1.equals(s2)) return 1.0;
 
-        //s1 ha de ser la paraula més curta
+        //s1 ha de ser la paraula mes curta
         if (s1.length() > s2.length()){
             String aux = s2;
             s2 = s1;
