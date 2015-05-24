@@ -1,5 +1,6 @@
 package presentacio;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -125,7 +126,10 @@ public class Temes extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        String s = JOptionPane.showInputDialog(this, "Introdueix el nom del nou tema.");
+        //TODO: falta enmsgatzemar el nou tema
+        if (s != null)
+            System.out.println(s);
     }
 
     private void buttonOperacionsTemesActionPerformed(java.awt.event.ActionEvent evt) {
