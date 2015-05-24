@@ -1,12 +1,14 @@
 package presentacio;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
- * Data: 23/05/15
+ * Data: 5/24/15
  */
-
-public class NavegacioP extends javax.swing.JPanel {
+public class NavegacioP extends javax.swing.JFrame {
 
     /**
      * Creates new form NavegacioP
@@ -24,93 +26,171 @@ public class NavegacioP extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        labelTitol = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListCats = new javax.swing.JList();
-        labelCats = new javax.swing.JLabel();
-        jButtonCats = new javax.swing.JButton();
-        jButtonEdit = new javax.swing.JButton();
+        navegacioPPanel = new NavegacioPPanel();
 
-        setMinimumSize(new java.awt.Dimension(400, 300));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new Dimension(640, 480));
+        setResizable(false);
 
-        labelTitol.setText("Títol de la pàgina");
-
-        jListCats.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jListCats);
-
-        labelCats.setText("Categories a les quals pertany");
-
-        jButtonCats.setText("Accedir a la categoria");
-        jButtonCats.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCatsActionPerformed(evt);
-            }
-        });
-
-        jButtonEdit.setText("Editar la pàgina");
-        jButtonEdit.setToolTipText("");
-        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        GroupLayout layout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButtonCats)
-                                        .addComponent(labelCats)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(labelTitol)
-                                .addGap(0, 159, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonEdit)
-                                .addGap(23, 23, 23))
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(navegacioPPanel, GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(labelTitol)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelCats)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonCats)
-                                .addGap(14, 14, 14)
-                                .addComponent(jButtonEdit)
-                                .addContainerGap())
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(navegacioPPanel, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>
 
-    private void jButtonCatsActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(NavegacioP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NavegacioP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NavegacioP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NavegacioP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new NavegacioP().setVisible(true);
+            }
+        });
     }
-
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButtonCats;
-    private javax.swing.JButton jButtonEdit;
-    private javax.swing.JList jListCats;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCats;
-    private javax.swing.JLabel labelTitol;
+    private NavegacioPPanel navegacioPPanel;
     // End of variables declaration
+
+    private static class NavegacioPPanel extends JPanel {
+
+        /**
+         * Creates new form NavegacioPPanel
+         */
+        public NavegacioPPanel() {
+            initComponents();
+        }
+
+        /**
+         * This method is called from within the constructor to initialize the form.
+         * WARNING: Do NOT modify this code. The content of this method is always
+         * regenerated by the Form Editor.
+         */
+        @SuppressWarnings("unchecked")
+        // <editor-fold defaultstate="collapsed" desc="Generated Code">
+        private void initComponents() {
+
+            labelTitol = new JLabel();
+            jScrollPane1 = new JScrollPane();
+            jListCats = new JList();
+            labelCats = new JLabel();
+            jButtonCats = new JButton();
+            jButtonEdit = new JButton();
+
+            setMinimumSize(new Dimension(400, 300));
+
+            labelTitol.setText("Tï¿½tol de la pï¿½gina");
+
+            jListCats.setModel(new AbstractListModel() {
+                String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+                public int getSize() { return strings.length; }
+                public Object getElementAt(int i) { return strings[i]; }
+            });
+            jScrollPane1.setViewportView(jListCats);
+
+            labelCats.setText("Categories a les quals pertany");
+
+            jButtonCats.setText("Accedir a la categoria");
+            jButtonCats.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonCatsActionPerformed(evt);
+                }
+            });
+
+            jButtonEdit.setText("Editar la pï¿½gina");
+            jButtonEdit.setToolTipText("");
+            jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonEditActionPerformed(evt);
+                }
+            });
+
+            GroupLayout layout = new GroupLayout(this);
+            this.setLayout(layout);
+            layout.setHorizontalGroup(
+                    layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonCats)
+                                            .addComponent(labelCats)
+                                            .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                    .addGap(160, 160, 160)
+                                    .addComponent(labelTitol)
+                                    .addGap(0, 159, Short.MAX_VALUE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonEdit)
+                                    .addGap(23, 23, 23))
+            );
+            layout.setVerticalGroup(
+                    layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                    .addGap(25, 25, 25)
+                                    .addComponent(labelTitol)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(labelCats)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButtonCats)
+                                    .addGap(14, 14, 14)
+                                    .addComponent(jButtonEdit)
+                                    .addContainerGap())
+            );
+        }// </editor-fold>
+
+        private void jButtonCatsActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+        }
+
+        private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+        }
+
+
+        // Variables declaration - do not modify
+        private JButton jButtonCats;
+        private JButton jButtonEdit;
+        private JList jListCats;
+        private JScrollPane jScrollPane1;
+        private JLabel labelCats;
+        private JLabel labelTitol;
+        // End of variables declaration
+    }
 }

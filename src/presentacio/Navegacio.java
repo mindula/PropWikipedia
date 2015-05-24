@@ -1,5 +1,7 @@
 package presentacio;
 
+import java.awt.event.ActionEvent;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
@@ -43,7 +45,7 @@ public class Navegacio extends javax.swing.JPanel {
 
         jTextFieldQuery.setToolTipText("Pàgina / Categoria");
 
-        seleccioPC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pàgina", "Categoria" }));
+        seleccioPC.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Pàgina", "Categoria"}));
         seleccioPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccioPCActionPerformed(evt);
@@ -82,16 +84,28 @@ public class Navegacio extends javax.swing.JPanel {
         );
 
         jListP.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
         });
         jScrollPane1.setViewportView(jListP);
 
         jListC.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
         });
         jScrollPane2.setViewportView(jListC);
 
@@ -100,6 +114,11 @@ public class Navegacio extends javax.swing.JPanel {
         jLabelC.setText("Categoria");
 
         botoP.setText("Accedir a pàgina");
+        botoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoPActionPerformed(evt);
+            }
+        });
 
         botoC.setText("Accedir a categoria");
         botoC.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +198,14 @@ public class Navegacio extends javax.swing.JPanel {
 
     private void botoCActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        NavegacioC navegacioC = new NavegacioC();
+        navegacioC.setVisible(true);
+    }
+
+    private void botoPActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        NavegacioP navegacioP = new NavegacioP();
+        navegacioP.setVisible(true);
     }
 
     // Variables declaration - do not modify

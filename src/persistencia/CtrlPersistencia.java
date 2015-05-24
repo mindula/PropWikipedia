@@ -4,7 +4,6 @@ package persistencia;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 /**
  * Grup 3: Wikipedia
@@ -104,6 +103,6 @@ public class CtrlPersistencia {
     }
 
     public static void crearDirectoriData(String nomDirectori) throws IOException {
-        new File("./data/" + nomDirectori).mkdir();
+        new File("data/" + nomDirectori).mkdir();
     }
 }
