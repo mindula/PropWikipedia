@@ -1,5 +1,6 @@
 package domini;
 
+import graf.NodeCategoria;
 import graf.NodeWiki;
 import prop.classescompartides.graf.Comunitat;
 
@@ -15,7 +16,7 @@ import java.util.HashSet;
  * Comunitat de nodes de la wikipedia. Aquesta classe exten una part de les seves funcions de Comunitat
  */
 
-public class ComunitatWiki extends Comunitat<NodeWiki> {
+public class ComunitatWiki extends Comunitat<NodeCategoria> {
     public String nom;
     private String descripcio;
 

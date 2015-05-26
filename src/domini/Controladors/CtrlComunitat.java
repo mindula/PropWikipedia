@@ -1,6 +1,7 @@
 package domini.Controladors;
 
 import domini.ComunitatWiki;
+import domini.ConjuntComunitatWiki;
 import graf.NodeWiki;
 import prop.classescompartides.graf.ConjuntComunitats;
 
@@ -10,10 +11,10 @@ import prop.classescompartides.graf.ConjuntComunitats;
  * Data: 21/05/15
  */
 public class CtrlComunitat {
-    private ConjuntComunitats<NodeWiki> Cjt;
+    public ConjuntComunitatWiki conjunt;
 
     public CtrlComunitat(){
-        this.Cjt = new ConjuntComunitats<NodeWiki>();
+        this.conjunt = new ConjuntComunitatWiki();
     }
 
     /**
@@ -22,6 +23,15 @@ public class CtrlComunitat {
     public void creaComunitat(String nom){
         ComunitatWiki c = new ComunitatWiki();
         c.setNom(nom);
-        Cjt.afegirComunitat(c);
+        conjunt.afegirComunitat(c);
     }
+
+    public void modNomComunitat(int id, String nomnou) throws  Exception{
+        ComunitatWiki c = (ComunitatWiki) conjunt.getComunitats().get(id);
+        c.setNom(nomnou);
+    }
+
+
+
+
 }

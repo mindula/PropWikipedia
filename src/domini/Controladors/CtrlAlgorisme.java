@@ -1,5 +1,6 @@
 package domini.Controladors;
 
+import domini.ConjuntComunitatWiki;
 import domini.InformacioCjtComunitats;
 import domini.TipusAlgorisme;
 import graf.GrafWikipedia;
@@ -52,9 +53,9 @@ public class CtrlAlgorisme{
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
-    public Pair<ConjuntComunitats<NodeCategoria>, InformacioCjtComunitats> cercarComunitats(){
+    public ConjuntComunitatWiki cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
-
+        ConjuntComunitatWiki conjunt;
 
         if(tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
             algorisme = new AlgorismeLouvain<NodeCategoria>();
@@ -74,15 +75,15 @@ public class CtrlAlgorisme{
         System.out.println("Temps en generar: "+generatorTime+"ms");
         System.out.println("Graf generat: "+graf.toString());
         ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
+        conjunt = (ConjuntComunitatWiki)comunitats;
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
         System.out.println("Temps en cercar comunitats: " +elapsedTime+"ms");
 
-
-        InformacioCjtComunitats informacioCjtComunitats = new InformacioCjtComunitats(elapsedTime,comunitats.getNumComunitats(),tipusAlgorisme,"", 0);
+        conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, comunitats.getNumComunitats(), tipusAlgorisme, "", 0));
         // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc
 
-        return new Pair<> (comunitats, informacioCjtComunitats);
+        return conjunt;
     }
 
 }
