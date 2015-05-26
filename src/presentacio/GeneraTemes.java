@@ -5,7 +5,7 @@ package presentacio;
  * Usuari: ricard
  * Data: 5/22/15
  */
-public class GeneraTemes extends javax.swing.JFrame {
+public class GeneraTemes extends javax.swing.JDialog {
 
     /**
      * Creates new form GeneraTemes
@@ -120,6 +120,8 @@ public class GeneraTemes extends javax.swing.JFrame {
             jCheckBox3 = new javax.swing.JCheckBox();
             jCheckBox4 = new javax.swing.JCheckBox();
             jSpinner4 = new javax.swing.JSpinner();
+            jProgressBar1 = new javax.swing.JProgressBar();
+            jTextField1 = new javax.swing.JTextField();
 
             jSpinner1.setEnabled(false);
             jSpinner2.setEnabled(false);
@@ -130,12 +132,27 @@ public class GeneraTemes extends javax.swing.JFrame {
 
             buttonGroup1.add(jRadioButton1);
             jRadioButton1.setText("Louvain");
+            jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jRadioButton1ActionPerformed(evt);
+                }
+            });
 
             buttonGroup1.add(jRadioButton2);
             jRadioButton2.setText("Clique");
+            jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jRadioButton2ActionPerformed(evt);
+                }
+            });
 
             buttonGroup1.add(jRadioButton3);
             jRadioButton3.setText("Girvan Newman");
+            jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jRadioButton3ActionPerformed(evt);
+                }
+            });
 
             jLabel1.setText("Algoritme");
 
@@ -168,9 +185,14 @@ public class GeneraTemes extends javax.swing.JFrame {
                                     .addComponent(jRadioButton3))
             );
 
-            jLabel2.setText("NomAlgorime");
+            jLabel2.setText("Exhaustivitat");
 
-            jButton1.setText("Crear temes");
+            jButton1.setText("Generar temes");
+            jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton1ActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
             jPanel2.setLayout(jPanel2Layout);
@@ -229,30 +251,36 @@ public class GeneraTemes extends javax.swing.JFrame {
                 }
             });
 
+            jTextField1.setEditable(false);
+
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                     jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addGap(0, 0, Short.MAX_VALUE)
-                                                    .addComponent(jLabel3)
-                                                    .addGap(205, 205, 205))
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(60, 60, 60))
-                                            .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(0, 0, Short.MAX_VALUE)))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jSpinner1)
-                                            .addComponent(jSpinner2)
-                                            .addComponent(jSpinner3)
-                                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                    .addGap(0, 248, Short.MAX_VALUE)
+                                                                    .addComponent(jLabel3)
+                                                                    .addGap(205, 205, 205))
+                                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                    .addGap(60, 60, 60))
+                                                            .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                    .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                    .addGap(0, 0, Short.MAX_VALUE)))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addComponent(jSpinner1)
+                                                            .addComponent(jSpinner2)
+                                                            .addComponent(jSpinner3)
+                                                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGap(39, 39, 39))
             );
             jPanel3Layout.setVerticalGroup(
@@ -263,8 +291,7 @@ public class GeneraTemes extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                     .addGap(102, 102, 102)
-                                                    .addComponent(jCheckBox4)
-                                                    .addContainerGap(70, Short.MAX_VALUE))
+                                                    .addComponent(jCheckBox4))
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,8 +305,12 @@ public class GeneraTemes extends javax.swing.JFrame {
                                                             .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(jCheckBox2))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(0, 0, Short.MAX_VALUE))))
+                                                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap())
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -309,26 +340,45 @@ public class GeneraTemes extends javax.swing.JFrame {
             );
         }// </editor-fold>
 
-        private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
-            if (!jSpinner3.isEnabled())
-                jSpinner3.setEnabled(true);
-            else jSpinner3.setEnabled(false);
+        private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+        }
+
+        private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+        }
+
+        private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+        }
+
+        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
         }
 
         private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
             if (!jSpinner1.isEnabled())
                 jSpinner1.setEnabled(true);
             else jSpinner1.setEnabled(false);
-
         }
 
         private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
             if (!jSpinner2.isEnabled())
                 jSpinner2.setEnabled(true);
             else jSpinner2.setEnabled(false);
         }
 
+        private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
+            if (!jSpinner3.isEnabled())
+                jSpinner3.setEnabled(true);
+            else jSpinner3.setEnabled(false);
+        }
+
         private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {
+            // TODO add your handling code here:
             if (!jSpinner4.isEnabled())
                 jSpinner4.setEnabled(true);
             else jSpinner4.setEnabled(false);
@@ -348,6 +398,7 @@ public class GeneraTemes extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel1;
         private javax.swing.JPanel jPanel2;
         private javax.swing.JPanel jPanel3;
+        private javax.swing.JProgressBar jProgressBar1;
         private javax.swing.JRadioButton jRadioButton1;
         private javax.swing.JRadioButton jRadioButton2;
         private javax.swing.JRadioButton jRadioButton3;
@@ -356,6 +407,7 @@ public class GeneraTemes extends javax.swing.JFrame {
         private javax.swing.JSpinner jSpinner2;
         private javax.swing.JSpinner jSpinner3;
         private javax.swing.JSpinner jSpinner4;
+        private javax.swing.JTextField jTextField1;
         // End of variables declaration
     }
 }

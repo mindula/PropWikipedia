@@ -1,6 +1,13 @@
 package presentacio;
 
+import domini.Controladors.CtrlWikipedia;
+import graf.NodeCategoria;
+import graf.NodePagina;
+import org.graphstream.algorithm.util.FibonacciHeap;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia
@@ -25,6 +32,12 @@ public class Navegacio extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+
+        /*final int nTabIndex = MainWindow.indexOfTabComponent(this);
+        final boolean bIsVisible = MainWindow.isEnabledAt( nTabIndex );
+        if ( bIsVisible ) {
+            this.repaint();
+        }*/
 
         jPanel1 = new javax.swing.JPanel();
         jTextFieldQuery = new javax.swing.JTextField();
@@ -83,28 +96,30 @@ public class Navegacio extends javax.swing.JPanel {
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        final ArrayList<NodePagina> llistaP = CtrlWikipedia.getInstance().getGrafWiki().getPagines();
+
         jListP.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
             public int getSize() {
-                return strings.length;
+                return llistaP.size();
             }
 
             public Object getElementAt(int i) {
-                return strings[i];
+                return llistaP.get(i).getNom();
             }
         });
         jScrollPane1.setViewportView(jListP);
 
+        final ArrayList<NodeCategoria> llistaC = CtrlWikipedia.getInstance().getGrafWiki().getCategories();
+
         jListC.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
             public int getSize() {
-                return strings.length;
+                return llistaC.size();
             }
 
             public Object getElementAt(int i) {
-                return strings[i];
+                return llistaC.get(i).getNom();
             }
         });
         jScrollPane2.setViewportView(jListC);
@@ -194,17 +209,21 @@ public class Navegacio extends javax.swing.JPanel {
 
     private void seleccioPCActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
     }
 
     private void botoCActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        NavegacioC navegacioC = new NavegacioC();
+        JDialog navegacioC = new NavegacioC();
+        navegacioC.setModal(true);
         navegacioC.setVisible(true);
+
     }
 
     private void botoPActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        NavegacioP navegacioP = new NavegacioP();
+        JDialog navegacioP = new NavegacioP();
+        navegacioP.setModal(true);
         navegacioP.setVisible(true);
     }
 

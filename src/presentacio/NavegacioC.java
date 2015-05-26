@@ -8,7 +8,7 @@ import java.awt.*;
  * Usuari: aleix.paris
  * Data: 5/24/15
  */
-public class NavegacioC extends javax.swing.JFrame {
+public class NavegacioC extends javax.swing.JDialog {
 
         /**
          * Creates new form NavegacioC

@@ -7,7 +7,7 @@ import javax.swing.*;
  * Usuari: ricard.gascons
  * Data: 5/24/15
  */
-public class OperacionsTemes extends javax.swing.JFrame {
+public class OperacionsTemes extends javax.swing.JDialog {
 
     /**
      * Creates new form OperacionsTemes
