@@ -26,6 +26,8 @@ public class CtrlSessio {
 
     public static ArrayList<String> getNomsSessions() throws IOException{
         //return CtrlPersistencia.getFitxer("data/sessions.users");
+        if(true)
+            throw new RuntimeException("no entenc que vols fer amb aixo");
         return null;
     }
 
@@ -37,6 +39,8 @@ public class CtrlSessio {
         CtrlPersistencia.afegirDada("data/sessions.users", usuari);
         CtrlPersistencia.crearDirectoriData(usuari);
         */
+        if(true)
+            throw new RuntimeException("no entenc que vols fer amb aixo");
         return true;
     }
 
