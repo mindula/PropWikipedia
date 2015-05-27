@@ -1,12 +1,14 @@
 package domini.controladors;
 
-import persistencia.GrafParser;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
+import persistencia.GrafParser;
+import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,21 +23,22 @@ import java.util.Date;
  * CtrlWikipedia de la Wikipedia // TODO: superdefinicion
  */
 
-public class CtrlWikipedia {
-
+public class CtrlWikipedia implements Serializable{
+    // TODO: jo li diria ctrlSessio a aquesta classe ja que te tots els canvis que es realitzen.
     private static CtrlWikipedia INSTANCE;
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
-
+    private ConjuntComunitats<NodeCategoria> conjuntsGenerats;
 
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
-        grafAlgoritme = new Graf<NodeCategoria>();
+        grafAlgoritme = new Graf<>();
+
     }
 
     /**
@@ -48,6 +51,10 @@ public class CtrlWikipedia {
             INSTANCE = new CtrlWikipedia();
         }
         return INSTANCE;
+    }
+
+    public static void setInstance(CtrlWikipedia instance) {
+        CtrlWikipedia.INSTANCE = instance;
     }
 
     /**
@@ -128,7 +135,21 @@ public class CtrlWikipedia {
     }
 
 
+    public ConjuntComunitats<NodeCategoria> getConjuntsGenerats() {
+        return conjuntsGenerats;
+    }
 
+    public void setConjuntsGenerats(ConjuntComunitats<NodeCategoria> conjuntsGenerats) {
+        this.conjuntsGenerats = conjuntsGenerats;
+    }
 
-
+    @Override
+    public String toString() {
+        return "CtrlWikipedia{" +'\n' +
+                "dataCreacio='" + dataCreacio + '\n' +
+                ", grafWiki=" + grafWiki +'\n' +
+                ", grafAlgoritme=" + grafAlgoritme +'\n' +
+                ", conjuntsGenerats=" + conjuntsGenerats +'\n' +
+                '}';
+    }
 }

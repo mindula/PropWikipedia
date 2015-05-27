@@ -2,6 +2,7 @@ package domini.modeldades.graf;
 
 import prop.classescompartides.graf.Arc;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Graf de la Wikipedia
  */
-public class GrafWikipedia {
+public class GrafWikipedia implements Serializable{
 
     private GrafDirigit<NodeCategoria> grafWiki;
 

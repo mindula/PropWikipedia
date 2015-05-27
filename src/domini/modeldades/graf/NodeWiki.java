@@ -6,10 +6,12 @@ package domini.modeldades.graf;
  * Date: 3/04/15
  */
 
+import java.io.Serializable;
+
 /**
  * Node genèric de la Wikipedia
  */
-public abstract class NodeWiki {
+public abstract class NodeWiki implements Serializable {
 
     private String nom;
 

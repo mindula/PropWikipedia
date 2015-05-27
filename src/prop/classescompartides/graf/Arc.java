@@ -7,11 +7,13 @@ package prop.classescompartides.graf; /*****************************************
  *
  *************************************************************************/
 
+import java.io.Serializable;
+
 /**
  *  La classe <tt>Arc</tt> representa un arc amb pes, amb nodeA i nodeB parametritzat.
  */
 
-public class Arc<T> {
+public class Arc<T> implements Serializable{
     private double pes;
     private final T nodeA, nodeB;
 

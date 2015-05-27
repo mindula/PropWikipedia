@@ -1,89 +1,42 @@
 package persistencia;
 
 
+import domini.controladors.CtrlWikipedia;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard.gascons
+ * Usuari: agusti.bau
  * Data: 5/20/15
  */
 public class CtrlPersistencia {
 
-    private CtrlPersistencia() {}
-
-
-    /**
-     *
-     * @param path
-     * @return
-     * @throws IOException
-     */
-    public static ArrayList<String> importarGrafWikipedia(String path) throws IOException {
-        return null;
+    public static  void guardarSessio(String filePath) throws IOException {
+        // TODO: aquest sistema nomes te el inconvenient que si camviem els atributs de la classe CtrlWiki
+        // els fitxers deixen de ser compatibles
+        FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(CtrlWikipedia.getInstance());
+        objectOutputStream.close();
+        fileOutputStream.close();
+        System.out.println("Fitxer guardat a "+filePath);
     }
-        /*
-    public static ArrayList<String> getFitxer(String path) throws IOException {
 
-        ArrayList<String> list = new ArrayList<String>();
+    public static void carregarSessio(String filepath) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(filepath);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        try {
+            CtrlWikipedia sessio = (CtrlWikipedia) objectInputStream.readObject();
+            CtrlWikipedia.setInstance(sessio);
 
-        FileReader fReader = new FileReader(path);
-        BufferedReader reader = new BufferedReader(fReader);
+            System.out.println("Fitxer carregat : "+sessio.toString());
 
-        String linia;
-        while ((linia = reader.readLine()) != null) {
-            list.add(linia);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-
-        reader.close();
-
-        return list;
->>>>>>> 00bcd424368553333d87489b7a744996fe38d543
-    }
-    */
-
-    /**
-     *
-     * @param path
-     * @param list
-     * @throws IOException
-     */
-    public static void setFitxer(String path, ArrayList<String> list) throws IOException {
-
-        FileWriter writer = new FileWriter(path);
-
-        for (String aList : list) {
-            writer.write(aList);
-            writer.write("\r\n");
-        }
-        writer.close();
     }
 
-
-    /**
-     *
-     * @param path
-     * @return
-     */
-    public static boolean esborrarFitxer(String path) {
-        File file = new File(path);
-        return file.delete();
-    }
-
-    /**
-     *
-     * @param path
-     * @return
-     */
-    public static ArrayList<String> llistarFitxers(String path) {
-        File file = new File(path);
-        ArrayList<String> contingut = new ArrayList<String>();
-        String[] llista = file.list();
-        Collections.addAll(contingut, llista);
-        return contingut;
-    }
 
 
 

@@ -1,5 +1,6 @@
 package prop.classescompartides.graf;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * @param <T>
  */
 
-public class ConjuntComunitats<T> {
+public class ConjuntComunitats<T> implements Serializable{
     protected ArrayList<Comunitat<T>> cjtComunitats;
 
     /**

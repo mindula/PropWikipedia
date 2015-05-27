@@ -3,7 +3,6 @@ package domini.controladors;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.controladors.graf.grafgenerator.GrafGenerator;
 import domini.modeldades.ConjuntComunitatWiki;
-import domini.modeldades.InformacioCjtComunitats;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -52,7 +51,7 @@ public class CtrlAlgorisme{
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
-    public ConjuntComunitatWiki cercarComunitats(){
+    public ConjuntComunitats<NodeCategoria> cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
         ConjuntComunitatWiki conjunt;
 
@@ -74,15 +73,14 @@ public class CtrlAlgorisme{
         System.out.println("Temps en generar: "+generatorTime+"ms");
         System.out.println("Graf generat: "+graf.toString());
         ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
-        conjunt = (ConjuntComunitatWiki)comunitats; // TODO: no pots fer aixo
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
-        System.out.println("Temps en cercar comunitats: " +elapsedTime+"ms");
+        System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");
 
-        conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, comunitats.getNumComunitats(), tipusAlgorisme, "", 0));
+        // conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, comunitats.getNumComunitats(), tipusAlgorisme, "", 0));
         // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc
 
-        return conjunt;
+        return comunitats;
     }
 
 }

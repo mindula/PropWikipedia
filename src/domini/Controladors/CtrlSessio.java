@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Data: 5/22/15
  */
 public class CtrlSessio {
+    // TODO: en la meva opinio, no te cap sentit
     static private CtrlSessio INSTANCE;
 
     private static String directoriSessio;

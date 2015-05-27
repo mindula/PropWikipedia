@@ -1,5 +1,6 @@
 package prop.classescompartides.graf;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 /**
@@ -7,7 +8,7 @@ import java.util.HashSet;
  * @param <T>
  */
 
-public class Comunitat<T> {
+public class Comunitat<T> implements Serializable {
     private int id;
     protected HashSet<T> nodes;
 

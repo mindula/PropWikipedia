@@ -21,27 +21,32 @@ public class TestDomain {
 
     public static void main(String args[]) throws Exception {
         Graf g = new Graf();
-        System.out.println("Escull una opcio:\n" +
-                "1.  Test GrafWikipedia\n" +
-                "2.  Test GrafParser\n" +
-                "3.  Test GrafCompartit\n" +
 
-                "4.  Test GrafDirigit\n" +
-                "5.  Test GrafGenerator\n" +
-                "6.  Test ComunitatWiki i OpConjunt\n" +
-                "7.  Test CercaHistorial\n" +
-                "8.  Test Categoria\n" +
-                "9.  Test Pagina\n" +
-                "10. Test Navegacio\n" +
-                "11. Test CercarComunitats\n" +
-                "12. Test InformacioCjtComunitats\n" +
-                "13. Test InfoCerca\n" +
-                "14. Test Algoritme Louvain\n" +
-                "15. Test Jaro-Winkler\n" +
-                "16. Finalitzar Test\n");
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
-        int opcio = sc.nextInt();
-        while (opcio != 16) {
+        int opcio = -1;
+        while (opcio != 17) {
+
+
+            System.out.println("Escull una opcio:\n" +
+                    "1.  Test GrafWikipedia\n" +
+                    "2.  Test GrafParser\n" +
+                    "3.  Test GrafCompartit\n" +
+
+                    "4.  Test GrafDirigit\n" +
+                    "5.  Test GrafGenerator\n" +
+                    "6.  Test ComunitatWiki i OpConjunt\n" +
+                    "7.  Test CercaHistorial\n" +
+                    "8.  Test Categoria\n" +
+                    "9.  Test Pagina\n" +
+                    "10. Test Navegacio\n" +
+                    "11. Test CercarComunitats\n" +
+                    "12. Test InformacioCjtComunitats\n" +
+                    "13. Test InfoCerca\n" +
+                    "14. Test Algoritme Louvain\n" +
+                    "15. Test Jaro-Winkler\n" +
+                    "16. Test Persistencia\n" +
+                    "17. Finalitzar Test\n");
+            opcio = sc.nextInt();
 
             switch (opcio) {
                 case 1:
@@ -99,6 +104,8 @@ public class TestDomain {
 
                     CtrlAlgorisme c = new CtrlAlgorisme(CtrlWikipedia.getInstance().getGrafWiki(), algorisme, par1, criteris);
                     ConjuntComunitats<NodeCategoria>  comunitats = c.cercarComunitats();
+
+                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats);
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats);
                     break;
@@ -114,25 +121,12 @@ public class TestDomain {
                 case 15:
                     TestJaroWinkler.main(null);
                     break;
+                case 16:
+                    TestPersistencia.main(null);
+                    break;
             }
-            System.out.println("Escull una opcio:\n" +
-                    "1.  Test GrafWikipedia\n" +
-                    "2.  Test GrafParser\n" +
-                    "3.  Test GrafCompartit\n" +
-                    "4.  Test GrafDirigit\n" +
-                    "5.  Test GrafGenerator\n" +
-                    "6.  Test ComunitatWiki i OpConjunt\n" +
-                    "7.  Test CercaHistorial\n" +
-                    "8.  Test Categoria\n" +
-                    "9.  Test Pagina\n" +
-                    "10. Test Navegacio\n" +
-                    "11. Test CercarComunitats\n" +
-                    "12. Test InformacioCjtComunitats\n" +
-                    "13. Test InfoCerca\n" +
-                    "14. Test AlgorismeLouvain\n" +
-                    "15. Test Jaro-Winkler\n" +
-                    "16. Finalitzar Test\n");
-            opcio = sc.nextInt();
+
+
         }
     }
 }

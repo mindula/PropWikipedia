@@ -31,9 +31,10 @@ package prop.classescompartides.graf;
  *  <p>
  */
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Graf<T> {
+public class Graf<T> implements Serializable {
 
     protected HashMap<T, Map<T, Arc<T>>> adjacencyMap;
     protected ArrayList<Arc<T>> cjtArcs;
