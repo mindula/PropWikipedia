@@ -15,6 +15,15 @@ public class CtrlPersistencia {
     private CtrlPersistencia() {}
 
 
+    /**
+     *
+     * @param path
+     * @return
+     * @throws IOException
+     */
+    public static ArrayList<String> importarGrafWikipedia(String path) throws IOException {
+        return null;
+    }
 
     /**
      *

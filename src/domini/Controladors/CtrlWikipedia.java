@@ -87,8 +87,10 @@ public class CtrlWikipedia {
      */
     public void getGrafWikiFromFile(String path) throws IOException {
 
+
         GrafParser parser = new GrafParser(grafWiki);
         parser.parse(path);
+
         System.out.println(grafWiki);
     }
 
