@@ -1,18 +1,11 @@
 package tests;
 
-<<<<<<< HEAD
+
 import domini.controladors.CtrlWikipedia;
-import domini.controladors.graf.GrafParser;
+import persistencia.GrafParser;
 import domini.modeldades.graf.GrafWikipedia;
-=======
-import domini.Controladors.CtrlWikipedia;
-import graf.GrafParser;
-import graf.GrafWikipedia;
-import persistencia.CtrlPersistencia;
->>>>>>> 2f2262b18afd10965a74ffc38f6c2e24ee617d4e
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -63,18 +56,11 @@ public class TestGrafParser {
 
         long startTime = System.currentTimeMillis();
 
-<<<<<<< HEAD
         GrafWikipedia grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
         GrafParser parser = new GrafParser(grafWikipedia);
         try {
             parser.parse(path);
-=======
-        GrafWikipedia grafWikipedia;
 
-        try {
-            ArrayList<String> a = CtrlPersistencia.importarGrafWikipedia(path);
-            grafWikipedia = GrafParser.parse(a);
->>>>>>> 2f2262b18afd10965a74ffc38f6c2e24ee617d4e
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");
 

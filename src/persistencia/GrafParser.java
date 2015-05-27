@@ -1,4 +1,4 @@
-package domini.controladors.graf;
+package persistencia;
 
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;

@@ -24,6 +24,25 @@ public class CtrlPersistencia {
     public static ArrayList<String> importarGrafWikipedia(String path) throws IOException {
         return null;
     }
+        /*
+    public static ArrayList<String> getFitxer(String path) throws IOException {
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        FileReader fReader = new FileReader(path);
+        BufferedReader reader = new BufferedReader(fReader);
+
+        String linia;
+        while ((linia = reader.readLine()) != null) {
+            list.add(linia);
+        }
+
+        reader.close();
+
+        return list;
+>>>>>>> 00bcd424368553333d87489b7a744996fe38d543
+    }
+    */
 
     /**
      *
@@ -31,7 +50,7 @@ public class CtrlPersistencia {
      * @param list
      * @throws IOException
      */
-    public static void guardarDades(String path, ArrayList<String> list) throws IOException {
+    public static void setFitxer(String path, ArrayList<String> list) throws IOException {
 
         FileWriter writer = new FileWriter(path);
 
@@ -66,27 +85,6 @@ public class CtrlPersistencia {
         return contingut;
     }
 
-    /**
-     *
-     * @param path
-     * @return
-     */
-    public static boolean existeixFitxer(String path) {
-        File file = new File(path);
-        file.getParentFile().mkdirs();
-        return file.exists();
-    }
 
-    /**
-     * Afegeix una nova linia al final del fitxer
-     * @param path
-     * @param novaLinia
-     * @throws IOException
-     */
-    public static void afegirDada(String path, String novaLinia) throws IOException {
-        FileWriter w = new FileWriter(path, true);
-        w.write(novaLinia);
-        w.write("\r\n");
-        w.close();
-    }
+
 }

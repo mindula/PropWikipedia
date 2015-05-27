@@ -1,19 +1,20 @@
 package domini.modeldades;
 
-import domini.modeldades.graf.NodeWiki;
-import prop.classescompartides.graf.Comunitat;
-
 /**
  * Grup 3: Wikipedia
  * User: eduard.casellas
  * Date: 24/04/15
  */
 
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodeWiki;
+import prop.classescompartides.graf.Comunitat;
+
 /**
  * Comunitat de nodes de la wikipedia. Aquesta classe exten una part de les seves funcions de Comunitat
  */
 
-public class ComunitatWiki extends Comunitat<NodeWiki> {
+public class ComunitatWiki extends Comunitat<NodeCategoria> {
     public String nom;
     private String descripcio;
 

@@ -1,6 +1,6 @@
 package domini.controladors;
 
-import domini.controladors.graf.GrafParser;
+import persistencia.GrafParser;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
@@ -18,7 +18,7 @@ import java.util.Date;
  */
 
 /**
- * CtrlWikipedia de la Wikipedia
+ * CtrlWikipedia de la Wikipedia // TODO: superdefinicion
  */
 
 public class CtrlWikipedia {
@@ -28,6 +28,7 @@ public class CtrlWikipedia {
     private String dataCreacio;
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
+
 
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -74,6 +75,7 @@ public class CtrlWikipedia {
      * Retorna el graf de categories pels algorismes
      * @return el graf de categories pels algorismes
      */
+    //TODO: probablement ja no fa falta aqui, crec que te mes sentit a CtrlAlgorisme
     public Graf<NodeCategoria> getGrafAlgoritme() {
         return grafAlgoritme;
     }
@@ -92,6 +94,7 @@ public class CtrlWikipedia {
         parser.parse(path);
 
         System.out.println(grafWiki);
+        //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format. No se si s'hauria de fer aqui o a CtrlSessio
     }
 
     /**

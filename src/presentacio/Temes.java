@@ -1,5 +1,12 @@
 package presentacio;
 
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard
@@ -23,30 +30,208 @@ public class Temes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new JScrollPane();
+        llistatTemes = new JList();
+        buttonCrearNouTema = new JButton();
+        buttonRenombrarTema = new JButton();
+        afegirCategoria = new JButton();
+        jButton4 = new JButton();
+        jButton5 = new JButton();
+        buttonOperacionsTemes = new JButton();
+        buttonGenerarTemes = new JButton();
+        jScrollPane2 = new JScrollPane();
+        llistatCategories = new JList();
 
-        jLabel1.setText("nothing to show ");
+        setMinimumSize(new Dimension(1024, 720));
+        setPreferredSize(new Dimension(1024, 720));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        llistatTemes.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting())
+                    System.out.println(llistatTemes.getSelectedValue());
+            }
+        });
+        llistatTemes.setModel(new AbstractListModel() {
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
+        });
+        llistatTemes.setMaximumSize(new Dimension(400, 3));
+        jScrollPane1.setViewportView(llistatTemes);
+
+        buttonCrearNouTema.setText("Crear tema nou");
+        buttonCrearNouTema.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                buttonCrearNouTemaActionPerformed(evt);
+            }
+        });
+
+        buttonRenombrarTema.setText("Renombrar tema");
+        buttonRenombrarTema.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                buttonRenombrarTemaActionPerformed(evt);
+            }
+        });
+
+        afegirCategoria.setText("Afegir categoria");
+        afegirCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                buttonAfegirCategoriaActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Treure categoria");
+        jButton4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Moure categoria");
+        jButton5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        buttonOperacionsTemes.setText("Operacions de conjunts");
+        buttonOperacionsTemes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                buttonOperacionsTemesActionPerformed(evt);
+            }
+        });
+
+        buttonGenerarTemes.setText("Generar temes");
+        buttonGenerarTemes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                generarTemesActionPerformed(evt);
+            }
+        });
+
+        llistatCategories.setModel(new AbstractListModel() {
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
+        });
+        jScrollPane2.setViewportView(llistatCategories);
+
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(130, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addContainerGap(179, Short.MAX_VALUE))
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 281, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 281, GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(buttonCrearNouTema, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buttonRenombrarTema, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(afegirCategoria, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buttonOperacionsTemes, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                        .addComponent(buttonGenerarTemes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(149, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addContainerGap(134, Short.MAX_VALUE))
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(205, 205, 205)
+                                                .addComponent(buttonCrearNouTema)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(buttonRenombrarTema)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(afegirCategoria)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButton4)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton5)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(buttonOperacionsTemes)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(buttonGenerarTemes))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(166, 166, 166)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(jScrollPane1)
+                                                        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 367, GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(187, Short.MAX_VALUE))
         );
     }// </editor-fold>
 
+    private void jButton5ActionPerformed(ActionEvent evt) {
+    }
+
+    private void jButton4ActionPerformed(ActionEvent evt) {
+    }
+
+    private void buttonAfegirCategoriaActionPerformed(ActionEvent evt) {
+        if (llistatTemes.isSelectionEmpty()) JOptionPane.showMessageDialog(this, "No hi ha cap tema seleccionat!");
+        else {
+            String temaSeleccionat = llistatTemes.getSelectedValue().toString();
+        }
+    }
+
+    private void buttonRenombrarTemaActionPerformed(ActionEvent evt) {
+        if (llistatTemes.isSelectionEmpty()) JOptionPane.showMessageDialog(this, "No hi ha cap tema seleccionat!");
+        else {
+            String anticValor = llistatTemes.getSelectedValue().toString();
+            String nouValor = JOptionPane.showInputDialog(this, "Reanomena tema", anticValor);
+            System.out.println(nouValor);
+            //TODO: modificar i actualitzar dades
+        }
+    }
+
+    private void buttonCrearNouTemaActionPerformed(java.awt.event.ActionEvent evt) {
+        String s = JOptionPane.showInputDialog(this, "Introdueix el nom del nou tema.");
+        //TODO: falta enmsgatzemar el nou tema
+        if (s != null)
+            System.out.println(s);
+    }
+
+    private void buttonOperacionsTemesActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        JDialog operacionsTemes = new OperacionsTemes();
+        operacionsTemes.setModal(true);
+        operacionsTemes.setVisible(true);
+    }
+
+    private void generarTemesActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        JDialog generaTemes = new GeneraTemes();
+        generaTemes.setModal(true);
+        generaTemes.setVisible(true);
+    }
+
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton buttonCrearNouTema;
+    private javax.swing.JButton buttonRenombrarTema;
+    private javax.swing.JButton afegirCategoria;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton buttonOperacionsTemes;
+    private javax.swing.JButton buttonGenerarTemes;
+    private javax.swing.JList llistatTemes;
+    private javax.swing.JList llistatCategories;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }

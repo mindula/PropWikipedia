@@ -8,6 +8,7 @@ import domini.modeldades.graf.NodeWiki;
 import domini.controladors.graf.OperacionsConjunts;
 import prop.classescompartides.graf.ConjuntComunitats;
 
+import javax.xml.soap.Node;
 import java.util.Scanner;
 
 /**
@@ -150,7 +151,7 @@ public class TestComunitatOpConjunts {
                     }
                     break;
                 case 2:
-                    ConjuntComunitats<NodeWiki> comunitats = new ConjuntComunitats<NodeWiki>();
+                    ConjuntComunitats<NodeCategoria> comunitats = new ConjuntComunitats<NodeCategoria>();
                     System.out.println("Escull una opció:\n" +
                             "0. Veure opcions\n" +
                             "1. Afegir Comunitat\n" +
