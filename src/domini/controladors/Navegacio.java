@@ -7,7 +7,6 @@ import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Grup 3: Wikipedia
@@ -16,7 +15,7 @@ import java.util.HashSet;
  */
 
 /**
- * Navegacio per la Wikipedia, amb tots els detalls explicat a l'enunciat
+ * NavegacioVista per la Wikipedia, amb tots els detalls explicat a l'enunciat
  */
 
 public class Navegacio {
@@ -36,9 +35,9 @@ public class Navegacio {
      * @param nodeCategoria
      * @return les superpacetories d'un node determinat
      */
-    public HashSet<NodeCategoria> getSupercategories(NodeCategoria nodeCategoria){
-        HashSet<Arc<NodeCategoria>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
-        HashSet<NodeCategoria> supercategories = new HashSet<NodeCategoria>();
+    public ArrayList<NodeCategoria> getSupercategories(NodeCategoria nodeCategoria){
+        ArrayList<Arc<NodeCategoria>> arcs = new ArrayList<>(grafWikipedia.getNodesAdjacents(nodeCategoria));
+        ArrayList<NodeCategoria> supercategories = new ArrayList<>();
         for(Arc<NodeCategoria> arc : arcs){
             if(arc.getPes() > 0) supercategories.add(Graf.getNodeOposat(nodeCategoria, arc));
         }
@@ -50,9 +49,9 @@ public class Navegacio {
      * @param nodeCategoria
      * @return les subcategories d'un node determinat
      */
-    public HashSet<NodeCategoria> getSubcategories(NodeCategoria nodeCategoria){
-        HashSet<Arc<NodeCategoria>> arcs = grafWikipedia.getNodesAdjacents(nodeCategoria);
-        HashSet<NodeCategoria> subcategories = new HashSet<NodeCategoria>();
+    public ArrayList<NodeCategoria> getSubcategories(NodeCategoria nodeCategoria){
+        ArrayList<Arc<NodeCategoria>> arcs = new ArrayList<>(grafWikipedia.getNodesAdjacents(nodeCategoria));
+        ArrayList<NodeCategoria> subcategories = new ArrayList<>();
         for(Arc<NodeCategoria> arc : arcs){
             if(arc.getPes() < 0) subcategories.add((NodeCategoria)Graf.getNodeOposat(nodeCategoria, arc));
         }
@@ -73,11 +72,11 @@ public class Navegacio {
      * @param nodePagina
      * @return les categories associades a una pagina
      */
-    public HashSet<NodeCategoria> getCategories(NodePagina nodePagina){
-        return nodePagina.getCategories();
+    public ArrayList<NodeCategoria> getCategories(NodePagina nodePagina){
+        return new ArrayList<>(nodePagina.getCategories());
     }
 
-    public HashSet<NodeCategoria> getCatsTema(NodeCategoria nodeCategoria){
+    public ArrayList<NodeCategoria> getCatsTema(NodeCategoria nodeCategoria){
         // TODO: cal obtenir en la constructora el Conjunt de comunitats
         return null;
     }

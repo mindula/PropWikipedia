@@ -29,6 +29,7 @@ public class FinestraPrincipal extends Application {
             Aqui afegim les TABs
          */
         //tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(new NavegacioVista());
 
         StackPane root = new StackPane();
         root.getChildren().add(tabPane);
