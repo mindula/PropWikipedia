@@ -12,6 +12,7 @@ import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
+import domini.modeldades.InformacioCjtComunitats;
 
 import java.util.ArrayList;
 
@@ -35,10 +36,10 @@ public class CtrlAlgorisme{
 
     /**
      * Constructora per defecte de la classe
-     * @param grafWikipedia
-     * @param tipusAlgorisme
-     * @param par1
-     * @param criteris
+     * @param grafWikipedia    .
+     * @param tipusAlgorisme  .
+     * @param par1           .
+     * @param criteris      .
      */
     public CtrlAlgorisme(GrafWikipedia grafWikipedia, TipusAlgorisme tipusAlgorisme, double par1, ArrayList<Criteri> criteris){
         this.grafWikipedia = grafWikipedia;
@@ -51,9 +52,9 @@ public class CtrlAlgorisme{
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
-    public ConjuntComunitats<NodeCategoria> cercarComunitats(){
+    public ConjuntComunitatWiki cercarComunitats(){
         Algoritme<NodeCategoria> algorisme;
-        ConjuntComunitatWiki conjunt;
+        ConjuntComunitatWiki conjunt = new ConjuntComunitatWiki();
 
         if(tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
             algorisme = new AlgorismeLouvain<NodeCategoria>();
@@ -69,18 +70,14 @@ public class CtrlAlgorisme{
         GrafGenerator generator = new GrafGenerator();
         Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
         long generatorTime = System.currentTimeMillis() - startTime;
-
-        System.out.println("Temps en generar: "+generatorTime+"ms");
-        System.out.println("Graf generat: "+graf.toString());
-        ConjuntComunitats<NodeCategoria> comunitats = algorisme.cercarComunitats(graf, par1);
+        conjunt.setCjtComunitats(algorisme.cercarComunitats(graf, par1));
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
         System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");
 
-        // conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, comunitats.getNumComunitats(), tipusAlgorisme, "", 0));
-        // TODO: afegir criteris i mitjana i s'ha de posar en algun lloc
+         conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, conjunt.getCjtComunitats().getNumComunitats(), tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
 
-        return comunitats;
+        return conjunt;
     }
 
 }

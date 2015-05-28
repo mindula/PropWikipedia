@@ -30,4 +30,8 @@ public class CriteriNom extends Criteri{
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
         return 1.0;
     }
+
+    public String toString() {
+        return "Nom " + getPonderacio();
+    }
 }

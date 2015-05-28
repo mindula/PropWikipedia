@@ -42,4 +42,8 @@ public class CriteriSuperCategoriesComuns extends Criteri{
         return Math.min(graf.getGrau(n1), graf.getGrau(n2));
     }
 
+    public String toString() {
+        return "SupercategoriesComunes " + getPonderacio();
     }
+
+}
