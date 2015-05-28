@@ -1,13 +1,9 @@
-package presentacio;
+package presentacio.swingold;
 
 
 import domini.controladors.CtrlWikipedia;
-import domini.modeldades.graf.NodeCategoria;
-import domini.modeldades.graf.NodePagina;
-import domini.modeldades.graf.NodeWiki;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia

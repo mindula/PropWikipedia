@@ -1,4 +1,4 @@
-package presentacio;
+package presentacio.swingold;
 
 import domini.modeldades.graf.NodeWiki;
 

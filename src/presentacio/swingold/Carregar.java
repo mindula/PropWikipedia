@@ -1,4 +1,4 @@
-package presentacio;
+package presentacio.swingold;
 
 import domini.controladors.CtrlWikipedia;
 

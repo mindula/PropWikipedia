@@ -1,4 +1,4 @@
-package presentacio;
+package presentacio.swingold;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
