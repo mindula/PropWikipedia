@@ -9,8 +9,5 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
-    <orderEntry type="library" name="jung2-2_0_1" level="project" />
-    <orderEntry type="library" name="gs-algo-1" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
