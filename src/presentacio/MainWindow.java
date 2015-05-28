@@ -29,7 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new Navegacio();
+        jPanel1 = new NavegacioVista();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         temes2 = new Temes();
@@ -132,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private Carregar carregar1;
-    private Navegacio jPanel1;
+    private NavegacioVista jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     static private javax.swing.JTabbedPane jTabbedPane1;

@@ -15,15 +15,15 @@ import java.util.ArrayList;
  * Data: 22/05/15
  */
 
-public class Navegacio extends javax.swing.JPanel {
+public class NavegacioVista extends javax.swing.JPanel {
 
     ListModelNodeWiki listp, listc;
 
 
     /**
-     * Creates new form Navegacio
+     * Creates new form NavegacioVista
      */
-    public Navegacio() {
+    public NavegacioVista() {
         initComponents();
     }
 
