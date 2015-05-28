@@ -42,8 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void stateChanged(ChangeEvent e) {
                 if (e.getSource() instanceof JTabbedPane) {
                     JTabbedPane pane = (JTabbedPane) e.getSource();
-                    pane.revalidate();
-                    pane.repaint();
+
                     System.out.println("Selected paneNo : " + pane.getSelectedIndex());
                 }
             }

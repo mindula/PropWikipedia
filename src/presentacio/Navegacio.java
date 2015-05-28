@@ -4,6 +4,7 @@ package presentacio;
 import domini.controladors.CtrlWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
+import domini.modeldades.graf.NodeWiki;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class Navegacio extends javax.swing.JPanel {
 
-    ListModelNodeWiki listLp, listLc;
+    ListModelNodeWiki listp, listc;
 
 
     /**
@@ -34,9 +35,13 @@ public class Navegacio extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+         System.out.println("INIT COMPONENT");
+        listc = new ListModelNodeWiki();
+        listp = new ListModelNodeWiki();
 
-        listLc = new ListModelNodeWiki();
-        listLp = new ListModelNodeWiki();
+        listc.setElements( CtrlWikipedia.getInstance().getGrafWiki().getCategories());
+        listp.setElements(CtrlWikipedia.getInstance().getGrafWiki().getPagines());
+
 
         /*final int nTabIndex = MainWindow.indexOfTabComponent(this);
         final boolean bIsVisible = MainWindow.isEnabledAt( nTabIndex );
@@ -101,32 +106,10 @@ public class Navegacio extends javax.swing.JPanel {
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        final ArrayList<NodePagina> llistaP = CtrlWikipedia.getInstance().getGrafWiki().getPagines();
-
-        jListP.setModel(new javax.swing.AbstractListModel() {
-
-            public int getSize() {
-                return llistaP.size();
-            }
-
-            public Object getElementAt(int i) {
-                return llistaP.get(i).getNom();
-            }
-        });
+        jListP.setModel( listp );
         jScrollPane1.setViewportView(jListP);
 
-        final ArrayList<NodeCategoria> llistaC = CtrlWikipedia.getInstance().getGrafWiki().getCategories();
-
-        jListC.setModel(new javax.swing.AbstractListModel() {
-
-            public int getSize() {
-                return llistaC.size();
-            }
-
-            public Object getElementAt(int i) {
-                return llistaC.get(i).getNom();
-            }
-        });
+        jListC.setModel( listc );
         jScrollPane2.setViewportView(jListC);
 
         jLabelP.setText("Pàgina");

@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-public class ListModelNodeWiki extends AbstractListModel<String> {
+public class ListModelNodeWiki<T extends NodeWiki> extends AbstractListModel<String> {
 
-    private ArrayList<NodeWiki> nodesWikis;
+    private ArrayList<T> nodesWikis;
 
 
     @Override
@@ -25,7 +25,9 @@ public class ListModelNodeWiki extends AbstractListModel<String> {
     }
 
 
-    public void setPagines(ArrayList<NodeWiki> nodesWiki) {
+    public void setElements(ArrayList<T> nodesWiki) {
+
         this.nodesWikis = nodesWiki;
     }
+
 }
