@@ -1,7 +1,6 @@
 package domini.controladors;
 
 import domini.controladors.graf.OperacionsConjunts;
-import domini.modeldades.ComunitatWiki;
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -24,18 +23,21 @@ public class CtrlComunitat {
     /**
      * Cas d'us Crear tema.
      */
-    public void creaComunitat(String nom){
-        ComunitatWiki c = new ComunitatWiki();
-        c.setNom(nom);
-        conjunt.afegirComunitat(c);
+    public void creaComunitat(String nom, int id){
+        Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(id);
+        conjunt.setNom(id,nom);
+        conjunt.getCjtComunitats().afegirComunitat(c);
     }
 
     /**
      * Cas d'us Modificar tema. Canviar nom.
      */
-    public void modNomComunitat(int id, String nomnou) throws  Exception{
-        ComunitatWiki c = (ComunitatWiki) conjunt.getComunitats().get(id); // TODO: no pots fer aixo joder
-        c.setNom(nomnou);
+    public void modNomComunitat(int id, String nomnou){
+        conjunt.setNom(id,nomnou);
+    }
+
+    public void modDescripcioComunitat(int idComunitat, String descripcio){
+        conjunt.setDescripcio(idComunitat,descripcio);
     }
 
     /**
@@ -43,7 +45,7 @@ public class CtrlComunitat {
      */
     public void afegirCatComunitat (int idComunitat, String nomCategoria) throws Exception {
         NodeCategoria categoria = graf.getNodeCat(nomCategoria);
-        conjunt.getComunitat(idComunitat).afegirNode(categoria);
+        conjunt.getCjtComunitats().getComunitat(idComunitat).afegirNode(categoria);
     }
 
     /**
@@ -51,7 +53,7 @@ public class CtrlComunitat {
      */
     public void eliminarCatComunitat(int idComunitat, String nomCategoria) throws Exception {
         NodeCategoria categoria = graf.getNodeCat(nomCategoria);
-        conjunt.getComunitat(idComunitat).eliminarNode(categoria);
+        conjunt.getCjtComunitats().getComunitat(idComunitat).eliminarNode(categoria);
     }
 
     /**
@@ -62,31 +64,31 @@ public class CtrlComunitat {
     }
 
     /**
-     * Cas d'us Operaci� entre temes. Unio.
+     * Cas d'us Operacio entre temes. Unio.
      */
-    public Comunitat<NodeCategoria> unio (int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.unio(conjunt.getComunitat(idComunitat1), conjunt.getComunitat(idComunitat2));
+    public Comunitat unio(int idComunitat1, int idComunitat2) throws Exception{
+        return OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
     /**
-     * Cas d'us Operaci� entre temes. Interseccio.
+     * Cas d'us Operacio entre temes. Interseccio.
      */
-    public Comunitat<NodeCategoria> interseccio (int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.interseccio(conjunt.getComunitat(idComunitat1), conjunt.getComunitat(idComunitat2));
+    public Comunitat interseccio(int idComunitat1, int idComunitat2) throws Exception{
+        return OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
     /**
-     * Cas d'us Operaci� entre temes. Diferencia.
+     * Cas d'us Operacio entre temes. Diferencia.
      */
-    public Comunitat<NodeCategoria> diferencia (int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.diferencia(conjunt.getComunitat(idComunitat1), conjunt.getComunitat(idComunitat2));
+    public Comunitat diferencia (int idComunitat1, int idComunitat2) throws Exception{
+        return OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
     /**
      * Cas d'us Eliminar comunitat.
      */
     public void eliminarComunitat (int idComunitat) throws Exception {
-        conjunt.eliminarComunitat(conjunt.getComunitat(idComunitat));
+        conjunt.getCjtComunitats().eliminarComunitat(conjunt.getCjtComunitats().getComunitat(idComunitat));
     }
 
     //TODO: Metode OPCIONAL Assignar color a un tema

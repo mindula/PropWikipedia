@@ -54,5 +54,14 @@ public class InformacioCjtComunitats {
         return mitjanaNodesPerComunitat;
     }
 
-
+    @Override
+    public String toString() {
+        return "InformacioCjtComunitats{\n" +
+                "milisegons = " + milisegons + "ms" +
+                ",\n nombreComunitats = " + nombreComunitats +
+                ",\n algoritme = " + algoritme +
+                ",\n criteri = '" + criteri + '\'' +
+                ",\n mitjanaNodesPerComunitat=" + mitjanaNodesPerComunitat +
+                "\n}";
+    }
 }

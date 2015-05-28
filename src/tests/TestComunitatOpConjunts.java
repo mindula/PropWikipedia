@@ -1,6 +1,6 @@
-package tests;
+/*package tests;
 
-import domini.modeldades.ComunitatWiki;
+
 import domini.controladors.CtrlWikipedia;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
  * Data: 29/04/15
- */
+ *
 public class TestComunitatOpConjunts {
 
     public static void main (String[] args) throws Exception {
@@ -32,7 +32,7 @@ public class TestComunitatOpConjunts {
         int opcio = sc.nextInt();
         while(opcio != 3){
             switch(opcio){
-                case 1:
+               case 1:
                     ComunitatWiki C = new ComunitatWiki();
                     System.out.println("Escull opcio:\n" +
                             "0. Veure opcions\n" +
@@ -77,7 +77,7 @@ public class TestComunitatOpConjunts {
                                 System.out.println("Escriu el nom del node que volguis inserir");
                                 paraula = sc.next();
                                 n1 = new NodeCategoria(paraula);
-                                C.afegirNode(n1);
+                                C.getComunitat().afegirNode(n1);
                                 graf.afegirCategoria(n1);
                                 break;
                             case 2:
@@ -88,45 +88,45 @@ public class TestComunitatOpConjunts {
                                     System.out.println("Escriu el nom del nou node al conjunt de node");
                                     paraula = sc.next();
                                     n1 = new NodeCategoria(paraula);
-                                    C2.afegirNode(n1);
+                                    C2.getComunitat().afegirNode(n1);
                                     graf.afegirCategoria(n1);
                                 }
-                                C.afegirCjtNodes(C2);
+                                C.getComunitat().afegirCjtNodes(C2.getComunitat());
                                 System.out.println("Conjunt de nodes afegit");
                                 break;
                             case 3:
                                 System.out.println("Escriu el nom del node a eliminar");
                                 paraula = sc.next();
-                                C.eliminarNode(graf.getNodeCat(paraula));
+                                C.getComunitat().eliminarNode(graf.getNodeCat(paraula));
                                 break;
                             case 4:
-                                System.out.println(C.mida());
+                                System.out.println(C.getComunitat().mida());
                                 break;
                             case 5:
-                                System.out.println(C.getNodes());
+                                System.out.println(C.getComunitat().getNodes());
                                 break;
                             case 6:
-                                System.out.println(C.getId());
+                                System.out.println(C.getComunitat().getId());
                                 break;
                             case 7:
                                 System.out.println("Escriu el nou id(Integer)");
                                 ident = sc.nextInt();
-                                C.setId(ident);
+                                C.getComunitat().setId(ident);
                                 break;
                             case 8:
-                                System.out.println(C.estaBuida());
+                                System.out.println(C.getComunitat().estaBuida());
                                 break;
                             case 9:
                                 System.out.println("Escriu el nom del node");
                                 paraula = sc.next();
                                 if (graf.existeixNodeCat(paraula))
-                                    System.out.println(C.teNode(graf.getNodeCat(paraula)));
+                                    System.out.println(C.getComunitat().teNode(graf.getNodeCat(paraula)));
                                 else System.out.println("false");
                                 break;
                             case 10:
                                 System.out.println("Escriu el nom del node");
                                 paraula = sc.next();
-                                System.out.println(C.teNode(paraula));
+                                //System.out.println(C.getComunitat().teNode(paraula));
                                 break;
                             case 11:
                                 System.out.println(C.getNom());
@@ -141,7 +141,6 @@ public class TestComunitatOpConjunts {
                                 break;
                             case 14:
                                 System.out.println("Escriu la nova descripció");
-                                // paraula = "holaaa";
                                 sc.nextLine();
                                 paraula = sc.nextLine();
                                 C.setDescripcio(paraula);
@@ -184,10 +183,10 @@ public class TestComunitatOpConjunts {
                                 break;
                             case 1:
                                 com = new ComunitatWiki();
-                                comunitats.afegirComunitat(com);
+                                comunitats.afegirComunitat(com.getComunitat());
                                 System.out.println("Escriu el seu id");
                                 ident = sc.nextInt();
-                                com.setId(ident);
+                                com.getComunitat().setId(ident);
                                 break;
                             case 2:
                                 System.out.println(comunitats.getNumComunitats());
@@ -206,39 +205,39 @@ public class TestComunitatOpConjunts {
                                 System.out.println("Comunitats preparades. Son les comunitats 222, 333 i 444");
                                 NodeCategoria n = new NodeCategoria("n1");
                                 com = new ComunitatWiki();
-                                comunitats.afegirComunitat(com);
-                                com.setId(222);
-                                com.afegirNode(n);
+                                comunitats.afegirComunitat(com.getComunitat());
+                                com.getComunitat().setId(222);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n2");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n3");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n4");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
 
                                 com = new ComunitatWiki();
-                                comunitats.afegirComunitat(com);
-                                com.setId(333);
+                                comunitats.afegirComunitat(com.getComunitat());
+                                com.getComunitat().setId(333);
                                 n = new NodeCategoria("n2");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n3");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n5");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n6");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
 
                                 com = new ComunitatWiki();
-                                comunitats.afegirComunitat(com);
-                                com.setId(444);
+                                comunitats.afegirComunitat(com.getComunitat());
+                                com.getComunitat().setId(444);
                                 n = new NodeCategoria("n1");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n4");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n5");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 n = new NodeCategoria("n7");
-                                com.afegirNode(n);
+                                com.getComunitat().afegirNode(n);
                                 break;
                             case 6:
                                 System.out.println("Escriu els id de les dues comunitats, han de ser 222, 333 o 444 (Comunitats preparades)");
@@ -278,3 +277,4 @@ public class TestComunitatOpConjunts {
 
     }
 }
+    */

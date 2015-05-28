@@ -3,6 +3,7 @@ package tests;
 import domini.controladors.CtrlAlgorisme;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
+import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.NodeCategoria;
 import prop.classescompartides.graf.ConjuntComunitats;
@@ -65,7 +66,7 @@ public class TestDomain {
                     TestGrafGenerator.main(null);
                     break;
                 case 6:
-                    TestComunitatOpConjunts.main(null);
+                    //TestComunitatOpConjunts.main(null);
                     break;
                 case 7:
                     TestCercaHistorial.main(null);
@@ -103,11 +104,15 @@ public class TestDomain {
                     // Fi de la obtencio de criteris
 
                     CtrlAlgorisme c = new CtrlAlgorisme(CtrlWikipedia.getInstance().getGrafWiki(), algorisme, par1, criteris);
-                    ConjuntComunitats<NodeCategoria>  comunitats = c.cercarComunitats();
+                    ConjuntComunitatWiki comunitats = c.cercarComunitats();
 
-                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats);
+                    System.out.println(comunitats.getInformacio().toString());
+
+                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
                     System.out.println("Comunitats trobades:");
-                    System.out.println(comunitats);
+                    System.out.println(comunitats.getCjtComunitats());
+
+
                     break;
                 case 12:
                     TestInformacioCjtComunitats.main(null);

@@ -41,4 +41,8 @@ public class CriteriSubCategoriesComuns extends Criteri{
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
         return Math.min(graf.getGrau(n1), graf.getGrau(n2));
     }
+
+    public String toString() {
+        return "SubcategoriesComunes " + getPonderacio();
+    }
 }
