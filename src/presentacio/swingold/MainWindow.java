@@ -1,4 +1,4 @@
-package presentacio;
+package presentacio.swingold;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -29,7 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new Navegacio();
+        jPanel1 = new NavegacioVista();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         temes2 = new Temes();
@@ -42,8 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void stateChanged(ChangeEvent e) {
                 if (e.getSource() instanceof JTabbedPane) {
                     JTabbedPane pane = (JTabbedPane) e.getSource();
-                    pane.revalidate();
-                    pane.repaint();
+
                     System.out.println("Selected paneNo : " + pane.getSelectedIndex());
                 }
             }
@@ -133,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private Carregar carregar1;
-    private Navegacio jPanel1;
+    private NavegacioVista jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     static private javax.swing.JTabbedPane jTabbedPane1;
