@@ -112,7 +112,7 @@ public class NavegacioP extends javax.swing.JDialog {
 
             setMinimumSize(new Dimension(400, 300));
 
-            labelTitol.setText("T�tol de la p�gina");
+            labelTitol.setText("Títol de la pàgina");
 
             jListCats.setModel(new AbstractListModel() {
                 String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -130,7 +130,7 @@ public class NavegacioP extends javax.swing.JDialog {
                 }
             });
 
-            jButtonEdit.setText("Editar la p�gina");
+            jButtonEdit.setText("Editar la pàgina");
             jButtonEdit.setToolTipText("");
             jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
