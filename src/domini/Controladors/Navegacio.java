@@ -77,4 +77,8 @@ public class Navegacio {
         return nodePagina.getCategories();
     }
 
+    public HashSet<NodeCategoria> getCatsTema(NodeCategoria nodeCategoria){
+        // TODO: cal obtenir en la constructora el Conjunt de comunitats
+        return null;
+    }
 }
