@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 public class Navegacio extends javax.swing.JPanel {
 
+    ListModelNodeWiki listLp, listLc;
+
+
     /**
      * Creates new form Navegacio
      */
@@ -31,6 +34,9 @@ public class Navegacio extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+
+        listLc = new ListModelNodeWiki();
+        listLp = new ListModelNodeWiki();
 
         /*final int nTabIndex = MainWindow.indexOfTabComponent(this);
         final boolean bIsVisible = MainWindow.isEnabledAt( nTabIndex );
