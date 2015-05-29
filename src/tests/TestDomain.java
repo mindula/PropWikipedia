@@ -1,6 +1,5 @@
 package tests;
 
-
 import domini.controladors.CtrlAlgorisme;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
