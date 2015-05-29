@@ -15,6 +15,7 @@ public class InformacioCjtComunitats {
         private final TipusAlgorisme algoritme;
         private final String criteri;
         private final double mitjanaNodesPerComunitat;
+        private final long tempsgenerar;
 
     /**
      * Constructora per defecte
@@ -24,7 +25,8 @@ public class InformacioCjtComunitats {
      * @param criteri
      * @param mitjanaNodesPerComunitat
      */
-    public InformacioCjtComunitats(long milisegons, int nombreComunitats, TipusAlgorisme algoritme, String criteri, double mitjanaNodesPerComunitat) {
+    public InformacioCjtComunitats(long tempsgenerar, long milisegons, int nombreComunitats, TipusAlgorisme algoritme, String criteri, double mitjanaNodesPerComunitat) {
+        this.tempsgenerar = tempsgenerar;
         this.milisegons = milisegons;
         this.nombreComunitats = nombreComunitats;
         this.algoritme = algoritme;
