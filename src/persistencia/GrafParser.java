@@ -18,15 +18,8 @@ import java.util.Scanner;
  * A partir d'un input en un fitxer de dades, forma el graf de la Wikipedia
  */
 public class GrafParser {
-    private GrafWikipedia grafWikipedia;
 
-    /**
-     * Constructora per defecte
-     * @param graf
-     */
-    public GrafParser(GrafWikipedia graf){
-        grafWikipedia = graf;
-    }
+    private GrafParser(){}
 
     /**
      * Construeix un graf a partir d'un arxiu de dades localitzat a un path determinat
@@ -34,14 +27,14 @@ public class GrafParser {
      * @return el graf de la Wikipedia
      * @throws IOException
      */
-    public void parse(String path) throws IOException{
+    public static void parse(String path, GrafWikipedia grafWikipedia) throws IOException{
         FileInputStream inputStream;
         Scanner sc;
         inputStream = new FileInputStream(path);
         sc = new Scanner(inputStream);
         while (sc.hasNextLine()) {
             String s = sc.nextLine();
-            parseLine(s);
+            parseLine(s, grafWikipedia);
         }
         /*
         List<String> l = Files.readAllLines(path, Charset.defaultCharset());
@@ -50,10 +43,9 @@ public class GrafParser {
         */
         inputStream.close();
         sc.close();
-
     }
 
-    private void parseLine(String s){
+    private static void parseLine(String s, GrafWikipedia grafWiki){
         String[] parts = s.split("\\t");
         // Tipus d'arc: "CsubC", "CsupC", "CP" i "PC"
 
@@ -64,51 +56,51 @@ public class GrafParser {
         if(tipusArc.equals("CP")){
             NodeCategoria nodeA;
             NodePagina nodeB;
-            if(!grafWikipedia.existeixNodeCat(elemA)){
+            if(!grafWiki.existeixNodeCat(elemA)){
                 nodeA = new NodeCategoria(elemA);
-                grafWikipedia.afegirCategoria(nodeA);
+                grafWiki.afegirCategoria(nodeA);
             }
-            else nodeA = grafWikipedia.getNodeCat(elemA);
-            if(!grafWikipedia.existeixNodePag(elemB)){
+            else nodeA = grafWiki.getNodeCat(elemA);
+            if(!grafWiki.existeixNodePag(elemB)){
                 nodeB = new NodePagina(elemB);
-                grafWikipedia.afegirPagina(nodeB);
+                grafWiki.afegirPagina(nodeB);
             }
-            else nodeB = grafWikipedia.getNodePag(elemB);
-            grafWikipedia.afegirArcPC(nodeB, nodeA); // CAT-PAGINA
+            else nodeB = grafWiki.getNodePag(elemB);
+            grafWiki.afegirArcPC(nodeB, nodeA); // CAT-PAGINA
         }
         else if(tipusArc.equals("PC")){
             NodePagina nodeA;
             NodeCategoria nodeB;
-            if(!grafWikipedia.existeixNodePag(elemA)){
+            if(!grafWiki.existeixNodePag(elemA)){
                 nodeA = new NodePagina(elemA);
-                grafWikipedia.afegirPagina(nodeA);
+                grafWiki.afegirPagina(nodeA);
             }
-            else nodeA = grafWikipedia.getNodePag(elemA);
-            if(!grafWikipedia.existeixNodeCat(elemB)){
+            else nodeA = grafWiki.getNodePag(elemA);
+            if(!grafWiki.existeixNodeCat(elemB)){
                 nodeB = new NodeCategoria(elemB);
-                grafWikipedia.afegirCategoria(nodeB);
+                grafWiki.afegirCategoria(nodeB);
             }
-            else nodeB = grafWikipedia.getNodeCat(elemB);
-            grafWikipedia.afegirArcPC(nodeA, nodeB); // PAGINA-CAT
+            else nodeB = grafWiki.getNodeCat(elemB);
+            grafWiki.afegirArcPC(nodeA, nodeB); // PAGINA-CAT
         }
         else { // CsubC, CsupC
             NodeCategoria nodeA;
             NodeCategoria nodeB;
-            if(!grafWikipedia.existeixNodeCat(elemA)){
+            if(!grafWiki.existeixNodeCat(elemA)){
                 nodeA = new NodeCategoria(elemA);
-                grafWikipedia.afegirCategoria(nodeA);
+                grafWiki.afegirCategoria(nodeA);
             }
-            else nodeA = grafWikipedia.getNodeCat(elemA);
-            if(!grafWikipedia.existeixNodeCat(elemB)){
+            else nodeA = grafWiki.getNodeCat(elemA);
+            if(!grafWiki.existeixNodeCat(elemB)){
                 nodeB = new NodeCategoria(elemB);
-                grafWikipedia.afegirCategoria(nodeB);
+                grafWiki.afegirCategoria(nodeB);
             }
-            else nodeB = grafWikipedia.getNodeCat(elemB);
+            else nodeB = grafWiki.getNodeCat(elemB);
             if (tipusArc.equals("CsubC")) {
-                grafWikipedia.afegirArcCsubC(nodeA, nodeB); // SUBCATEGORIA
+                grafWiki.afegirArcCsubC(nodeA, nodeB); // SUBCATEGORIA
             }
             else{ // CsupC
-               grafWikipedia.afegirArcCsupC(nodeA, nodeB); // SUPERCATEGORIA
+               grafWiki.afegirArcCsupC(nodeA, nodeB); // SUPERCATEGORIA
             }
         }
     }
