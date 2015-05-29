@@ -1,8 +1,17 @@
 package tests;
 
 
+
+import org.graphstream.algorithm.generator.BananaTreeGenerator;
+import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.algorithm.generator.lcf.DyckGraphGenerator;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.stream.file.FileSource;
+import org.graphstream.ui.graphicGraph.GraphicGraph;
 import prop.classescompartides.graf.Graf;
 import prop.classescompartides.graf.Arc;
+import org.graphstream.graph.*;
+import org.graphstream.*;
 
 import java.util.Scanner;
 

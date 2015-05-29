@@ -1,11 +1,16 @@
 package tests;
 
+
 import domini.controladors.CtrlAlgorisme;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.NodeCategoria;
+import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
@@ -21,11 +26,11 @@ import java.util.Scanner;
 public class TestDomain {
 
     public static void main(String args[]) throws Exception {
-        Graf g = new Graf();
+
 
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = -1;
-        while (opcio != 17) {
+        while (opcio != 18) {
 
 
             System.out.println("Escull una opcio:\n" +
@@ -46,7 +51,8 @@ public class TestDomain {
                     "14. Test Algoritme Louvain\n" +
                     "15. Test Jaro-Winkler\n" +
                     "16. Test Persistencia\n" +
-                    "17. Finalitzar Test\n");
+                    "17. Dibuixar Comunitats\n" +
+                    "18. Finalitzar Test\n");
             opcio = sc.nextInt();
 
             switch (opcio) {
@@ -128,6 +134,20 @@ public class TestDomain {
                     break;
                 case 16:
                     TestPersistencia.main(null);
+                    break;
+                case 17:
+
+                    Graph gr = new SingleGraph("prova");
+                    gr.setStrict(false);
+                    for(NodeCategoria cat: CtrlWikipedia.getInstance().getGrafWiki().getCategories()){
+                        gr.addNode(cat.getNom());
+                    }
+                    int i = 0;
+                    for (Arc<NodeCategoria> arc:  CtrlWikipedia.getInstance().getGrafWiki().getArcs())  {
+                            gr.addEdge(String.valueOf(i),arc.getNodeA().getNom(),arc.getNodeB().getNom());
+                        ++i;
+                    }
+                    gr.display();
                     break;
             }
 
