@@ -16,8 +16,9 @@ public class TestInformacioCjtComunitats {
     public static void main(String[] args) {
         InformacioCjtComunitats I;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Inicialitza la informacio: milisegons(long), numero de comunitats(int), Algoritme(string)," +
+        System.out.println("Inicialitza la informacio: tempsgenerar(long), milisegons(long), numero de comunitats(int), Algoritme(string)," +
                 "Criteri(string), i Mitjana de nombres per comunitat(long)");
+        long gen = sc.nextInt();
         long mil = sc.nextLong();
         int nCom = sc.nextInt();
         String alg = sc.next();
@@ -29,7 +30,7 @@ public class TestInformacioCjtComunitats {
         else algorisme = TipusAlgorisme.CLIQUE;
         String cri = sc.next();
         long mitj = sc.nextLong();
-        I = new InformacioCjtComunitats(mil,nCom,algorisme,cri,mitj);
+        I = new InformacioCjtComunitats(gen,mil,nCom,algorisme,cri,mitj);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el temps\n" +
