@@ -75,7 +75,7 @@ public class CtrlAlgorisme{
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
         System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");
 
-         conjunt.setInformacio(new InformacioCjtComunitats(elapsedTime, conjunt.getCjtComunitats().getNumComunitats(), tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
+         conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, conjunt.getCjtComunitats().getNumComunitats(), tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
 
         return conjunt;
     }
