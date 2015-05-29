@@ -1,15 +1,10 @@
 package presentacio;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -28,12 +23,30 @@ public class FinestraPrincipal extends Application {
         /*
             Aqui afegim les TABs
          */
-        //tabPane.getTabs().add(tab);
-        tabPane.getTabs().add(new NavegacioVista());
+        tabPane.getTabs().addAll(
+                new NavegacioVista(),
+                new TemesVista(),
+                new Importar());
 
-        StackPane root = new StackPane();
-        root.getChildren().add(tabPane);
-        stage.setScene(new Scene(root, 1024, 720));
+        /*
+            Aquin afegim els menus
+         */
+        Menu menu1 = new Menu("Arxiu");
+        Menu menu2 = new Menu("Opcions");
+        Menu menu3 = new Menu("Ajuda");
+        menu1.getItems().add(new MenuItem("kek"));
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(menu1, menu2, menu3);
+
+
+        //Abans era un StackPane
+        VBox root = new VBox();
+        root.getChildren().addAll(menuBar, tabPane);
+        Scene scene = new Scene(root,1024,720);
+        //CSS per l'AutoFill
+        scene.getStylesheets().add(getClass().getResource("control.css").toExternalForm());
+        stage.setScene(scene);
+
         stage.show();
     }
 
