@@ -73,6 +73,7 @@ public class GirvanNewman<T> {
 	
 	private void stage1Dijkstra(Graf<T> g,T nodeInici ,HashMap<T,Double> dists, HashMap<T,HashSet<T>> anteriors ){
 		HashSet<T> visitat = new HashSet<T>();
+        System.out.println(g.mida());
 		PriorityQueue<AristaGirvan> queue = new PriorityQueue<AristaGirvan>(g.mida(),new GirvanArcComparator());
 		queue.add(new AristaGirvan(nodeInici, 0.0));
 		dists.put(nodeInici,0.0 );

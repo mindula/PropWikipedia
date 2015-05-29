@@ -15,17 +15,26 @@ public class CtrlCatPag {
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
+    public void ObtenirCategoria(String nom){
+        grafWiki.getNodeCat(nom);
+    }
+
+    public void ObtenirPagina(String nom){
+        grafWiki.getNodePag(nom);
+    }
+
+
     /**
      * Cas d'us Modificar categoria
      */
-    public void ModCat(String nomantic, String nounom){
+    public void ModificarNomCat(String nomantic, String nounom){
         grafWiki.getNodeCat(nomantic).setNom(nounom);
     }
 
     /**
      * Cas d'us Modificar pagina
      */
-    public void ModPag(String nomantic, String nounom){
+    public void ModificarNomPag(String nomantic, String nounom){
         grafWiki.getNodePag(nomantic).setNom(nounom);
     }
 

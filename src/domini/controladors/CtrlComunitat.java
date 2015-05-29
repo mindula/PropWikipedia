@@ -12,12 +12,20 @@ import prop.classescompartides.graf.Comunitat;
  * Data: 21/05/15
  */
 public class CtrlComunitat {
-    public ConjuntComunitatWiki conjunt;
-    public GrafWikipedia graf;
 
-    public CtrlComunitat(){
+    private static CtrlComunitat INSTANCE;
+
+    private ConjuntComunitatWiki conjunt;
+    private GrafWikipedia graf;
+
+    private CtrlComunitat(){
         this.conjunt = new ConjuntComunitatWiki();
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
+    }
+
+    public static CtrlComunitat getInstance() {
+        if (INSTANCE == null) INSTANCE = new CtrlComunitat();
+        return INSTANCE;
     }
 
     /**

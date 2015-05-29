@@ -11,6 +11,7 @@ import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import prop.classescompartides.graf.Arc;
+import prop.classescompartides.graf.Comunitat;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
@@ -139,6 +140,9 @@ public class TestDomain {
 
                     Graph gr = new SingleGraph("prova");
                     gr.setStrict(false);
+                    String[] color = {"red", "blue", "yellow", "brown", "purple", "green", "black", "pink", "rgb(0,100,50)", "rgb(200,100,50)", "rgb(50,80,50)", "rgb(23,10,95)", "rgb(50,0,50)", "rgb(0,0,50)", "rgb(200,255,50)", "rgb(200,100,0)"};
+                    //gr.addAttribute("ui.stylesheet", "graph { fill-color: red; }");
+                    int j= 0;
                     for(NodeCategoria cat: CtrlWikipedia.getInstance().getGrafWiki().getCategories()){
                         gr.addNode(cat.getNom());
                     }
@@ -146,6 +150,11 @@ public class TestDomain {
                     for (Arc<NodeCategoria> arc:  CtrlWikipedia.getInstance().getGrafWiki().getArcs())  {
                             gr.addEdge(String.valueOf(i),arc.getNodeA().getNom(),arc.getNodeB().getNom());
                         ++i;
+                    }
+                    for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getComunitats()){
+                        for (NodeCategoria cat: com.getNodes()){
+                            gr.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId()] + ";");
+                        }
                     }
                     gr.display();
                     break;
