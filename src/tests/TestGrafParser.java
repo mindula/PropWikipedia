@@ -57,9 +57,8 @@ public class TestGrafParser {
         long startTime = System.currentTimeMillis();
 
         GrafWikipedia grafWikipedia = CtrlWikipedia.getInstance().getGrafWiki();
-        GrafParser parser = new GrafParser(grafWikipedia);
         try {
-            parser.parse(path);
+            GrafParser.parse(path, grafWikipedia);
 
             long elapsedTime = System.currentTimeMillis()-startTime;
             System.out.println("S'han trigat: "+elapsedTime+"ms");

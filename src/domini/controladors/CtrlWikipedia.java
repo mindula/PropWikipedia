@@ -97,8 +97,7 @@ public class CtrlWikipedia implements Serializable{
     public void getGrafWikiFromFile(String path) throws IOException {
 
 
-        GrafParser parser = new GrafParser(grafWiki);
-        parser.parse(path);
+        GrafParser.parse(path, grafWiki);
 
         System.out.println(grafWiki);
         //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format. No se si s'hauria de fer aqui o a CtrlSessio

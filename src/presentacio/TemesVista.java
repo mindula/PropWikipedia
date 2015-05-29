@@ -57,7 +57,7 @@ public class TemesVista extends Tab {
 
         HBox parentBox = new HBox(SPACE);
         parentBox.getChildren().addAll(wrapperTaules, liniaBotons);
-        parentBox.setAlignment(Pos.CENTER_LEFT);
+        parentBox.setAlignment(Pos.CENTER);
         parentBox.setPadding(new Insets(20));
         setContent(parentBox);
     }
