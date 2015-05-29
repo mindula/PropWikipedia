@@ -93,10 +93,13 @@ public class NavegacioVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 String cercat = queryText.getText();
-                if (pagCerca.getValue().equals(pagCerca.getItems().get(0))) // pàgina
+                if (pagCerca.getValue().equals(pagCerca.getItems().get(0))){ // pàgina
                     llistaP.getSelectionModel().select(cercat);
-                else
+
+                }
+                else{
                     llistaC.getSelectionModel().select(cercat);
+                }
             }
         });
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
