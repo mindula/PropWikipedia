@@ -45,9 +45,9 @@ public class NavegacioVista extends Tab {
         Label pagLabel = new Label("Pàgines");
         Label catLabel = new Label("Categories");
         ListView<String> llistaP = new ListView<>();
-        llistaP.getItems().addAll("hoho", "a");      // TEST
+        llistaP.getItems().addAll("hoho", "a");      // TODO:
         ListView<String> llistaC = new ListView<>();
-        llistaC.getItems().addAll("Cat1", "Cat2");   // TEST
+        llistaC.getItems().addAll("Cat1", "Cat2");   // TODO:
         Button accedirP = new Button("Accedir a pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
         Button accedirC = new Button("Accedir a categoria");
