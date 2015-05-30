@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -40,34 +41,32 @@ public class NavegacioC {
         llistaP.getItems().addAll("QWERTTYUIOP", "asdf");
         Button accedirP = new Button("Accedir a la pàgina");
         //accedirP.setMaxWidth(Double.MAX_VALUE);
+        VBox boxP = new VBox(SPACE);
+        boxP.getChildren().addAll(labelP, llistaP, accedirP);
         Label labelSuper = new Label("Supercategories");
         ListView<String> llistaSuper = new ListView<>(/****************/);
         llistaSuper.getItems().addAll("super1");
+        Button accedirSuper= new Button("Accedir a la supercategoria");
+        //setMaxWidth(Double.MAX_VALUE);
+        VBox boxSuper = new VBox(SPACE);
+        boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper);
+        Label labelSub = new Label("Subcategories");
+        ListView<String> llistaSub = new ListView<>(/************/);
+        llistaSub.getItems().addAll("sub1");
+        Button accedirSub = new Button("Accedir a la subcategoria");
+        //setMaxWidth(Double.MAX_VALUE);
+        VBox boxSub = new VBox(SPACE);
+        boxSub.getChildren().addAll(labelSub, llistaSub, accedirSub);
 
-
-
+        HBox boxPagSuperSub = new HBox(SPACE);
+        boxPagSuperSub.getChildren().addAll(boxP, boxSuper, boxSub);
 
         Button editar = new Button("Editar la categoria");
         Button eliminar = new Button("Eliminar la categoria");
         //editar.setMaxWidth(Double.MAX_VALUE);
         //eliminar.setMaxWidth(Double.MAX_VALUE);
 
-        /*parent.getChildren().addAll(titol, separator1, labelP, llistaP,
-                accedirP, separator2, editar, eliminar);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-        parent.getChildren().addAll(titol, separator1);
+        parent.getChildren().addAll(titol, separator1, boxPagSuperSub);
 
         // OnMouseClicked Listeners:
 
