@@ -74,21 +74,21 @@ public class CtrlComunitat {
     /**
      * Cas d'us Operacio entre temes. Unio.
      */
-    public Comunitat unio(int idComunitat1, int idComunitat2) throws Exception{
+    public Comunitat<NodeCategoria> unio(int idComunitat1, int idComunitat2) throws Exception{
         return OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
     /**
      * Cas d'us Operacio entre temes. Interseccio.
      */
-    public Comunitat interseccio(int idComunitat1, int idComunitat2) throws Exception{
+    public Comunitat<NodeCategoria> interseccio(int idComunitat1, int idComunitat2) throws Exception{
         return OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
     /**
      * Cas d'us Operacio entre temes. Diferencia.
      */
-    public Comunitat diferencia (int idComunitat1, int idComunitat2) throws Exception{
+    public Comunitat<NodeCategoria> diferencia (int idComunitat1, int idComunitat2) throws Exception{
         return OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
     }
 
