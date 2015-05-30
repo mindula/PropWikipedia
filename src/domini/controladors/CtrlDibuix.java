@@ -17,6 +17,7 @@ public class CtrlDibuix {
 
 
     public void DibuixarGraf(){
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         Graph graf = new SingleGraph("Graf");
         graf.setStrict(false);
         for(NodeCategoria cat: CtrlWikipedia.getInstance().getGrafWiki().getCategories()){
@@ -33,17 +34,23 @@ public class CtrlDibuix {
 
 
     public void DibuixarGrafAmbComunitats(){
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         Graph graf = new SingleGraph("Graf");
         graf.setStrict(false);
         for(NodeCategoria cat: CtrlWikipedia.getInstance().getGrafWiki().getCategories()){
             graf.addNode(cat.getNom());
+            graf.getNode(cat.getNom()).addAttribute("ui.style", "size: 15px;");
         }
+        graf.addAttribute("ui.stylesheet", "edge {" +
+                "    shape: line;" +
+                "    fill-color: #222;" +
+                "    z-index: 3;" +
+                "}");
         int i = 0;
         for (Arc<NodeCategoria> arc:  CtrlWikipedia.getInstance().getGrafWiki().getArcs())  {
-            graf.addEdge(String.valueOf(i),arc.getNodeA().getNom(),arc.getNodeB().getNom());
+            graf.addEdge(String.valueOf(i), arc.getNodeA().getNom(), arc.getNodeB().getNom());
             ++i;
         }
-
         graf.addAttribute("ui.quality");
         graf.addAttribute("ui.antialias");
         for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getComunitats()){
@@ -51,8 +58,13 @@ public class CtrlDibuix {
                 if (com.mida() > 1) {
                     graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
                 }
-                else  graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color: black;");
+                else {
+                    graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color: black;");
+                    graf.getNode(cat.getNom()).addAttribute("ui.style", "size: 3px;");
+                }
+
             }
+
         }
 
         graf.display();
