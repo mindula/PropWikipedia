@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlComunitat;
 import domini.controladors.CtrlWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -19,6 +20,7 @@ import presentacio.autocompletat.AutoCompleteComboBoxListener;
 import prop.classescompartides.graf.Comunitat;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 /**
@@ -34,12 +36,29 @@ public class TemesVista extends Tab {
 
 
     public TemesVista() {
-        setText("Temes");
+        setText("Navegar temes");
 
         llistaT = new ListView<>();
         actualitzaTemes();
+        llistaT.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (!llistaT.getSelectionModel().isEmpty()) {
+                    String tema = llistaT.getSelectionModel().getSelectedItem();
+                    int id = CtrlComunitat.getInstance().getId(tema);
+                    try {
+                        HashSet<NodeCategoria> c =
+                                CtrlComunitat.getInstance().getConjunt().getCjtComunitats().getComunitat(id).getNodes();
+                        ObservableList<String> data = FXCollections.observableArrayList();
+                        llistaC.setItems(data);
+                        for (NodeCategoria n : c) data.add(n.getNom());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
         llistaC = new ListView<>();
-        llistaC.getItems().addAll("Cat 1", "Cat 2");
 
         HBox liniaTC = new HBox();
         liniaTC.getChildren().addAll(llistaT, llistaC);
@@ -54,7 +73,7 @@ public class TemesVista extends Tab {
         Button eliminarCatButton = new Button("Eliminar categoria");
         eliminarCatButton.setMaxWidth(Double.MAX_VALUE);
         eliminarCatButton.setOnMouseClicked(action);
-        Button moureCatButton = new Button("Moure categoria");
+        Button moureCatButton = new Button("Eliminar tema");
         moureCatButton.setMaxWidth(Double.MAX_VALUE);
         moureCatButton.setOnMouseClicked(action);
         Button opCjtsButton = new Button("Operacions entre temes");
@@ -84,7 +103,7 @@ public class TemesVista extends Tab {
     public void actualitzaTemes() {
         ArrayList<Comunitat<NodeCategoria>> cjtComunitats
                 = CtrlComunitat.getInstance().getConjunt().getCjtComunitats().getComunitats();
-        llistaT.getItems().clear();
+        //llistaT.getItems().clear();
         for (Comunitat<NodeCategoria> c : cjtComunitats) {
             llistaT.getItems().add("Tema " + c.getId());
         }
@@ -104,6 +123,33 @@ public class TemesVista extends Tab {
                 else if ("Afegir categoria".equals(buttonName)) {
                     if (!llistaT.getSelectionModel().isEmpty())
                         dialogAfegirCat();
+                }
+                else if ("Eliminar categoria".equals(buttonName)) {
+                    if (!llistaT.getSelectionModel().isEmpty() && !llistaC.getSelectionModel().isEmpty()) {
+                        String tema = llistaT.getSelectionModel().getSelectedItem();
+                        String cat = llistaC.getSelectionModel().getSelectedItem();
+                        CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+                        int idTema = ctrlComunitat.getId(tema);
+                        try {
+                            ctrlComunitat.eliminarCatComunitat(idTema, cat);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        llistaC.getItems().remove(cat);
+                    }
+                }
+                else if ("Eliminar tema".equals(buttonName)) {
+                    if (!llistaT.getSelectionModel().isEmpty()) {
+                        CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+                        String tema = llistaT.getSelectionModel().getSelectedItem();
+                        int id = ctrlComunitat.getId(tema);
+                        try {
+                            ctrlComunitat.eliminarComunitat(id);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        llistaT.getItems().remove(tema);
+                    }
                 }
             }
         };
@@ -145,7 +191,7 @@ public class TemesVista extends Tab {
         parent.getChildren().addAll(inputText, separator, botons);
 
         Scene dialogScene = new Scene(parent);
-        dialog.setTitle("Eliminar pàgina");
+        dialog.setTitle("Crear tema");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
@@ -170,16 +216,20 @@ public class TemesVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
-                try {
-                    ctrlComunitat.creaComunitat(
-                            inputText.getValue(),
-                            ctrlComunitat.getConjunt().getCjtComunitats().getNumComunitats()
-                    );
-                    llistaT.getItems().add(inputText.getValue());
-                } catch (Exception e) {
-                    e.printStackTrace();
+                CtrlCatPag ctrlCatPag = CtrlCatPag.getInstance();
+                if (!ctrlCatPag.existeixCategoria(inputText.getValue())) {
+                    inputText.setValue("No existeix la categoria triada");
+                } else {
+                    try {
+                        ctrlComunitat.afegirCatComunitat(
+                                ctrlComunitat.getId(llistaT.getFocusModel().getFocusedItem()),
+                                inputText.getValue());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(ctrlComunitat.getConjunt().getCjtComunitats());
+                    dialog.close();
                 }
-                dialog.close();
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -194,7 +244,7 @@ public class TemesVista extends Tab {
         parent.getChildren().addAll(inputText, separator, botons);
 
         Scene dialogScene = new Scene(parent);
-        dialog.setTitle("Eliminar pàgina");
+        dialog.setTitle("Afegir categoria");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);

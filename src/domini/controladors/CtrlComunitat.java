@@ -50,7 +50,7 @@ public class CtrlComunitat {
     }
 
     public void modDescripcioComunitat(int idComunitat, String descripcio){
-        conjunt.setDescripcio(idComunitat,descripcio);
+        conjunt.setDescripcio(idComunitat, descripcio);
     }
 
     /**

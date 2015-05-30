@@ -4,16 +4,15 @@ import domini.controladors.CtrlWikipedia;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import presentacio.swingold.Temes;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +26,8 @@ public class FinestraPrincipal extends Application {
 
     private NavegacioVista navegacioVista;
     private TemesVista temesVista;
+    private GenerarTemes generarTemes;
+
     private TabPane tabPane;
     private Scene scene;
     private Stage stage;
@@ -40,6 +41,7 @@ public class FinestraPrincipal extends Application {
 
         navegacioVista = new NavegacioVista();
         temesVista = new TemesVista();
+        generarTemes = new GenerarTemes(this);
 
         tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -48,7 +50,8 @@ public class FinestraPrincipal extends Application {
          */
         tabPane.getTabs().addAll(
                 navegacioVista,
-                temesVista);
+                temesVista,
+                generarTemes);
 
         /*
             Aquin afegim els menus
@@ -77,9 +80,6 @@ public class FinestraPrincipal extends Application {
         VBox root = new VBox();
         root.getChildren().addAll(menuBar, tabPane);
         scene = new Scene(root,1024,768);
-
-        //CSS per l'AutoFill
-        scene.getStylesheets().add(getClass().getResource("control.css").toExternalForm());
 
         stage.setScene(scene);
 
@@ -117,8 +117,8 @@ public class FinestraPrincipal extends Application {
         };
     }
 
-    public void reloadVista() {
-        com.sun.javafx.css.StyleManager.getInstance().reloadStylesheets(scene);
+    public void actualitzarTemes() {
+        temesVista.actualitzaTemes();
     }
 
     public static void main(String[] args) {
