@@ -1,14 +1,16 @@
 package presentacio;
 
-import javafx.application.Platform;
+import domini.controladors.CtrlWikipedia;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -64,7 +66,7 @@ public class NavegacioP {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.show();
-                navegacioVista.tanca();
+                navegacioVista.tancaFill();
             }
         });
         editar.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -76,7 +78,39 @@ public class NavegacioP {
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                final Stage dialog = new Stage();
+                VBox parent = new VBox(SPACE);
+                parent.setPadding(new Insets(20));
+                Label confirmation = new Label("Estàs segur de que vols eliminar la pàgina " + nomP + "?");
+                Separator separator = new Separator(); separator.setVisible(false);
+                HBox botons = new HBox(SPACE);
+                Button ok = new Button("D'acord");
+                ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        CtrlWikipedia.getInstance().elimPag(nomP);
+                        navegacioVista.carregarPagines();
+                        dialog.close();
+                    }
+                });
+                Button cancel = new Button("Cancel·lar");
+                cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        dialog.close();
+                    }
+                });
+                botons.getChildren().addAll(ok, cancel);
+                botons.setAlignment(Pos.CENTER);
+                parent.getChildren().addAll(confirmation, separator, botons);
+
+                Scene dialogScene = new Scene(parent);
+                dialog.setTitle("Eliminar pàgina");
+                dialog.setResizable(false);
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.setScene(dialogScene);
+                dialog.show();
+
             }
         });
         return scene;

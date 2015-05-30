@@ -114,10 +114,40 @@ public class NavegacioVista extends Tab {
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
+                stage.setTitle("Pàgina");
                 stage.show();
             }
         });
-
+        accedirC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        novaP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        novaC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminarC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
 
         // finalment
         setContent(parentBox);
@@ -154,7 +184,7 @@ public class NavegacioVista extends Tab {
             queryText.setData(data);
     }
 
-    public void tanca(){
+    public void tancaFill(){
         stage.close();
     }
 
