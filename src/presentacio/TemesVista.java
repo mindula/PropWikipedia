@@ -102,7 +102,8 @@ public class TemesVista extends Tab {
                     dialogCrearTema();
                 }
                 else if ("Afegir categoria".equals(buttonName)) {
-                    dialogAfegirCat();
+                    if (!llistaT.getSelectionModel().isEmpty())
+                        dialogAfegirCat();
                 }
             }
         };
