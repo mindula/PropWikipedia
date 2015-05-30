@@ -38,7 +38,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
     }
 
-    public int aconseguirId(String nom) {
+    public int getId(String nom) {
         return conjunt.getId(nom);
     }
 
