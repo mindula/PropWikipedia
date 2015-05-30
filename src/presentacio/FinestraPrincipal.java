@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import presentacio.swingold.Temes;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,27 +25,37 @@ import java.io.IOException;
  */
 public class FinestraPrincipal extends Application {
 
+    private NavegacioVista navegacioVista;
+    private TemesVista temesVista;
+    private TabPane tabPane;
+    private Scene scene;
+    private Stage stage;
+
     @Override
     public void start(Stage stage) throws Exception {
+        this.stage = stage;
         stage.setTitle("Wikipedia");
         stage.setMinHeight(384);
         stage.setMinWidth(512);
 
-        TabPane tabPane = new TabPane();
+        navegacioVista = new NavegacioVista(this);
+        temesVista = new TemesVista();
+
+        tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         /*
             Aqui afegim les TABs
          */
         tabPane.getTabs().addAll(
-                new NavegacioVista(),
-                new TemesVista());
+                navegacioVista,
+                temesVista);
 
         /*
             Aquin afegim els menus
          */
         EventHandler<ActionEvent> action = listenerMenuItems();
         Menu menu1 = new Menu("Arxiu");
-        MenuItem nou = new MenuItem("Nou...");
+        MenuItem nou = new MenuItem("Nou");
         nou.setOnAction(action);
         MenuItem guardar = new MenuItem("Guardar...");
         guardar.setOnAction(action);
@@ -65,9 +76,11 @@ public class FinestraPrincipal extends Application {
         //Abans era un StackPane
         VBox root = new VBox();
         root.getChildren().addAll(menuBar, tabPane);
-        Scene scene = new Scene(root,1024,768);
+        scene = new Scene(root,1024,768);
+
         //CSS per l'AutoFill
         scene.getStylesheets().add(getClass().getResource("control.css").toExternalForm());
+
         stage.setScene(scene);
 
         stage.show();
@@ -78,24 +91,34 @@ public class FinestraPrincipal extends Application {
             @Override
             public void handle(ActionEvent event) {
                 MenuItem mItem = (MenuItem) event.getSource();
-                String side = mItem.getText();
+                String itemName = mItem.getText();
 
-                if ("Nou...".equals(side)) System.out.println("no implementat");
-                else if ("Guardar...".equals(side)) System.out.println("no implementat");
-                else if ("Carregar...".equals(side)) System.out.println("no implementat");
-                else if ("Importar...".equals(side)) {
+                if ("Nou...".equals(itemName)) System.out.println("no implementat");
+                else if ("Guardar...".equals(itemName)) System.out.println("no implementat");
+                else if ("Carregar...".equals(itemName)) System.out.println("no implementat");
+                else if ("Importar...".equals(itemName)) {
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Open Resource File");
                     File file = fileChooser.showOpenDialog(new Stage());
-                    try {
-                        CtrlWikipedia.getInstance().getGrafWikiFromFile(file.toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (file != null) {
+                        System.out.println(file);
+                        try {
+                            CtrlWikipedia.getInstance().getGrafWikiFromFile(file.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        navegacioVista.carregarCategories();
+                        navegacioVista.carregarPagines();
+
                     }
                 }
-                else if ("Sortir".equals(side)) Platform.exit();
+                else if ("Sortir".equals(itemName)) Platform.exit();
             }
         };
+    }
+
+    public void reloadVista() {
+        com.sun.javafx.css.StyleManager.getInstance().reloadStylesheets(scene);
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import presentacio.autocompletat.AutoFillTextBox;
+import presentacio.autocompletat.AutoCompleteComboBoxListener;
 
 import java.util.ArrayList;
 
@@ -31,19 +31,19 @@ public class NavegacioVista extends Tab {
     private final double SPACE = 10;
 
 
-    private final AutoFillTextBox<String> queryText;
-    private final ComboBox<String> pagCerca;
-    private final ListView<String> llistaP;
-    private final ListView<String> llistaC;
-
-    private Stage stage;
-
+    final ComboBox<String> queryText;
+    final ComboBox<String> pagCerca;
+    final ListView<String> llistaP;
+    final ListView<String> llistaC;
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
 
-        queryText = new AutoFillTextBox<>(getPagines());
-        queryText.getTextbox().setPrefSize(300, 20);
+        queryText = new ComboBox<>();
+        queryText.getItems().add("No hi ha elements a mostrar");
+        queryText.setPrefSize(300, 20);
+        new AutoCompleteComboBoxListener(queryText);
+
         pagCerca = new ComboBox<>();
         pagCerca.getItems().addAll("Pàgina", "Categoria");
         pagCerca.getSelectionModel().select(0);
@@ -95,7 +95,7 @@ public class NavegacioVista extends Tab {
         cercaButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                String cercat = queryText.getText();
+                String cercat = queryText.getValue();
                 if (pagCerca.getValue().equals(pagCerca.getItems().get(0))){ // pàgina
                     llistaP.getSelectionModel().select(cercat);
 
@@ -108,48 +108,17 @@ public class NavegacioVista extends Tab {
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina", NavegacioVista.this);
+                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina");
                 Scene scene = navegacioP.getScene();
-                stage = new Stage();
+                Stage stage = new Stage();
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
-                stage.setTitle("Pàgina");
                 stage.show();
             }
         });
-        accedirC.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //
-            }
-        });
-        novaP.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //
-            }
-        });
-        novaC.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //
-            }
-        });
-        eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //
-            }
-        });
-        eliminarC.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                //
-            }
-        });
 
-        // finalment
+
         setContent(parentBox);
     }
 
@@ -174,20 +143,15 @@ public class NavegacioVista extends Tab {
         ObservableList<String> data = getPagines();
         llistaP.setItems(data);
         if (pagCerca.getValue().equals(pagCerca.getItems().get(0))) // pagina
-            queryText.setData(data);
+            queryText.setItems(data);
     }
 
     public void carregarCategories(){
         ObservableList<String> data = getCategories();
         llistaC.setItems(data);
         if (pagCerca.getValue().equals(pagCerca.getItems().get(1))) // categoria
-            queryText.setData(data);
+            queryText.setItems(data);
     }
-
-    public void tancaFill(){
-        stage.close();
-    }
-
 
 }
 
