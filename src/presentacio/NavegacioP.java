@@ -78,13 +78,13 @@ public class NavegacioP {
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                dialogEliminar();
+                dialogEliminarPagina();
             }
         });
         return scene;
     }
 
-    private void dialogEliminar(){
+    private void dialogEliminarPagina(){
         final Stage dialog = new Stage();
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
@@ -98,7 +98,7 @@ public class NavegacioP {
                 CtrlWikipedia.getInstance().elimPag(nomP);
                 navegacioVista.carregarPagines();
                 dialog.close();
-                navegacioVista.tancaFill(); // TODO: funciona?
+                navegacioVista.tancaFill();
             }
         });
         Button cancel = new Button("Cancel·lar");

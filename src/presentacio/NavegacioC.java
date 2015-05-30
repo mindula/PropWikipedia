@@ -1,14 +1,20 @@
 package presentacio;
 
+import domini.controladors.CtrlWikipedia;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * Grup 3: Wikipedia
@@ -72,6 +78,43 @@ public class NavegacioC {
 
 
         return scene;
+    }
+
+
+    private void dialogEliminarCategoria(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Estàs segur de que vols eliminar la categoria " + nomC + "?");
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlWikipedia.getInstance().elimCat(nomC);
+                navegacioVista.carregarCategories();
+                dialog.close();
+                navegacioVista.tancaFill();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
 }
