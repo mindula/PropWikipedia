@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import presentacio.autocompletat.AutoFillTextBox;
+import presentacio.autocompletat.AutoCompleteComboBoxListener;
 
 import java.util.ArrayList;
 
@@ -31,22 +31,28 @@ public class NavegacioVista extends Tab {
     private final double SPACE = 10;
 
 
-    final AutoFillTextBox<String> queryText;
-    final ComboBox<String> pagCerca;
-    final ListView<String> llistaP;
-    final ListView<String> llistaC;
+    private final ComboBox<String> queryText;
+    private final ComboBox<String> pagCatCerca;
+    private final ListView<String> llistaP;
+    private final ListView<String> llistaC;
+
+    private Stage stage;
+
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
 
-        queryText = new AutoFillTextBox<>(getPagines());
-        queryText.getTextbox().setPrefSize(300, 20);
-        pagCerca = new ComboBox<>();
-        pagCerca.getItems().addAll("Pàgina", "Categoria");
-        pagCerca.getSelectionModel().select(0);
+        queryText = new ComboBox<>();
+        queryText.setPrefSize(300, 20);
+        queryText.getItems().add("No hi ha res a mostrar");
+        new AutoCompleteComboBoxListener(queryText);
+
+        pagCatCerca = new ComboBox<>();
+        pagCatCerca.getItems().addAll("Pàgina", "Categoria");
+        pagCatCerca.getSelectionModel().select(0);
         Button cercaButton = new Button("Seleccionar");
         HBox liniaCerca = new HBox(SPACE);
-        liniaCerca.getChildren().addAll(queryText, pagCerca, cercaButton);
+        liniaCerca.getChildren().addAll(queryText, pagCatCerca, cercaButton);
         liniaCerca.setAlignment(Pos.CENTER);
 
         Label pagLabel = new Label("Pàgines");
@@ -92,8 +98,8 @@ public class NavegacioVista extends Tab {
         cercaButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                String cercat = queryText.getText();
-                if (pagCerca.getValue().equals(pagCerca.getItems().get(0))){ // pàgina
+                String cercat = queryText.getValue();
+                if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(0))){ // pàgina
                     llistaP.getSelectionModel().select(cercat);
 
                 }
@@ -105,17 +111,55 @@ public class NavegacioVista extends Tab {
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina");
+                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina", NavegacioVista.this);
                 Scene scene = navegacioP.getScene();
-                Stage stage = new Stage();
+                stage = new Stage();
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
+                stage.setTitle("Pàgina");
                 stage.show();
             }
         });
+        accedirC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                NavegacioC navegacioC = new NavegacioC("Nom de la categoria", NavegacioVista.this);
+                Scene scene = navegacioC.getScene();
+                stage = new Stage();
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.setTitle("Pàgina");
+                stage.show();
+            }
+        });
+        novaP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        novaC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminarC.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
 
-
+        // finalment
         setContent(parentBox);
     }
 
@@ -139,16 +183,21 @@ public class NavegacioVista extends Tab {
     public void carregarPagines(){
         ObservableList<String> data = getPagines();
         llistaP.setItems(data);
-        if (pagCerca.getValue().equals(pagCerca.getItems().get(0))) // pagina
-            queryText.setData(data);
+        if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(0))) // pagina
+            queryText.setItems(data);
     }
 
     public void carregarCategories(){
         ObservableList<String> data = getCategories();
         llistaC.setItems(data);
-        if (pagCerca.getValue().equals(pagCerca.getItems().get(1))) // categoria
-            queryText.setData(data);
+        if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(1))) // categoria
+            queryText.setItems(data);
     }
+
+    public void tancaFill(){
+        stage.close();
+    }
+
 
 }
 
