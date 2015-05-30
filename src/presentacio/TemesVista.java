@@ -1,24 +1,23 @@
 package presentacio;
 
 import domini.controladors.CtrlComunitat;
+import domini.controladors.CtrlWikipedia;
 import domini.modeldades.graf.NodeCategoria;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import presentacio.dialog.TemesDialog;
+import presentacio.autocompletat.AutoCompleteComboBoxListener;
 import prop.classescompartides.graf.Comunitat;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -49,9 +48,6 @@ public class TemesVista extends Tab {
         Button temaNouButton = new Button("Crear tema");
         temaNouButton.setMaxWidth(Double.MAX_VALUE);
         temaNouButton.setOnMouseClicked(action);
-        Button reanomenarTemaButton = new Button("Reanomenar tema");
-        reanomenarTemaButton.setMaxWidth(Double.MAX_VALUE);
-        reanomenarTemaButton.setOnMouseClicked(action);
         Button affegirCatButton = new Button("Afegir categoria");
         affegirCatButton.setMaxWidth(Double.MAX_VALUE);
         affegirCatButton.setOnMouseClicked(action);
@@ -68,7 +64,6 @@ public class TemesVista extends Tab {
         VBox liniaBotons = new VBox(50);
         liniaBotons.getChildren().addAll(
                 temaNouButton,
-                reanomenarTemaButton,
                 affegirCatButton,
                 eliminarCatButton,
                 moureCatButton,
@@ -104,9 +99,104 @@ public class TemesVista extends Tab {
                 Button button = (Button) event.getSource();
                 String buttonName = button.getText();
                 if("Crear tema".equals(buttonName)) {
-                    //Dialogs.showInputDialog(new Stage(), null, null, "Crear tema");
+                    dialogCrearTema();
+                }
+                else if ("Afegir categoria".equals(buttonName)) {
+                    dialogAfegirCat();
                 }
             }
         };
+    }
+
+    private void dialogCrearTema() {
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        final TextField inputText = new TextField();
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("Crear");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+                try {
+                    ctrlComunitat.creaComunitat(
+                            inputText.getText(),
+                            ctrlComunitat.getConjunt().getCjtComunitats().getNumComunitats()
+                    );
+                    llistaT.getItems().add(inputText.getText());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(inputText, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar pàgina");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogAfegirCat() {
+        ArrayList<NodeCategoria> cats = CtrlWikipedia.getInstance().getGrafWiki().getCategories();
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        ObservableList<String> data = FXCollections.observableArrayList();
+        final ComboBox<String> inputText = new ComboBox<>();
+        inputText.setPrefWidth(300);
+        for (NodeCategoria c : cats) data.add(c.getNom());
+        inputText.setItems(data);
+        new AutoCompleteComboBoxListener(inputText);
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("Afegir");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+                try {
+                    ctrlComunitat.creaComunitat(
+                            inputText.getValue(),
+                            ctrlComunitat.getConjunt().getCjtComunitats().getNumComunitats()
+                    );
+                    llistaT.getItems().add(inputText.getValue());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(inputText, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar pàgina");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 }
