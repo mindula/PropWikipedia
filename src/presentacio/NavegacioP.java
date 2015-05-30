@@ -59,7 +59,7 @@ public class NavegacioP {
         accedir.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                NavegacioC navegacioC = new NavegacioC("Nom de la categoria");
+                NavegacioC navegacioC = new NavegacioC("Nom de la categoria", navegacioVista);
                 Scene scene = navegacioC.getScene();
                 Stage stage = new Stage();
                 stage.setResizable(false);
@@ -91,6 +91,7 @@ public class NavegacioP {
                         CtrlWikipedia.getInstance().elimPag(nomP);
                         navegacioVista.carregarPagines();
                         dialog.close();
+                        navegacioVista.tancaFill(); // TODO: funciona?
                     }
                 });
                 Button cancel = new Button("Cancel·lar");

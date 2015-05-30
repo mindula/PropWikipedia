@@ -7,7 +7,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialogs;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
@@ -105,7 +104,7 @@ public class TemesVista extends Tab {
                 Button button = (Button) event.getSource();
                 String buttonName = button.getText();
                 if("Crear tema".equals(buttonName)) {
-                    Dialogs.showInputDialog(new Stage(), null, null, "Crear tema");
+                    //Dialogs.showInputDialog(new Stage(), null, null, "Crear tema");
                 }
             }
         };

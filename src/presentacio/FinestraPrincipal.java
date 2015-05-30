@@ -38,7 +38,7 @@ public class FinestraPrincipal extends Application {
         stage.setMinHeight(384);
         stage.setMinWidth(512);
 
-        navegacioVista = new NavegacioVista(this);
+        navegacioVista = new NavegacioVista();
         temesVista = new TemesVista();
 
         tabPane = new TabPane();
