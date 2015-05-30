@@ -3,6 +3,7 @@ package domini.modeldades;
 import domini.modeldades.graf.NodeCategoria;
 import prop.classescompartides.graf.ConjuntComunitats;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -15,6 +16,7 @@ public class ConjuntComunitatWiki {
     private ConjuntComunitats<NodeCategoria> cjtComunitats;
 
     private HashMap<Integer,String> noms;
+    private HashMap<String,Integer> ids;
     private HashMap<Integer,String> descripcions;
 
 
@@ -22,6 +24,7 @@ public class ConjuntComunitatWiki {
         cjtComunitats = new ConjuntComunitats<NodeCategoria>();
         noms = new HashMap<Integer,String>();
         descripcions = new HashMap<Integer,String>();
+        ids = new HashMap<>();
     }
 
 
@@ -41,8 +44,8 @@ public class ConjuntComunitatWiki {
         this.cjtComunitats = cjtComunitats;
     }
 
-    public HashMap<Integer, String> getNoms() {
-        return noms;
+    public Collection<String> getNoms() {
+        return noms.values();
     }
 
     public String getNom(Integer id){
@@ -53,8 +56,16 @@ public class ConjuntComunitatWiki {
         noms.put(id, nounom);
     }
 
-    public HashMap<Integer, String> getDescripcions() {
-        return descripcions;
+    public void setId(Integer id, String nom) {
+        ids.put(nom, id);
+    }
+
+    public Integer getId(String nom) {
+        return ids.get(nom);
+    }
+
+    public Collection<String> getDescripcions() {
+        return descripcions.values();
     }
 
     public String getDescripcio(Integer id){
