@@ -53,6 +53,7 @@ public class JaroWinklerDistance {
         double dj = ((m/(double)s1.length()) + (m/(double)s2.length()) + ((m-t)/(double)m))/3;
         if (dj < 0.7) return dj;
         //Calcul distancia Winkler
+        //if (dj >= 0.8 && dj < 0.9) dj += 0.1;
         return dj+(l*0.1*(1-dj));
     }
 
