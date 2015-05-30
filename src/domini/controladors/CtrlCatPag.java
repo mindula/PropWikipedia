@@ -1,6 +1,8 @@
 package domini.controladors;
 
 import domini.modeldades.graf.GrafWikipedia;
+import domini.modeldades.graf.NodeCategoria;
+import domini.modeldades.graf.NodePagina;
 
 /**
  * Grup 3: Wikipedia
@@ -8,20 +10,30 @@ import domini.modeldades.graf.GrafWikipedia;
  * Data: 21/05/15
  */
 public class CtrlCatPag {
+    private static CtrlCatPag INSTANCE;
+
     private GrafWikipedia grafWiki;
 
-    //TODO aixo no es crida mai
+    public static CtrlCatPag getInstance() {
+        if(INSTANCE == null) INSTANCE = new CtrlCatPag();
+        return INSTANCE;
+    }
+
     private CtrlCatPag(){
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
-    public void ObtenirCategoria(String nom){
-        grafWiki.getNodeCat(nom);
+    public NodeCategoria obtenirCategoria(String nom){
+        return grafWiki.getNodeCat(nom);
     }
 
-    public void ObtenirPagina(String nom){
-        grafWiki.getNodePag(nom);
+    public NodePagina obtenirPagina(String nom){
+        return grafWiki.getNodePag(nom);
     }
+
+    public boolean existeixCategoria(String nom) { return grafWiki.existeixNodeCat(nom);}
+
+    public boolean existeixPagina(String nom) {return grafWiki.existeixNodePag(nom);}
 
 
     /**

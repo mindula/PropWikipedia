@@ -34,7 +34,12 @@ public class CtrlComunitat {
     public void creaComunitat(String nom, int id){
         Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(id);
         conjunt.setNom(id,nom);
+        conjunt.setId(id, nom);
         conjunt.getCjtComunitats().afegirComunitat(c);
+    }
+
+    public int getId(String nom) {
+        return conjunt.getId(nom);
     }
 
     /**
