@@ -1,14 +1,18 @@
 package presentacio;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * Grup 3: Wikipedia
@@ -20,9 +24,11 @@ public class NavegacioP {
 
     private final double SPACE = 10;
     private String nomP;
+    private final NavegacioVista navegacioVista;
 
-    public NavegacioP(String nomPagina){
+    public NavegacioP(String nomPagina, NavegacioVista nav){
         nomP = nomPagina;
+        navegacioVista = nav;
     }
 
     public Scene getScene(){
@@ -47,6 +53,32 @@ public class NavegacioP {
         parent.getChildren().addAll(titol, separator1, cats, llista,
                 accedir, separator2, editar, eliminar);
 
+        // OnMouseClicked Listeners:
+        accedir.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                NavegacioC navegacioC = new NavegacioC("Nom de la categoria");
+                Scene scene = navegacioC.getScene();
+                Stage stage = new Stage();
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.show();
+                navegacioVista.tanca();
+            }
+        });
+        editar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
         return scene;
     }
 }

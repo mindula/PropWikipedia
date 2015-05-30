@@ -31,10 +31,13 @@ public class NavegacioVista extends Tab {
     private final double SPACE = 10;
 
 
-    final AutoFillTextBox<String> queryText;
-    final ComboBox<String> pagCerca;
-    final ListView<String> llistaP;
-    final ListView<String> llistaC;
+    private final AutoFillTextBox<String> queryText;
+    private final ComboBox<String> pagCerca;
+    private final ListView<String> llistaP;
+    private final ListView<String> llistaC;
+
+    private Stage stage;
+
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
@@ -105,9 +108,9 @@ public class NavegacioVista extends Tab {
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina");
+                NavegacioP navegacioP = new NavegacioP("Nom de la pàgina", NavegacioVista.this);
                 Scene scene = navegacioP.getScene();
-                Stage stage = new Stage();
+                stage = new Stage();
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
@@ -116,6 +119,7 @@ public class NavegacioVista extends Tab {
         });
 
 
+        // finalment
         setContent(parentBox);
     }
 
@@ -149,6 +153,11 @@ public class NavegacioVista extends Tab {
         if (pagCerca.getValue().equals(pagCerca.getItems().get(1))) // categoria
             queryText.setData(data);
     }
+
+    public void tanca(){
+        stage.close();
+    }
+
 
 }
 
