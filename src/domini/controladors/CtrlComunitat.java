@@ -38,6 +38,10 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
     }
 
+    public int aconseguirId(String nom) {
+        return conjunt.getId(nom);
+    }
+
     /**
      * Cas d'us Modificar tema. Canviar nom.
      */
