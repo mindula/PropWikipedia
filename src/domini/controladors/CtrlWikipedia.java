@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -140,6 +141,24 @@ public class CtrlWikipedia implements Serializable{
 
     public void setConjuntsGenerats(ConjuntComunitats<NodeCategoria> conjuntsGenerats) {
         this.conjuntsGenerats = conjuntsGenerats;
+    }
+
+    public ArrayList<String> getNomsCategories(){
+        ArrayList<NodeCategoria> cats = grafWiki.getCategories();
+        ArrayList<String> nomCats = new ArrayList<>();
+        for (NodeCategoria cat : cats) {
+            nomCats.add(cat.getNom());
+        }
+        return nomCats;
+    }
+
+    public ArrayList<String> getNomsPagines(){
+        ArrayList<NodePagina> pags = grafWiki.getPagines();
+        ArrayList<String> nomPags = new ArrayList<>();
+        for (NodePagina pag : pags) {
+            nomPags.add(pag.getNom());
+        }
+        return nomPags;
     }
 
     @Override

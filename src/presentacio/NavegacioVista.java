@@ -186,18 +186,12 @@ public class NavegacioVista extends Tab {
 
     private ObservableList<String> getCategories(){
         ObservableList<String> data = FXCollections.observableArrayList();
-        ArrayList<NodeCategoria> array = CtrlWikipedia.getInstance().getGrafWiki().getCategories();
-        for (NodeCategoria anArray : array) {
-            data.add(anArray.getNom());
-        }
+        data.addAll(CtrlWikipedia.getInstance().getNomsCategories());
         return data;
     }
     private ObservableList<String> getPagines(){
         ObservableList<String> data = FXCollections.observableArrayList();
-        ArrayList<NodePagina> array = CtrlWikipedia.getInstance().getGrafWiki().getPagines();
-        for (NodePagina anArray : array) {
-            data.add(anArray.getNom());
-        }
+        data.addAll(CtrlWikipedia.getInstance().getNomsPagines());
         return data;
     }
 

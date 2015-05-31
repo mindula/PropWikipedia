@@ -50,7 +50,7 @@ public class NavegacioC {
 
         Label labelP = new Label("Pàgines que conté");
         llistaP = new ListView<>();
-        llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC));
+        llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC)); // TODO: funcionen les llistes?
         Button accedirP = new Button("Accedir a la pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
         VBox boxP = new VBox(SPACE);
