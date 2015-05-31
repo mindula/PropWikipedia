@@ -32,7 +32,6 @@ public class CtrlComunitat {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()){
             conjunt.getCjtComunitats().afegirComunitat(com);
             String nom = "Tema " + String.valueOf(com.getId());
-            System.out.println(com.getId());
             conjunt.setNom(com.getId(), nom);
             conjunt.setId(com.getId(), nom);
             conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");

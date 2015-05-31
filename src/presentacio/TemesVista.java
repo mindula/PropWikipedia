@@ -17,9 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentacio.autocompletat.AutoCompleteComboBoxListener;
-import prop.classescompartides.graf.Comunitat;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 
 
@@ -102,13 +102,11 @@ public class TemesVista extends Tab {
     }
 
     public void actualitzaTemes() {
-        ArrayList<Comunitat<NodeCategoria>> cjtComunitats
-                = CtrlComunitat.getInstance().getConjunt().getCjtComunitats().getComunitats();
-        //llistaT.getItems().clear();
-        for (Comunitat<NodeCategoria> c : cjtComunitats) {
-            llistaT.getItems().add("Tema " + c.getId());
+        Collection<String> cjtComunitats
+                = CtrlComunitat.getInstance().getConjunt().getNoms();
+        for (String nom : cjtComunitats) {
+            llistaT.getItems().add(nom);
         }
-        System.out.println(llistaT.getItems().size());
     }
 
 
