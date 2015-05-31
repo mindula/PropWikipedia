@@ -3,6 +3,10 @@ package domini.controladors;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
+import prop.classescompartides.graf.Comunitat;
+import prop.classescompartides.graf.ConjuntComunitats;
+
+import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia
@@ -13,6 +17,7 @@ public class CtrlCatPag {
     private static CtrlCatPag INSTANCE;
 
     private GrafWikipedia grafWiki;
+    private ConjuntComunitats<NodeCategoria> conjuntComunitats;
 
     public static CtrlCatPag getInstance() {
         if(INSTANCE == null) INSTANCE = new CtrlCatPag();
@@ -21,6 +26,7 @@ public class CtrlCatPag {
 
     private CtrlCatPag(){
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
+        conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats();
     }
 
     public NodeCategoria obtenirCategoria(String nom){
@@ -54,36 +60,83 @@ public class CtrlCatPag {
      * Cas d'us Relacionar categories i pagines. Crea un arc CsubC
      */
     public void RelCsubC(String superC, String subC){
-        grafWiki.afegirArcCsubC(grafWiki.getNodeCat(superC),grafWiki.getNodeCat(subC));
+        grafWiki.afegirArcCsubC(grafWiki.getNodeCat(superC), grafWiki.getNodeCat(subC));
     }
 
     /**
      * Cas d'us Relacionar categories i pagines. Crea un arc CsupC
      */
     public void RelCsupC(String superC, String subC){
-        grafWiki.afegirArcCsupC(grafWiki.getNodeCat(subC),grafWiki.getNodeCat(superC));
+        grafWiki.afegirArcCsupC(grafWiki.getNodeCat(subC), grafWiki.getNodeCat(superC));
     }
 
     /**
      * Cas d'us Relacionar categories i pagines. Crea un arc PC
      */
     public void RelPC(String pag, String cat){
-        grafWiki.afegirArcPC(grafWiki.getNodePag(pag),grafWiki.getNodeCat(cat));
+        grafWiki.afegirArcPC(grafWiki.getNodePag(pag), grafWiki.getNodeCat(cat));
     }
 
     /**
      * Cas d'us Relacionar categories i pagines. Eliminar arc
      */
     public void esborrarArc(String nom1, String nom2){
-        grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom1),grafWiki.getNodeCat(nom2)));
+        grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom1), grafWiki.getNodeCat(nom2)));
     }
 
     /**
      * Cas d'us Relacionar categories i pagines. Eliminar arc PC
      */
     public void esborrarArcPC(String cat, String pag){
-        grafWiki.eliminarArcPC(cat, pag, grafWiki.getNodeCat(cat),grafWiki.getNodePag(pag));
+        grafWiki.eliminarArcPC(cat, pag, grafWiki.getNodeCat(cat), grafWiki.getNodePag(pag));
     }
 
+    /**
+     * Obtenir les Pagines relacionades d'una categoria amb nom categoria
+     */
+    public ArrayList<String> getPagines(String categoria){
+        ArrayList<String> pagines = new ArrayList<String>();
+        for(NodePagina pagina: grafWiki.getNodeCat(categoria).getPagines()){
+            pagines.add(pagina.getNom());
+        }
+        return pagines;
+    }
 
+    /**
+     * Obtenir les Super Categories relacionades d'una categoria amb nom categoria
+     */
+    public ArrayList<String> getSuperCategories(String categoria){
+        ArrayList<String> result = new ArrayList<String>();
+        for (NodeCategoria superC: grafWiki.getSupCategories(grafWiki.getNodeCat(categoria))){
+            result.add(superC.getNom());
+        }
+        return result;
+    }
+
+    /**
+     * Obtenir les Sub Categories relacionades d'una categoria amb nom categoria
+     */
+    public ArrayList<String> getSubCategories(String categoria){
+        ArrayList<String> result = new ArrayList<String>();
+        for (NodeCategoria superC: grafWiki.getSubCategories(grafWiki.getNodeCat(categoria))){
+            result.add(superC.getNom());
+        }
+        return result;
+    }
+
+    /**
+     * Obtenir les Categories relacionades mitjançant un tema d'una categoria amb nom categoria
+     */
+    public ArrayList<String> getCategoriesTema(String categoria){
+        ArrayList<String> result = new ArrayList<String>();
+        for (Comunitat<NodeCategoria> comunitat : conjuntComunitats.getComunitats()){
+            if (comunitat.teNode(grafWiki.getNodeCat(categoria))){
+                for(NodeCategoria cat: comunitat.getNodes()){
+                    if (! cat.equals(grafWiki.getNodeCat(categoria)))
+                        result.add(cat.getNom());
+                }
+            }
+        }
+        return result;
+    }
 }

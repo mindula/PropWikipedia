@@ -1,6 +1,7 @@
 package tests;
 
 import domini.controladors.CtrlAlgorisme;
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.modeldades.ConjuntComunitatWiki;
@@ -30,7 +31,7 @@ public class TestDomain {
 
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = -1;
-        while (opcio != 18) {
+        while (opcio != 19) {
 
 
             System.out.println("Escull una opcio:\n" +
@@ -52,7 +53,8 @@ public class TestDomain {
                     "15. Test Jaro-Winkler\n" +
                     "16. Test Persistencia\n" +
                     "17. Dibuixar Comunitats\n" +
-                    "18. Finalitzar Test\n");
+                    "18. Provar relacions categories del CtrlCatPag\n" +
+                    "19. Finalitzar Test\n");
             opcio = sc.nextInt();
 
             switch (opcio) {
@@ -172,6 +174,24 @@ public class TestDomain {
                     }
 
                     graf.display();
+                    break;
+                case 18:
+                    System.out.println("Obtenir les superCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    String s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getSuperCategories(s));
+                    System.out.println("Obtenir les subCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getSubCategories(s));
+                    System.out.println("Obtenir les pagines");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getPagines(s));
+                    System.out.println("Obtenir les temaCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getCategoriesTema(s));
                     break;
             }
 

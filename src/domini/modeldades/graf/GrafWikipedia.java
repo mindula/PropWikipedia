@@ -1,6 +1,7 @@
 package domini.modeldades.graf;
 
 import prop.classescompartides.graf.Arc;
+import scala.util.parsing.combinator.testing.Str;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -170,5 +171,29 @@ public class GrafWikipedia implements Serializable{
 
     public int getNumCategories(){
        return grafWiki.ordre();
+    }
+
+    public ArrayList<NodeCategoria> getSupCategories(NodeCategoria cat){
+        ArrayList<NodeCategoria> result = new ArrayList<NodeCategoria>();
+        for (NodeCategoria categoria: getCategories()){
+            if (! cat.equals(categoria))
+                if(existeixArcCC(cat,categoria))
+                    if (getArcEntre(cat, categoria).getPes() > 0){
+                        result.add(categoria);
+                    }
+        }
+        return result;
+    }
+
+    public ArrayList<NodeCategoria> getSubCategories(NodeCategoria cat){
+        ArrayList<NodeCategoria> result = new ArrayList<NodeCategoria>();
+        for (NodeCategoria categoria: getCategories()){
+            if (! cat.equals(categoria))
+                if(existeixArcCC(cat,categoria))
+                    if (getArcEntre(cat, categoria).getPes() < 0){
+                        result.add(categoria);
+                    }
+        }
+        return result;
     }
 }
