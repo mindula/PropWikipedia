@@ -112,6 +112,7 @@ public class TestDomain {
                     // Fi de la obtencio de criteris
 
                     CtrlAlgorisme c = new CtrlAlgorisme(CtrlWikipedia.getInstance().getGrafWiki(), algorisme, par1, criteris);
+                    c.generarGraf();
                     ConjuntComunitatWiki comunitats = c.cercarComunitats();
 
                     System.out.println(comunitats.getInformacio().toString());

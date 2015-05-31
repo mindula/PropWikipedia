@@ -30,7 +30,9 @@ public class TestInformacioCjtComunitats {
         else algorisme = TipusAlgorisme.CLIQUE;
         String cri = sc.next();
         long mitj = sc.nextLong();
-        I = new InformacioCjtComunitats(gen,mil,nCom,algorisme,cri,mitj);
+        I = new InformacioCjtComunitats(gen,mil,algorisme,cri);
+        I.setMitjanaNodesPerComunitat(mitj);
+        I.setNombreComunitats(nCom);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el temps\n" +
