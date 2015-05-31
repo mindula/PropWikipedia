@@ -148,6 +148,16 @@ public class TemesVista extends Tab {
                         llistaT.getItems().remove(tema);
                     }
                 }
+                else if ("Operacions entre temes".equals(buttonName)) {
+                    Stage stage = new Stage();
+                    OperacioCjtsVista operacio = new OperacioCjtsVista(TemesVista.this);
+                    Scene scene = operacio.getScene();
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(scene);
+                    stage.setTitle("Operacions amb els temes");
+                    stage.show();
+                }
             }
         };
     }
@@ -250,15 +260,3 @@ public class TemesVista extends Tab {
 }
 
 // TODO: Ricard: posa aquest codi per cridar a la vista OperacioCjtsVista
-
-/*
-                    Stage stage = new Stage();
-                    OperacioCjtsVista operacio = new OperacioCjtsVista(TemesVista.this);
-                    Scene scene = operacio.getScene();
-                    stage.setResizable(false);
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.setScene(scene);
-                    stage.setTitle("Operacions amb els temes");
-                    stage.show();
-
- */

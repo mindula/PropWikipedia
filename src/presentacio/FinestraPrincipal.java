@@ -112,9 +112,6 @@ public class FinestraPrincipal extends Application {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        navegacioVista.carregarCategories();
-                        navegacioVista.carregarPagines();
-
                     }
                 }
                 else if ("Carregar...".equals(itemName)) {
