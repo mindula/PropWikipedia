@@ -1,7 +1,6 @@
 package domini.modeldades.graf;
 
 import prop.classescompartides.graf.Arc;
-import scala.util.parsing.combinator.testing.Str;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -129,6 +129,8 @@ public class CtrlCatPag {
      */
     public ArrayList<String> getCategoriesTema(String categoria){
         ArrayList<String> result = new ArrayList<String>();
+        if (conjuntComunitats.getComunitats().isEmpty())
+                return result;
         for (Comunitat<NodeCategoria> comunitat : conjuntComunitats.getComunitats()){
             if (comunitat.teNode(grafWiki.getNodeCat(categoria))){
                 for(NodeCategoria cat: comunitat.getNodes()){

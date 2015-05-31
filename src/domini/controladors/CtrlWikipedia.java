@@ -15,8 +15,8 @@ import java.util.Date;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard.gascons
- * Data: 22/3/15
+ * Usuari: eduard.casellas
+ * Data: 19/5/15
  */
 
 /**
@@ -24,7 +24,6 @@ import java.util.Date;
  */
 
 public class CtrlWikipedia implements Serializable{
-    // TODO: jo li diria ctrlSessio a aquesta classe ja que te tots els canvis que es realitzen.
     private static CtrlWikipedia INSTANCE;
 
     private String dataCreacio;
@@ -38,6 +37,7 @@ public class CtrlWikipedia implements Serializable{
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
         grafAlgoritme = new Graf<>();
+        conjuntsGenerats = new ConjuntComunitats<NodeCategoria>();
 
     }
 
