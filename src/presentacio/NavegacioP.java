@@ -23,7 +23,7 @@ import presentacio.autocompletat.AutoCompleteComboBoxListener;
  * Data: 29/05/15
  */
 
-public class NavegacioP {
+public class NavegacioP { // TODO: modificar nom
 
     private final double SPACE = 10;
     private String nomP;
@@ -83,7 +83,7 @@ public class NavegacioP {
         });
         eliminarCat.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO: comprobar funcionament
+            public void handle(MouseEvent mouseEvent) {
                 if(!llista.getSelectionModel().isEmpty())
                     dialogEliminarCatDeLaPagina();
                 else System.out.println("No hi ha cat seleccionada");
@@ -91,7 +91,7 @@ public class NavegacioP {
         });
         afegirCat.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO: comprobar funcionament
+            public void handle(MouseEvent mouseEvent) {
                 dialogAfegirCat();
             }
         });
@@ -198,12 +198,12 @@ public class NavegacioP {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 String nomNovaCat = nomCatAfegir.getValue();
-                //boolean existeix = CtrlWikipedia.getInstance(). // TODO
-                //if(existeix) {
+                boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaCat);
+                if(existeix) {
                     CtrlCatPag.getInstance().RelPC(nomP, nomNovaCat);
                     carregarCategoriesDeLaPagina();
                     dialog.close();
-                //}
+                } else System.out.println("No existeix cat");
             }
         });
         Button cancel = new Button("Cancel·lar");

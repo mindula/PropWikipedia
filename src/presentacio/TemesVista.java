@@ -250,3 +250,17 @@ public class TemesVista extends Tab {
         dialog.show();
     }
 }
+
+// TODO: Ricard: posa aquest codi per cridar a la vista OperacioCjtsVista
+
+/*
+                    Stage stage = new Stage();
+                    OperacioCjtsVista operacio = new OperacioCjtsVista(TemesVista.this);
+                    Scene scene = operacio.getScene();
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(scene);
+                    stage.setTitle("Operacions amb els temes");
+                    stage.show();
+
+ */

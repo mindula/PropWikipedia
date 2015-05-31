@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  * Data: 29/05/15
  */
 
-public class NavegacioC {
+public class NavegacioC { // TODO: modificar nom
 
     private final double SPACE = 10;
     private String nomC;
