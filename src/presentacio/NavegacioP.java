@@ -100,7 +100,7 @@ public class NavegacioP {
         });
         reanomenarPag.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO: modificar nom solucionar BUG
+            public void handle(MouseEvent mouseEvent) { // TODO: modificar nom solucionar el BUG
                 dialogReanomenarPag();
             }
         });

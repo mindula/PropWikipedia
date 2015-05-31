@@ -64,7 +64,7 @@ public class OperacioCjtsVista {
         unir.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //Ctrl.....
+                //Ctrl...
                 //actualitzaTemes();
                 //temesVista.actualitzaTemes();
             }
@@ -72,7 +72,7 @@ public class OperacioCjtsVista {
         interseccionar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //Ctrl.....
+                //Ctrl...
                 //actualitzaTemes();
                 //temesVista.actualitzaTemes();
             }
@@ -80,7 +80,7 @@ public class OperacioCjtsVista {
         restar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //Ctrl.....
+                //Ctrl...
                 //actualitzaTemes();
                 //temesVista.actualitzaTemes();
             }
