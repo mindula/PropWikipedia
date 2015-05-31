@@ -39,7 +39,6 @@ public class CtrlWikipedia implements Serializable{
         grafWiki = new GrafWikipedia();
         grafAlgoritme = new Graf<>();
         conjuntsGenerats = new ConjuntComunitats<>();
-
     }
 
     /**
