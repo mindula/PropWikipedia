@@ -38,7 +38,7 @@ public class CtrlWikipedia implements Serializable{
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
         grafAlgoritme = new Graf<>();
-        conjuntsGenerats = new ConjuntComunitats<NodeCategoria>();
+        conjuntsGenerats = new ConjuntComunitats<>();
 
     }
 

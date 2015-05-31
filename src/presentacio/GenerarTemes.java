@@ -167,6 +167,7 @@ public class GenerarTemes extends Tab {
     private void generarTemes() {
         //System.setErr(ps);
 
+        logAlgorisme.clear();
         Thread t1 = new Thread(new Runnable() {
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -176,11 +177,11 @@ public class GenerarTemes extends Tab {
                     }
                 });
                 double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
-                TipusAlgorisme algorisme = null;
-                if (louvainRadioB.isSelected()) algorisme = TipusAlgorisme.LOUVAIN;
-                else if (cliqueRadioB.isSelected()) algorisme = TipusAlgorisme.CLIQUE;
-                else if (girvanRadioB.isSelected()) algorisme = TipusAlgorisme.GIRVAN;
-                if (algorisme != null) {
+                TipusAlgorisme tipusAlgorisme = null;
+                if (louvainRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.LOUVAIN;
+                else if (cliqueRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.CLIQUE;
+                else if (girvanRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.GIRVAN;
+                if (tipusAlgorisme != null) {
                     double ponderacioNom;
                     double ponderacioSubC;
                     double ponderacioSuperC;
@@ -208,19 +209,45 @@ public class GenerarTemes extends Tab {
                     }
                     CtrlAlgorisme c = new CtrlAlgorisme(
                             CtrlWikipedia.getInstance().getGrafWiki(),
-                            algorisme,
+                            tipusAlgorisme,
                             parametreAlgorisme,
                             criteris);
+                    final TipusAlgorisme finalTipusAlgorisme = tipusAlgorisme;
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            logAlgorisme.appendText("Algoritme triat: " + String.valueOf(finalTipusAlgorisme) + '\n');
+                            logAlgorisme.appendText("Aplicant criteris..." + '\n');
+                        }
+                    });
+                    long startTime = System.currentTimeMillis();
                     c.generarGraf();
+                    final long generatorTime = System.currentTimeMillis() - startTime;
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            logAlgorisme.appendText("Temps en aplicar criteris: " + String.valueOf(generatorTime) +
+                                    "ms" + '\n');
+                            logAlgorisme.appendText("Cercant comunitats..." + '\n');
+
+                        }
+                    });
                     try {
                         c.cercarComunitats();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    final long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
+                            logAlgorisme.appendText("Temps en cercar comunitats: " + String.valueOf(elapsedTime) +
+                                    "ms" + '\n');
+
                             finestraPrincipal.actualitzarTemes();
+
+                            logAlgorisme.appendText("Cerca completada! Temps total: " +
+                                  String.valueOf(elapsedTime + generatorTime) + "ms" + '\n');
                         }
                     });
                 }

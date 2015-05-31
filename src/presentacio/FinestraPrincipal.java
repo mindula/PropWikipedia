@@ -13,6 +13,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import persistencia.CtrlPersistencia;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,11 +101,41 @@ public class FinestraPrincipal extends Application {
                 String itemName = mItem.getText();
 
                 if ("Nou...".equals(itemName)) System.out.println("no implementat");
-                else if ("Guardar...".equals(itemName)) System.out.println("no implementat");
-                else if ("Carregar...".equals(itemName)) System.out.println("no implementat");
+                else if ("Guardar...".equals(itemName)) {
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Guardar sessió...");
+                    File file = fileChooser.showSaveDialog(new Stage());
+                    if (file != null) {
+                        System.out.println(file);
+                        try {
+                            CtrlPersistencia.guardarSessio(file.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        navegacioVista.carregarCategories();
+                        navegacioVista.carregarPagines();
+
+                    }
+                }
+                else if ("Carregar...".equals(itemName)) {
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Carregar sessió...");
+                    File file = fileChooser.showOpenDialog(new Stage());
+                    if (file != null) {
+                        System.out.println(file);
+                        try {
+                            CtrlPersistencia.carregarSessio(file.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        navegacioVista.carregarCategories();
+                        navegacioVista.carregarPagines();
+
+                    }
+                }
                 else if ("Importar...".equals(itemName)) {
                     FileChooser fileChooser = new FileChooser();
-                    fileChooser.setTitle("Open Resource File");
+                    fileChooser.setTitle("Importar fitxer...");
                     File file = fileChooser.showOpenDialog(new Stage());
                     if (file != null) {
                         System.out.println(file);
@@ -120,7 +151,7 @@ public class FinestraPrincipal extends Application {
                 }
                 else if ("Sortir".equals(itemName)) Platform.exit();
                 else if ("Historial de cerques".equals(itemName)) historialVista = new HistorialVista();
-                else if ("Graf de la Wikipedia".equals(itemName)) System.out.println("nom implementat");
+                else if ("Graf de la Wikipedia".equals(itemName)) System.out.println("no implementat");
             }
         };
     }
