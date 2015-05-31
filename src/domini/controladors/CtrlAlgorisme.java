@@ -68,7 +68,7 @@ public class CtrlAlgorisme{
         conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString()));
     }
 
-    public ConjuntComunitatWiki cercarComunitats(){
+    public ConjuntComunitatWiki cercarComunitats() throws Exception {
         Algoritme<NodeCategoria> algorisme;
 
         if (tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
@@ -91,6 +91,8 @@ public class CtrlAlgorisme{
 
         conjunt.getInformacio().setNombreComunitats(nComunitats);
         conjunt.getInformacio().setMitjanaNodesPerComunitat(graf.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
+
+        CtrlComunitat.getInstance().afegirConjuntsGenerats(conjunt);
 
         return conjunt;
     }

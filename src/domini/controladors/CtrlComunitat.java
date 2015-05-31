@@ -28,6 +28,16 @@ public class CtrlComunitat {
         return INSTANCE;
     }
 
+    public void afegirConjuntsGenerats(ConjuntComunitatWiki c) throws Exception {
+        for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()){
+            conjunt.getCjtComunitats().afegirComunitat(com);
+            conjunt.setNom(com.getId(),"Tema: " + com.getId());
+            conjunt.setId(com.getId(), "Tema: " + com.getId());
+            conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");
+        }
+    }
+
+
     /**
      * Cas d'us Crear tema.
      */
