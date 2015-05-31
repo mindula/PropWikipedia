@@ -217,7 +217,12 @@ public class GenerarTemes extends Tab {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    finestraPrincipal.actualitzarTemes();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            finestraPrincipal.actualitzarTemes();
+                        }
+                    });
                 }
                 Platform.runLater(new Runnable() {
                     @Override
