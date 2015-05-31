@@ -42,7 +42,7 @@ public class NavegacioC {
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
         parent.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(parent, 1024, 768); // necessari perque es massa gran)
+        Scene scene = new Scene(parent, 1024, 768); // necessari perque es massa gran
 
         Label titol = new Label(nomC);
         titol.setFont(new Font(30));

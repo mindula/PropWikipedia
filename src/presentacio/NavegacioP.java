@@ -2,6 +2,8 @@ package presentacio;
 
 import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,7 +49,7 @@ public class NavegacioP {
         Separator separator1 = new Separator(); separator1.setVisible(false);
         Label cats = new Label("Categories a les quals pertany");
         llista = new ListView<>();
-        llista.getItems().addAll("CAT1"); // TODO: necessaria funcio de CtrlWikipedia
+        llista.getItems().addAll(CtrlCatPag.getInstance().getCategoriesPagina(nomP));
         Button accedir = new Button("Accedir a la categoria");
         Button eliminarCat = new Button("Eliminar categoria de la pàgina");
         Separator separator2 = new Separator(); separator2.setVisible(false);
@@ -153,7 +155,7 @@ public class NavegacioP {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 CtrlCatPag.getInstance().esborrarArcPC(nomC, nomP);
-                carregarCategories();
+                carregarCategoriesDeLaPagina();
                 dialog.close();
             }
         });
@@ -176,8 +178,8 @@ public class NavegacioP {
         dialog.show();
     }
 
-    private void carregarCategories(){   // TODO: recarregar llista
-        //llista.setItems(data);
+    private void carregarCategoriesDeLaPagina(){
+        llista.setItems(getCategoriesDeLaPagina());
         llista.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
     }
 
@@ -186,18 +188,22 @@ public class NavegacioP {
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
         Label confirmation = new Label("Escriu el nom de la categoria a afegir a la pàgina");
-        ComboBox<String> nomCatAfegir = new ComboBox<>();
+        final ComboBox<String> nomCatAfegir = new ComboBox<>();
         nomCatAfegir.setPrefSize(300, 20);
-        //nomCatAfegir.setItems();
+        nomCatAfegir.setItems(getTotesCategories());
         new AutoCompleteComboBoxListener(nomCatAfegir);
         HBox botons = new HBox(SPACE);
         Button ok = new Button("D'acord");
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //CtrlCatPag.getInstance().esborrarArcPC(nomC, nomP);
-                carregarCategories();
-                dialog.close();
+                String nomNovaCat = nomCatAfegir.getValue();
+                //boolean existeix = CtrlWikipedia.getInstance(). // TODO
+                //if(existeix) {
+                    CtrlCatPag.getInstance().RelPC(nomP, nomNovaCat);
+                    carregarCategoriesDeLaPagina();
+                    dialog.close();
+                //}
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -217,6 +223,17 @@ public class NavegacioP {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    private ObservableList<String> getTotesCategories(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlWikipedia.getInstance().getNomsCategories());
+        return data;
+    }
+    private ObservableList<String> getCategoriesDeLaPagina(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlCatPag.getInstance().getCategoriesPagina(nomP));
+        return data;
     }
 
 }
