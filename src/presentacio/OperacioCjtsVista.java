@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,28 +48,41 @@ public class OperacioCjtsVista {
         boxBotons.setPadding(new Insets(40));
         boxBotons.setAlignment(Pos.CENTER);
         Button unir = new Button("Unir");
+        unir.setMaxWidth(Double.MAX_VALUE);
+        Separator separator1 = new Separator(); separator1.setVisible(false);
         Button interseccionar = new Button("Interseccionar");
+        interseccionar.setMaxWidth(Double.MAX_VALUE);
+        Separator separator2 = new Separator(); separator2.setVisible(false);
         Button restar = new Button("Restar");
-        boxBotons.getChildren().addAll(unir, interseccionar, restar);
+        restar.setMaxWidth(Double.MAX_VALUE);
+        boxBotons.getChildren().addAll(unir, separator1, interseccionar, separator2, restar);
+
+        parent.getChildren().addAll(llistaT1, llistaT2, boxBotons);
 
         // OnMouseClicked Listeners:
 
         unir.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                //Ctrl.....
+                //actualitzaTemes();
+                //temesVista.actualitzaTemes();
             }
         });
         interseccionar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                //Ctrl.....
+                //actualitzaTemes();
+                //temesVista.actualitzaTemes();
             }
         });
         restar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                //Ctrl.....
+                //actualitzaTemes();
+                //temesVista.actualitzaTemes();
             }
         });
 

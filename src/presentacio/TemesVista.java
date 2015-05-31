@@ -258,5 +258,3 @@ public class TemesVista extends Tab {
         dialog.show();
     }
 }
-
-// TODO: Ricard: posa aquest codi per cridar a la vista OperacioCjtsVista

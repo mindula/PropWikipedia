@@ -23,7 +23,7 @@ import presentacio.autocompletat.AutoCompleteComboBoxListener;
  * Data: 29/05/15
  */
 
-public class NavegacioP { // TODO: modificar nom
+public class NavegacioP {
 
     private final double SPACE = 10;
     private String nomP;
@@ -31,6 +31,7 @@ public class NavegacioP { // TODO: modificar nom
     private Stage stagePropi;
 
     private ListView<String> llista;
+    private Label titol;
 
     public NavegacioP(String nomPagina, NavegacioVista nav, Stage stage){
         nomP = nomPagina;
@@ -44,7 +45,7 @@ public class NavegacioP { // TODO: modificar nom
         parent.setAlignment(Pos.CENTER);
         Scene scene = new Scene(parent);
 
-        Label titol = new Label(nomP);
+        titol = new Label(nomP);
         titol.setFont(new Font(30));
         Separator separator1 = new Separator(); separator1.setVisible(false);
         Label cats = new Label("Categories a les quals pertany");
@@ -54,14 +55,16 @@ public class NavegacioP { // TODO: modificar nom
         Button eliminarCat = new Button("Eliminar categoria de la pàgina");
         Separator separator2 = new Separator(); separator2.setVisible(false);
         Button afegirCat = new Button("Afegir categoria a la pàgina");
+        Button reanomenarPag = new Button("Modificar el nom de la pàgina");
         Button eliminarPag = new Button("Eliminar la pàgina");
         accedir.setMaxWidth(Double.MAX_VALUE);
         eliminarCat.setMaxWidth(Double.MAX_VALUE);
         afegirCat.setMaxWidth(Double.MAX_VALUE);
+        reanomenarPag.setMaxWidth(Double.MAX_VALUE);
         eliminarPag.setMaxWidth(Double.MAX_VALUE);
 
         parent.getChildren().addAll(titol, separator1, cats, llista,
-                accedir, eliminarCat, separator2, afegirCat, eliminarPag);
+                accedir, eliminarCat, separator2, afegirCat, reanomenarPag, eliminarPag);
 
         // OnMouseClicked Listeners:
         accedir.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -93,6 +96,12 @@ public class NavegacioP { // TODO: modificar nom
             @Override
             public void handle(MouseEvent mouseEvent) {
                 dialogAfegirCat();
+            }
+        });
+        reanomenarPag.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) { // TODO: modificar nom solucionar BUG
+                dialogReanomenarPag();
             }
         });
         eliminarPag.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -236,4 +245,45 @@ public class NavegacioP { // TODO: modificar nom
         return data;
     }
 
+    private void dialogReanomenarPag(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Escriu el nou nom de la pàgina");
+        final TextField nomNouTextField = new TextField();
+        nomNouTextField.setPrefSize(300, 20);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String nomNou = nomNouTextField.getText();
+                boolean existeix = CtrlCatPag.getInstance().existeixPagina(nomNou);
+                if(!existeix) {
+                    CtrlCatPag.getInstance().ModificarNomPag(nomP, nomNou);
+                    navegacioVista.carregarPagines();
+                    nomP = nomNou;
+                    titol.setText(nomP);
+                    dialog.close();
+                } else System.out.println("Ja existeix pag");
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, nomNouTextField, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Reanomenar la pàgina");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
 }
