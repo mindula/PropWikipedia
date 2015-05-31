@@ -27,6 +27,7 @@ public class FinestraPrincipal extends Application {
     private NavegacioVista navegacioVista;
     private TemesVista temesVista;
     private GenerarTemes generarTemes;
+    private HistorialVista historialVista;
 
     private TabPane tabPane;
     private Scene scene;
@@ -70,7 +71,12 @@ public class FinestraPrincipal extends Application {
         sortir.setOnAction(action);
         menu1.getItems().addAll(nou, guardar, carregar, importar, sortir);
 
-        Menu menu2 = new Menu("Opcions");
+        Menu menu2 = new Menu("Visualitzar");
+        MenuItem historialCerques = new MenuItem("Historial de cerques");
+        historialCerques.setOnAction(action);
+        MenuItem mostrarGrafWiki = new MenuItem("Graf de la Wikipedia");
+        mostrarGrafWiki.setOnAction(action);
+        menu2.getItems().addAll(historialCerques, mostrarGrafWiki);
         Menu menu3 = new Menu("Ajuda");
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3);
@@ -113,6 +119,8 @@ public class FinestraPrincipal extends Application {
                     }
                 }
                 else if ("Sortir".equals(itemName)) Platform.exit();
+                else if ("Historial de cerques".equals(itemName)) historialVista = new HistorialVista();
+                else if ("Graf de la Wikipedia".equals(itemName)) System.out.println("nom implementat");
             }
         };
     }

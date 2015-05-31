@@ -5,6 +5,7 @@ import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.*;
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -165,10 +166,16 @@ public class GenerarTemes extends Tab {
     }
 
     private void generarTemes() {
-        System.setErr(ps);
-        progresAlgoritme.setProgress(-1.0D);
+        //System.setErr(ps);
+
         Thread t1 = new Thread(new Runnable() {
             public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        progresAlgoritme.setProgress(-1.0D);
+                    }
+                });
                 double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
                 TipusAlgorisme algorisme = null;
                 if (louvainRadioB.isSelected()) algorisme = TipusAlgorisme.LOUVAIN;
@@ -214,6 +221,12 @@ public class GenerarTemes extends Tab {
                     //TODO: ConjuntComunitatsWiki no s'actualitza al acabar l'algorisme
                     finestraPrincipal.actualitzarTemes();
                 }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        progresAlgoritme.setProgress(0);
+                    }
+                });
             }
         });
         t1.start();
