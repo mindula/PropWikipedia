@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * NavegacioVista per la Wikipedia, amb tots els detalls explicat a l'enunciat
+ * CLASSE OBSOLETA: operacions implementades a la classe GrafWikipedia
  */
 
 public class Navegacio {
@@ -77,7 +78,7 @@ public class Navegacio {
     }
 
     public ArrayList<NodeCategoria> getCatsTema(NodeCategoria nodeCategoria){
-        // TODO: cal obtenir en la constructora el Conjunt de comunitats
+        // cal obtenir en la constructora el Conjunt de comunitats
         return null;
     }
 }

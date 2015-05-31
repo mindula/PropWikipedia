@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
@@ -123,6 +124,8 @@ public class NavegacioVista extends Tab {
                     stage.setScene(scene);
                     stage.setTitle("Pàgina");
                     stage.show();
+                    llistaP.getSelectionModel().clearSelection(); // si no, hi ha bugs de seleccio
+                    llistaC.getSelectionModel().clearSelection();
                 }
                 else System.out.println("No hi ha pag seleccionada");
             }
@@ -140,6 +143,8 @@ public class NavegacioVista extends Tab {
                     stage.setScene(scene);
                     stage.setTitle("Categoria");
                     stage.show();
+                    llistaP.getSelectionModel().clearSelection(); // si no, hi ha bugs de seleccio
+                    llistaC.getSelectionModel().clearSelection();
                 }
                 else System.out.println("No hi ha cat seleccionada");
             }
@@ -295,11 +300,11 @@ public class NavegacioVista extends Tab {
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!textField.getText().isEmpty()) {
+                if(!textField.getText().isEmpty() && !CtrlCatPag.getInstance().existeixPagina(textField.getText())) {
                     CtrlWikipedia.getInstance().afegirPag(textField.getText());
                     carregarPagines();
                     dialog.close();
-                }
+                } else System.out.println("Ja existeix pag");
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -333,11 +338,11 @@ public class NavegacioVista extends Tab {
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!textField.getText().isEmpty()) {
+                if(!textField.getText().isEmpty() && !CtrlCatPag.getInstance().existeixCategoria(textField.getText())) {
                     CtrlWikipedia.getInstance().afegirCat(textField.getText());
                     carregarCategories();
                     dialog.close();
-                }
+                } else System.out.println("Ja existeix cat");
             }
         });
         Button cancel = new Button("Cancel·lar");
