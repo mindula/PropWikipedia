@@ -127,6 +127,7 @@ public class NavegacioVista extends Tab {
                     stage.setTitle("Pàgina");
                     stage.show();
                 }
+                else System.out.println("No hi ha pag seleccionada");
             }
         });
         accedirC.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -142,18 +143,19 @@ public class NavegacioVista extends Tab {
                     stage.setTitle("Categoria");
                     stage.show();
                 }
+                else System.out.println("No hi ha cat seleccionada");
             }
         });
         novaP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogNovaPagina();
             }
         });
         novaC.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogNovaCategoria();
             }
         });
         eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -290,6 +292,82 @@ public class NavegacioVista extends Tab {
 
         Scene dialogScene = new Scene(parent);
         dialog.setTitle("Eliminar categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogNovaPagina(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Introdueix el nom de la nova pàgina");
+        final TextField textField = new TextField();
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(!textField.getText().isEmpty()) {
+                    CtrlWikipedia.getInstance().afegirPag(textField.getText());
+                    carregarPagines();
+                    dialog.close();
+                }
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, textField, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Nova pàgina");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogNovaCategoria(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Introdueix el nom de la nova categoria");
+        final TextField textField = new TextField();
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(!textField.getText().isEmpty()) {
+                    CtrlWikipedia.getInstance().afegirCat(textField.getText());
+                    carregarCategories();
+                    dialog.close();
+                }
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, textField, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Nova categoria");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
