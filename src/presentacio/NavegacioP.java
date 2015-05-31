@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,7 +47,7 @@ public class NavegacioP {
         Separator separator1 = new Separator(); separator1.setVisible(false);
         Label cats = new Label("Categories a les quals pertany");
         final ListView<String> llista = new ListView<>();
-        llista.getItems().addAll("Cat1"); // TODO: necessaria funcio de CtrlWikipedia
+        llista.getItems().addAll("CAT1"); // TODO: necessaria funcio de CtrlWikipedia
         Button accedir = new Button("Accedir a la categoria");
         Separator separator2 = new Separator(); separator2.setVisible(false);
         Button editar = new Button("Editar la pàgina");

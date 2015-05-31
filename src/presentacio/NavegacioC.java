@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -49,21 +50,21 @@ public class NavegacioC {
 
         Label labelP = new Label("Pàgines que conté");
         llistaP = new ListView<>();
-        llistaP.getItems().addAll("QWERTTYUIOP", "asdf"); // TODO: necessaries funcions CtrlWikipedia
+        llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC));
         Button accedirP = new Button("Accedir a la pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
         VBox boxP = new VBox(SPACE);
         boxP.getChildren().addAll(labelP, llistaP, accedirP);
         Label labelSuper = new Label("Supercategories");
         llistaSuper = new ListView<>();
-        llistaSuper.getItems().addAll("super1");
+        llistaSuper.getItems().addAll(CtrlCatPag.getInstance().getSuperCategories(nomC));
         Button accedirSuper= new Button("Accedir a la supercategoria");
         accedirSuper.setMaxWidth(Double.MAX_VALUE);
         VBox boxSuper = new VBox(SPACE);
         boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper);
         Label labelSub = new Label("Subcategories");
         llistaSub = new ListView<>();
-        llistaSub.getItems().addAll("sub1");
+        llistaSub.getItems().addAll(CtrlCatPag.getInstance().getSubCategories(nomC));
         Button accedirSub = new Button("Accedir a la subcategoria");
         accedirSub.setMaxWidth(Double.MAX_VALUE);
         VBox boxSub = new VBox(SPACE);
@@ -81,7 +82,7 @@ public class NavegacioC {
         // llista amb cats del mateix tema
         Label labelTema = new Label("Categories del mateix tema");
         llistaTema = new ListView<>();
-        llistaTema.getItems().addAll("DelMateixTema");
+        llistaTema.getItems().addAll(CtrlCatPag.getInstance().getCategoriesTema(nomC));
         Button accedirCatTema = new Button("Accedir a la categoria");
         accedirCatTema.setMaxWidth(Double.MAX_VALUE);
         VBox boxTema = new VBox(SPACE);

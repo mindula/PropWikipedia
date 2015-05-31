@@ -16,9 +16,7 @@ public class Consola extends OutputStream {
         this.op = ta;
     }
     @Override
-    public void write(int i) throws IOException
-    {
+    public void write(int i) throws IOException, NullPointerException{
         op.appendText(String.valueOf((char) i));
-        //op.setText(String.valueOf((char) i));
     }
 }

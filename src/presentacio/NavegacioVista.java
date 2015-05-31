@@ -33,14 +33,10 @@ public class NavegacioVista extends Tab {
 
     private final double SPACE = 10;
 
-
     private final ComboBox<String> queryText;
     private final ComboBox<String> pagCatCerca;
     private final ListView<String> llistaP;
     private final ListView<String> llistaC;
-
-    //private Stage stage;
-
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
@@ -220,11 +216,6 @@ public class NavegacioVista extends Tab {
         if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(1))) // categoria
             queryText.setItems(data);
     }
-/*
-    public void tancaFill(){
-        stage.close();
-    }*/
-
 
     private void dialogEliminarPagina(){
         final String nomP = llistaP.getSelectionModel().getSelectedItem();
@@ -375,7 +366,6 @@ public class NavegacioVista extends Tab {
     }
 
 }
-
 
 /*
 HBox parentHBox = new HBox(10);
