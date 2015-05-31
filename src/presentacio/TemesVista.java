@@ -107,7 +107,7 @@ public class TemesVista extends Tab {
         for (Comunitat<NodeCategoria> c : cjtComunitats) {
             llistaT.getItems().add("Tema " + c.getId());
         }
-
+        System.out.println(llistaT.getItems().size());
     }
 
 

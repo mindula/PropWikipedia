@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 
@@ -36,6 +37,8 @@ public class GenerarTemes extends Tab {
     private Button generarTemes;
     private ProgressBar progresAlgoritme;
     private TextArea logAlgorisme;
+    private Consola consola;
+    private PrintStream ps;
 
     public GenerarTemes(FinestraPrincipal finestraPrincipal) {
         this.finestraPrincipal = finestraPrincipal;
@@ -114,6 +117,12 @@ public class GenerarTemes extends Tab {
         logAlgorisme = new TextArea();
         logAlgorisme.setEditable(false);
 
+        /*
+            Preparaments per redirigir System.out a la TextArea logAlgorisme
+         */
+        consola = new Consola(logAlgorisme);
+        ps = new PrintStream(consola, true);
+
         VBox algRadioBox = new VBox(5);
         algRadioBox.getChildren().addAll(algoritmeLabel, louvainRadioB, cliqueRadioB, girvanRadioB);
         VBox generarBox = new VBox(5);
@@ -156,51 +165,58 @@ public class GenerarTemes extends Tab {
     }
 
     private void generarTemes() {
-        double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
-        TipusAlgorisme algorisme = null;
-        if (louvainRadioB.isSelected()) algorisme = TipusAlgorisme.LOUVAIN;
-        else if (cliqueRadioB.isSelected()) algorisme = TipusAlgorisme.CLIQUE;
-        else if (girvanRadioB.isSelected()) algorisme = TipusAlgorisme.GIRVAN;
-        if (algorisme != null) {
-            double ponderacioNom;
-            double ponderacioSubC;
-            double ponderacioSuperC;
-            double ponderacioPag;
-            ArrayList<Criteri> criteris = new ArrayList<>();
-            if (!nomSlider.isDisable()) {
-                ponderacioNom = nomSlider.getValue();
-                Criteri c = new CriteriNom(ponderacioNom);
-                criteris.add(c);
-            }
-            if (!subCatSlider.isDisable()) {
-                ponderacioSubC = subCatSlider.getValue();
-                Criteri c = new CriteriSubCategoriesComuns(ponderacioSubC);
-                criteris.add(c);
-            }
-            if (!superCatSlider.isDisable()) {
-                ponderacioSuperC = superCatSlider.getValue();
-                Criteri c = new CriteriSuperCategoriesComuns(ponderacioSuperC);
-                criteris.add(c);
-            }
-            if (!pagSlider.isDisable()) {
-                ponderacioPag = pagSlider.getValue();
-                Criteri c = new CriteriPaginesComuns(ponderacioPag);
-                criteris.add(c);
-            }
-            CtrlAlgorisme c = new CtrlAlgorisme(
-                    CtrlWikipedia.getInstance().getGrafWiki(),
-                    algorisme,
-                    parametreAlgorisme,
-                    criteris);
-            ConjuntComunitatWiki comunitats = c.cercarComunitats();
-            System.out.println(comunitats.getInformacio().toString());
+        System.setErr(ps);
+        progresAlgoritme.setProgress(-1.0D);
+        Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
+                TipusAlgorisme algorisme = null;
+                if (louvainRadioB.isSelected()) algorisme = TipusAlgorisme.LOUVAIN;
+                else if (cliqueRadioB.isSelected()) algorisme = TipusAlgorisme.CLIQUE;
+                else if (girvanRadioB.isSelected()) algorisme = TipusAlgorisme.GIRVAN;
+                if (algorisme != null) {
+                    double ponderacioNom;
+                    double ponderacioSubC;
+                    double ponderacioSuperC;
+                    double ponderacioPag;
+                    ArrayList<Criteri> criteris = new ArrayList<>();
+                    if (!nomSlider.isDisable()) {
+                        ponderacioNom = nomSlider.getValue();
+                        Criteri c = new CriteriNom(ponderacioNom);
+                        criteris.add(c);
+                    }
+                    if (!subCatSlider.isDisable()) {
+                        ponderacioSubC = subCatSlider.getValue();
+                        Criteri c = new CriteriSubCategoriesComuns(ponderacioSubC);
+                        criteris.add(c);
+                    }
+                    if (!superCatSlider.isDisable()) {
+                        ponderacioSuperC = superCatSlider.getValue();
+                        Criteri c = new CriteriSuperCategoriesComuns(ponderacioSuperC);
+                        criteris.add(c);
+                    }
+                    if (!pagSlider.isDisable()) {
+                        ponderacioPag = pagSlider.getValue();
+                        Criteri c = new CriteriPaginesComuns(ponderacioPag);
+                        criteris.add(c);
+                    }
+                    CtrlAlgorisme c = new CtrlAlgorisme(
+                            CtrlWikipedia.getInstance().getGrafWiki(),
+                            algorisme,
+                            parametreAlgorisme,
+                            criteris);
+                    ConjuntComunitatWiki comunitats = c.cercarComunitats();
+                    System.out.println(comunitats.getInformacio().toString());
 
-            CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
-            System.out.println("Comunitats trobades:");
-            System.out.println(comunitats.getCjtComunitats());
-            //TODO: ConjuntComunitatsWiki no s'actualitza al acabar l'algorisme
-            finestraPrincipal.actualitzarTemes();
-        }
+                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
+                    System.out.println("Comunitats trobades:");
+                    System.out.println(comunitats.getCjtComunitats());
+                    //TODO: ConjuntComunitatsWiki no s'actualitza al acabar l'algorisme
+                    finestraPrincipal.actualitzarTemes();
+                }
+            }
+        });
+        t1.start();
     }
 
     private EventHandler<ActionEvent> listenerCheckBox() {

@@ -3,6 +3,7 @@ package domini.controladors;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.controladors.graf.grafgenerator.GrafGenerator;
 import domini.modeldades.ConjuntComunitatWiki;
+import domini.modeldades.InformacioCjtComunitats;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -10,9 +11,7 @@ import prop.classescompartides.algorismes.AlgorismeLouvain;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
 import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
-import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
-import domini.modeldades.InformacioCjtComunitats;
 
 import java.util.ArrayList;
 
@@ -68,14 +67,23 @@ public class CtrlAlgorisme{
 
         long startTime = System.currentTimeMillis();
         GrafGenerator generator = new GrafGenerator();
+        System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
+        System.err.println("Aplicant criteris...");
         Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
         long generatorTime = System.currentTimeMillis() - startTime;
+        System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
+        System.err.println("Cercant comunitats...");
         conjunt.setCjtComunitats(algorisme.cercarComunitats(graf, par1));
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
+        System.err.println("Temps en cercar comunitats: " + String.valueOf(elapsedTime) + "ms");
         System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");
 
-         conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, conjunt.getCjtComunitats().getNumComunitats(), tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
+        int nComunitats = conjunt.getCjtComunitats().getNumComunitats();
+        System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
+
+        conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, nComunitats, tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
+
 
         return conjunt;
     }
