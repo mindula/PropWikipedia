@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,47 +33,108 @@ public class NavegacioC {
     public Scene getScene(){
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
-        Scene scene = new Scene(parent);
+        parent.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(parent, 1024, 768); // necessari perque es massa gran)
 
         Label titol = new Label(nomC);
         titol.setFont(new Font(30));
         Separator separator1 = new Separator(); separator1.setVisible(false);
 
         Label labelP = new Label("Pàgines que conté");
-        ListView<String> llistaP = new ListView<>(/****************/);
+        ListView<String> llistaP = new ListView<>();
         llistaP.getItems().addAll("QWERTTYUIOP", "asdf");
         Button accedirP = new Button("Accedir a la pàgina");
-        //accedirP.setMaxWidth(Double.MAX_VALUE);
+        accedirP.setMaxWidth(Double.MAX_VALUE);
         VBox boxP = new VBox(SPACE);
         boxP.getChildren().addAll(labelP, llistaP, accedirP);
         Label labelSuper = new Label("Supercategories");
-        ListView<String> llistaSuper = new ListView<>(/****************/);
+        ListView<String> llistaSuper = new ListView<>();
         llistaSuper.getItems().addAll("super1");
         Button accedirSuper= new Button("Accedir a la supercategoria");
-        //setMaxWidth(Double.MAX_VALUE);
+        accedirSuper.setMaxWidth(Double.MAX_VALUE);
         VBox boxSuper = new VBox(SPACE);
         boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper);
         Label labelSub = new Label("Subcategories");
-        ListView<String> llistaSub = new ListView<>(/************/);
+        ListView<String> llistaSub = new ListView<>();
         llistaSub.getItems().addAll("sub1");
         Button accedirSub = new Button("Accedir a la subcategoria");
-        //setMaxWidth(Double.MAX_VALUE);
+        accedirSub.setMaxWidth(Double.MAX_VALUE);
         VBox boxSub = new VBox(SPACE);
         boxSub.getChildren().addAll(labelSub, llistaSub, accedirSub);
 
         HBox boxPagSuperSub = new HBox(SPACE);
+        boxPagSuperSub.setAlignment(Pos.CENTER);
         boxPagSuperSub.getChildren().addAll(boxP, boxSuper, boxSub);
 
         Button editar = new Button("Editar la categoria");
         Button eliminar = new Button("Eliminar la categoria");
-        //editar.setMaxWidth(Double.MAX_VALUE);
-        //eliminar.setMaxWidth(Double.MAX_VALUE);
+        editar.setMaxWidth(200);
+        eliminar.setMaxWidth(200);
 
-        parent.getChildren().addAll(titol, separator1, boxPagSuperSub);
+        // llista amb cats del mateix tema
+        Label labelTema = new Label("Categories del mateix tema");
+        ListView<String> llistaTema = new ListView<>();
+        llistaTema.getItems().addAll("DelMateixTema");
+        Button accedirCatTema = new Button("Accedir a la categoria");
+        accedirCatTema.setMaxWidth(Double.MAX_VALUE);
+        VBox boxTema = new VBox(SPACE);
+        boxTema.getChildren().addAll(labelTema, llistaTema, accedirCatTema);
+
+        ListView<String> mockList1 = new ListView<>(); mockList1.setVisible(false);
+        ListView<String> mockList2 = new ListView<>(); mockList2.setVisible(false);
+        VBox boxMock1 = new VBox(SPACE);
+        boxMock1.getChildren().addAll(mockList1);
+        VBox boxMock2 = new VBox(SPACE);
+        boxMock2.setAlignment(Pos.BOTTOM_RIGHT);
+        boxMock2.getChildren().addAll(mockList2, editar, eliminar);
+
+        HBox boxMateixTema = new HBox(SPACE);
+        boxMateixTema.setAlignment(Pos.CENTER);
+        boxMateixTema.getChildren().addAll(boxMock1, boxTema, boxMock2);
+
+
+
+        parent.getChildren().addAll(titol, separator1, boxPagSuperSub, boxMateixTema);
 
         // OnMouseClicked Listeners:
+        accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        accedirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        accedirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        accedirCatTema.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        editar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
 
-
+        // finalment
         return scene;
     }
 

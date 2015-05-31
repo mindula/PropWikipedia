@@ -16,6 +16,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.HashSet;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
@@ -36,14 +38,15 @@ public class NavegacioP {
     public Scene getScene(){
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
+        parent.setAlignment(Pos.CENTER);
         Scene scene = new Scene(parent);
 
         Label titol = new Label(nomP);
         titol.setFont(new Font(30));
         Separator separator1 = new Separator(); separator1.setVisible(false);
         Label cats = new Label("Categories a les quals pertany");
-        ListView<String> llista = new ListView<>();
-        llista.getItems().addAll("QWERTTYUIOP", "asdf");
+        final ListView<String> llista = new ListView<>();
+        llista.getItems().addAll("Cat1"); // TODO: necessaria funcio de CtrlWikipedia
         Button accedir = new Button("Accedir a la categoria");
         Separator separator2 = new Separator(); separator2.setVisible(false);
         Button editar = new Button("Editar la pàgina");
@@ -59,20 +62,22 @@ public class NavegacioP {
         accedir.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                NavegacioC navegacioC = new NavegacioC("Nom de la categoria", navegacioVista);
-                Scene scene = navegacioC.getScene();
-                Stage stage = new Stage();
-                stage.setResizable(false);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.show();
-                navegacioVista.tancaFill();
+                if (!llista.getSelectionModel().isEmpty()) {
+                    NavegacioC navegacioC = new NavegacioC(llista.getSelectionModel().getSelectedItem(), navegacioVista);
+                    Scene scene = navegacioC.getScene();
+                    Stage stage = new Stage();
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(scene);
+                    stage.show();
+                    navegacioVista.tancaFill();
+                } else System.out.println("No hi ha cat seleccionada");
             }
         });
         editar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                // TODO
             }
         });
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -81,6 +86,8 @@ public class NavegacioP {
                 dialogEliminarPagina();
             }
         });
+
+        // finalment
         return scene;
     }
 
