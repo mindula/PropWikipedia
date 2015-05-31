@@ -22,8 +22,8 @@ public class ConjuntComunitatWiki {
 
     public ConjuntComunitatWiki(){
         cjtComunitats = new ConjuntComunitats<NodeCategoria>();
-        noms = new HashMap<Integer,String>();
-        descripcions = new HashMap<Integer,String>();
+        noms = new HashMap<>();
+        descripcions = new HashMap<>();
         ids = new HashMap<>();
     }
 

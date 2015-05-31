@@ -3,7 +3,6 @@ package presentacio;
 import domini.controladors.CtrlAlgorisme;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.*;
-import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -212,13 +211,12 @@ public class GenerarTemes extends Tab {
                             algorisme,
                             parametreAlgorisme,
                             criteris);
-                    ConjuntComunitatWiki comunitats = c.cercarComunitats();
-                    System.out.println(comunitats.getInformacio().toString());
-
-                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
-                    System.out.println("Comunitats trobades:");
-                    System.out.println(comunitats.getCjtComunitats());
-                    //TODO: ConjuntComunitatsWiki no s'actualitza al acabar l'algorisme
+                    c.generarGraf();
+                    try {
+                        c.cercarComunitats();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     finestraPrincipal.actualitzarTemes();
                 }
                 Platform.runLater(new Runnable() {

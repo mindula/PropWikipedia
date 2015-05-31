@@ -31,8 +31,10 @@ public class CtrlComunitat {
     public void afegirConjuntsGenerats(ConjuntComunitatWiki c) throws Exception {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()){
             conjunt.getCjtComunitats().afegirComunitat(com);
-            conjunt.setNom(com.getId(),"Tema: " + com.getId());
-            conjunt.setId(com.getId(), "Tema: " + com.getId());
+            String nom = "Tema: " + String.valueOf(com.getId());
+            System.out.println(com.getId());
+            conjunt.setNom(com.getId(), nom);
+            conjunt.setId(com.getId(), nom);
             conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");
         }
     }
@@ -48,7 +50,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
     }
 
-    public int getId(String nom) {
+    public Integer getId(String nom) {
         return conjunt.getId(nom);
     }
 
