@@ -39,7 +39,7 @@ public class NavegacioVista extends Tab {
     private final ListView<String> llistaP;
     private final ListView<String> llistaC;
 
-    private Stage stage;
+    //private Stage stage;
 
 
     public NavegacioVista(){
@@ -118,9 +118,10 @@ public class NavegacioVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (!llistaP.getSelectionModel().isEmpty()) {
-                    NavegacioP navegacioP = new NavegacioP(llistaP.getSelectionModel().getSelectedItem(), NavegacioVista.this);
+                    Stage stage = new Stage();
+                    NavegacioP navegacioP = new NavegacioP(llistaP.getSelectionModel().getSelectedItem(),
+                            NavegacioVista.this, stage);
                     Scene scene = navegacioP.getScene();
-                    stage = new Stage();
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(scene);
@@ -134,9 +135,10 @@ public class NavegacioVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (!llistaC.getSelectionModel().isEmpty()) {
-                    NavegacioC navegacioC = new NavegacioC(llistaC.getSelectionModel().getSelectedItem(), NavegacioVista.this);
+                    Stage stage = new Stage();
+                    NavegacioC navegacioC = new NavegacioC(llistaC.getSelectionModel().getSelectedItem(),
+                            NavegacioVista.this, stage);
                     Scene scene = navegacioC.getScene();
-                    stage = new Stage();
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(scene);
@@ -206,8 +208,7 @@ public class NavegacioVista extends Tab {
     public void carregarPagines(){
         ObservableList<String> data = getPagines();
         llistaP.setItems(data);
-        if(!data.isEmpty()) // per evitar problemes de quin esta seleccionat si borrem dades
-            llistaP.getSelectionModel().clearSelection();
+        llistaP.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
         if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(0))) // pagina
             queryText.setItems(data);
     }
@@ -215,15 +216,14 @@ public class NavegacioVista extends Tab {
     public void carregarCategories(){
         ObservableList<String> data = getCategories();
         llistaC.setItems(data);
-        if(!data.isEmpty()) // per evitar problemes de quin esta seleccionat si borrem dades
-            llistaC.getSelectionModel().clearSelection();
+        llistaC.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
         if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(1))) // categoria
             queryText.setItems(data);
     }
-
+/*
     public void tancaFill(){
         stage.close();
-    }
+    }*/
 
 
     private void dialogEliminarPagina(){

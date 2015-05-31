@@ -268,7 +268,7 @@ public class NavegacioC extends javax.swing.JDialog {
         }// </editor-fold>
 
         private void botoPActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
+
         }
 
 

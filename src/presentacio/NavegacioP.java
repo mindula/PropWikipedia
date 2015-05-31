@@ -16,8 +16,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.util.HashSet;
-
 /**
  * Grup 3: Wikipedia
  * Usuari: aleix.paris
@@ -29,10 +27,12 @@ public class NavegacioP {
     private final double SPACE = 10;
     private String nomP;
     private final NavegacioVista navegacioVista;
+    private Stage stagePropi;
 
-    public NavegacioP(String nomPagina, NavegacioVista nav){
+    public NavegacioP(String nomPagina, NavegacioVista nav, Stage stage){
         nomP = nomPagina;
         navegacioVista = nav;
+        stagePropi = stage;
     }
 
     public Scene getScene(){
@@ -63,14 +63,16 @@ public class NavegacioP {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (!llista.getSelectionModel().isEmpty()) {
-                    NavegacioC navegacioC = new NavegacioC(llista.getSelectionModel().getSelectedItem(), navegacioVista);
-                    Scene scene = navegacioC.getScene();
                     Stage stage = new Stage();
+                    stagePropi.close();
+                    NavegacioC navegacioC = new NavegacioC(llista.getSelectionModel().getSelectedItem(),
+                            navegacioVista, stage);
+                    Scene scene = navegacioC.getScene();
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(scene);
+                    stage.setTitle("Categoria");
                     stage.show();
-                    navegacioVista.tancaFill();
                 } else System.out.println("No hi ha cat seleccionada");
             }
         });
@@ -105,7 +107,7 @@ public class NavegacioP {
                 CtrlWikipedia.getInstance().elimPag(nomP);
                 navegacioVista.carregarPagines();
                 dialog.close();
-                navegacioVista.tancaFill();
+                stagePropi.close();
             }
         });
         Button cancel = new Button("Cancel·lar");

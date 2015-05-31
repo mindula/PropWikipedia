@@ -195,26 +195,22 @@ public class Temes extends javax.swing.JPanel {
             String anticValor = llistatTemes.getSelectedValue().toString();
             String nouValor = JOptionPane.showInputDialog(this, "Reanomena tema", anticValor);
             System.out.println(nouValor);
-            //TODO: modificar i actualitzar dades
         }
     }
 
     private void buttonCrearNouTemaActionPerformed(java.awt.event.ActionEvent evt) {
         String s = JOptionPane.showInputDialog(this, "Introdueix el nom del nou tema.");
-        //TODO: falta enmsgatzemar el nou tema
         if (s != null)
             System.out.println(s);
     }
 
     private void buttonOperacionsTemesActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         JDialog operacionsTemes = new OperacionsTemes();
         operacionsTemes.setModal(true);
         operacionsTemes.setVisible(true);
     }
 
     private void generarTemesActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         JDialog generaTemes = new GeneraTemes();
         generaTemes.setModal(true);
         generaTemes.setVisible(true);

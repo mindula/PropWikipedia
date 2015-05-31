@@ -186,18 +186,15 @@ public class NavegacioVista extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void botoCercaActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
 
 
     }
 
     private void seleccioPCActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
 
     }
 
     private void botoCActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         JDialog navegacioC = new NavegacioC();
         navegacioC.setModal(true);
         navegacioC.setVisible(true);
@@ -205,7 +202,6 @@ public class NavegacioVista extends javax.swing.JPanel {
     }
 
     private void botoPActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         JDialog navegacioP = new NavegacioP();
         navegacioP.setModal(true);
         navegacioP.setVisible(true);

@@ -24,10 +24,17 @@ public class NavegacioC {
     private final double SPACE = 10;
     private String nomC;
     private final NavegacioVista navegacioVista;
+    private Stage stagePropi;
 
-    public NavegacioC(String nomCategoria,  NavegacioVista nav){
+    private ListView<String> llistaP;
+    private ListView<String> llistaSuper;
+    private ListView<String> llistaSub;
+    private ListView<String> llistaTema;
+
+    public NavegacioC(String nomCategoria,  NavegacioVista nav, Stage stage){
         nomC = nomCategoria;
         navegacioVista = nav;
+        stagePropi = stage;
     }
 
     public Scene getScene(){
@@ -41,21 +48,21 @@ public class NavegacioC {
         Separator separator1 = new Separator(); separator1.setVisible(false);
 
         Label labelP = new Label("Pàgines que conté");
-        ListView<String> llistaP = new ListView<>();
-        llistaP.getItems().addAll("QWERTTYUIOP", "asdf");
+        llistaP = new ListView<>();
+        llistaP.getItems().addAll("QWERTTYUIOP", "asdf"); // TODO: necessaries funcions CtrlWikipedia
         Button accedirP = new Button("Accedir a la pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
         VBox boxP = new VBox(SPACE);
         boxP.getChildren().addAll(labelP, llistaP, accedirP);
         Label labelSuper = new Label("Supercategories");
-        ListView<String> llistaSuper = new ListView<>();
+        llistaSuper = new ListView<>();
         llistaSuper.getItems().addAll("super1");
         Button accedirSuper= new Button("Accedir a la supercategoria");
         accedirSuper.setMaxWidth(Double.MAX_VALUE);
         VBox boxSuper = new VBox(SPACE);
         boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper);
         Label labelSub = new Label("Subcategories");
-        ListView<String> llistaSub = new ListView<>();
+        llistaSub = new ListView<>();
         llistaSub.getItems().addAll("sub1");
         Button accedirSub = new Button("Accedir a la subcategoria");
         accedirSub.setMaxWidth(Double.MAX_VALUE);
@@ -73,7 +80,7 @@ public class NavegacioC {
 
         // llista amb cats del mateix tema
         Label labelTema = new Label("Categories del mateix tema");
-        ListView<String> llistaTema = new ListView<>();
+        llistaTema = new ListView<>();
         llistaTema.getItems().addAll("DelMateixTema");
         Button accedirCatTema = new Button("Accedir a la categoria");
         accedirCatTema.setMaxWidth(Double.MAX_VALUE);
@@ -100,28 +107,28 @@ public class NavegacioC {
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                accedirPagina(llistaP);
             }
         });
         accedirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                accedirCategoria(llistaSuper);
             }
         });
         accedirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                accedirCategoria(llistaSub);
             }
         });
         accedirCatTema.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                accedirCategoria(llistaTema);
             }
         });
-        editar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        editar.setOnMouseClicked(new EventHandler<MouseEvent>() { // TODO
             @Override
             public void handle(MouseEvent mouseEvent) {
                 //
@@ -130,7 +137,7 @@ public class NavegacioC {
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogEliminarCategoria();
             }
         });
 
@@ -153,7 +160,7 @@ public class NavegacioC {
                 CtrlWikipedia.getInstance().elimCat(nomC);
                 navegacioVista.carregarCategories();
                 dialog.close();
-                navegacioVista.tancaFill();
+                stagePropi.close();
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -173,6 +180,37 @@ public class NavegacioC {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    private void accedirCategoria(ListView<String> llista){
+        if (!llista.getSelectionModel().isEmpty()) {
+            Stage stage = new Stage();
+            stagePropi.close();
+            NavegacioC navegacioC = new NavegacioC(llista.getSelectionModel().getSelectedItem(),
+                    navegacioVista, stage);
+            Scene scene = navegacioC.getScene();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setTitle("Categoria");
+            stage.show();
+        } else System.out.println("No hi ha cat seleccionada");
+    }
+
+    private void accedirPagina(ListView<String> llista){
+        if (!llista.getSelectionModel().isEmpty()) {
+            Stage stage = new Stage();;
+            stagePropi.close();
+            NavegacioP navegacioP = new NavegacioP(llista.getSelectionModel().getSelectedItem(),
+                    navegacioVista, stage);
+            Scene scene = navegacioP.getScene();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setTitle("Pàgina");
+            stage.show();
+        }
+        else System.out.println("No hi ha pag seleccionada");
     }
 
 }
