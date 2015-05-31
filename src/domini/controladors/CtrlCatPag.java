@@ -141,4 +141,15 @@ public class CtrlCatPag {
         }
         return result;
     }
+
+    /**
+     * Obtenir les Categories relacionades d'una pagina amb nom pagina
+     */
+    public ArrayList<String> getCategoriesPagina(String pagina){
+        ArrayList<String> categories = new ArrayList<String>();
+        for(NodeCategoria cat: grafWiki.getNodePag(pagina).getCategories()){
+            categories.add(cat.getNom());
+        }
+        return categories;
+    }
 }
