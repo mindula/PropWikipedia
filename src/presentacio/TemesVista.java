@@ -45,6 +45,7 @@ public class TemesVista extends Tab {
             public void handle(MouseEvent mouseEvent) {
                 if (!llistaT.getSelectionModel().isEmpty()) {
                     String tema = llistaT.getSelectionModel().getSelectedItem();
+                    System.out.println(tema);
                     int id = CtrlComunitat.getInstance().getId(tema);
                     try {
                         HashSet<NodeCategoria> c =
