@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlWikipedia;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,6 +37,7 @@ public class ComparacioTemes {
 
         llistaExecucions1 = new ListView<>();
         llistaExecucions2 = new ListView<>();
+        actualitzarLlistes();
         HBox liniaLlistes = new HBox(10);
         liniaLlistes.getChildren().addAll(llistaExecucions1, llistaExecucions2);
 
@@ -58,18 +60,23 @@ public class ComparacioTemes {
         Label mitjNum2 = new Label();
 
         VBox dades1 = new VBox(10);
-        dades1.getChildren().addAll(milisegons, miliNum1, nombreComunitats, nombreNum1, algoritme, algoNum1,
-                criteri, critNum1, mitjana, mitjNum1);
-
-        VBox dades2 = new VBox(10);
-        dades2.getChildren().addAll(milisegons, miliNum2, nombreComunitats, nombreNum2, algoritme, algoNum2,
-                criteri, critNum2, mitjana, mitjNum2);
+        dades1.getChildren().addAll(milisegons, miliNum1, miliNum2, nombreComunitats,
+                nombreNum1, nombreNum2, algoritme, algoNum1, algoNum2,
+                criteri, critNum1, critNum2, mitjana, mitjNum1, mitjNum2);
 
         VBox comparacio = new VBox(10);
-        comparacio.getChildren().addAll(compareButton, dades1, dades2);
+        comparacio.getChildren().addAll(compareButton, dades1);
 
         parent.getChildren().addAll(liniaLlistes, comparacio);
 
         return scene;
+    }
+
+    private void actualitzarLlistes() {
+        int nExecucions = CtrlWikipedia.getInstance().getNombreExecucions();
+        for (int i = 0; i < nExecucions; ++i) {
+            llistaExecucions1.getItems().add("Execucio " + i);
+            llistaExecucions2.getItems().add("Execucio " + i);
+        }
     }
 }

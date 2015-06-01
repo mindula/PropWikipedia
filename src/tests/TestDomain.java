@@ -112,7 +112,7 @@ public class TestDomain {
                     c.generarGraf();
                     ConjuntComunitatWiki comunitats = c.cercarComunitats();
 
-                    System.out.println(comunitats.getInformacio().toString());
+                    //System.out.println(comunitats.getInformacio().toString());
 
                     CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats);
                     System.out.println("Comunitats trobades:");

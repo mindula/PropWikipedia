@@ -13,7 +13,6 @@ import java.util.HashMap;
  * Data: 22/05/15
  */
 public class ConjuntComunitatWiki implements Serializable{
-    private InformacioCjtComunitats informacio;
     private ConjuntComunitats<NodeCategoria> cjtComunitats;
 
     private HashMap<Integer,String> noms;
@@ -28,14 +27,6 @@ public class ConjuntComunitatWiki implements Serializable{
         ids = new HashMap<>();
     }
 
-
-    public InformacioCjtComunitats getInformacio() {
-        return informacio;
-    }
-
-    public void setInformacio(InformacioCjtComunitats informacio) {
-        this.informacio = informacio;
-    }
 
     public ConjuntComunitats<NodeCategoria> getCjtComunitats() {
         return cjtComunitats;

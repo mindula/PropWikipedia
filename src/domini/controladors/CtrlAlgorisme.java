@@ -34,6 +34,7 @@ public class CtrlAlgorisme{
     private ArrayList<Criteri> criteris;
     private ConjuntComunitatWiki conjunt;
     private Graf<NodeCategoria> grafGenerat;
+    private InformacioCjtComunitats infoExecucio;
 
     /**
      * Constructora per defecte de la classe
@@ -62,7 +63,7 @@ public class CtrlAlgorisme{
         System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
-        conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString()));
+        infoExecucio = new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString());
     }
 
     /**
@@ -85,9 +86,10 @@ public class CtrlAlgorisme{
         conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));
         int nComunitats = conjunt.getCjtComunitats().getNumComunitats();
         System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
-        conjunt.getInformacio().setNombreComunitats(nComunitats);
-        conjunt.getInformacio().setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
+        infoExecucio.setNombreComunitats(nComunitats);
+        infoExecucio.setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
         CtrlComunitat.getInstance().afegirComunitatsGenerades(conjunt);
+        CtrlWikipedia.getInstance().afegirInfoExecucio(infoExecucio);
 
         return conjunt;
     }

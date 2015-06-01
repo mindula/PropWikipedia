@@ -32,6 +32,7 @@ public class FinestraPrincipal extends Application {
     private TemesVista temesVista;
     private GenerarTemes generarTemes;
     private HistorialVista historialVista;
+    private FinestraPrincipal finestraPrincipal;
 
     private TabPane tabPane;
     private Scene scene;
@@ -39,6 +40,7 @@ public class FinestraPrincipal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        finestraPrincipal = this;
         this.stage = stage;
         stage.setTitle("Wikipedia");
         stage.setMinHeight(384);
@@ -76,11 +78,13 @@ public class FinestraPrincipal extends Application {
         Menu menu2 = new Menu("Visualitzar");
         MenuItem historialCerques = new MenuItem("Historial de cerques");
         historialCerques.setOnAction(action);
+        MenuItem compararTemes = new MenuItem("Comparar dos temes generats");
+        compararTemes.setOnAction(action);
         MenuItem mostrarGrafWiki = new MenuItem("Graf de la Wikipedia");
         mostrarGrafWiki.setOnAction(action);
         MenuItem mostrarGrafTemes = new MenuItem("Graf amb els temes");
         mostrarGrafTemes.setOnAction(action);
-        menu2.getItems().addAll(historialCerques, mostrarGrafWiki, mostrarGrafTemes);
+        menu2.getItems().addAll(historialCerques, compararTemes, mostrarGrafWiki, mostrarGrafTemes);
         Menu menu3 = new Menu("Ajuda");
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3);
@@ -149,7 +153,19 @@ public class FinestraPrincipal extends Application {
                     }
                 }
                 else if ("Sortir".equals(itemName)) Platform.exit();
-                else if ("Historial de cerques".equals(itemName)) historialVista = new HistorialVista();
+                else if ("Historial de cerques".equals(itemName)) {
+                    historialVista = new HistorialVista();
+                }
+                else if ("Comparar dos temes generats".equals(itemName)) {
+                    ComparacioTemes comparacioTemes = new ComparacioTemes(stage, finestraPrincipal);
+                    Scene scene = comparacioTemes.getScene();
+                    Stage stageComparacio = new Stage();
+                    stageComparacio.setResizable(false);
+                    stageComparacio.initModality(Modality.APPLICATION_MODAL);
+                    stageComparacio.setScene(scene);
+                    stageComparacio.setTitle("Comparar dos temes");
+                    stageComparacio.show();
+                }
                 else if ("Graf de la Wikipedia".equals(itemName)) {
                     CtrlDibuix ctrlDibuix = new CtrlDibuix();
                     ctrlDibuix.DibuixarGraf();
