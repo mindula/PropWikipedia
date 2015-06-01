@@ -7,13 +7,10 @@ import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.NodeCategoria;
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
-import prop.classescompartides.graf.ConjuntComunitats;
-import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 import java.util.Locale;

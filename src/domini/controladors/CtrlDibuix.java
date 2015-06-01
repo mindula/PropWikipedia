@@ -1,9 +1,9 @@
 package domini.controladors;
 
-import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
 
@@ -29,7 +29,8 @@ public class CtrlDibuix {
             ++i;
         }
 
-        graf.display();
+        Viewer viewer =graf.display();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
     }
 
 
@@ -53,7 +54,7 @@ public class CtrlDibuix {
         }
         graf.addAttribute("ui.quality");
         graf.addAttribute("ui.antialias");
-        for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getComunitats()){
+        for(Comunitat<NodeCategoria> com: CtrlComunitat.getInstance().getConjunt().getCjtComunitats().getComunitats()){
             for (NodeCategoria cat: com.getNodes()){
                 if (com.mida() > 1) {
                     graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
@@ -66,8 +67,8 @@ public class CtrlDibuix {
             }
 
         }
-
-        graf.display();
+        Viewer viewer = graf.display();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
     }
 
 
