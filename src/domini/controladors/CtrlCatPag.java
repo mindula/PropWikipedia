@@ -3,6 +3,7 @@ package domini.controladors;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
+import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
 import prop.classescompartides.graf.ConjuntComunitats;
 
@@ -46,10 +47,42 @@ public class CtrlCatPag {
      * Cas d'us Modificar categoria
      */
     public void ModificarNomCat(String nomantic, String nounom){
+        //obtenir el node
         NodeCategoria c = grafWiki.getCategoriesMap().get(nomantic);
+        //obtenir els arcs
+        ArrayList<NodeCategoria> nodesb = new ArrayList<>();
+        ArrayList<Double> pesos = new ArrayList<Double>();
+        ArrayList<Arc<NodeCategoria>> arcs = new ArrayList<>();
+        for(Arc<NodeCategoria> a: grafWiki.getArcs()){
+            if (a.getNodeA().equals(c) && !nodesb.contains(a.getNodeB())){
+                nodesb.add(a.getNodeB());
+                pesos.add(a.getPes());
+                arcs.add(a);
+            }
+        }
+        //esborrar els arcs
+        for(Arc<NodeCategoria> a: arcs){
+            grafWiki.eliminarArc(a);
+        }
+        //esborrar el node
         grafWiki.getCategoriesMap().remove(nomantic);
+        grafWiki.eliminarCategoria(c);
+        //canviar el nom
         c.setNom(nounom);
+        //tornar a crear el node
         grafWiki.getCategoriesMap().put(nounom, c);
+        grafWiki.afegirCategoria(c);
+        //tornar a afegir els arcs
+        int i =0;
+        for(NodeCategoria n: nodesb){
+            if (pesos.get(i) < 0 ){
+                grafWiki.afegirArcCsupC(n,c);
+            }
+            else {
+               grafWiki.afegirArcCsupC(c, n);
+            }
+            ++i;
+        }
     }
 
     /**
