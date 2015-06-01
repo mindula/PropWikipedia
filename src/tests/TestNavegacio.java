@@ -35,7 +35,6 @@ public class TestNavegacio {
                 switch (option) {
                     case 0:
                         // Cercar pag
-                        //TODO: possible fail
                         ArrayList<NodePagina> nodesPagina = (ArrayList<NodePagina>)
                                 Cerca.cercarWikipediaP(grafWikipedia, nom).getResultats();
                         for (NodePagina np : nodesPagina) {
