@@ -1,6 +1,7 @@
 package domini.controladors;
 
 import domini.modeldades.ConjuntComunitatWiki;
+import domini.modeldades.InfoCerca;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
@@ -32,6 +33,7 @@ public class CtrlWikipedia implements Serializable{
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
     private ConjuntComunitatWiki conjuntsGenerats;
+    private ArrayList<InfoCerca> llistatCerques;
 
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -39,6 +41,7 @@ public class CtrlWikipedia implements Serializable{
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
         conjuntsGenerats = new ConjuntComunitatWiki();
+        llistatCerques = new ArrayList<InfoCerca>();
     }
 
     /**
@@ -158,6 +161,10 @@ public class CtrlWikipedia implements Serializable{
             nomPags.add(pag.getNom());
         }
         return nomPags;
+    }
+
+    public ArrayList<InfoCerca> getLlistatCerques() {
+        return llistatCerques;
     }
 
     @Override

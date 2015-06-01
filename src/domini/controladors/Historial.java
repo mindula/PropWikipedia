@@ -22,7 +22,7 @@ public class Historial {
     private ArrayList<InfoCerca> llistatCerques;
 
     private Historial() {
-        llistatCerques = new ArrayList<InfoCerca>();
+        llistatCerques = CtrlWikipedia.getInstance().getLlistatCerques();
     }
 
     /**

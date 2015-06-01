@@ -70,7 +70,8 @@ public class GenerarTemes extends Tab {
         generarTemes.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                generarTemes();
+                if (CtrlWikipedia.getInstance().getGrafWiki().getNumCategories() != 0)
+                    generarTemes();
             }
         });
 
