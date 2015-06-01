@@ -80,6 +80,7 @@ public class CtrlAlgorisme{
             algorisme = new CtrlAlgoritmoClique<>();
         }
 
+
         System.err.println("Cercant comunitats...");
         conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));
         int nComunitats = conjunt.getCjtComunitats().getNumComunitats();

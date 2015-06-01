@@ -40,6 +40,7 @@ public class Graf<T> implements Serializable {
     protected ArrayList<Arc<T>> cjtArcs;
     protected HashSet<T> cjtNodes;
     protected int V, E;
+    protected int initialCapacity;
 
     /**
      * Inicialitza un Graf buit
@@ -49,13 +50,15 @@ public class Graf<T> implements Serializable {
         cjtArcs = new ArrayList<Arc<T>>();
         cjtNodes = new HashSet<T>();
         V = E = 0;
+        initialCapacity = 0;
     }
 
     public Graf(int initialCapacity) {
-        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>(initialCapacity);
-        cjtArcs = new ArrayList<Arc<T>>(initialCapacity);
+        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>(initialCapacity*2);
+        cjtArcs = new ArrayList<Arc<T>>(initialCapacity*initialCapacity);
         cjtNodes = new HashSet<T>(initialCapacity);
         V = E = 0;
+        this.initialCapacity = initialCapacity;
     }
 
     /**
@@ -126,17 +129,13 @@ public class Graf<T> implements Serializable {
      * @throws RuntimeException quan algun dels dos nodes no existeix al graf
      */
     public void afegirArc(Arc<T> arc) {
-        if (!cjtArcs.contains(arc)) {
-            if (!adjacencyMap.containsKey(arc.getNodeA()))
-                throw new RuntimeException("El node A ha d'estar previament al graf");
-            if (!adjacencyMap.containsKey(arc.getNodeB()))
-                throw new RuntimeException("El node B ha d'estar previament al graf");
+
 
             adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
             adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
             cjtArcs.add(arc);
             ++E;
-        }
+
 
     }
 
