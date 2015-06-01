@@ -41,7 +41,7 @@ public class HistorialVista {
         ArrayList<Pair<String, String>> dades = Historial.getInstance().getCerquesStrings();
         ArrayList<String> dadesFormatCorrecte = new ArrayList<>();
         for(Pair<String,String> entrada : dades)
-            dadesFormatCorrecte.add(entrada.getFirst() + " " + entrada.getSecond());
+            dadesFormatCorrecte.add("Cerca: " + entrada.getFirst() + " Data: " + entrada.getSecond());
         llistaCerques.getItems().addAll(dadesFormatCorrecte);
         Button eliminarCerca = new Button("Eliminar cerques");
         eliminarCerca.setMaxWidth(Double.MAX_VALUE);
