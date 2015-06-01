@@ -13,27 +13,27 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class CtrlGirvanBron<T> extends Algoritme<T> {
-
+	
 	/**
-	 * Aquesta classe es l'encarregada de gestionar els algorismes GirvanNewman i BronKerbosch
+	 * Aquesta classe �s l'encarregada de gestionar els algorismes GirvanNewman i BronKerbosch
 	 * i de retornar les comunitats trobades dins del graf
 	 * 
 	 */
 
 	
 	/**
-	 * Donat un graf simple no dirigit i el criteriDeParada, retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
+	 * Donat un graf simple no dirigit i el criteriDeParada, retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjan�ant l'algorisme de GirvanNewman.
 	 * @param graf Graf on s'aplia l'algorisme.
-	 * @return Retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjansant l'algorisme de GirvanNewman.
+	 * @param exhaustivitat Valor entre [0-1]. Com major sigui el valor mes gran seran les comunitats que trobara.
+	 * @return Retorna un <tt>ConjuntComunitats</tt> amb les comunitats trobades mitjan�ant l'algorisme de GirvanNewman.
 	 */
-
+	
 	@Override
-	public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, double k){
-		int criteriDeParada = (int) (k *10);
+	public ConjuntComunitats<T> cercarComunitats(Graf<T> graf, double exhaustivitat){
 		ConjuntComunitats<T> resultat;
 		int nComunitats = 0;
 		int vertexTotal = graf.ordre();
-
+		int criteriParada = (int)Math.ceil((1.00-exhaustivitat)*vertexTotal);
 		while(true){
 			resultat = new ConjuntComunitats<T>();
 			int indexComunitat = 1;
@@ -58,7 +58,7 @@ public class CtrlGirvanBron<T> extends Algoritme<T> {
 				resultat.afegirComunitat(comunitat);
 			}
 			nComunitats = resultat.getNumComunitats();
-			if(nComunitats >= criteriDeParada){
+			if(nComunitats >= criteriParada){
 				break;
 			}
 			GirvanNewman<T> gn = new GirvanNewman<T>();
