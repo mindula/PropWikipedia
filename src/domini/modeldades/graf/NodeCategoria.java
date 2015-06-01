@@ -41,4 +41,6 @@ public class NodeCategoria extends NodeWiki{
     public ArrayList<NodePagina> getPagines() {
         return pagines;
     }
+
+
 }
