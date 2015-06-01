@@ -45,10 +45,17 @@ public class GrafWikipedia implements Serializable{
     }
 
     public void eliminarCategoria(NodeCategoria node) {
-        grafWiki.eliminarNode(node);
+
         categories.remove(node);
         categoriesMap.remove(node.getNom());
+        grafWiki.eliminarNode(node);
     }
+
+
+    public void afegirArc(Arc<NodeCategoria> a){
+        grafWiki.afegirArc(a);
+    }
+
 
     /**
      * Afegeix una aresta entre pagina i categoria (i viceversa)
@@ -172,11 +179,8 @@ public class GrafWikipedia implements Serializable{
     }
 
     public void eliminarPagina(NodePagina pag){
-        System.out.print("ok1\n");
         pagines.remove(pag);
-        System.out.print("ok2\n");
         paginesMap.remove(pag.getNom());
-        System.out.print("ok3\n");
     }
 
     public int getNumCategories(){
