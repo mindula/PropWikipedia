@@ -46,14 +46,20 @@ public class CtrlCatPag {
      * Cas d'us Modificar categoria
      */
     public void ModificarNomCat(String nomantic, String nounom){
-        grafWiki.getNodeCat(nomantic).setNom(nounom);
+        NodeCategoria c = grafWiki.getCategoriesMap().get(nomantic);
+        grafWiki.getCategoriesMap().remove(nomantic);
+        c.setNom(nounom);
+        grafWiki.getCategoriesMap().put(nounom, c);
     }
 
     /**
      * Cas d'us Modificar pagina
      */
     public void ModificarNomPag(String nomantic, String nounom){
-        grafWiki.getNodePag(nomantic).setNom(nounom);
+        NodePagina p = grafWiki.getPaginesMap().get(nomantic);
+        grafWiki.getPaginesMap().remove(nomantic);
+        p.setNom(nounom);
+        grafWiki.getPaginesMap().put(nounom,p);
     }
 
     /**
