@@ -6,10 +6,12 @@ package domini.modeldades;
  * Data: 15/4/15
  */
 
+import java.io.Serializable;
+
 /**
  * Conte un NodeWiki i la data de realitzacio de la cerca. Veure classe Cerca per mes informacio
  */
-public class InfoCerca {
+public class InfoCerca implements Serializable{
     private String a;
     private String data;
 
