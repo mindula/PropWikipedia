@@ -235,6 +235,20 @@ public class TemesVista extends Tab {
                         e.printStackTrace();
                     }
                     System.out.println(ctrlComunitat.getConjunt().getCjtComunitats());
+
+                    String tema = llistaT.getSelectionModel().getSelectedItem();
+                    System.out.println(tema);
+                    int id = CtrlComunitat.getInstance().getId(tema);
+                    try {
+                        HashSet<NodeCategoria> c =
+                                CtrlComunitat.getInstance().getConjunt().getCjtComunitats().getComunitat(id).getNodes();
+                        ObservableList<String> data = FXCollections.observableArrayList();
+                        llistaC.setItems(data);
+                        for (NodeCategoria n : c) data.add(n.getNom());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     dialog.close();
                 }
             }
