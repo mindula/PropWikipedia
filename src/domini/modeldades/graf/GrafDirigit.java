@@ -46,6 +46,8 @@ public class GrafDirigit<T> extends Graf<T> {
             throw new  RuntimeException("El node A ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(arc.getNodeB()))
             throw new  RuntimeException("El node B ha d'estar previament al graf");
+        if(adjacencyMap.get(arc.getNodeA()).containsKey(arc.getNodeB()))
+            return;
         adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
         cjtArcs.add(arc);
         ++E;
