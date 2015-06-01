@@ -116,7 +116,7 @@ public class OperacioCjtsVista {
     public void actualitzaTemes() {
         Collection<String> cjtComunitats
                 = CtrlComunitat.getInstance().getConjunt().getNoms();
-        llistaT1.getItems().addAll(cjtComunitats);
-        llistaT2.getItems().addAll(cjtComunitats);
+        llistaT1.getItems().setAll(cjtComunitats);
+        llistaT2.getItems().setAll(cjtComunitats);
     }
 }

@@ -2,6 +2,7 @@ package presentacio;
 
 import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
+import domini.controladors.Historial;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
 import javafx.beans.value.ChangeListener;
@@ -109,6 +110,7 @@ public class NavegacioVista extends Tab {
                     int index = llistaC.getSelectionModel().getSelectedIndex();
                     llistaC.scrollTo(index);
                 }
+                //Historial.getInstance().afegirCerca(cercat);
             }
         });
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
