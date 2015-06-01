@@ -63,8 +63,6 @@ public class FinestraPrincipal extends Application {
          */
         EventHandler<ActionEvent> action = listenerMenuItems();
         Menu menu1 = new Menu("Arxiu");
-        MenuItem nou = new MenuItem("Nou");
-        nou.setOnAction(action);
         MenuItem guardar = new MenuItem("Guardar...");
         guardar.setOnAction(action);
         MenuItem carregar = new MenuItem("Carregar...");
@@ -73,7 +71,7 @@ public class FinestraPrincipal extends Application {
         importar.setOnAction(action);
         MenuItem sortir = new MenuItem("Sortir");
         sortir.setOnAction(action);
-        menu1.getItems().addAll(nou, guardar, carregar, importar, sortir);
+        menu1.getItems().addAll(guardar, carregar, importar, sortir);
 
         Menu menu2 = new Menu("Visualitzar");
         MenuItem historialCerques = new MenuItem("Historial de cerques");
@@ -105,8 +103,7 @@ public class FinestraPrincipal extends Application {
                 MenuItem mItem = (MenuItem) event.getSource();
                 String itemName = mItem.getText();
 
-                if ("Nou...".equals(itemName)) System.out.println("no implementat");
-                else if ("Guardar...".equals(itemName)) {
+                if ("Guardar...".equals(itemName)) {
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Guardar sessió...");
                     File file = fileChooser.showSaveDialog(new Stage());
