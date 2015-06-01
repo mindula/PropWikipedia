@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 
@@ -37,8 +36,6 @@ public class GenerarTemes extends Tab {
     private Button generarTemes;
     private ProgressBar progresAlgoritme;
     private TextArea logAlgorisme;
-    private Consola consola;
-    private PrintStream ps;
 
     public GenerarTemes(FinestraPrincipal finestraPrincipal) {
         this.finestraPrincipal = finestraPrincipal;
@@ -117,12 +114,6 @@ public class GenerarTemes extends Tab {
 
         logAlgorisme = new TextArea();
         logAlgorisme.setEditable(false);
-
-        /*
-            Preparaments per redirigir System.out a la TextArea logAlgorisme
-         */
-        consola = new Consola(logAlgorisme);
-        ps = new PrintStream(consola, true);
 
         VBox algRadioBox = new VBox(5);
         algRadioBox.getChildren().addAll(algoritmeLabel, louvainRadioB, cliqueRadioB, girvanRadioB);
