@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.CtrlDibuix;
 import domini.controladors.CtrlWikipedia;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -77,7 +78,9 @@ public class FinestraPrincipal extends Application {
         historialCerques.setOnAction(action);
         MenuItem mostrarGrafWiki = new MenuItem("Graf de la Wikipedia");
         mostrarGrafWiki.setOnAction(action);
-        menu2.getItems().addAll(historialCerques, mostrarGrafWiki);
+        MenuItem mostrarGrafTemes = new MenuItem("Graf amb els temes");
+        mostrarGrafTemes.setOnAction(action);
+        menu2.getItems().addAll(historialCerques, mostrarGrafWiki, mostrarGrafTemes);
         Menu menu3 = new Menu("Ajuda");
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3);
@@ -148,7 +151,14 @@ public class FinestraPrincipal extends Application {
                 }
                 else if ("Sortir".equals(itemName)) Platform.exit();
                 else if ("Historial de cerques".equals(itemName)) historialVista = new HistorialVista();
-                else if ("Graf de la Wikipedia".equals(itemName)) System.out.println("no implementat");
+                else if ("Graf de la Wikipedia".equals(itemName)) {
+                    CtrlDibuix ctrlDibuix = new CtrlDibuix();
+                    ctrlDibuix.DibuixarGraf();
+                }
+                else if ("Graf amb els temes".equals(itemName)) {
+                    CtrlDibuix ctrlDibuix = new CtrlDibuix();
+                    ctrlDibuix.DibuixarGrafAmbComunitats();
+                }
             }
         };
     }
