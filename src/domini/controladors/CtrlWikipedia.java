@@ -2,11 +2,11 @@ package domini.controladors;
 
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.InfoCerca;
+import domini.modeldades.InformacioCjtComunitats;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
 import persistencia.GrafParser;
-import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
 import java.io.IOException;
@@ -34,6 +34,7 @@ public class CtrlWikipedia implements Serializable{
     private Graf<NodeCategoria> grafAlgoritme;
     private ConjuntComunitatWiki conjuntsGenerats;
     private ArrayList<InfoCerca> llistatCerques;
+    private ArrayList<InformacioCjtComunitats> informacioExecucions;
 
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -42,6 +43,7 @@ public class CtrlWikipedia implements Serializable{
         grafWiki = new GrafWikipedia();
         conjuntsGenerats = new ConjuntComunitatWiki();
         llistatCerques = new ArrayList<InfoCerca>();
+        informacioExecucions = new ArrayList<>();
     }
 
     /**
@@ -66,6 +68,14 @@ public class CtrlWikipedia implements Serializable{
      */
     public String getDataCreacio() {
         return dataCreacio;
+    }
+
+    public void afegirInfoExecucio (InformacioCjtComunitats informacioCjtComunitats) {
+        informacioExecucions.add(informacioCjtComunitats);
+    }
+
+    public int getNombreExecucions() {
+        return informacioExecucions.size();
     }
 
 

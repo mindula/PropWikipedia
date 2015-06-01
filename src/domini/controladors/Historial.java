@@ -2,6 +2,7 @@ package domini.controladors;
 
 import domini.modeldades.InfoCerca;
 import domini.modeldades.graf.NodeCategoria;
+import prop.classescompartides.utils.Pair;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -84,6 +85,13 @@ public class Historial {
      */
     public List<InfoCerca> getCerques() {
         return Collections.unmodifiableList(llistatCerques);
+    }
+
+    public ArrayList<Pair<String, String>> getCerquesStrings() {
+        ArrayList<Pair<String, String>> res = new ArrayList<>();
+        for (InfoCerca i : llistatCerques) res.add(new Pair<>(i.getResultats().get(0).getNom(),
+                i.getDataCerca()));
+        return res;
     }
 
     @Override
