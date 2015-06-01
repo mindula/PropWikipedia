@@ -12,6 +12,11 @@ package domini;
  */
 public class LevenshteinDistance {
 
+
+     private static int[] v0 = new int[999];
+     private static int[] v1 = new int[999];
+
+
      /**
       * Calcula la distancia de Louvain
       * @param s1
@@ -23,8 +28,7 @@ public class LevenshteinDistance {
         if (s1.length() == 0) return s2.length();
         if (s2.length() == 0) return s1.length();
 
-        int[] v0 = new int[s2.length() + 1];
-        int[] v1 = new int[s2.length() + 1];
+
 
         for (int i = 0; i < v0.length; i++)
             v0[i] = i;
@@ -41,7 +45,7 @@ public class LevenshteinDistance {
                 v1[j + 1] = Math.min(Math.min(v1[j] + 1, v0[j + 1] + 1), v0[j] + cost);
             }
 
-            System.arraycopy(v1, 0, v0, 0, v0.length);
+            //System.arraycopy(v1, 0, v0, 0, v0.length);
         }
 
         return v1[s2.length()];

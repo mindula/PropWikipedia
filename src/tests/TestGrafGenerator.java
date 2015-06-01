@@ -45,10 +45,11 @@ public class TestGrafGenerator {
     public static ArrayList<Criteri> getCriteris(Scanner sc) {
         System.out.println("Escriu el numero del criteri a afegir, seguit de la seva ponderacio i -1 per executar la tranformacio del graf:\n" +
                 "(prem -1 per acabar el test)");
-        System.out.println("0: Criteri Nom");
+        System.out.println("0: Criteri NomJaroWinkler");
         System.out.println("1: Criteri supercategories comunes");
         System.out.println("2: Criteri subcategories comunes");
         System.out.println("3: Criteri pagines comunes");
+        System.out.println("4: Criteri NomLevenshtein");
         System.out.println("\nper exemple (1 0.8) -> afegir criteri subcategories amb ponderacio 0.8");
 
 
@@ -64,7 +65,7 @@ public class TestGrafGenerator {
             Criteri c = null;
             switch (opcio) {
                 case 0:
-                    c= new CriteriNom(ponderacio);
+                    c= new CriteriNomJaroWinkler(ponderacio);
                     break;
 
                 case 1:
@@ -77,6 +78,10 @@ public class TestGrafGenerator {
 
                 case 3:
                     c = new CriteriPaginesComuns(ponderacio);
+                    break;
+
+                case 4:
+                    c = new CriteriNomLevenshtein(ponderacio);
                     break;
 
                 case -1:

@@ -190,7 +190,7 @@ public class GenerarTemes extends Tab {
                     ArrayList<Criteri> criteris = new ArrayList<>();
                     if (!nomSlider.isDisable()) {
                         ponderacioNom = nomSlider.getValue();
-                        Criteri c = new CriteriNom(ponderacioNom);
+                        Criteri c = new CriteriNomJaroWinkler(ponderacioNom);
                         criteris.add(c);
                     }
                     if (!subCatSlider.isDisable()) {
