@@ -103,7 +103,7 @@ public class TemesVista extends Tab {
 
     public void actualitzaTemes() {
         Collection<String> cjtComunitats
-                = CtrlComunitat.getInstance().getConjunt().getNoms();
+                = CtrlWikipedia.getInstance().getConjuntsGenerats().getNoms();
         llistaT.getItems().setAll(cjtComunitats);
     }
 

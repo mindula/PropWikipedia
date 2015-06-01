@@ -23,18 +23,17 @@ public class CtrlPersistencia {
         System.out.println("Fitxer guardat a "+filePath);
     }
 
-    public static void carregarSessio(String filepath) throws IOException {
+    public static void carregarSessio(String filepath) throws IOException, ClassCastException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(filepath);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        try {
-            CtrlWikipedia sessio = (CtrlWikipedia) objectInputStream.readObject();
-            CtrlWikipedia.setInstance(sessio);
+        CtrlWikipedia sessio = null;
+        sessio = (CtrlWikipedia) objectInputStream.readObject();
+
+        CtrlWikipedia.setInstance(sessio);
 
             System.out.println("Fitxer carregat : "+sessio.toString());
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
