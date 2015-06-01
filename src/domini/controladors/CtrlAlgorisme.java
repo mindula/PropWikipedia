@@ -87,8 +87,6 @@ public class CtrlAlgorisme{
         System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
         conjunt.getInformacio().setNombreComunitats(nComunitats);
         conjunt.getInformacio().setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
-        System.out.println("Nous: " + conjunt.getCjtComunitats().getNumComunitats());
-
         CtrlComunitat.getInstance().afegirComunitatsGenerades(conjunt);
 
         return conjunt;
