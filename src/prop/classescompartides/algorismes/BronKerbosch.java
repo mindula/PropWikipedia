@@ -2,7 +2,9 @@ package prop.classescompartides.algorismes;
 
 import prop.classescompartides.graf.Graf;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * 
@@ -22,7 +24,7 @@ public class BronKerbosch<T> {
 	private ArrayList<ArrayList<T>> cliques;
 	
 	/**
-	 * Constructor: crea un nou buscador de cliques maximals. El parametre graf ha de ser un graf simple no dirigit.
+	 * Constructor: crea un nou buscador de cliques maximals. El par�metre graf ha de ser un graf simple no dirigit.
 	 * @param graf Graf en el qual buscarem els cliques maximals.
 	 */
 	public BronKerbosch(Graf<T> graf){
@@ -33,8 +35,8 @@ public class BronKerbosch<T> {
 	//~M�todes ------------------------------------------------------
 	
 	/**
-	 * Troba el clique maximal mes gran de tot el graf.
-	 * @return Retorna un conjunt de diputats els quals perteneixen al clique maximal major del graf.
+	 * Troba el cliqu� maximal m�s gran de tot el graf.
+	 * @return Retorna un conjunt de diputats els quals perteneixen al cliqu� maximal major del graf.
 	 */
 	
 	public ArrayList<T> obtCliqueMaxim(ArrayList<ArrayList<T>> cliques){
@@ -51,7 +53,7 @@ public class BronKerbosch<T> {
 	}
 	
 	/**
-	 * Troba els cliques maxims del graf. Un clique es maximal quan no es pot agrandar afegint vertex.
+	 * Troba els cliques m�xims del graf. Un clique �s maximal quan no es pot agrandar afegint v�rtex.
 	 * @return Retorna un conjunt que representa els cliques maximals.
 	 */
 	
@@ -72,9 +74,9 @@ public class BronKerbosch<T> {
 	/**
 	 * Troba els cliques maximals del graf aplicant l'algorisme de Bron-Kerbosch.
 	 * 
-	 * @param cliquePotencial Vertexs que poden donar lloc a un clique.
-	 * @param candidats Vertexs que son candidats a cliques potencials.
-	 * @param trobats Vertexs que ja estan continguts en un clique maximal.
+	 * @param cliquePotencial V�rtexs que poden donar lloc a un cliqu�.
+	 * @param candidats V�rtexs que s�n candidats a cliques potencials.
+	 * @param trobats V�rtexs que ja estan continguts en un cliqu� maximal. 
 	 */
 	
 	private void trobarCliques(
@@ -112,11 +114,11 @@ public class BronKerbosch<T> {
 	}
 	
 	/**
-	 * Retorna cert si un node trobat es adjacent a tots els candidats, altrament retorna fals.
+	 * Retorna cert si un node trobat �s adjacent a tots els candidats, altrament retorna fals.
 	 * 
-	 * @param candidats Candidats a possible clique.
-	 * @param trobats Vertex que pertanyen a un clique maximal.
-	 * @return Retorna cert si un node trobat es adjacent a tots els candidats, altrament retorna fals.
+	 * @param candidats Candidats a possible cliqu�.
+	 * @param trobats V�rtex que pertanyen a un cliqu� maximal.
+	 * @return Retorna cert si un node trobat �s adjacent a tots els candidats, altrament retorna fals.
 	 */
 	private boolean fin(
 			ArrayList<T> candidats,
