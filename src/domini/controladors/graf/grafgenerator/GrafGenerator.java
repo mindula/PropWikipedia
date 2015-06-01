@@ -40,7 +40,7 @@ public class GrafGenerator  {
                     pes += c.getPes(n1, n2, graf)/c.getMaxPes(n1, n2, graf) * c.getPonderacio();
                 tempsCriteri += (System.currentTimeMillis()-criterisStart);
 
-                if (pes > 0.1) {
+                if (pes > 0.01) {
                     long arcStart = System.currentTimeMillis();
                     Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);
                     newGraf.afegirArc(a);

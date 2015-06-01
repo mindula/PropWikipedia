@@ -63,8 +63,10 @@ public class GrafWikipedia implements Serializable{
      * @param categoria
      */
     public void afegirArcPC(NodePagina pagina, NodeCategoria categoria) {
-        categoria.afegirPagina(pagina);
-        pagina.afegirCategoria(categoria);
+        if(!categoria.getPagines().contains(pagina)) {
+            categoria.afegirPagina(pagina);
+            pagina.afegirCategoria(categoria);
+        }
     }
 
     /**
@@ -99,6 +101,7 @@ public class GrafWikipedia implements Serializable{
 
     public void eliminarArc(Arc<NodeCategoria> arc) {
         grafWiki.eliminarArc(arc);
+
     }
 
     public void eliminarArcPC(String cat, String pag, NodeCategoria nc, NodePagina np) {
