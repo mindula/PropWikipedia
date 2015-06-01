@@ -29,7 +29,7 @@ public class ComparacioTemes {
     }
 
     public Scene getScene() {
-        VBox parent = new VBox(SPACE);
+        HBox parent = new HBox(SPACE);
         parent.setPadding(new Insets(20));
         parent.setAlignment(Pos.CENTER);
         Scene scene = new Scene(parent, 800, 600);
@@ -42,10 +42,33 @@ public class ComparacioTemes {
         Button compareButton = new Button("Comparar");
 
         Label milisegons = new Label("Temps en generar: ");
-        Label nombreComunitats = new Label("Nomde de comunitats: ");
+        Label miliNum1 = new Label();
+        Label miliNum2 = new Label();
+        Label nombreComunitats = new Label("Nombre de comunitats: ");
+        Label nombreNum1 = new Label();
+        Label nombreNum2 = new Label();
+        Label algoritme = new Label("Algoritme utilitzat: ");
+        Label algoNum1 = new Label();
+        Label algoNum2 = new Label();
+        Label criteri = new Label("Criteris escullits: ");
+        Label critNum1 = new Label();
+        Label critNum2 = new Label();
+        Label mitjana = new Label("Nomde de nodes per comunitat: ");
+        Label mitjNum1 = new Label();
+        Label mitjNum2 = new Label();
 
+        VBox dades1 = new VBox(10);
+        dades1.getChildren().addAll(milisegons, miliNum1, nombreComunitats, nombreNum1, algoritme, algoNum1,
+                criteri, critNum1, mitjana, mitjNum1);
 
-        HBox parentBox = new HBox(10);
+        VBox dades2 = new VBox(10);
+        dades2.getChildren().addAll(milisegons, miliNum2, nombreComunitats, nombreNum2, algoritme, algoNum2,
+                criteri, critNum2, mitjana, mitjNum2);
+
+        VBox comparacio = new VBox(10);
+        comparacio.getChildren().addAll(compareButton, dades1, dades2);
+
+        parent.getChildren().addAll(liniaLlistes, comparacio);
 
         return scene;
     }
