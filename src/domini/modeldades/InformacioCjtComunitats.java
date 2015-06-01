@@ -6,10 +6,12 @@ package domini.modeldades;
  * Data: 29/04/15
  */
 
+import java.io.Serializable;
+
 /**
  * Informació generada despres de l'execucio d'un algorisme
  */
-public class InformacioCjtComunitats {
+public class InformacioCjtComunitats implements Serializable {
         private final long  milisegons;
         private int nombreComunitats;
         private final TipusAlgorisme algoritme;

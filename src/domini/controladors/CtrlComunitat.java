@@ -19,7 +19,7 @@ public class CtrlComunitat {
     private GrafWikipedia graf;
 
     private CtrlComunitat(){
-        this.conjunt = new ConjuntComunitatWiki();
+        this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
@@ -36,7 +36,6 @@ public class CtrlComunitat {
             conjunt.setId(com.getId(), nom);
             conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");
         }
-        CtrlWikipedia.getInstance().setConjuntsGenerats(conjunt);
     }
 
 
@@ -91,28 +90,45 @@ public class CtrlComunitat {
     /**
      * Cas d'us Operacio entre temes. Unio.
      */
-    public Comunitat<NodeCategoria> unio(int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+    public void unio(int idComunitat1, int idComunitat2) throws Exception{
+        Comunitat<NodeCategoria> c = new Comunitat<>();
+        c = OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        conjunt.getCjtComunitats().afegirComunitat(c);
+        conjunt.setNom(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(c.getId(),"Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
     }
 
     /**
      * Cas d'us Operacio entre temes. Interseccio.
      */
-    public Comunitat<NodeCategoria> interseccio(int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+    public void interseccio(int idComunitat1, int idComunitat2) throws Exception{
+        Comunitat<NodeCategoria> c = new Comunitat<>();
+        c = OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        conjunt.getCjtComunitats().afegirComunitat(c);
+        conjunt.setNom(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(c.getId(),"Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
     }
 
     /**
      * Cas d'us Operacio entre temes. Diferencia.
      */
-    public Comunitat<NodeCategoria> diferencia (int idComunitat1, int idComunitat2) throws Exception{
-        return OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+    public void diferencia (int idComunitat1, int idComunitat2) throws Exception{
+        Comunitat<NodeCategoria> c = new Comunitat<>();
+        c = OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        conjunt.getCjtComunitats().afegirComunitat(c);
+        conjunt.setNom(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(c.getId(),"Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+
     }
 
     /**
      * Cas d'us Eliminar comunitat.
      */
     public void eliminarComunitat (int idComunitat) throws Exception {
+        conjunt.eliminarInfoComunitat(idComunitat);
         conjunt.getCjtComunitats().eliminarComunitat(conjunt.getCjtComunitats().getComunitat(idComunitat));
     }
 
