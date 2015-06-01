@@ -2,6 +2,8 @@ package presentacio;
 
 import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import presentacio.autocompletat.AutoCompleteComboBoxListener;
 
 /**
  * Grup 3: Wikipedia
@@ -51,7 +54,7 @@ public class NavegacioC {
 
         Label labelP = new Label("Pàgines que conté");
         llistaP = new ListView<>();
-        llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC)); // TODO: funcionen les llistes?
+        llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC));
         Button accedirP = new Button("Accedir a la pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
         Button eliminarP = new Button("Eliminar pàgina de la categoria");
@@ -127,13 +130,15 @@ public class NavegacioC {
         eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                if(!llistaP.getSelectionModel().isEmpty())
+                    dialogEliminarPagDeLaCat();
+                else System.out.println("No hi ha pag seleccionada");
             }
         });
         afegirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogAfegirPag();
             }
         });
         accedirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -145,12 +150,12 @@ public class NavegacioC {
         eliminarSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogEliminarSuperDeLaCat();
             }
         });
         afegirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { // TODO
                 //
             }
         });
@@ -162,13 +167,13 @@ public class NavegacioC {
         });
         eliminarSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { // TODO
                 //
             }
         });
         afegirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { // TODO
                 //
             }
         });
@@ -299,6 +304,160 @@ public class NavegacioC {
 
         Scene dialogScene = new Scene(parent);
         dialog.setTitle("Reanomenar la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private ObservableList<String> getPaginesDeLaCategoria(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlCatPag.getInstance().getPagines(nomC));
+        return data;
+    }
+    private void carregarPaginesDeLaCategoria(){
+        llistaP.setItems(getPaginesDeLaCategoria());
+        llistaP.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
+    }
+    private ObservableList<String> getSupercategories(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlCatPag.getInstance().getSuperCategories(nomC));
+        return data;
+    }
+    private void carregarSupercategories(){
+        llistaSuper.setItems(getSupercategories());
+        llistaSuper.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
+    }
+    private ObservableList<String> getSubcategories(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlCatPag.getInstance().getSubCategories(nomC));
+        return data;
+    }
+    private void carregarSubcategories(){
+        llistaSub.setItems(getSubcategories());
+        llistaSub.getSelectionModel().clearSelection(); // per evitar problemes de quin esta seleccionat si borrem dades
+    }
+
+    private ObservableList<String> getTotesCategories(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlWikipedia.getInstance().getNomsCategories());
+        return data;
+    }
+    private ObservableList<String> getTotesPagines(){
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll(CtrlWikipedia.getInstance().getNomsPagines());
+        return data;
+    }
+
+
+    private void dialogEliminarPagDeLaCat(){
+        final String nomPagina = llistaP.getSelectionModel().getSelectedItem();
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Estàs segur de que vols eliminar la pàgina " + nomPagina + " de la categoria?");
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlCatPag.getInstance().esborrarArcPC(nomC, nomPagina);
+                carregarPaginesDeLaCategoria();
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar pàgina de la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogAfegirPag(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Escriu el nom de la pàgina a afegir a la categoria");
+        final ComboBox<String> nomPagAfegir = new ComboBox<>();
+        nomPagAfegir.setPrefSize(300, 20);
+        nomPagAfegir.setItems(getTotesPagines());
+        new AutoCompleteComboBoxListener(nomPagAfegir);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String nomNovaPag = nomPagAfegir.getValue();
+                boolean existeix = CtrlCatPag.getInstance().existeixPagina(nomNovaPag);
+                if(existeix) {
+                    CtrlCatPag.getInstance().RelPC(nomNovaPag, nomC);
+                    carregarPaginesDeLaCategoria();
+                    dialog.close();
+                } else System.out.println("No existeix pag");
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, nomPagAfegir, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Afegir pàgina a la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogEliminarSuperDeLaCat(){
+        final String nomSuper = llistaSuper.getSelectionModel().getSelectedItem();
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Estàs segur de que vols eliminar la supercategoria " + nomSuper + " de la categoria?");
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlCatPag.getInstance().esborrarArc(nomC, nomSuper); // TODO: no esborra els DOS arcs
+                carregarSupercategories();
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar supercategoria de la categoria");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
