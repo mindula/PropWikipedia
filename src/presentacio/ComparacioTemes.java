@@ -43,7 +43,7 @@ public class ComparacioTemes {
 
         Label milisegons = new Label("Temps en generar: ");
         Label nombreComunitats = new Label("Nomde de comunitats: ");
-        Label
+
 
         HBox parentBox = new HBox(10);
 
