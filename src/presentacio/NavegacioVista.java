@@ -225,7 +225,6 @@ public class NavegacioVista extends Tab {
             public void handle(MouseEvent mouseEvent) {
                 CtrlWikipedia.getInstance().elimPag(nomP);
                 carregarPagines();
-                carregarCategories();
                 dialog.close();
             }
         });
@@ -262,7 +261,6 @@ public class NavegacioVista extends Tab {
             public void handle(MouseEvent mouseEvent) {
                 CtrlWikipedia.getInstance().elimCat(nomC);
                 carregarCategories();
-                carregarPagines();
                 dialog.close();
             }
         });

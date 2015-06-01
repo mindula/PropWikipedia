@@ -49,7 +49,6 @@ public class TestGrafGenerator {
         System.out.println("1: Criteri supercategories comunes");
         System.out.println("2: Criteri subcategories comunes");
         System.out.println("3: Criteri pagines comunes");
-        System.out.println("4: Criteri NomLevenshtein");
         System.out.println("\nper exemple (1 0.8) -> afegir criteri subcategories amb ponderacio 0.8");
 
 
@@ -80,9 +79,7 @@ public class TestGrafGenerator {
                     c = new CriteriPaginesComuns(ponderacio);
                     break;
 
-                case 4:
-                    c = new CriteriNomLevenshtein(ponderacio);
-                    break;
+
 
                 case -1:
                     continuar = false;

@@ -24,6 +24,7 @@ public class GrafGenerator  {
 
         for(NodeCategoria n : graf.getCategories())
             newGraf.afegirNode(n);
+
         int iteracionsLlargues = 0;
         for (int i = 0; i < graf.getCategories().size(); i++) {
             long temps_iteracio_start = System.currentTimeMillis();
@@ -37,12 +38,12 @@ public class GrafGenerator  {
                 double pes = 0;
                 long criterisStart = System.currentTimeMillis();
                 for(Criteri c  :criteris)
-                    pes += c.getPes(n1, n2, graf)/c.getMaxPes(n1, n2, graf) * c.getPonderacio();
+                    pes += (c.getPes(n1, n2, graf)/c.getMaxPes(n1, n2, graf)) * c.getPonderacio();
                 tempsCriteri += (System.currentTimeMillis()-criterisStart);
 
-                if (pes > 0.01) {
+                if (pes > 0) {
                     long arcStart = System.currentTimeMillis();
-                    Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes, n1, n2);
+                    Arc<NodeCategoria> a = new Arc<NodeCategoria>(pes/criteris.size(), n1, n2);
                     newGraf.afegirArc(a);
                     tempsAfegirArc += (System.currentTimeMillis() - arcStart);
 
@@ -58,6 +59,7 @@ public class GrafGenerator  {
                 System.out.println("Temps en afegirArc: " + tempsAfegirArc);
                 System.out.println("proporcio: " + (tempsAfegirArc / (double) temps_it) * 100 + "%");
                 System.out.println("Arcs: "+newGraf.mida());
+                System.out.println("JODER");
                 System.out.println();
 
                 iteracionsLlargues++;

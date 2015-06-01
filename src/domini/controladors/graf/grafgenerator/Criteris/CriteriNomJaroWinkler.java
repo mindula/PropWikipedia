@@ -22,13 +22,14 @@ public class CriteriNomJaroWinkler extends Criteri{
 
     @Override
     public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return JaroWinklerDistance.calculate(n1.getNom(), n2.getNom());
+        double jaro = JaroWinklerDistance.calculate(n1.getNom(), n2.getNom());
+        return jaro < 0.1 ? 0:jaro/8 ;
 
     }
 
     @Override
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return 6.0;
+        return 1;
     }
 
     public String toString() {

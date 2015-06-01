@@ -181,22 +181,22 @@ public class GenerarTemes extends Tab {
                     ArrayList<Criteri> criteris = new ArrayList<>();
                     if (!nomSlider.isDisable()) {
                         ponderacioNom = nomSlider.getValue();
-                        Criteri c = new CriteriNomJaroWinkler(ponderacioNom);
+                        Criteri c = new CriteriNomJaroWinkler(ponderacioNom/100.0);
                         criteris.add(c);
                     }
                     if (!subCatSlider.isDisable()) {
                         ponderacioSubC = subCatSlider.getValue();
-                        Criteri c = new CriteriSubCategoriesComuns(ponderacioSubC);
+                        Criteri c = new CriteriSubCategoriesComuns(ponderacioSubC/100.0);
                         criteris.add(c);
                     }
                     if (!superCatSlider.isDisable()) {
                         ponderacioSuperC = superCatSlider.getValue();
-                        Criteri c = new CriteriSuperCategoriesComuns(ponderacioSuperC);
+                        Criteri c = new CriteriSuperCategoriesComuns(ponderacioSuperC/100.0);
                         criteris.add(c);
                     }
                     if (!pagSlider.isDisable()) {
                         ponderacioPag = pagSlider.getValue();
-                        Criteri c = new CriteriPaginesComuns(ponderacioPag);
+                        Criteri c = new CriteriPaginesComuns(ponderacioPag/100.0);
                         criteris.add(c);
                     }
                     CtrlAlgorisme c = new CtrlAlgorisme(
