@@ -33,7 +33,7 @@ public class CtrlAlgorisme{
     private double par1;
     private ArrayList<Criteri> criteris;
     private ConjuntComunitatWiki conjunt;
-    private Graf<NodeCategoria> graf;
+    private Graf<NodeCategoria> grafGenerat;
 
     /**
      * Constructora per defecte de la classe
@@ -48,19 +48,16 @@ public class CtrlAlgorisme{
         this.par1 = par1;
         this.criteris = criteris;
         this.conjunt = new ConjuntComunitatWiki();
-        graf = new Graf<NodeCategoria>();
+        grafGenerat = new Graf<NodeCategoria>();
     }
 
-    /**
-     * Cerca comunitats en un graf seguint un dels 3 algorismes definits
-     * @return comunitats en un graf seguint un dels 3 algorismes definits
-     */
+
     public void generarGraf() {
         long startTime = System.currentTimeMillis();
         GrafGenerator generator = new GrafGenerator();
         System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
         System.err.println("Aplicant criteris...");
-        graf = generator.generate(grafWikipedia, criteris);
+        grafGenerat = generator.generate(grafWikipedia, criteris);
         long generatorTime = System.currentTimeMillis() - startTime;
         System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
 
@@ -68,11 +65,15 @@ public class CtrlAlgorisme{
         conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString()));
     }
 
+    /**
+     * Cerca comunitats en un graf seguint un dels 3 algorismes definits
+     * @return comunitats en un graf seguint un dels 3 algorismes definits
+     */
     public ConjuntComunitatWiki cercarComunitats() throws Exception {
         Algoritme<NodeCategoria> algorisme;
 
         if (tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
-            algorisme = new AlgorismeLouvain<NodeCategoria>();
+            algorisme = new AlgorismeLouvain<>();
         } else if (tipusAlgorisme == TipusAlgorisme.GIRVAN) {
             algorisme = new CtrlGirvanBron<>();
         } else { // Clique
@@ -80,7 +81,7 @@ public class CtrlAlgorisme{
         }
 
         System.err.println("Cercant comunitats...");
-        conjunt.setCjtComunitats(algorisme.cercarComunitats(graf, par1));
+        conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));
 
 
         //System.err.println("Temps en cercar comunitats: " + String.valueOf(elapsedTime) + "ms");
@@ -90,7 +91,7 @@ public class CtrlAlgorisme{
         System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
 
         conjunt.getInformacio().setNombreComunitats(nComunitats);
-        conjunt.getInformacio().setMitjanaNodesPerComunitat(graf.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
+        conjunt.getInformacio().setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
 
         CtrlComunitat.getInstance().afegirConjuntsGenerats(conjunt);
 

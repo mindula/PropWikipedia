@@ -26,7 +26,7 @@ public class CtrlCatPag {
 
     private CtrlCatPag(){
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
-        conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats();
+        conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats();
     }
 
     public NodeCategoria obtenirCategoria(String nom){

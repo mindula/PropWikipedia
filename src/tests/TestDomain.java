@@ -117,7 +117,7 @@ public class TestDomain {
 
                     System.out.println(comunitats.getInformacio().toString());
 
-                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
+                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats);
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats.getCjtComunitats());
 
@@ -160,7 +160,7 @@ public class TestDomain {
                     }
                     graf.addAttribute("ui.quality");
                     graf.addAttribute("ui.antialias");
-                    for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getComunitats()){
+                    for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
                         for (NodeCategoria cat: com.getNodes()){
                             if (com.mida() > 1) {
                                 graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
