@@ -37,7 +37,7 @@ public class TestInfoCerca {
                             "3. Finalitzar Test\n");
                     break;
                 case 1:
-                    System.out.println(I.getResultats());
+                    System.out.println(I.getResultat());
                     break;
                 case 2:
                     System.out.println(I.getDataCerca());

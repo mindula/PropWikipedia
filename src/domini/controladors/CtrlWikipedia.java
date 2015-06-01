@@ -74,6 +74,14 @@ public class CtrlWikipedia implements Serializable{
         informacioExecucions.add(informacioCjtComunitats);
     }
 
+    public String getInfoExecucio (int i) {
+        InformacioCjtComunitats info = informacioExecucions.get(i);
+        String res = String.valueOf(info.getMilisegons()) + "-" + String.valueOf(info.getNombreComunitats()) + "-"
+                + String.valueOf(info.getAlgoritme()) + "-" + String.valueOf(info.getCriteri()) + "-" +
+                String.valueOf(info.getMitjanaNodesPerComunitat());
+        return res;
+    }
+
     public int getNombreExecucions() {
         return informacioExecucions.size();
     }

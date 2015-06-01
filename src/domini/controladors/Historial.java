@@ -1,7 +1,6 @@
 package domini.controladors;
 
 import domini.modeldades.InfoCerca;
-import domini.modeldades.graf.NodeCategoria;
 import prop.classescompartides.utils.Pair;
 
 import java.text.DateFormat;
@@ -66,12 +65,9 @@ public class Historial {
     }
 
     public void afegirCerca(String cerca) {
-        NodeCategoria nodeC = CtrlWikipedia.getInstance().getGrafWiki().getNodeCat(cerca);
-        ArrayList<NodeCategoria> resultat = new ArrayList<>(1);
-        resultat.add(nodeC);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        InfoCerca novaCerca = new InfoCerca(resultat, dateFormat.format(date));
+        InfoCerca novaCerca = new InfoCerca(cerca, dateFormat.format(date));
         llistatCerques.add(novaCerca);
     }
 
@@ -89,7 +85,7 @@ public class Historial {
 
     public ArrayList<Pair<String, String>> getCerquesStrings() {
         ArrayList<Pair<String, String>> res = new ArrayList<>();
-        for (InfoCerca i : llistatCerques) res.add(new Pair<>(i.getResultats().get(0).getNom(),
+        for (InfoCerca i : llistatCerques) res.add(new Pair<>(i.getResultat(),
                 i.getDataCerca()));
         return res;
     }

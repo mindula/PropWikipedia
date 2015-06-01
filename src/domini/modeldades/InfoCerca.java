@@ -1,9 +1,5 @@
 package domini.modeldades;
 
-import domini.modeldades.graf.NodeWiki;
-
-import java.util.ArrayList;
-
 /**
  * Grup 3: Wikipedia
  * Usuari: ricard.gascons
@@ -14,7 +10,7 @@ import java.util.ArrayList;
  * Conte un NodeWiki i la data de realitzacio de la cerca. Veure classe Cerca per mes informacio
  */
 public class InfoCerca {
-    private ArrayList<? extends NodeWiki> a;
+    private String a;
     private String data;
 
     private InfoCerca() {}
@@ -24,7 +20,7 @@ public class InfoCerca {
      * @param a
      * @param data
      */
-    public InfoCerca(ArrayList<? extends NodeWiki> a, String data) {
+    public InfoCerca(String a, String data) {
         this.a = a;
         this.data = data;
     }
@@ -33,7 +29,7 @@ public class InfoCerca {
      * Retorna el NodeWiki de la instancia
      * @return el NodeWiki de la instancia
      */
-    public ArrayList<? extends NodeWiki> getResultats() {
+    public String getResultat() {
         return a;
     }
 
