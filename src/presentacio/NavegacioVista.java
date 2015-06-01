@@ -2,14 +2,10 @@ package presentacio;
 
 import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
-import domini.controladors.Historial;
-import domini.modeldades.graf.NodeCategoria;
-import domini.modeldades.graf.NodePagina;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,9 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentacio.autocompletat.AutoCompleteComboBoxListener;
-
-import java.util.ArrayList;
-
 
 /**
  * Grup 3: Wikipedia
@@ -110,7 +103,7 @@ public class NavegacioVista extends Tab {
                     int index = llistaC.getSelectionModel().getSelectedIndex();
                     llistaC.scrollTo(index);
                 }
-                //Historial.getInstance().afegirCerca(cercat);
+                //Historial.getInstance().afegirCerca(); // TODO: guardar cerca
             }
         });
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {

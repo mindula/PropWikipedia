@@ -11,7 +11,6 @@ import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.Collection;
 
@@ -24,14 +23,12 @@ public class OperacioCjtsVista {
 
     private final double SPACE = 10;
     private final TemesVista temesVista;
-    //private Stage stagePropi;
 
     private ListView<String> llistaT1;
     private ListView<String> llistaT2;
 
     public OperacioCjtsVista(TemesVista temesVis) {
         temesVista = temesVis;
-        //stagePropi = stage;
     }
 
     public Scene getScene(){

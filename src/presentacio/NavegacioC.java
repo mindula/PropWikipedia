@@ -485,10 +485,10 @@ public class NavegacioC {
                 String nomNovaSuper = nomSupercatAfegir.getValue();
                 boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSuper);
                 if(existeix) {
-                    CtrlCatPag.getInstance().RelCsupC(nomNovaSuper, nomC); // TODO: no fer res si hi ha una relacio de CsubC...
+                    CtrlCatPag.getInstance().RelCsupC(nomNovaSuper, nomC);
                     carregarSupercategories();
                     dialog.close();
-                } else System.out.println("No existeix cat o es subcategoria");
+                } else System.out.println("No existeix cat");
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -563,10 +563,10 @@ public class NavegacioC {
                 String nomNovaSub = nomSubcatAfegir.getValue();
                 boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSub);
                 if(existeix) {
-                    CtrlCatPag.getInstance().RelCsubC(nomC, nomNovaSub); // TODO: no fer res si hi ha una relacio de CsupC...
+                    CtrlCatPag.getInstance().RelCsubC(nomC, nomNovaSub);
                     carregarSubcategories();
                     dialog.close();
-                } else System.out.println("No existeix cat o es supercategoria");
+                } else System.out.println("No existeix cat");
             }
         });
         Button cancel = new Button("Cancel·lar");
