@@ -3,6 +3,7 @@ package domini.controladors;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.controladors.graf.grafgenerator.GrafGenerator;
 import domini.modeldades.ConjuntComunitatWiki;
+import domini.modeldades.InformacioCjtComunitats;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
@@ -12,7 +13,6 @@ import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
 import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
-import domini.modeldades.InformacioCjtComunitats;
 
 import java.util.ArrayList;
 
@@ -67,10 +67,15 @@ public class CtrlAlgorisme{
         }
 
         long startTime = System.currentTimeMillis();
+
         GrafGenerator generator = new GrafGenerator();
         Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
+
         long generatorTime = System.currentTimeMillis() - startTime;
-        conjunt.setCjtComunitats(algorisme.cercarComunitats(graf, par1));
+        System.out.println("Temps en generar el graf: " + generatorTime + "ms");
+
+        ConjuntComunitats<NodeCategoria> cjtComunitats = algorisme.cercarComunitats(graf, par1);
+        conjunt.setCjtComunitats(cjtComunitats);
 
         long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
         System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");

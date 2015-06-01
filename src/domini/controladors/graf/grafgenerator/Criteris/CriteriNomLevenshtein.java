@@ -1,6 +1,6 @@
 package domini.controladors.graf.grafgenerator.Criteris;
 
-import domini.JaroWinklerDistance;
+import domini.LevenshteinDistance;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 
@@ -13,22 +13,22 @@ import domini.modeldades.graf.NodeCategoria;
 /**
  * Criteri per afinitat entre noms de categories
  */
-public class CriteriNom extends Criteri{
+public class CriteriNomLevenshtein extends Criteri{
 
 
-    public CriteriNom(double ponderacio) {
+    public CriteriNomLevenshtein(double ponderacio) {
         super(ponderacio);
     }
 
     @Override
     public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return JaroWinklerDistance.calculate(n1.getNom(), n2.getNom());
+        return LevenshteinDistance.calculate(n1.getNom(), n2.getNom());
 
     }
 
     @Override
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return 1.0;
+        return Math.max(n1.getNom().length(), n2.getNom().length());
     }
 
     public String toString() {
