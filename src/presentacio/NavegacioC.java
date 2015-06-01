@@ -150,13 +150,15 @@ public class NavegacioC {
         eliminarSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                dialogEliminarSuperDeLaCat();
+                if(!llistaSuper.getSelectionModel().isEmpty())
+                    dialogEliminarSuperDeLaCat();
+                else System.out.println("No hi ha supercategoria seleccionada");
             }
         });
         afegirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO
-                //
+            public void handle(MouseEvent mouseEvent) {
+                dialogAfegirSuperALaCat();
             }
         });
         accedirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -167,14 +169,16 @@ public class NavegacioC {
         });
         eliminarSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO
-                //
+            public void handle(MouseEvent mouseEvent) {
+                if(!llistaSub.getSelectionModel().isEmpty())
+                    dialogEliminarSubcategoriaDeLaCat();
+                else System.out.println("No hi ha subcategoria seleccionada");
             }
         });
         afegirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) { // TODO
-                //
+            public void handle(MouseEvent mouseEvent) {
+                dialogAfegirSubALaCat();
             }
         });
         accedirCatTema.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -254,7 +258,7 @@ public class NavegacioC {
 
     private void accedirPagina(ListView<String> llista){
         if (!llista.getSelectionModel().isEmpty()) {
-            Stage stage = new Stage();;
+            Stage stage = new Stage();
             stagePropi.close();
             NavegacioP navegacioP = new NavegacioP(llista.getSelectionModel().getSelectedItem(),
                     navegacioVista, stage);
@@ -440,7 +444,7 @@ public class NavegacioC {
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                CtrlCatPag.getInstance().esborrarArc(nomC, nomSuper); // TODO: no esborra els DOS arcs
+                CtrlCatPag.getInstance().esborrarArc(nomC, nomSuper);
                 carregarSupercategories();
                 dialog.close();
             }
@@ -458,6 +462,126 @@ public class NavegacioC {
 
         Scene dialogScene = new Scene(parent);
         dialog.setTitle("Eliminar supercategoria de la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogAfegirSuperALaCat(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Escriu el nom de la supercategoria a afegir a la categoria");
+        final ComboBox<String> nomSupercatAfegir = new ComboBox<>();
+        nomSupercatAfegir.setPrefSize(300, 20);
+        nomSupercatAfegir.setItems(getTotesCategories());
+        new AutoCompleteComboBoxListener(nomSupercatAfegir);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String nomNovaSuper = nomSupercatAfegir.getValue();
+                boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSuper);
+                if(existeix) {
+                    CtrlCatPag.getInstance().RelCsupC(nomNovaSuper, nomC); // TODO: no fer res si hi ha una relacio de CsubC...
+                    carregarSupercategories();
+                    dialog.close();
+                } else System.out.println("No existeix cat o es subcategoria");
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, nomSupercatAfegir, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Afegir supercategoria a la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogEliminarSubcategoriaDeLaCat(){
+        final String nomSub = llistaSub.getSelectionModel().getSelectedItem();
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Estàs segur de que vols eliminar la subcategoria " + nomSub + " de la categoria?");
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlCatPag.getInstance().esborrarArc(nomC, nomSub);
+                carregarSubcategories();
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Eliminar subcategoria de la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogAfegirSubALaCat(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Escriu el nom de la subcategoria a afegir a la categoria");
+        final ComboBox<String> nomSubcatAfegir = new ComboBox<>();
+        nomSubcatAfegir.setPrefSize(300, 20);
+        nomSubcatAfegir.setItems(getTotesCategories());
+        new AutoCompleteComboBoxListener(nomSubcatAfegir);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String nomNovaSub = nomSubcatAfegir.getValue();
+                boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSub);
+                if(existeix) {
+                    CtrlCatPag.getInstance().RelCsubC(nomC, nomNovaSub); // TODO: no fer res si hi ha una relacio de CsupC...
+                    carregarSubcategories();
+                    dialog.close();
+                } else System.out.println("No existeix cat o es supercategoria");
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, nomSubcatAfegir, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Afegir subcategoria a la categoria");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
