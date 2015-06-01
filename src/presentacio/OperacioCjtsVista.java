@@ -64,7 +64,8 @@ public class OperacioCjtsVista {
         unir.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()) {
+                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()
+                        && !llistaT1.getSelectionModel().getSelectedItem().equals(llistaT2.getSelectionModel().getSelectedItem())) {
                     try {
                         CtrlComunitat.getInstance().unio(
                                 llistaT1.getSelectionModel().getSelectedItem(), llistaT2.getSelectionModel().getSelectedItem());
@@ -73,13 +74,14 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts");
+                } else System.out.println("Selecciona dos conjunts diferents");
             }
         });
         interseccionar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()) {
+                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()
+                        && !llistaT1.getSelectionModel().getSelectedItem().equals(llistaT2.getSelectionModel().getSelectedItem())) {
                     try {
                         CtrlComunitat.getInstance().interseccio(
                                 llistaT1.getSelectionModel().getSelectedItem(), llistaT2.getSelectionModel().getSelectedItem());
@@ -88,13 +90,14 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts");
+                } else System.out.println("Selecciona dos conjunts diferents");
             }
         });
         restar.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()) {
+                if(!llistaT1.getSelectionModel().isEmpty() && !llistaT2.getSelectionModel().isEmpty()
+                        && !llistaT1.getSelectionModel().getSelectedItem().equals(llistaT2.getSelectionModel().getSelectedItem())) {
                     try {
                         CtrlComunitat.getInstance().diferencia(
                                 llistaT1.getSelectionModel().getSelectedItem(), llistaT2.getSelectionModel().getSelectedItem());
@@ -103,7 +106,7 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts");
+                } else System.out.println("Selecciona dos conjunts diferents");
             }
         });
 
