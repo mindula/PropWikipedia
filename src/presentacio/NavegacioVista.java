@@ -2,6 +2,7 @@ package presentacio;
 
 import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
+import domini.controladors.Historial;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -93,17 +94,20 @@ public class NavegacioVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 String cercat = queryText.getValue();
-                if (pagCatCerca.getValue().equals(pagCatCerca.getItems().get(0))){ // pàgina
+                if (!pagCatCerca.getSelectionModel().getSelectedItem().equals("Categoria")
+                        && CtrlCatPag.getInstance().existeixPagina(cercat)){ // pàgina
                     llistaP.getSelectionModel().select(cercat);
                     int index = llistaP.getSelectionModel().getSelectedIndex();
                     llistaP.scrollTo(index);
                 }
-                else{
+                else if(pagCatCerca.getSelectionModel().getSelectedItem().equals("Categoria")
+                        && CtrlCatPag.getInstance().existeixCategoria(cercat)){ // categoria
                     llistaC.getSelectionModel().select(cercat);
                     int index = llistaC.getSelectionModel().getSelectedIndex();
                     llistaC.scrollTo(index);
                 }
-                //Historial.getInstance().afegirCerca(); // TODO: guardar cerca
+                else System.out.println("No existeix");
+                //Historial.getInstance().afegirCerca(cercat); // TODO: solucionar bug
             }
         });
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
