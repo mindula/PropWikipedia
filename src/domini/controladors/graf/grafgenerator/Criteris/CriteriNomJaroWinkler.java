@@ -23,7 +23,7 @@ public class CriteriNomJaroWinkler extends Criteri{
     @Override
     public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
         double jaro = JaroWinklerDistance.calculate(n1.getNom(), n2.getNom());
-        return jaro < 0.1 ? 0:jaro/8 ;
+        return jaro/8 < 0.1 ? 0:jaro ;
 
     }
 
