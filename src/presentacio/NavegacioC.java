@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  * Data: 29/05/15
  */
 
-public class NavegacioC { // TODO: modificar nom
+public class NavegacioC {
 
     private final double SPACE = 10;
     private String nomC;
@@ -31,6 +31,7 @@ public class NavegacioC { // TODO: modificar nom
     private ListView<String> llistaSuper;
     private ListView<String> llistaSub;
     private ListView<String> llistaTema;
+    private Label titol;
 
     public NavegacioC(String nomCategoria,  NavegacioVista nav, Stage stage){
         nomC = nomCategoria;
@@ -44,7 +45,7 @@ public class NavegacioC { // TODO: modificar nom
         parent.setAlignment(Pos.CENTER);
         Scene scene = new Scene(parent, 1024, 768); // necessari perque es massa gran...
 
-        Label titol = new Label(nomC);
+        titol = new Label(nomC);
         titol.setFont(new Font(30));
         Separator separator1 = new Separator(); separator1.setVisible(false);
 
@@ -53,30 +54,42 @@ public class NavegacioC { // TODO: modificar nom
         llistaP.getItems().addAll(CtrlCatPag.getInstance().getPagines(nomC)); // TODO: funcionen les llistes?
         Button accedirP = new Button("Accedir a la pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
+        Button eliminarP = new Button("Eliminar pàgina de la categoria");
+        eliminarP.setMaxWidth(Double.MAX_VALUE);
+        Button afegirP = new Button("Afegir pàgina a la categoria");
+        afegirP.setMaxWidth(Double.MAX_VALUE);
         VBox boxP = new VBox(SPACE);
-        boxP.getChildren().addAll(labelP, llistaP, accedirP);
+        boxP.getChildren().addAll(labelP, llistaP, accedirP, eliminarP, afegirP);
         Label labelSuper = new Label("Supercategories");
         llistaSuper = new ListView<>();
         llistaSuper.getItems().addAll(CtrlCatPag.getInstance().getSuperCategories(nomC));
-        Button accedirSuper= new Button("Accedir a la supercategoria");
+        Button accedirSuper = new Button("Accedir a la supercategoria");
         accedirSuper.setMaxWidth(Double.MAX_VALUE);
+        Button eliminarSuper = new Button("Eliminar supercategoria de la categoria");
+        eliminarSuper.setMaxWidth(Double.MAX_VALUE);
+        Button afegirSuper = new Button("Afegir supercategoria a la categoria");
+        afegirSuper.setMaxWidth(Double.MAX_VALUE);
         VBox boxSuper = new VBox(SPACE);
-        boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper);
+        boxSuper.getChildren().addAll(labelSuper, llistaSuper, accedirSuper, eliminarSuper, afegirSuper);
         Label labelSub = new Label("Subcategories");
         llistaSub = new ListView<>();
         llistaSub.getItems().addAll(CtrlCatPag.getInstance().getSubCategories(nomC));
         Button accedirSub = new Button("Accedir a la subcategoria");
         accedirSub.setMaxWidth(Double.MAX_VALUE);
+        Button eliminarSub = new Button("Eliminar subcategoria de la categoria");
+        eliminarSub.setMaxWidth(Double.MAX_VALUE);
+        Button afegirSub = new Button("Afegir subcategoria a la categoria");
+        afegirSub.setMaxWidth(Double.MAX_VALUE);
         VBox boxSub = new VBox(SPACE);
-        boxSub.getChildren().addAll(labelSub, llistaSub, accedirSub);
+        boxSub.getChildren().addAll(labelSub, llistaSub, accedirSub, eliminarSub, afegirSub);
 
         HBox boxPagSuperSub = new HBox(SPACE);
         boxPagSuperSub.setAlignment(Pos.CENTER);
         boxPagSuperSub.getChildren().addAll(boxP, boxSuper, boxSub);
 
-        Button editar = new Button("Editar la categoria");
+        Button modificarNom = new Button("Modificar el nom de la categoria");
         Button eliminar = new Button("Eliminar la categoria");
-        editar.setMaxWidth(200);
+        modificarNom.setMaxWidth(200);
         eliminar.setMaxWidth(200);
 
         // llista amb cats del mateix tema
@@ -94,7 +107,7 @@ public class NavegacioC { // TODO: modificar nom
         boxMock1.getChildren().addAll(mockList1);
         VBox boxMock2 = new VBox(SPACE);
         boxMock2.setAlignment(Pos.BOTTOM_RIGHT);
-        boxMock2.getChildren().addAll(mockList2, editar, eliminar);
+        boxMock2.getChildren().addAll(mockList2, modificarNom, eliminar);
 
         HBox boxMateixTema = new HBox(SPACE);
         boxMateixTema.setAlignment(Pos.CENTER);
@@ -111,10 +124,34 @@ public class NavegacioC { // TODO: modificar nom
                 accedirPagina(llistaP);
             }
         });
+        eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        afegirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
         accedirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 accedirCategoria(llistaSuper);
+            }
+        });
+        eliminarSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        afegirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
             }
         });
         accedirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -123,16 +160,28 @@ public class NavegacioC { // TODO: modificar nom
                 accedirCategoria(llistaSub);
             }
         });
+        eliminarSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
+        afegirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                //
+            }
+        });
         accedirCatTema.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 accedirCategoria(llistaTema);
             }
         });
-        editar.setOnMouseClicked(new EventHandler<MouseEvent>() { // TODO
+        modificarNom.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //
+                dialogReanomenarCat();
             }
         });
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -212,6 +261,48 @@ public class NavegacioC { // TODO: modificar nom
             stage.show();
         }
         else System.out.println("No hi ha pag seleccionada");
+    }
+
+    private void dialogReanomenarCat(){
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("Escriu el nou nom de la categoria");
+        final TextField nomNouTextField = new TextField();
+        nomNouTextField.setPrefSize(300, 20);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String nomNou = nomNouTextField.getText();
+                boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNou);
+                if(!existeix) {
+                    CtrlCatPag.getInstance().ModificarNomCat(nomC, nomNou);
+                    navegacioVista.carregarCategories();
+                    nomC = nomNou;
+                    titol.setText(nomC);
+                    dialog.close();
+                } else System.out.println("Ja existeix cat");
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, nomNouTextField, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Reanomenar la categoria");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
 }

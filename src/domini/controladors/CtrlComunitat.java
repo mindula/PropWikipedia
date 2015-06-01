@@ -28,7 +28,7 @@ public class CtrlComunitat {
         return INSTANCE;
     }
 
-    public void afegirConjuntsGenerats(ConjuntComunitatWiki c) throws Exception {
+    public void afegirComunitatsGenerades(ConjuntComunitatWiki c) throws Exception {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()) {
             conjunt.getCjtComunitats().afegirComunitat(com);
             String nom = "Tema: " + String.valueOf(conjunt.getCjtComunitats().getNumComunitats());

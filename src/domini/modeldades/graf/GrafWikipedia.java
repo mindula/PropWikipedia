@@ -131,11 +131,19 @@ public class GrafWikipedia implements Serializable{
         return pag.getCategories().contains(cat);
     }
 
+    public HashMap<String, NodeCategoria> getCategoriesMap(){
+        return categoriesMap;
+    }
+
     public NodeCategoria getNodeCat (String nom) {
         if(categoriesMap.containsKey(nom))
             return categoriesMap.get(nom);
 
         throw new RuntimeException("No existeix una categoria amb aquest nom");
+    }
+
+    public HashMap<String, NodePagina> getPaginesMap(){
+        return paginesMap;
     }
 
     public NodePagina getNodePag (String nom) {
@@ -164,8 +172,11 @@ public class GrafWikipedia implements Serializable{
     }
 
     public void eliminarPagina(NodePagina pag){
+        System.out.print("ok1\n");
         pagines.remove(pag);
+        System.out.print("ok2\n");
         paginesMap.remove(pag.getNom());
+        System.out.print("ok3\n");
     }
 
     public int getNumCategories(){
