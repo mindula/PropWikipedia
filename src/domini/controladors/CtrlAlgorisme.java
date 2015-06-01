@@ -11,7 +11,6 @@ import prop.classescompartides.algorismes.AlgorismeLouvain;
 import prop.classescompartides.algorismes.CtrlGirvanBron;
 import prop.classescompartides.algorismes.grupclique.CtrlAlgoritmoClique;
 import prop.classescompartides.graf.Algoritme;
-import prop.classescompartides.graf.ConjuntComunitats;
 import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
@@ -33,6 +32,8 @@ public class CtrlAlgorisme{
     private TipusAlgorisme tipusAlgorisme;
     private double par1;
     private ArrayList<Criteri> criteris;
+    private ConjuntComunitatWiki conjunt;
+    private Graf<NodeCategoria> grafGenerat;
 
     /**
      * Constructora per defecte de la classe
@@ -46,41 +47,49 @@ public class CtrlAlgorisme{
         this.tipusAlgorisme = tipusAlgorisme;
         this.par1 = par1;
         this.criteris = criteris;
+        this.conjunt = new ConjuntComunitatWiki();
+        grafGenerat = new Graf<NodeCategoria>();
+    }
+
+
+    public void generarGraf() {
+        long startTime = System.currentTimeMillis();
+        GrafGenerator generator = new GrafGenerator();
+        System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
+        System.err.println("Aplicant criteris...");
+        grafGenerat = generator.generate(grafWikipedia, criteris);
+        long generatorTime = System.currentTimeMillis() - startTime;
+        System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
+
+        long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
+        conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString()));
     }
 
     /**
      * Cerca comunitats en un graf seguint un dels 3 algorismes definits
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
-    public ConjuntComunitatWiki cercarComunitats(){
+    public ConjuntComunitatWiki cercarComunitats() throws Exception {
         Algoritme<NodeCategoria> algorisme;
-        ConjuntComunitatWiki conjunt = new ConjuntComunitatWiki();
 
-        if(tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
-            algorisme = new AlgorismeLouvain<NodeCategoria>();
-        }
-        else if(tipusAlgorisme == TipusAlgorisme.GIRVAN){
+        if (tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
+            algorisme = new AlgorismeLouvain<>();
+        } else if (tipusAlgorisme == TipusAlgorisme.GIRVAN) {
             algorisme = new CtrlGirvanBron<>();
-        }
-        else{ // Clique
+        } else { // Clique
             algorisme = new CtrlAlgoritmoClique<>();
         }
 
-        long startTime = System.currentTimeMillis();
 
-        GrafGenerator generator = new GrafGenerator();
-        Graf<NodeCategoria> graf = generator.generate(grafWikipedia, criteris);
+        System.err.println("Cercant comunitats...");
+        conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));
+        int nComunitats = conjunt.getCjtComunitats().getNumComunitats();
+        System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
+        conjunt.getInformacio().setNombreComunitats(nComunitats);
+        conjunt.getInformacio().setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
+        System.out.println("Nous: " + conjunt.getCjtComunitats().getNumComunitats());
 
-        long generatorTime = System.currentTimeMillis() - startTime;
-        System.out.println("Temps en generar el graf: " + generatorTime + "ms");
-
-        ConjuntComunitats<NodeCategoria> cjtComunitats = algorisme.cercarComunitats(graf, par1);
-        conjunt.setCjtComunitats(cjtComunitats);
-
-        long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
-        System.out.println("Temps en cercar comunitats: " + elapsedTime + "ms");
-
-         conjunt.setInformacio(new InformacioCjtComunitats(generatorTime, elapsedTime, conjunt.getCjtComunitats().getNumComunitats(), tipusAlgorisme, criteris.toString(), graf.ordre()/(double)conjunt.getCjtComunitats().getNumComunitats()));
+        CtrlComunitat.getInstance().afegirComunitatsGenerades(conjunt);
 
         return conjunt;
     }

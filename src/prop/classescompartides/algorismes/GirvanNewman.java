@@ -9,12 +9,7 @@ package prop.classescompartides.algorismes;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Graf;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.PriorityQueue;
-import java.util.Set;
+import java.util.*;
 
 
 public class GirvanNewman<T> {
@@ -64,16 +59,15 @@ public class GirvanNewman<T> {
 
 
 	/**
-	 * Aplica l'algorisme Dijkstra calculant els camins minim del <tt>nodeInici</tt> a tots els altres nodes del graf.
+	 * Aplica l'algorisme Dijkstra calculant els camins m�nim del <tt>nodeInici</tt> a tots els altres nodes del graf.
 	 * @param g Graf on s'aplica l'algorisme.
 	 * @param nodeInici 
 	 * @param dists Distancia del <tt>nodeInici</tt> als altres nodes.
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
 	 */
 	
 	private void stage1Dijkstra(Graf<T> g,T nodeInici ,HashMap<T,Double> dists, HashMap<T,HashSet<T>> anteriors ){
 		HashSet<T> visitat = new HashSet<T>();
-        System.out.println(g.mida());
 		PriorityQueue<AristaGirvan> queue = new PriorityQueue<AristaGirvan>(g.mida(),new GirvanArcComparator());
 		queue.add(new AristaGirvan(nodeInici, 0.0));
 		dists.put(nodeInici,0.0 );
@@ -92,14 +86,14 @@ public class GirvanNewman<T> {
 					if(!dists.containsKey(u))dists.put(u, Double.MAX_VALUE);	
 					if(!dists.containsKey(v))dists.put(v, Double.MAX_VALUE);	
 	
-					if(dists.get(v) > (dists.get(u)+ ar.getPes())){
-						dists.put(v, dists.get(u)+ ar.getPes());
+					if(dists.get(v) > (dists.get(u)+ (1/ar.getPes()))){
+						dists.put(v, dists.get(u)+ (1/ar.getPes()));
 						HashSet<T> hs = new HashSet<T>();
 						hs.add(u);
 						anteriors.put(v, hs);
 						queue.add(new AristaGirvan(v, dists.get(v)));
 					}
-					else if(dists.get(v)== (dists.get(u)+ar.getPes())){
+					else if(dists.get(v)== (dists.get(u)+(1/ar.getPes()))){
 						HashSet<T> hs = anteriors.get(v);
 						hs.add(u);
 						anteriors.put(v, hs);
@@ -110,14 +104,14 @@ public class GirvanNewman<T> {
 	}
 	
 	/**
-	 * Recomposa els camins minims calculats previament en el Dijkstra.
+	 * Recomposa els camins m�nims calculats pr�viament en el Dijkstra.
 	 * @param g Graf on s'aplica l'algorisme.
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
 	 * @param camins Conjunt d'arcs que representen els camins per arribar a cada node.
 	 * @param nodeInici
 	 * @param nodeFi
 	 * @param nodeActual
-	 * @param aristes Conjunt d'arcs del cami per arribar fins el <tt>nodeActual</tt>.
+	 * @param aristes Conjunt d'arcs del cam� per arribar fins el <tt>nodeActual</tt>.
 	 */
 	
 	private  void recomposarCamins(Graf<T> g,HashMap<T,HashSet<T>> anteriors, HashMap<T,HashSet<HashSet<Arc<T>>>> camins ,T nodeInici, T nodeFi, T nodeActual , HashSet<Arc<T>> aristes ){
@@ -140,7 +134,7 @@ public class GirvanNewman<T> {
 	 * Calcula la betwenness de les aristes.
 	 * @param g Graf on s'aplica l'algorisme.
 	 * @param nodeInici
-	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins minims.
+	 * @param anteriors Node que s'ha usat per arribar fins aquell node dels camins m�nims.
 	 * @param betweeness Valor de betweeness de cada arc.
 	 */
 	
@@ -164,17 +158,13 @@ public class GirvanNewman<T> {
 					Arc<T> ardip = itDip.next();
 					if(!betweeness.containsKey(ardip))betweeness.put(ardip,0.0);
 					betweeness.put(ardip, betweeness.get(ardip)+ 1.0/((double) siz));
-					//System.out.print(" "+ "/" + ardip.getNodeA().toString()+ " " + ardip.getNodeB().toString() + " "+ bet );
-					//System.out.println( ardip.getNodeA().toString()+ " " + ardip.getNodeB().toString() + "  " + betweeness.get(ardip));
 				}
-				//System.out.println();
 			}
-			//System.out.println();
 		}	
 	}
 	
 	
-	//Classe privada auxiliar per a l'us de la priorityQueue.
+	//Clase privada auxiliar usada por priorityQueue.
 	private class AristaGirvan{
 		public T nodo;
 		public Double peso;

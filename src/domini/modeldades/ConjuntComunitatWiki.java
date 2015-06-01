@@ -3,6 +3,7 @@ package domini.modeldades;
 import domini.modeldades.graf.NodeCategoria;
 import prop.classescompartides.graf.ConjuntComunitats;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
  * Usuari: eduard.casellas
  * Data: 22/05/15
  */
-public class ConjuntComunitatWiki {
+public class ConjuntComunitatWiki implements Serializable{
     private InformacioCjtComunitats informacio;
     private ConjuntComunitats<NodeCategoria> cjtComunitats;
 
@@ -22,8 +23,8 @@ public class ConjuntComunitatWiki {
 
     public ConjuntComunitatWiki(){
         cjtComunitats = new ConjuntComunitats<NodeCategoria>();
-        noms = new HashMap<Integer,String>();
-        descripcions = new HashMap<Integer,String>();
+        noms = new HashMap<>();
+        descripcions = new HashMap<>();
         ids = new HashMap<>();
     }
 
@@ -74,5 +75,11 @@ public class ConjuntComunitatWiki {
 
     public void setDescripcio(Integer id, String descripcio){
         descripcions.put(id,descripcio);
+    }
+
+    public void eliminarInfoComunitat(int id){
+        ids.remove(getNom(id));
+        noms.remove(id);
+        descripcions.remove(id);
     }
 }

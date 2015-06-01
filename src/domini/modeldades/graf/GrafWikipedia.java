@@ -45,10 +45,17 @@ public class GrafWikipedia implements Serializable{
     }
 
     public void eliminarCategoria(NodeCategoria node) {
-        grafWiki.eliminarNode(node);
+
         categories.remove(node);
         categoriesMap.remove(node.getNom());
+        grafWiki.eliminarNode(node);
     }
+
+
+    public void afegirArc(Arc<NodeCategoria> a){
+        grafWiki.afegirArc(a);
+    }
+
 
     /**
      * Afegeix una aresta entre pagina i categoria (i viceversa)
@@ -131,11 +138,19 @@ public class GrafWikipedia implements Serializable{
         return pag.getCategories().contains(cat);
     }
 
+    public HashMap<String, NodeCategoria> getCategoriesMap(){
+        return categoriesMap;
+    }
+
     public NodeCategoria getNodeCat (String nom) {
         if(categoriesMap.containsKey(nom))
             return categoriesMap.get(nom);
 
         throw new RuntimeException("No existeix una categoria amb aquest nom");
+    }
+
+    public HashMap<String, NodePagina> getPaginesMap(){
+        return paginesMap;
     }
 
     public NodePagina getNodePag (String nom) {
@@ -170,5 +185,29 @@ public class GrafWikipedia implements Serializable{
 
     public int getNumCategories(){
        return grafWiki.ordre();
+    }
+
+    public ArrayList<NodeCategoria> getSupCategories(NodeCategoria cat){
+        ArrayList<NodeCategoria> result = new ArrayList<NodeCategoria>();
+        for (NodeCategoria categoria: getCategories()){
+            if (! cat.equals(categoria))
+                if(existeixArcCC(cat,categoria))
+                    if (getArcEntre(cat, categoria).getPes() > 0){
+                        result.add(categoria);
+                    }
+        }
+        return result;
+    }
+
+    public ArrayList<NodeCategoria> getSubCategories(NodeCategoria cat){
+        ArrayList<NodeCategoria> result = new ArrayList<NodeCategoria>();
+        for (NodeCategoria categoria: getCategories()){
+            if (! cat.equals(categoria))
+                if(existeixArcCC(cat,categoria))
+                    if (getArcEntre(cat, categoria).getPes() < 0){
+                        result.add(categoria);
+                    }
+        }
+        return result;
     }
 }

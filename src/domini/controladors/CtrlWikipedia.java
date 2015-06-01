@@ -1,5 +1,6 @@
 package domini.controladors;
 
+import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
@@ -11,12 +12,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Grup 3: Wikipedia
- * Usuari: ricard.gascons
- * Data: 22/3/15
+ * Usuari: eduard.casellas
+ * Data: 19/5/15
  */
 
 /**
@@ -24,21 +26,19 @@ import java.util.Date;
  */
 
 public class CtrlWikipedia implements Serializable{
-    // TODO: jo li diria ctrlSessio a aquesta classe ja que te tots els canvis que es realitzen.
     private static CtrlWikipedia INSTANCE;
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
     private Graf<NodeCategoria> grafAlgoritme;
-    private ConjuntComunitats<NodeCategoria> conjuntsGenerats;
+    private ConjuntComunitatWiki conjuntsGenerats;
 
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
         this.dataCreacio = dateFormat.format(dataCreacio);
         grafWiki = new GrafWikipedia();
-        grafAlgoritme = new Graf<>();
-
+        conjuntsGenerats = new ConjuntComunitatWiki();
     }
 
     /**
@@ -134,12 +134,30 @@ public class CtrlWikipedia implements Serializable{
     }
 
 
-    public ConjuntComunitats<NodeCategoria> getConjuntsGenerats() {
+    public ConjuntComunitatWiki getConjuntsGenerats() {
         return conjuntsGenerats;
     }
 
-    public void setConjuntsGenerats(ConjuntComunitats<NodeCategoria> conjuntsGenerats) {
+    public void setConjuntsGenerats(ConjuntComunitatWiki conjuntsGenerats) {
         this.conjuntsGenerats = conjuntsGenerats;
+    }
+
+    public ArrayList<String> getNomsCategories(){
+        ArrayList<NodeCategoria> cats = grafWiki.getCategories();
+        ArrayList<String> nomCats = new ArrayList<>();
+        for (NodeCategoria cat : cats) {
+            nomCats.add(cat.getNom());
+        }
+        return nomCats;
+    }
+
+    public ArrayList<String> getNomsPagines(){
+        ArrayList<NodePagina> pags = grafWiki.getPagines();
+        ArrayList<String> nomPags = new ArrayList<>();
+        for (NodePagina pag : pags) {
+            nomPags.add(pag.getNom());
+        }
+        return nomPags;
     }
 
     @Override

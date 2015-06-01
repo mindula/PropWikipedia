@@ -341,44 +341,36 @@ public class GeneraTemes extends javax.swing.JDialog {
         }// </editor-fold>
 
         private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
         private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
         private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
         private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
             if (!jSpinner1.isEnabled())
                 jSpinner1.setEnabled(true);
             else jSpinner1.setEnabled(false);
         }
 
         private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
             if (!jSpinner2.isEnabled())
                 jSpinner2.setEnabled(true);
             else jSpinner2.setEnabled(false);
         }
 
         private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
             if (!jSpinner3.isEnabled())
                 jSpinner3.setEnabled(true);
             else jSpinner3.setEnabled(false);
         }
 
         private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
             if (!jSpinner4.isEnabled())
                 jSpinner4.setEnabled(true);
             else jSpinner4.setEnabled(false);

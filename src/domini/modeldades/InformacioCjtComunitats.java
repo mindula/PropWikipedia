@@ -6,32 +6,30 @@ package domini.modeldades;
  * Data: 29/04/15
  */
 
+import java.io.Serializable;
+
 /**
  * Informació generada despres de l'execucio d'un algorisme
  */
-public class InformacioCjtComunitats {
+public class InformacioCjtComunitats implements Serializable {
         private final long  milisegons;
-        private final int nombreComunitats;
+        private int nombreComunitats;
         private final TipusAlgorisme algoritme;
         private final String criteri;
-        private final double mitjanaNodesPerComunitat;
+        private double mitjanaNodesPerComunitat;
         private final long tempsgenerar;
 
     /**
      * Constructora per defecte
      * @param milisegons
-     * @param nombreComunitats
      * @param algoritme
      * @param criteri
-     * @param mitjanaNodesPerComunitat
      */
-    public InformacioCjtComunitats(long tempsgenerar, long milisegons, int nombreComunitats, TipusAlgorisme algoritme, String criteri, double mitjanaNodesPerComunitat) {
+    public InformacioCjtComunitats(long tempsgenerar, long milisegons, TipusAlgorisme algoritme, String criteri) {
         this.tempsgenerar = tempsgenerar;
         this.milisegons = milisegons;
-        this.nombreComunitats = nombreComunitats;
         this.algoritme = algoritme;
         this.criteri = criteri;
-        this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
     }
 
 
@@ -54,6 +52,14 @@ public class InformacioCjtComunitats {
 
     public double getMitjanaNodesPerComunitat() {
         return mitjanaNodesPerComunitat;
+    }
+
+    public void setNombreComunitats(int nombreComunitats) {
+        this.nombreComunitats = nombreComunitats;
+    }
+
+    public void setMitjanaNodesPerComunitat(double mitjanaNodesPerComunitat) {
+        this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
     }
 
     @Override

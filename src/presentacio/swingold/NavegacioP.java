@@ -176,11 +176,9 @@ public class NavegacioP extends javax.swing.JDialog {
         }// </editor-fold>
 
         private void jButtonCatsActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
         private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {
-            // TODO add your handling code here:
         }
 
 

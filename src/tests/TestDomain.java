@@ -1,18 +1,16 @@
 package tests;
 
 import domini.controladors.CtrlAlgorisme;
+import domini.controladors.CtrlCatPag;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.graf.grafgenerator.Criteris.Criteri;
 import domini.modeldades.ConjuntComunitatWiki;
 import domini.modeldades.TipusAlgorisme;
 import domini.modeldades.graf.NodeCategoria;
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
-import prop.classescompartides.graf.ConjuntComunitats;
-import prop.classescompartides.graf.Graf;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -30,7 +28,7 @@ public class TestDomain {
 
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         int opcio = -1;
-        while (opcio != 18) {
+        while (opcio != 19) {
 
 
             System.out.println("Escull una opcio:\n" +
@@ -52,7 +50,8 @@ public class TestDomain {
                     "15. Test Jaro-Winkler\n" +
                     "16. Test Persistencia\n" +
                     "17. Dibuixar Comunitats\n" +
-                    "18. Finalitzar Test\n");
+                    "18. Provar relacions categories del CtrlCatPag\n" +
+                    "19. Finalitzar Test\n");
             opcio = sc.nextInt();
 
             switch (opcio) {
@@ -110,11 +109,12 @@ public class TestDomain {
                     // Fi de la obtencio de criteris
 
                     CtrlAlgorisme c = new CtrlAlgorisme(CtrlWikipedia.getInstance().getGrafWiki(), algorisme, par1, criteris);
+                    c.generarGraf();
                     ConjuntComunitatWiki comunitats = c.cercarComunitats();
 
                     System.out.println(comunitats.getInformacio().toString());
 
-                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats.getCjtComunitats());
+                    CtrlWikipedia.getInstance().setConjuntsGenerats(comunitats);
                     System.out.println("Comunitats trobades:");
                     System.out.println(comunitats.getCjtComunitats());
 
@@ -157,7 +157,7 @@ public class TestDomain {
                     }
                     graf.addAttribute("ui.quality");
                     graf.addAttribute("ui.antialias");
-                    for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getComunitats()){
+                    for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
                         for (NodeCategoria cat: com.getNodes()){
                             if (com.mida() > 1) {
                                 graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
@@ -172,6 +172,24 @@ public class TestDomain {
                     }
 
                     graf.display();
+                    break;
+                case 18:
+                    System.out.println("Obtenir les superCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    String s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getSuperCategories(s));
+                    System.out.println("Obtenir les subCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getSubCategories(s));
+                    System.out.println("Obtenir les pagines");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getPagines(s));
+                    System.out.println("Obtenir les temaCategories");
+                    System.out.println("Esciure el nom de la categoria");
+                    s = sc.next();
+                    System.out.println(CtrlCatPag.getInstance().getCategoriesTema(s));
                     break;
             }
 

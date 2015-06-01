@@ -95,7 +95,6 @@ public class Carregar extends javax.swing.JPanel {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         int returnVal = jFileChooser1.showOpenDialog(Carregar.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path path = jFileChooser1.getSelectedFile().toPath();
@@ -106,7 +105,6 @@ public class Carregar extends javax.swing.JPanel {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO falta fer merda
         CtrlWikipedia ctrlWikipedia = CtrlWikipedia.getInstance();
         try {
             ctrlWikipedia.getGrafWikiFromFile(jTextField1.getText());
