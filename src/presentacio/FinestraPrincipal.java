@@ -6,13 +6,15 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistencia.CtrlPersistencia;
 
@@ -125,8 +127,8 @@ public class FinestraPrincipal extends Application {
                         System.out.println(file);
                         try {
                             CtrlPersistencia.carregarSessio(file.toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            dialogAltertaImportar();
                         }
                         navegacioVista.carregarCategories();
                         navegacioVista.carregarPagines();
@@ -142,8 +144,8 @@ public class FinestraPrincipal extends Application {
                         System.out.println(file);
                         try {
                             CtrlWikipedia.getInstance().getGrafWikiFromFile(file.toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            dialogAltertaImportar();
                         }
                         navegacioVista.carregarCategories();
                         navegacioVista.carregarPagines();
@@ -161,6 +163,33 @@ public class FinestraPrincipal extends Application {
                 }
             }
         };
+    }
+
+    private void dialogAltertaImportar() {
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(10);
+        parent.setPadding(new Insets(20));
+        Label confirmation = new Label("El format especificat és incorrecte");
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(10);
+        Button ok = new Button("D'acord");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(confirmation, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Format incorrecte!");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     public void actualitzarTemes() {

@@ -33,6 +33,8 @@ public class TestPersistencia {
                         CtrlPersistencia.carregarSessio(fileName);
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     break;
                 case 2:
