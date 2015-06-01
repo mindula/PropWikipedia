@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.controladors.Historial;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import prop.classescompartides.utils.Pair;
+
+import java.util.ArrayList;
 
 /**
  * Grup 3: Wikipedia
@@ -27,14 +31,20 @@ public class HistorialVista {
     private ListView<String> llistaCerques;
 
     public HistorialVista(){
+    }
 
+    public Scene getScene(){
         VBox parentBox = new VBox(SPACE);
         parentBox.setPadding(new Insets(20));
-
+        Scene scene = new Scene(parentBox);
         llistaCerques = new ListView<>();
-        // TODO: agafar info del CtrlHistorial
-        Button eliminarCerca = new Button("Eliminar cerca");
-
+        ArrayList<Pair<String, String>> dades = Historial.getInstance().getCerquesStrings();
+        ArrayList<String> dadesFormatCorrecte = new ArrayList<>();
+        for(Pair<String,String> entrada : dades)
+            dadesFormatCorrecte.add("Cerca: " + entrada.getFirst() + " Data: " + entrada.getSecond());
+        llistaCerques.getItems().addAll(dadesFormatCorrecte);
+        Button eliminarCerca = new Button("Eliminar cerques");
+        eliminarCerca.setMaxWidth(Double.MAX_VALUE);
         parentBox.getChildren().addAll(llistaCerques, eliminarCerca);
 
         // OnMouseClicked Listeners:
@@ -42,31 +52,30 @@ public class HistorialVista {
         eliminarCerca.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!llistaCerques.getSelectionModel().isEmpty())
-                    dialogEliminarCerca();
-                else System.out.println("No hi ha cerca seleccionada");
+                dialogEliminarCerca();
             }
         });
 
+        return scene;
     }
 
     private void dialogEliminarCerca(){
-        final String cerca = llistaCerques.getSelectionModel().getSelectedItem();
         final Stage dialog = new Stage();
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
-        Label confirmation = new Label("Estàs segur de que vols eliminar la cerca " + cerca + "?");
+        Label confirmation = new Label("EstÃ s segur de que vols eliminar totes les cerques?");
         Separator separator = new Separator(); separator.setVisible(false);
         HBox botons = new HBox(SPACE);
         Button ok = new Button("D'acord");
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // TODO: eliminar la cerca cridant a CtrlHistorial i actualitzar HistorialVista
+                Historial.getInstance().netejarHistorial();
+                llistaCerques.getItems().clear();
                 dialog.close();
             }
         });
-        Button cancel = new Button("Cancel·lar");
+        Button cancel = new Button("CancelÂ·lar");
         cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -84,6 +93,4 @@ public class HistorialVista {
         dialog.setScene(dialogScene);
         dialog.show();
     }
-
-
 }

@@ -1,13 +1,9 @@
 package tests;
 
-import domini.controladors.Cerca;
 import domini.controladors.CtrlWikipedia;
 import domini.controladors.Navegacio;
 import domini.modeldades.graf.GrafWikipedia;
-import domini.modeldades.graf.NodeCategoria;
-import domini.modeldades.graf.NodePagina;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,41 +31,12 @@ public class TestNavegacio {
                 switch (option) {
                     case 0:
                         // Cercar pag
-                        //TODO: possible fail
-                        ArrayList<NodePagina> nodesPagina = (ArrayList<NodePagina>)
-                                Cerca.cercarWikipediaP(grafWikipedia, nom).getResultats();
-                        for (NodePagina np : nodesPagina) {
-                            System.out.println("Pagina: " + np.getNom());
-                            /*// Mostrar categories
-                            HashSet<NodeCategoria> categories = navegacio.getCategories(np);
-                            System.out.println("Aquesta pagina te les categories seguents:");
-                            for (NodeCategoria categoria : categories)
-                                System.out.println(categoria.getNom());*/
-                        }
+                        System.out.println("Ja no hi ha funcionalitat");
 
                         break;
                     case 1:
                         // Cercar cat
-                        ArrayList<NodeCategoria> nodesCategoria = (ArrayList<NodeCategoria>)
-                                Cerca.cercarWikipediaC(grafWikipedia, nom).getResultats();
-                        for (NodeCategoria nodeCategoria : nodesCategoria) {
-                            System.out.println("Categoria: " + nodeCategoria.getNom());
-                            /*// Mostrar pagines
-                            ArrayList<NodePagina> pagines = navegacio.getPagines(nodeCategoria);
-                            System.out.println("Aquesta categoria te les pagines seguents:");
-                            for (NodePagina pagina : pagines)
-                                System.out.println(pagina.getNom());
-                            //Mostrar supercategories
-                            HashSet<NodeCategoria> supercategories = navegacio.getSupercategories(nodeCategoria);
-                            System.out.println("Aquesta categoria te les supercategories seguents:");
-                            for (NodeCategoria supercategoria : supercategories)
-                                System.out.println(supercategoria.getNom());
-                            //Mostrar subcategories
-                            HashSet<NodeCategoria> subcategories = navegacio.getSubcategories(nodeCategoria);
-                            System.out.println("Aquesta categoria te les subcategories seguents:");
-                            for (NodeCategoria subcategoria : subcategories)
-                                System.out.println(subcategoria.getNom());*/
-                        }
+                        System.out.println("Ja no hi ha funcionalitat");
                         break;
                 }
             }catch(Exception e){

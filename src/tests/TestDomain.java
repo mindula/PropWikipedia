@@ -74,7 +74,7 @@ public class TestDomain {
                     //TestComunitatOpConjunts.main(null);
                     break;
                 case 7:
-                    TestCercaHistorial.main(null);
+                    System.out.println("Ja no hi ha funcionalitat");
                     break;
                 case 8:
                     TestNodeCategoria.main(null);

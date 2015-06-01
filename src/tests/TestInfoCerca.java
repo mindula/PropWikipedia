@@ -1,7 +1,6 @@
 package tests;
 
 import domini.controladors.CtrlWikipedia;
-import domini.modeldades.InfoCerca;
 import domini.modeldades.graf.NodeCategoria;
 
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class TestInfoCerca {
         NodeCategoria a = new NodeCategoria(nom);
         String data = sc.next();
         CtrlWikipedia s = CtrlWikipedia.getInstance();
-        InfoCerca I = new InfoCerca(s.getGrafWiki().getCategories(),data);
+        //InfoCerca I = new InfoCerca(s.getGrafWiki().getCategories(),data);
         System.out.println("Escull una opcio:\n" +
                 "0. Veure opcions\n" +
                 "1. Obtenir el resultat\n" +
@@ -37,10 +36,10 @@ public class TestInfoCerca {
                             "3. Finalitzar Test\n");
                     break;
                 case 1:
-                    System.out.println(I.getResultats());
+                    //System.out.println(I.getResultat());
                     break;
                 case 2:
-                    System.out.println(I.getDataCerca());
+                    //System.out.println(I.getDataCerca());
                     break;
             }
             opcio = sc.nextInt();

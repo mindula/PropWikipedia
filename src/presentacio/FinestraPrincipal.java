@@ -155,6 +155,13 @@ public class FinestraPrincipal extends Application {
                 else if ("Sortir".equals(itemName)) Platform.exit();
                 else if ("Historial de cerques".equals(itemName)) {
                     historialVista = new HistorialVista();
+                    Stage stage = new Stage();
+                    Scene scene = historialVista.getScene();
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(scene);
+                    stage.setTitle("Historial");
+                    stage.show();
                 }
                 else if ("Comparar dos temes generats".equals(itemName)) {
                     ComparacioTemes comparacioTemes = new ComparacioTemes(stage, finestraPrincipal);
