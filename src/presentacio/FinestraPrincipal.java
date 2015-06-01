@@ -105,7 +105,15 @@ public class FinestraPrincipal extends Application {
                 MenuItem mItem = (MenuItem) event.getSource();
                 String itemName = mItem.getText();
 
-                if ("Nou...".equals(itemName)) System.out.println("no implementat");
+                if ("Nou".equals(itemName)) {
+                    Platform.exit();
+                    try {
+                        Runtime.getRuntime().exec("java -jar myApp.jar");
+                        //TODO: posar el jar que toca
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 else if ("Guardar...".equals(itemName)) {
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Guardar sessió...");
