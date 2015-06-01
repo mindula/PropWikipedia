@@ -107,7 +107,7 @@ public class NavegacioVista extends Tab {
                     llistaC.scrollTo(index);
                 }
                 else System.out.println("No existeix");
-                //Historial.getInstance().afegirCerca(cercat); // TODO: solucionar bug
+                Historial.getInstance().afegirCerca(cercat);
             }
         });
         accedirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
