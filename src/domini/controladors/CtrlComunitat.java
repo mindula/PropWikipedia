@@ -29,9 +29,9 @@ public class CtrlComunitat {
     }
 
     public void afegirConjuntsGenerats(ConjuntComunitatWiki c) throws Exception {
-        for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()){
+        for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()) {
             conjunt.getCjtComunitats().afegirComunitat(com);
-            String nom = "Tema: " + String.valueOf(com.getId());
+            String nom = "Tema: " + String.valueOf(conjunt.getCjtComunitats().getNumComunitats());
             conjunt.setNom(com.getId(), nom);
             conjunt.setId(com.getId(), nom);
             conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");
@@ -95,6 +95,7 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        c.setId(conjunt.getCjtComunitats().getNumComunitats());
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
@@ -109,6 +110,7 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        c.setId(conjunt.getCjtComunitats().getNumComunitats());
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
@@ -123,6 +125,7 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
+        c.setId(conjunt.getCjtComunitats().getNumComunitats());
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
