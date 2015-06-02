@@ -53,13 +53,7 @@ public class CtrlWikipedia implements Serializable{
      * Es reseteja la informacio de tots els atributs
      */
     public void reset() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataCreacio = new Date();
-        this.dataCreacio = dateFormat.format(dataCreacio);
-        grafWiki = new GrafWikipedia();
-        conjuntsGenerats = new ConjuntComunitatWiki();
-        llistatCerques = new ArrayList<InfoCerca>();
-        informacioExecucions = new ArrayList<>();
+        INSTANCE = null;
     }
 
     /**

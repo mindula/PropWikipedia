@@ -47,7 +47,7 @@ public class Historial {
      * Es reseteja la informacio de tots els atributs
      */
     public void reset() {
-        llistatCerques = CtrlWikipedia.getInstance().getLlistatCerques();
+        INSTANCE = null;
     }
 
     /**

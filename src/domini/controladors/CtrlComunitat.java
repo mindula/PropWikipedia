@@ -30,8 +30,7 @@ public class CtrlComunitat {
      * Es reseteja la informacio de tots els atributs
      */
     public void reset() {
-        this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
-        this.graf = CtrlWikipedia.getInstance().getGrafWiki();
+        INSTANCE = null;
     }
 
     /**

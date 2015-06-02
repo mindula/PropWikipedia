@@ -40,8 +40,7 @@ public class CtrlCatPag {
      * Es reseteja la informacio de tots els atributs
      */
     public void reset() {
-        grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
-        conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats();
+        INSTANCE = null;
     }
 
     /**
