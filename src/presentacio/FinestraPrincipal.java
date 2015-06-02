@@ -228,6 +228,14 @@ public class FinestraPrincipal extends Application {
         temesVista.actualitzaTemes();
     }
 
+    public void bloquejarBotonsCatNavegacio() {
+        navegacioVista.bloquejarBotonsCatNavegacio();
+    }
+
+    public void activarBotonsCatNavegacio() {
+        navegacioVista.activarBotonsCatNavegacio();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -162,13 +162,13 @@ public class GenerarTemes extends Tab {
 
     private void generarTemes() {
         //System.setErr(ps);
-
         logAlgorisme.clear();
         Thread t1 = new Thread(new Runnable() {
             public void run() {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        finestraPrincipal.bloquejarBotonsCatNavegacio();
                         progresAlgoritme.setProgress(-1.0D);
                     }
                 });
@@ -233,6 +233,7 @@ public class GenerarTemes extends Tab {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+                                finestraPrincipal.activarBotonsCatNavegacio();
                                 logAlgorisme.appendText("Temps en aplicar criteris: " + String.valueOf(generatorTime) +
                                         "ms" + '\n');
                                 logAlgorisme.appendText("Cercant comunitats..." + '\n');

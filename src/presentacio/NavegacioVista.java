@@ -33,6 +33,9 @@ public class NavegacioVista extends Tab {
     private final ComboBox<String> pagCatCerca;
     private final ListView<String> llistaP;
     private final ListView<String> llistaC;
+    private Button accedirC;
+    private Button novaC;
+    private Button eliminarC;
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
@@ -58,15 +61,15 @@ public class NavegacioVista extends Tab {
         llistaC.getItems().addAll( getCategories() );
         final Button accedirP = new Button("Accedir a pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
-        Button accedirC = new Button("Accedir a categoria");
+        accedirC = new Button("Accedir a categoria");
         accedirC.setMaxWidth(Double.MAX_VALUE);
         Button novaP = new Button("Nova pàgina");
         novaP.setMaxWidth(Double.MAX_VALUE);
-        Button novaC = new Button("Nova categoria");
+        novaC = new Button("Nova categoria");
         novaC.setMaxWidth(Double.MAX_VALUE);
         Button eliminarP = new Button("Eliminar pàgina");
         eliminarP.setMaxWidth(Double.MAX_VALUE);
-        Button eliminarC = new Button("Eliminar categoria");
+        eliminarC = new Button("Eliminar categoria");
         eliminarC.setMaxWidth(Double.MAX_VALUE);
 
         VBox boxP = new VBox(SPACE);
@@ -361,6 +364,18 @@ public class NavegacioVista extends Tab {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    public void bloquejarBotonsCatNavegacio() {
+        accedirC.setDisable(true);
+        novaC.setDisable(true);
+        eliminarC.setDisable(true);
+    }
+
+    public void activarBotonsCatNavegacio() {
+        accedirC.setDisable(false);
+        novaC.setDisable(false);
+        eliminarC.setDisable(false);
     }
 
 }
