@@ -53,6 +53,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(conjunt.getCjtComunitats().getNumComunitats(), nom);
         conjunt.setId(conjunt.getCjtComunitats().getNumComunitats(), nom);
+        conjunt.setDescripcio(conjunt.getCjtComunitats().getNumComunitats(), "No hi ha cap descripció");
     }
 
     public Integer getId(String nom) {
