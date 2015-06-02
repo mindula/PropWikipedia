@@ -69,6 +69,10 @@ public class GenerarTemes extends Tab {
             public void handle(ActionEvent event) {
                 if (CtrlWikipedia.getInstance().getGrafWiki().getNumCategories() != 0)
                     generarTemes();
+                else {
+                    AlertDialog grafBuit = new AlertDialog("Error", "El graf està buit!");
+                    grafBuit.mostrarAlertDialog();
+                }
             }
         });
 
@@ -199,47 +203,67 @@ public class GenerarTemes extends Tab {
                         Criteri c = new CriteriPaginesComuns(ponderacioPag/100.0);
                         criteris.add(c);
                     }
-                    CtrlAlgorisme c = new CtrlAlgorisme(
-                            CtrlWikipedia.getInstance().getGrafWiki(),
-                            tipusAlgorisme,
-                            parametreAlgorisme,
-                            criteris);
-                    final TipusAlgorisme finalTipusAlgorisme = tipusAlgorisme;
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            logAlgorisme.appendText("Algoritme triat: " + String.valueOf(finalTipusAlgorisme) + '\n');
-                            logAlgorisme.appendText("Aplicant criteris..." + '\n');
-                        }
-                    });
-                    long startTime = System.currentTimeMillis();
-                    c.generarGraf();
-                    final long generatorTime = System.currentTimeMillis() - startTime;
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            logAlgorisme.appendText("Temps en aplicar criteris: " + String.valueOf(generatorTime) +
-                                    "ms" + '\n');
-                            logAlgorisme.appendText("Cercant comunitats..." + '\n');
-
-                        }
-                    });
-                    try {
-                        c.cercarComunitats();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (pagSlider.isDisable() && superCatSlider.isDisable()
+                            && subCatSlider.isDisable() && nomSlider.isDisable()) {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                AlertDialog noHiHaCriteris = new AlertDialog("Alerta", "No hi ha criteris definits");
+                                noHiHaCriteris.mostrarAlertDialog();
+                            }
+                        });
                     }
-                    final long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
+                    else {
+                        CtrlAlgorisme c = new CtrlAlgorisme(
+                                CtrlWikipedia.getInstance().getGrafWiki(),
+                                tipusAlgorisme,
+                                parametreAlgorisme,
+                                criteris);
+                        final TipusAlgorisme finalTipusAlgorisme = tipusAlgorisme;
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                logAlgorisme.appendText("Algoritme triat: " + String.valueOf(finalTipusAlgorisme) + '\n');
+                                logAlgorisme.appendText("Aplicant criteris..." + '\n');
+                            }
+                        });
+                        long startTime = System.currentTimeMillis();
+                        c.generarGraf();
+                        final long generatorTime = System.currentTimeMillis() - startTime;
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                logAlgorisme.appendText("Temps en aplicar criteris: " + String.valueOf(generatorTime) +
+                                        "ms" + '\n');
+                                logAlgorisme.appendText("Cercant comunitats..." + '\n');
+
+                            }
+                        });
+                        try {
+                            c.cercarComunitats();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        final long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                logAlgorisme.appendText("Temps en cercar comunitats: " + String.valueOf(elapsedTime) +
+                                        "ms" + '\n');
+
+                                finestraPrincipal.actualitzarTemes();
+
+                                logAlgorisme.appendText("Cerca completada! Temps total: " +
+                                        String.valueOf(elapsedTime + generatorTime) + "ms" + '\n');
+                            }
+                        });
+                    }
+                } else {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            logAlgorisme.appendText("Temps en cercar comunitats: " + String.valueOf(elapsedTime) +
-                                    "ms" + '\n');
-
-                            finestraPrincipal.actualitzarTemes();
-
-                            logAlgorisme.appendText("Cerca completada! Temps total: " +
-                                  String.valueOf(elapsedTime + generatorTime) + "ms" + '\n');
+                            AlertDialog tipusAlgNoDefinit = new AlertDialog("Alerta", "No s'ha escullit el tipus d'algorisme");
+                            tipusAlgNoDefinit.mostrarAlertDialog();
                         }
                     });
                 }

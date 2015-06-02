@@ -175,10 +175,7 @@ public class TemesVista extends Tab {
             public void handle(MouseEvent mouseEvent) {
                 CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
                 try {
-                    ctrlComunitat.creaComunitat(
-                            inputText.getText(),
-                            ctrlComunitat.getConjunt().getCjtComunitats().getNumComunitats()
-                    );
+                    ctrlComunitat.creaComunitat( inputText.getText());
                     llistaT.getItems().add(inputText.getText());
                 } catch (Exception e) {
                     e.printStackTrace();
