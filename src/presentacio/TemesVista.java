@@ -140,7 +140,7 @@ public class TemesVista extends Tab {
                         int idTema = CtrlWikipedia.getInstance().getConjuntsGenerats().getId(nomTema);
                         String descripcioTema = CtrlWikipedia.getInstance().getConjuntsGenerats().getDescripcio(idTema);
                         AlertDialog dialogDescripcio = new AlertDialog(nomTema, descripcioTema, 500, 200);
-                        dialogDescripcio.mostrarAlertDialog();
+                        dialogDescripcio.show();
                     }
                 }
                 else if ("Afegir categoria".equals(buttonName)) {

@@ -72,8 +72,4 @@ public class AlertDialog extends Stage {
         scene = new Scene(parent);
         setScene(scene);
     }
-
-    public void mostrarAlertDialog() {
-        show();
-    }
 }
