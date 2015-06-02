@@ -40,6 +40,10 @@ public class Historial {
         return INSTANCE;
     }
 
+    public void reset() {
+        llistatCerques = CtrlWikipedia.getInstance().getLlistatCerques();
+    }
+
     /**
      * Afegeix una cerca realitzada a la Wikipedia
      * @param cerca

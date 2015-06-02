@@ -30,6 +30,11 @@ public class CtrlCatPag {
         conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats();
     }
 
+    public void reset() {
+        grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
+        conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats();
+    }
+
     public NodeCategoria obtenirCategoria(String nom){
         return grafWiki.getNodeCat(nom);
     }
@@ -164,7 +169,7 @@ public class CtrlCatPag {
     }
 
     /**
-     * Obtenir les Categories relacionades mitjançant un tema d'una categoria amb nom categoria
+     * Obtenir les Categories relacionades mitjanï¿½ant un tema d'una categoria amb nom categoria
      */
     public ArrayList<String> getCategoriesTema(String categoria){
         ArrayList<String> result = new ArrayList<String>();

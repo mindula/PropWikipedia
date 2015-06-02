@@ -23,6 +23,11 @@ public class CtrlComunitat {
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
+    public void reset() {
+        this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
+        this.graf = CtrlWikipedia.getInstance().getGrafWiki();
+    }
+
     public static CtrlComunitat getInstance() {
         if (INSTANCE == null) INSTANCE = new CtrlComunitat();
         return INSTANCE;
