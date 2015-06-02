@@ -20,7 +20,7 @@ import java.util.HashMap;
  * Usuari: ricard.gascons
  * Data: 1/6/15
  */
-public class ComparacioTemes {
+public class ComparacioExecucions {
 
     private final double SPACE = 10;
     private Stage parentStage;
@@ -29,7 +29,7 @@ public class ComparacioTemes {
     private ListView<String> llistaExecucions2;
     private HashMap<String, Integer> nomId;
 
-    public ComparacioTemes(Stage stage, FinestraPrincipal nav) {
+    public ComparacioExecucions(Stage stage, FinestraPrincipal nav) {
         parentStage = stage;
         finestraPrincipal = nav;
         nomId = new HashMap<>();

@@ -79,7 +79,7 @@ public class FinestraPrincipal extends Application {
         Menu menu2 = new Menu("Visualitzar");
         MenuItem historialCerques = new MenuItem("Historial de cerques");
         historialCerques.setOnAction(action);
-        MenuItem compararTemes = new MenuItem("Comparar dos temes generats");
+        MenuItem compararTemes = new MenuItem("Comparar dues execucions");
         compararTemes.setOnAction(action);
         MenuItem mostrarGrafWiki = new MenuItem("Graf de la Wikipedia");
         mostrarGrafWiki.setOnAction(action);
@@ -175,14 +175,14 @@ public class FinestraPrincipal extends Application {
                     stage.setTitle("Historial");
                     stage.show();
                 }
-                else if ("Comparar dos temes generats".equals(itemName)) {
-                    ComparacioTemes comparacioTemes = new ComparacioTemes(stage, finestraPrincipal);
-                    Scene scene = comparacioTemes.getScene();
+                else if ("Comparar dues execucions".equals(itemName)) {
+                    ComparacioExecucions comparacioExecucions = new ComparacioExecucions(stage, finestraPrincipal);
+                    Scene scene = comparacioExecucions.getScene();
                     Stage stageComparacio = new Stage();
                     stageComparacio.setResizable(false);
                     stageComparacio.initModality(Modality.APPLICATION_MODAL);
                     stageComparacio.setScene(scene);
-                    stageComparacio.setTitle("Comparar dos temes");
+                    stageComparacio.setTitle("Comparar dues execucions");
                     stageComparacio.show();
                 }
                 else if ("Graf de la Wikipedia".equals(itemName)) {
