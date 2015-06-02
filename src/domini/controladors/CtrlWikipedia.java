@@ -36,6 +36,9 @@ public class CtrlWikipedia implements Serializable{
     private ArrayList<InfoCerca> llistatCerques;
     private ArrayList<InformacioCjtComunitats> informacioExecucions;
 
+    /**
+     * Creadora per defecte
+     */
     private CtrlWikipedia() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
@@ -46,6 +49,9 @@ public class CtrlWikipedia implements Serializable{
         informacioExecucions = new ArrayList<>();
     }
 
+    /**
+     * Es reseteja la informacio de tots els atributs
+     */
     public void reset() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date dataCreacio = new Date();
@@ -57,9 +63,7 @@ public class CtrlWikipedia implements Serializable{
     }
 
     /**
-     * /**
      * Retorna una instancia de CtrlWikipedia
-     * @return una instancia de CtrlWikipedia
      */
     public static CtrlWikipedia getInstance() {
         if (INSTANCE == null) {
@@ -68,22 +72,30 @@ public class CtrlWikipedia implements Serializable{
         return INSTANCE;
     }
 
+    /**
+     * S'instancia CtrlWikipedia mitjançant la instancia instance
+     */
     public static void setInstance(CtrlWikipedia instance) {
         CtrlWikipedia.INSTANCE = instance;
     }
 
     /**
      * Retorna la data de creació de la sessió
-     * @return la data de creació de la sessió
      */
     public String getDataCreacio() {
         return dataCreacio;
     }
 
+    /**
+     * Es guarda la informacio d'un conjunt de comunitats informacioCjtComunitats
+     */
     public void afegirInfoExecucio (InformacioCjtComunitats informacioCjtComunitats) {
         informacioExecucions.add(informacioCjtComunitats);
     }
 
+    /**
+     * Es retorna la informaco del conjunt de comunitats i
+     */
     public String getInfoExecucio (int i) {
         InformacioCjtComunitats info = informacioExecucions.get(i);
         String res = String.valueOf(info.getTempsComunitats()+info.getTempsgenerar()) + "-" + String.valueOf(info.getNombreComunitats()) + "-"
@@ -92,32 +104,39 @@ public class CtrlWikipedia implements Serializable{
         return res;
     }
 
+    /**
+     * Es retorna el nombre total d'informacions dels conjunt de comunitats generats
+     */
     public int getNombreExecucions() {
         return informacioExecucions.size();
     }
 
 
     /**
-     * Retorna el Graf de la Wikipedia
-     * @return el graf de la Wikipedia
+     * Es retorna el Graf de la Wikipedia
      */
     public GrafWikipedia getGrafWiki() {
         return grafWiki;
     }
 
+    /**
+     * Es el graf del programa passa a ser el GrafWikipedia grafWiki
+     */
     public void setGrafWiki(GrafWikipedia grafWiki) {
         this.grafWiki = grafWiki;
     }
 
     /**
      * Retorna el graf de categories pels algorismes
-     * @return el graf de categories pels algorismes
      */
     //TODO: probablement ja no fa falta aqui, crec que te mes sentit a CtrlAlgorisme
     public Graf<NodeCategoria> getGrafAlgoritme() {
         return grafAlgoritme;
     }
 
+    /**
+     * El graf utilitzat pels algoritmes grafAlgoritme
+     */
     public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {
         this.grafAlgoritme = grafAlgoritme;
     }
@@ -126,10 +145,7 @@ public class CtrlWikipedia implements Serializable{
      * Cas d'us Importar Fitxer
      */
     public void getGrafWikiFromFile(String path) throws IOException {
-
-
         GrafParser.parse(path, grafWiki);
-
         System.out.println(grafWiki);
         //TODO: faltaria guardar el nou graf (o subgraf) importat en el nostre format. No se si s'hauria de fer aqui o a CtrlSessio
     }
@@ -164,15 +180,23 @@ public class CtrlWikipedia implements Serializable{
         grafWiki.eliminarPagina(grafWiki.getNodePag(nom));
     }
 
-
+    /**
+     * S'obte el conjunt de comunitats del programa
+     */
     public ConjuntComunitatWiki getConjuntsGenerats() {
         return conjuntsGenerats;
     }
 
+    /**
+     * El conjunt del programa passa a ser el ConjuntComunitatWiki conjuntsGenerats
+     */
     public void setConjuntsGenerats(ConjuntComunitatWiki conjuntsGenerats) {
         this.conjuntsGenerats = conjuntsGenerats;
     }
 
+    /**
+     * S'obtenen els noms de totes les categories que té el graf del programa
+     */
     public ArrayList<String> getNomsCategories(){
         ArrayList<NodeCategoria> cats = grafWiki.getCategories();
         ArrayList<String> nomCats = new ArrayList<>();
@@ -182,6 +206,9 @@ public class CtrlWikipedia implements Serializable{
         return nomCats;
     }
 
+    /**
+     * S'obtenen els noms de totes les pagines que té el graf del programa
+     */
     public ArrayList<String> getNomsPagines(){
         ArrayList<NodePagina> pags = grafWiki.getPagines();
         ArrayList<String> nomPags = new ArrayList<>();
@@ -191,6 +218,9 @@ public class CtrlWikipedia implements Serializable{
         return nomPags;
     }
 
+    /**
+     * Es retorna un llistat amb totes les cerques que s'han fet
+     */
     public ArrayList<InfoCerca> getLlistatCerques() {
         return llistatCerques;
     }

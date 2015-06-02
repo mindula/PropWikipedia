@@ -25,7 +25,6 @@ public class Navegacio {
 
     /**
      * Constructora per defecte
-     * @param graf
      */
     public Navegacio(GrafWikipedia graf){
         grafWikipedia = graf;
@@ -33,8 +32,6 @@ public class Navegacio {
 
     /**
      * Retorna les superpacetories d'un node determinat
-     * @param nodeCategoria
-     * @return les superpacetories d'un node determinat
      */
     public ArrayList<NodeCategoria> getSupercategories(NodeCategoria nodeCategoria){
         ArrayList<Arc<NodeCategoria>> arcs = new ArrayList<>(grafWikipedia.getNodesAdjacents(nodeCategoria));
@@ -47,8 +44,6 @@ public class Navegacio {
 
     /**
      * Retorna les subcategories d'un node determinat
-     * @param nodeCategoria
-     * @return les subcategories d'un node determinat
      */
     public ArrayList<NodeCategoria> getSubcategories(NodeCategoria nodeCategoria){
         ArrayList<Arc<NodeCategoria>> arcs = new ArrayList<>(grafWikipedia.getNodesAdjacents(nodeCategoria));
@@ -61,8 +56,6 @@ public class Navegacio {
 
     /**
      * Retorna les pagines associades a una categoria
-     * @param nodeCategoria
-     * @return les pagines associades a una categoria
      */
     public ArrayList<NodePagina> getPagines(NodeCategoria nodeCategoria){
         return nodeCategoria.getPagines();
@@ -70,8 +63,6 @@ public class Navegacio {
 
     /**
      * Retorna les categories associades a una pagina
-     * @param nodePagina
-     * @return les categories associades a una pagina
      */
     public ArrayList<NodeCategoria> getCategories(NodePagina nodePagina){
         return new ArrayList<>(nodePagina.getCategories());

@@ -25,6 +25,9 @@ public class Historial {
     private static Historial INSTANCE;
     private ArrayList<InfoCerca> llistatCerques;
 
+    /**
+     * Creadora per defecte
+     */
     private Historial() {
         llistatCerques = CtrlWikipedia.getInstance().getLlistatCerques();
     }
@@ -40,6 +43,9 @@ public class Historial {
         return INSTANCE;
     }
 
+    /**
+     * Es reseteja la informacio de tots els atributs
+     */
     public void reset() {
         llistatCerques = CtrlWikipedia.getInstance().getLlistatCerques();
     }
@@ -54,7 +60,6 @@ public class Historial {
 
     /**
      * Elimina una cerca realitzada a la Wikipedia
-     * @param cerca
      */
     public void eliminarCerca(InfoCerca cerca) {
         llistatCerques.remove(cerca);
@@ -62,12 +67,14 @@ public class Historial {
 
     /**
      * Retorna el nombre de cerques que s'han realitzat a la sessio
-     * @return el nombre de cerques que s'han realitzat a la sessio
      */
     public int quantesCerques() {
         return llistatCerques.size();
     }
 
+    /**
+     * S'afegeix una nova cerca al Historial
+     */
     public void afegirCerca(String cerca) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -75,18 +82,23 @@ public class Historial {
         llistatCerques.add(novaCerca);
     }
 
+    /**
+     * S'esborren totes les cerques que estaven guardades en el Historial
+     */
     public void netejarHistorial() {
         llistatCerques.clear();
     }
 
     /**
      * Retorna un llistat de totes les cerques que s'han realitzat a la sessio
-     * @return un llistat de totes les cerques que s'han realitzat a la sessio
      */
     public List<InfoCerca> getCerques() {
         return Collections.unmodifiableList(llistatCerques);
     }
 
+    /**
+     * Retorna un llistat de totes les cerques que s'han realitzat a la sessio
+     */
     public ArrayList<Pair<String, String>> getCerquesStrings() {
         ArrayList<Pair<String, String>> res = new ArrayList<>();
         for (InfoCerca i : llistatCerques) res.add(new Pair<>(i.getResultat(),

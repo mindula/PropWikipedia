@@ -8,18 +8,12 @@ import prop.classescompartides.graf.Comunitat;
  * Data: 24/04/15
  */
 
-/**
- * Realitza operacions de conjunts entre dues comunitats de nodes
- */
+
 public class OperacionsConjunts{
 
-
     /**
-     * Operacio d'unio
-     * @param a
-     * @param b
-     * @param <T>
-     * @return una comunitat que es la unio de <tt>a</tt> i <tt>b</tt>
+     * Operacio d'unio entre dues comunitats
+     * @return una comunitat que es la unio de a i b
      */
     public static<T> Comunitat<T> unio(Comunitat<T> a, Comunitat<T>  b){
         Comunitat<T>  c = new Comunitat<T>();
@@ -34,11 +28,8 @@ public class OperacionsConjunts{
     }
 
     /**
-     * Operacio d'interseccio
-     * @param a
-     * @param b
-     * @param <T>
-     * @return una comunitat que es la interseccio de <tt>a</tt> i <tt>b</tt>
+     * Operacio d'interseccio entre dues comunitats
+     * @return una comunitat que es la interseccio de a i b
      */
     public static<T> Comunitat<T> interseccio(Comunitat<T>  a, Comunitat<T> b){
         Comunitat<T> c = new Comunitat<T>();
@@ -51,11 +42,8 @@ public class OperacionsConjunts{
     }
 
     /**
-     * Operacio de diferencia
-     * @param a
-     * @param b
-     * @param <T>
-     * @return una comunitat que es la diferencia de <tt>a</tt> i <tt>b</tt>
+     * Operacio de diferencia entre dues comunitats
+     * @return una comunitat que es la diferencia de a i b
      */
     public static<T> Comunitat<T>  diferencia(Comunitat<T>  a, Comunitat<T> b){
         Comunitat<T> c = new Comunitat<T> ();

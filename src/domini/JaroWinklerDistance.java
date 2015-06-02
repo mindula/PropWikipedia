@@ -17,7 +17,6 @@ public class JaroWinklerDistance {
             s1 = aux;
         }
 
-
         int dmax = (s2.length()/2)-1;
         int m = 0;  //matching
         int t = 0;  //transpositions

@@ -12,12 +12,12 @@ import java.io.Serializable;
  * Informació generada despres de l'execucio d'un algorisme
  */
 public class InformacioCjtComunitats implements Serializable {
-        private long tempsComunitats;
+        private long tempsComunitats;           //Temps en buscar les comunitats d'un graf ja generat
         private int nombreComunitats;
         private final TipusAlgorisme algoritme;
         private final String criteri;
         private double mitjanaNodesPerComunitat;
-        private final long tempsgenerar;
+        private final long tempsgenerar;        //Temps en generar el graf
 
     /**
      * Constructora per defecte

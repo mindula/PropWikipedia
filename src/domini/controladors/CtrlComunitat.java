@@ -18,21 +18,35 @@ public class CtrlComunitat {
     private ConjuntComunitatWiki conjunt;
     private GrafWikipedia graf;
 
+    /**
+     * Creadora per defecte
+     */
     private CtrlComunitat(){
         this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
+    /**
+     * Es reseteja la informacio de tots els atributs
+     */
     public void reset() {
         this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
+    /**
+     * Retorna una instancia de CtrlComunitat
+     */
     public static CtrlComunitat getInstance() {
         if (INSTANCE == null) INSTANCE = new CtrlComunitat();
         return INSTANCE;
     }
 
+
+    /**
+     * Afegeix el conjunt de comunitats c al conjunt de comunitats del programa amb un nou id que
+     * s'assigna de forma correlativa
+     */
     public void afegirComunitatsGenerades(ConjuntComunitatWiki c) throws Exception {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()) {
             conjunt.getCjtComunitats().afegirComunitat(com);
