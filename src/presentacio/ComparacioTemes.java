@@ -49,7 +49,7 @@ public class ComparacioTemes {
 
         Button compareButton = new Button("Comparar");
 
-        Label milisegons = new Label("Temps en generar: ");
+        Label milisegons = new Label("Temps Total en cercar: ");
         final Label miliNum1 = new Label();
         final Label miliNum2 = new Label();
         Label nombreComunitats = new Label("Nombre de comunitats: ");
@@ -61,7 +61,7 @@ public class ComparacioTemes {
         Label criteri = new Label("Criteris escullits: ");
         final Label critNum1 = new Label();
         final Label critNum2 = new Label();
-        Label mitjana = new Label("Nomde de nodes per comunitat: ");
+        Label mitjana = new Label("Num. de de nodes per comunitat: ");
         final Label mitjNum1 = new Label();
         Label mitjNum2 = new Label();
 

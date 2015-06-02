@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Informació generada despres de l'execucio d'un algorisme
  */
 public class InformacioCjtComunitats implements Serializable {
-        private final long  milisegons;
+        private long tempsComunitats;
         private int nombreComunitats;
         private final TipusAlgorisme algoritme;
         private final String criteri;
@@ -21,20 +21,19 @@ public class InformacioCjtComunitats implements Serializable {
 
     /**
      * Constructora per defecte
-     * @param milisegons
+     * @param tempsgenerar
      * @param algoritme
      * @param criteri
      */
-    public InformacioCjtComunitats(long tempsgenerar, long milisegons, TipusAlgorisme algoritme, String criteri) {
+    public InformacioCjtComunitats(long tempsgenerar, TipusAlgorisme algoritme, String criteri) {
         this.tempsgenerar = tempsgenerar;
-        this.milisegons = milisegons;
         this.algoritme = algoritme;
         this.criteri = criteri;
     }
 
 
-    public long getMilisegons() {
-        return milisegons;
+    public long getTempsComunitats() {
+        return tempsComunitats;
     }
 
 
@@ -62,10 +61,18 @@ public class InformacioCjtComunitats implements Serializable {
         this.mitjanaNodesPerComunitat = mitjanaNodesPerComunitat;
     }
 
+    public void setTempsComunitats(long temps){
+        tempsComunitats = temps;
+    }
+
+    public long getTempsgenerar() {
+        return tempsgenerar;
+    }
+
     @Override
     public String toString() {
         return "InformacioCjtComunitats{\n" +
-                "milisegons = " + milisegons + "ms" +
+                "tempsComunitats = " + tempsComunitats + "ms" +
                 ",\n nombreComunitats = " + nombreComunitats +
                 ",\n algoritme = " + algoritme +
                 ",\n criteri = '" + criteri + '\'' +

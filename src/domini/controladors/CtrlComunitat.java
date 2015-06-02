@@ -48,11 +48,11 @@ public class CtrlComunitat {
     /**
      * Cas d'us Crear tema.
      */
-    public void creaComunitat(String nom, int id){
-        Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(id);
-        conjunt.setNom(id, nom);
-        conjunt.setId(id, nom);
+    public void creaComunitat(String nom) throws Exception {
+        Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(conjunt.getCjtComunitats().getNumComunitats()+1);
         conjunt.getCjtComunitats().afegirComunitat(c);
+        conjunt.setNom(conjunt.getCjtComunitats().getNumComunitats(), nom);
+        conjunt.setId(conjunt.getCjtComunitats().getNumComunitats(), nom);
     }
 
     public Integer getId(String nom) {

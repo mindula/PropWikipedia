@@ -30,7 +30,7 @@ public class TestInformacioCjtComunitats {
         else algorisme = TipusAlgorisme.CLIQUE;
         String cri = sc.next();
         long mitj = sc.nextLong();
-        I = new InformacioCjtComunitats(gen,mil,algorisme,cri);
+        I = new InformacioCjtComunitats(gen,algorisme,cri);
         I.setMitjanaNodesPerComunitat(mitj);
         I.setNombreComunitats(nCom);
         System.out.println("Escull una opcio:\n" +
@@ -59,7 +59,7 @@ public class TestInformacioCjtComunitats {
                             "6. Finalitzar Test\n");
                     break;
                 case 1:
-                    System.out.println(I.getMilisegons());
+                    System.out.println(I.getTempsComunitats());
                     break;
                 case 2:
                     System.out.println(I.getNombreComunitats());
