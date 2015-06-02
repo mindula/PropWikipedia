@@ -72,7 +72,10 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts diferents");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Selecciona dos conjunts diferents");
+                    alertDialog.show();
+                }
             }
         });
         interseccionar.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -88,7 +91,10 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts diferents");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Selecciona dos conjunts diferents");
+                    alertDialog.show();
+                }
             }
         });
         restar.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -104,7 +110,10 @@ public class OperacioCjtsVista {
                     }
                     actualitzaTemes();
                     temesVista.actualitzaTemes();
-                } else System.out.println("Selecciona dos conjunts diferents");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Selecciona dos conjunts diferents");
+                    alertDialog.show();
+                }
             }
         });
 
