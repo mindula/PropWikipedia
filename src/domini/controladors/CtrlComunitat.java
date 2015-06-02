@@ -135,11 +135,12 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
     }
 
     /**
@@ -150,11 +151,12 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
 
     }
 
