@@ -63,11 +63,12 @@ public class CtrlComunitat {
      * Cas d'us Crear tema.
      */
     public void creaComunitat(String nom) throws Exception {
-        Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(conjunt.getCjtComunitats().getNumComunitats()+1);
+        int id = conjunt.getCjtComunitats().getNumComunitats() + 1;
+        Comunitat<NodeCategoria> c = new Comunitat<>(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(conjunt.getCjtComunitats().getNumComunitats(), nom);
-        conjunt.setId(conjunt.getCjtComunitats().getNumComunitats(), nom);
-        conjunt.setDescripcio(conjunt.getCjtComunitats().getNumComunitats(), "No hi ha cap descripció");
+        conjunt.setNom(id, nom);
+        conjunt.setId(id, nom);
+        conjunt.setDescripcio(id, "No hi ha cap descripciï¿½");
     }
 
     public Integer getId(String nom) {
@@ -116,12 +117,15 @@ public class CtrlComunitat {
         int idComunitat1 = conjunt.getId(nomComunitat1);
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
+        //conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         c = OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
+        //CtrlWikipedia.getInstance().setConjuntsGenerats(conjunt);
     }
 
     /**

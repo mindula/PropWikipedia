@@ -1,6 +1,7 @@
 package presentacio;
 
 import domini.controladors.CtrlComunitat;
+import domini.controladors.CtrlWikipedia;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -112,7 +113,7 @@ public class OperacioCjtsVista {
 
     public void actualitzaTemes() {
         Collection<String> cjtComunitats
-                = CtrlComunitat.getInstance().getConjunt().getNoms();
+                = CtrlWikipedia.getInstance().getConjuntsGenerats().getNoms();
         llistaT1.getItems().setAll(cjtComunitats);
         llistaT2.getItems().setAll(cjtComunitats);
     }
