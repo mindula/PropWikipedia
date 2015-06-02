@@ -20,31 +20,55 @@ public class CtrlCatPag {
     private GrafWikipedia grafWiki;
     private ConjuntComunitats<NodeCategoria> conjuntComunitats;
 
+    /**
+     * Retorna una instancia de CtrlCatPag
+     */
     public static CtrlCatPag getInstance() {
         if(INSTANCE == null) INSTANCE = new CtrlCatPag();
         return INSTANCE;
     }
 
+    /**
+     * Constructora per defecte
+     */
     private CtrlCatPag(){
         grafWiki = CtrlWikipedia.getInstance().getGrafWiki();
         conjuntComunitats = CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats();
     }
 
+    /**
+     * Es reseteja la informacio de tots els atributs
+     */
+    public void reset() {
+        INSTANCE = null;
+    }
+
+    /**
+     * S'obte la categoria amb nom nom
+     */
     public NodeCategoria obtenirCategoria(String nom){
         return grafWiki.getNodeCat(nom);
     }
 
+    /**
+     * S'obte la pagina amb nom nom
+     */
     public NodePagina obtenirPagina(String nom){
         return grafWiki.getNodePag(nom);
     }
 
+    /**
+     * S'obte si existeix la categoria amb nom nom
+     */
     public boolean existeixCategoria(String nom) { return grafWiki.existeixNodeCat(nom);}
 
+    /**
+     * S'obte si existeix la pagina amb nom nom
+     */
     public boolean existeixPagina(String nom) {return grafWiki.existeixNodePag(nom);}
 
-
     /**
-     * Cas d'us Modificar categoria
+     * Cas d'us Modificar categoria. Canviar nom
      */
     public void ModificarNomCat(String nomantic, String nounom){
         //obtenir el node
@@ -86,7 +110,7 @@ public class CtrlCatPag {
     }
 
     /**
-     * Cas d'us Modificar pagina
+     * Cas d'us Modificar pagina. Canviar nom
      */
     public void ModificarNomPag(String nomantic, String nounom){
         NodePagina p = grafWiki.getPaginesMap().get(nomantic);
@@ -164,7 +188,7 @@ public class CtrlCatPag {
     }
 
     /**
-     * Obtenir les Categories relacionades mitjançant un tema d'una categoria amb nom categoria
+     * Obtenir les Categories relacionades mitjanï¿½ant un tema d'una categoria amb nom categoria
      */
     public ArrayList<String> getCategoriesTema(String categoria){
         ArrayList<String> result = new ArrayList<String>();

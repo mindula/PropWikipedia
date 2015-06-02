@@ -18,16 +18,34 @@ public class CtrlComunitat {
     private ConjuntComunitatWiki conjunt;
     private GrafWikipedia graf;
 
+    /**
+     * Creadora per defecte
+     */
     private CtrlComunitat(){
         this.conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         this.graf = CtrlWikipedia.getInstance().getGrafWiki();
     }
 
+    /**
+     * Es reseteja la informacio de tots els atributs
+     */
+    public void reset() {
+        INSTANCE = null;
+    }
+
+    /**
+     * Retorna una instancia de CtrlComunitat
+     */
     public static CtrlComunitat getInstance() {
         if (INSTANCE == null) INSTANCE = new CtrlComunitat();
         return INSTANCE;
     }
 
+
+    /**
+     * Afegeix el conjunt de comunitats c al conjunt de comunitats del programa amb un nou id que
+     * s'assigna de forma correlativa
+     */
     public void afegirComunitatsGenerades(ConjuntComunitatWiki c) throws Exception {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()) {
             conjunt.getCjtComunitats().afegirComunitat(com);
@@ -44,10 +62,12 @@ public class CtrlComunitat {
      * Cas d'us Crear tema.
      */
     public void creaComunitat(String nom) throws Exception {
-        Comunitat<NodeCategoria> c = new Comunitat<NodeCategoria>(conjunt.getCjtComunitats().getNumComunitats()+1);
+        int id = conjunt.getCjtComunitats().getNumComunitats() + 1;
+        Comunitat<NodeCategoria> c = new Comunitat<>(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(conjunt.getCjtComunitats().getNumComunitats(), nom);
-        conjunt.setId(conjunt.getCjtComunitats().getNumComunitats(), nom);
+        conjunt.setNom(id, nom);
+        conjunt.setId(id, nom);
+        conjunt.setDescripcio(id, "No hi ha cap descripci�");
     }
 
     public Integer getId(String nom) {
@@ -59,6 +79,7 @@ public class CtrlComunitat {
      */
     public void modNomComunitat(int id, String nomnou){
         conjunt.setNom(id, nomnou);
+        conjunt.setId(id, nomnou);
     }
 
     public void modDescripcioComunitat(int idComunitat, String descripcio){
@@ -95,12 +116,15 @@ public class CtrlComunitat {
         int idComunitat1 = conjunt.getId(nomComunitat1);
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
+        //conjunt = CtrlWikipedia.getInstance().getConjuntsGenerats();
         c = OperacionsConjunts.unio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Unio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
+        //CtrlWikipedia.getInstance().setConjuntsGenerats(conjunt);
     }
 
     /**
@@ -111,11 +135,12 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.interseccio(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
     }
 
     /**
@@ -126,11 +151,12 @@ public class CtrlComunitat {
         int idComunitat2 = conjunt.getId(nomComunitat2);
         Comunitat<NodeCategoria> c = new Comunitat<>();
         c = OperacionsConjunts.diferencia(conjunt.getCjtComunitats().getComunitat(idComunitat1), conjunt.getCjtComunitats().getComunitat(idComunitat2));
-        c.setId(conjunt.getCjtComunitats().getNumComunitats());
+        int id = conjunt.getCjtComunitats().getNumComunitats()+1;
+        c.setId(id);
         conjunt.getCjtComunitats().afegirComunitat(c);
-        conjunt.setNom(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setId(c.getId(), "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(c.getId(), "No hi ha cap Descripcio");
+        conjunt.setNom(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setId(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
+        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
 
     }
 

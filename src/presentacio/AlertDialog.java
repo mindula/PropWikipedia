@@ -48,6 +48,31 @@ public class AlertDialog extends Stage {
         setScene(scene);
     }
 
+    public AlertDialog(String titolD, String missatgeD, double width, double height){
+        titol = titolD;
+        missatge = missatgeD;
+        initModality(Modality.APPLICATION_MODAL);
+        initStyle(StageStyle.UTILITY);
+        setWidth(width);
+        setHeight(height);
+        setResizable(false);
+        setTitle(titolD);
+        VBox parent = new VBox(10);
+        parent.setPadding(new Insets(10));
+        parent.setAlignment(Pos.CENTER);
+        Label message = new Label(missatgeD);
+        Button ok = new Button("D'acord");
+        ok.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                close();
+            }
+        });
+        parent.getChildren().addAll(message, ok);
+        scene = new Scene(parent);
+        setScene(scene);
+    }
+
     public void mostrarAlertDialog() {
         show();
     }

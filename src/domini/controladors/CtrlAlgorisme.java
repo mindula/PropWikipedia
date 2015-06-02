@@ -52,7 +52,9 @@ public class CtrlAlgorisme{
         grafGenerat = new Graf<NodeCategoria>();
     }
 
-
+    /**
+     * Es genera un graf no dirigit segons els definits criteris i parametres que s'han determinat en la constructora
+     */
     public void generarGraf() {
         System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
         System.err.println("Aplicant criteris...");
@@ -67,8 +69,8 @@ public class CtrlAlgorisme{
     }
 
     /**
-     * Cerca comunitats en un graf seguint un dels 3 algorismes definits
-     * @return comunitats en un graf seguint un dels 3 algorismes definits
+     * Cerca comunitats en un graf no dirigit previament generat mitjançant un algorisme previament definit
+     * @return un conjunt de comunitats trobades en el graf
      */
     public ConjuntComunitatWiki cercarComunitats() throws Exception {
         long startTime = System.currentTimeMillis();
@@ -80,7 +82,6 @@ public class CtrlAlgorisme{
         } else { // Clique
             algorisme = new CtrlAlgoritmoClique<>();
         }
-
 
         System.err.println("Cercant comunitats...");
         conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));

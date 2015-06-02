@@ -33,6 +33,9 @@ public class NavegacioVista extends Tab {
     private final ComboBox<String> pagCatCerca;
     private final ListView<String> llistaP;
     private final ListView<String> llistaC;
+    private Button accedirC;
+    private Button novaC;
+    private Button eliminarC;
 
     public NavegacioVista(){
         setText("Navegació i gestió de la Wikipedia");
@@ -58,15 +61,15 @@ public class NavegacioVista extends Tab {
         llistaC.getItems().addAll( getCategories() );
         final Button accedirP = new Button("Accedir a pàgina");
         accedirP.setMaxWidth(Double.MAX_VALUE);
-        Button accedirC = new Button("Accedir a categoria");
+        accedirC = new Button("Accedir a categoria");
         accedirC.setMaxWidth(Double.MAX_VALUE);
         Button novaP = new Button("Nova pàgina");
         novaP.setMaxWidth(Double.MAX_VALUE);
-        Button novaC = new Button("Nova categoria");
+        novaC = new Button("Nova categoria");
         novaC.setMaxWidth(Double.MAX_VALUE);
         Button eliminarP = new Button("Eliminar pàgina");
         eliminarP.setMaxWidth(Double.MAX_VALUE);
-        Button eliminarC = new Button("Eliminar categoria");
+        eliminarC = new Button("Eliminar categoria");
         eliminarC.setMaxWidth(Double.MAX_VALUE);
 
         VBox boxP = new VBox(SPACE);
@@ -106,7 +109,10 @@ public class NavegacioVista extends Tab {
                     int index = llistaC.getSelectionModel().getSelectedIndex();
                     llistaC.scrollTo(index);
                 }
-                else System.out.println("No existeix");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No existeix");
+                    alertDialog.show();
+                }
                 Historial.getInstance().afegirCerca(cercat);
             }
         });
@@ -126,7 +132,10 @@ public class NavegacioVista extends Tab {
                     llistaP.getSelectionModel().clearSelection(); // si no, hi ha bugs de seleccio
                     llistaC.getSelectionModel().clearSelection();
                 }
-                else System.out.println("No hi ha pag seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap pàgina seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         accedirC.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -145,7 +154,10 @@ public class NavegacioVista extends Tab {
                     llistaP.getSelectionModel().clearSelection(); // si no, hi ha bugs de seleccio
                     llistaC.getSelectionModel().clearSelection();
                 }
-                else System.out.println("No hi ha cat seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         novaP.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -163,17 +175,23 @@ public class NavegacioVista extends Tab {
         eliminarP.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(!llistaP.getSelectionModel().isEmpty())
+                if (!llistaP.getSelectionModel().isEmpty())
                     dialogEliminarPagina();
-                else System.out.println("No hi ha pag seleccionada");
-            }
-        });
+                else {
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap pàgina seleccionada");
+                    alertDialog.show();
+                }
+        }
+    });
         eliminarC.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(!llistaC.getSelectionModel().isEmpty())
                     dialogEliminarCategoria();
-                else System.out.println("No hi ha cat seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         pagCatCerca.valueProperty().addListener(new ChangeListener<String>() {
@@ -303,7 +321,10 @@ public class NavegacioVista extends Tab {
                     CtrlWikipedia.getInstance().afegirPag(textField.getText());
                     carregarPagines();
                     dialog.close();
-                } else System.out.println("Ja existeix pag");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix la pàgina o no has posat cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -341,7 +362,10 @@ public class NavegacioVista extends Tab {
                     CtrlWikipedia.getInstance().afegirCat(textField.getText());
                     carregarCategories();
                     dialog.close();
-                } else System.out.println("Ja existeix cat");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix la categoria o no has posat cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -363,10 +387,15 @@ public class NavegacioVista extends Tab {
         dialog.show();
     }
 
-}
+    public void bloquejarBotonsCatNavegacio() {
+        accedirC.setDisable(true);
+        novaC.setDisable(true);
+        eliminarC.setDisable(true);
+    }
 
-/*
-HBox parentHBox = new HBox(10);
-parentHBox.setPadding(new Insets(20));
-parentHBox.getChildren().addAll( ... );
-parentHBox.setAlignment(Pos.TOP_CENTER);  */
+    public void activarBotonsCatNavegacio() {
+        accedirC.setDisable(false);
+        novaC.setDisable(false);
+        eliminarC.setDisable(false);
+    }
+}

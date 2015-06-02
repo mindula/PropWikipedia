@@ -81,7 +81,10 @@ public class NavegacioP {
                     stage.setScene(scene);
                     stage.setTitle("Categoria");
                     stage.show();
-                } else System.out.println("No hi ha cat seleccionada");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         eliminarCat.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -89,7 +92,10 @@ public class NavegacioP {
             public void handle(MouseEvent mouseEvent) {
                 if(!llista.getSelectionModel().isEmpty())
                     dialogEliminarCatDeLaPagina();
-                else System.out.println("No hi ha cat seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         afegirCat.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -212,7 +218,10 @@ public class NavegacioP {
                     CtrlCatPag.getInstance().RelPC(nomP, nomNovaCat);
                     carregarCategoriesDeLaPagina();
                     dialog.close();
-                } else System.out.println("No existeix cat");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No existeix la categoria o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -259,13 +268,16 @@ public class NavegacioP {
             public void handle(MouseEvent mouseEvent) {
                 String nomNou = nomNouTextField.getText();
                 boolean existeix = CtrlCatPag.getInstance().existeixPagina(nomNou);
-                if(!existeix) {
+                if(!existeix && !nomNou.isEmpty()) {
                     CtrlCatPag.getInstance().ModificarNomPag(nomP, nomNou);
                     navegacioVista.carregarPagines();
                     nomP = nomNou;
                     titol.setText(nomP);
                     dialog.close();
-                } else System.out.println("Ja existeix pag");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix la pàgina o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");

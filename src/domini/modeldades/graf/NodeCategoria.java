@@ -30,10 +30,6 @@ public class NodeCategoria extends NodeWiki{
         pagines.add(pag);
     }
 
-    public void eliminarPagina(NodePagina pag){
-        pagines.remove(pag);
-    }
-
     public String getUrl(){
         return "www.wikipedia.org/wiki/Category:"+getNom().replaceAll(" ","_");
     }

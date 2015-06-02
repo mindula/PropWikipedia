@@ -1,7 +1,6 @@
 package presentacio;
 
-import domini.controladors.CtrlDibuix;
-import domini.controladors.CtrlWikipedia;
+import domini.controladors.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -65,6 +64,8 @@ public class FinestraPrincipal extends Application {
          */
         EventHandler<ActionEvent> action = listenerMenuItems();
         Menu menu1 = new Menu("Arxiu");
+        MenuItem nou = new MenuItem("Nou");
+        nou.setOnAction(action);
         MenuItem guardar = new MenuItem("Guardar...");
         guardar.setOnAction(action);
         MenuItem carregar = new MenuItem("Carregar...");
@@ -73,12 +74,12 @@ public class FinestraPrincipal extends Application {
         importar.setOnAction(action);
         MenuItem sortir = new MenuItem("Sortir");
         sortir.setOnAction(action);
-        menu1.getItems().addAll(guardar, carregar, importar, sortir);
+        menu1.getItems().addAll(nou, guardar, carregar, importar, sortir);
 
         Menu menu2 = new Menu("Visualitzar");
         MenuItem historialCerques = new MenuItem("Historial de cerques");
         historialCerques.setOnAction(action);
-        MenuItem compararTemes = new MenuItem("Comparar dos temes generats");
+        MenuItem compararTemes = new MenuItem("Comparar dues execucions");
         compararTemes.setOnAction(action);
         MenuItem mostrarGrafWiki = new MenuItem("Graf de la Wikipedia");
         mostrarGrafWiki.setOnAction(action);
@@ -107,7 +108,18 @@ public class FinestraPrincipal extends Application {
                 MenuItem mItem = (MenuItem) event.getSource();
                 String itemName = mItem.getText();
 
-                if ("Guardar...".equals(itemName)) {
+                if("Nou".equals(itemName)) {
+                    CtrlWikipedia.getInstance().reset();
+                    CtrlComunitat.getInstance().reset();
+                    CtrlCatPag.getInstance().reset();
+                    Historial.getInstance().reset();
+                    navegacioVista.carregarCategories();
+                    navegacioVista.carregarPagines();
+                    temesVista.actualitzaTemes();
+                    temesVista.netejarLlistaCats();
+
+                }
+                else if ("Guardar...".equals(itemName)) {
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Guardar sessió...");
                     File file = fileChooser.showSaveDialog(new Stage());
@@ -163,14 +175,14 @@ public class FinestraPrincipal extends Application {
                     stage.setTitle("Historial");
                     stage.show();
                 }
-                else if ("Comparar dos temes generats".equals(itemName)) {
-                    ComparacioTemes comparacioTemes = new ComparacioTemes(stage, finestraPrincipal);
-                    Scene scene = comparacioTemes.getScene();
+                else if ("Comparar dues execucions".equals(itemName)) {
+                    ComparacioExecucions comparacioExecucions = new ComparacioExecucions(stage, finestraPrincipal);
+                    Scene scene = comparacioExecucions.getScene();
                     Stage stageComparacio = new Stage();
                     stageComparacio.setResizable(false);
                     stageComparacio.initModality(Modality.APPLICATION_MODAL);
                     stageComparacio.setScene(scene);
-                    stageComparacio.setTitle("Comparar dos temes");
+                    stageComparacio.setTitle("Comparar dues execucions");
                     stageComparacio.show();
                 }
                 else if ("Graf de la Wikipedia".equals(itemName)) {
@@ -214,6 +226,14 @@ public class FinestraPrincipal extends Application {
 
     public void actualitzarTemes() {
         temesVista.actualitzaTemes();
+    }
+
+    public void bloquejarBotonsCatNavegacio() {
+        navegacioVista.bloquejarBotonsCatNavegacio();
+    }
+
+    public void activarBotonsCatNavegacio() {
+        navegacioVista.activarBotonsCatNavegacio();
     }
 
     public static void main(String[] args) {
