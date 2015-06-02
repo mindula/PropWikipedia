@@ -54,16 +54,16 @@ public class CtrlAlgorisme{
 
 
     public void generarGraf() {
-        long startTime = System.currentTimeMillis();
-        GrafGenerator generator = new GrafGenerator();
         System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
         System.err.println("Aplicant criteris...");
+        long startTime = System.currentTimeMillis();
+        GrafGenerator generator = new GrafGenerator();
         grafGenerat = generator.generate(grafWikipedia, criteris);
         long generatorTime = System.currentTimeMillis() - startTime;
         System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
 
-        long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
-        infoExecucio = new InformacioCjtComunitats(generatorTime, elapsedTime, tipusAlgorisme, criteris.toString());
+
+        infoExecucio = new InformacioCjtComunitats(generatorTime, tipusAlgorisme, criteris.toString());
     }
 
     /**
@@ -71,8 +71,8 @@ public class CtrlAlgorisme{
      * @return comunitats en un graf seguint un dels 3 algorismes definits
      */
     public ConjuntComunitatWiki cercarComunitats() throws Exception {
+        long startTime = System.currentTimeMillis();
         Algoritme<NodeCategoria> algorisme;
-
         if (tipusAlgorisme == TipusAlgorisme.LOUVAIN) {
             algorisme = new AlgorismeLouvain<>();
         } else if (tipusAlgorisme == TipusAlgorisme.GIRVAN) {
@@ -88,6 +88,10 @@ public class CtrlAlgorisme{
         System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
         infoExecucio.setNombreComunitats(nComunitats);
         infoExecucio.setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.err.println("Temps en cercar: " + String.valueOf(elapsedTime) + "ms");
+
+        infoExecucio.setTempsComunitats(elapsedTime);
         CtrlComunitat.getInstance().afegirComunitatsGenerades(conjunt);
         CtrlWikipedia.getInstance().afegirInfoExecucio(infoExecucio);
 
