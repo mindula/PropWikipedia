@@ -68,6 +68,9 @@ public class TemesVista extends Tab {
         Button temaNouButton = new Button("Crear tema");
         temaNouButton.setMaxWidth(Double.MAX_VALUE);
         temaNouButton.setOnMouseClicked(action);
+        Button modNomTemaButton = new Button("Modificar nom tema");
+        modNomTemaButton.setMaxWidth(Double.MAX_VALUE);
+        modNomTemaButton.setOnMouseClicked(action);
         Button affegirCatButton = new Button("Afegir categoria");
         affegirCatButton.setMaxWidth(Double.MAX_VALUE);
         affegirCatButton.setOnMouseClicked(action);
@@ -84,6 +87,7 @@ public class TemesVista extends Tab {
         VBox liniaBotons = new VBox(50);
         liniaBotons.getChildren().addAll(
                 temaNouButton,
+                modNomTemaButton,
                 affegirCatButton,
                 eliminarCatButton,
                 moureCatButton,
@@ -107,6 +111,10 @@ public class TemesVista extends Tab {
         llistaT.getItems().setAll(cjtComunitats);
     }
 
+    public void netejarLlistaCats() {
+        llistaC.getItems().clear();
+    }
+
 
     private EventHandler<MouseEvent> listenerButtons() {
         return new EventHandler<MouseEvent>() {
@@ -116,6 +124,11 @@ public class TemesVista extends Tab {
                 String buttonName = button.getText();
                 if("Crear tema".equals(buttonName)) {
                     dialogCrearTema();
+                }
+                else if ("Modificar nom tema".equals(buttonName)) {
+                    if (!llistaT.getSelectionModel().isEmpty()) {
+                        dialogModificarNomTema();
+                    }
                 }
                 else if ("Afegir categoria".equals(buttonName)) {
                     if (!llistaT.getSelectionModel().isEmpty())
@@ -145,7 +158,7 @@ public class TemesVista extends Tab {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        llistaT.getItems().remove(tema);
+                        actualitzaTemes();
                     }
                 }
                 else if ("Operacions entre temes".equals(buttonName)) {
@@ -176,7 +189,7 @@ public class TemesVista extends Tab {
                 CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
                 try {
                     ctrlComunitat.creaComunitat( inputText.getText());
-                    llistaT.getItems().add(inputText.getText());
+                    actualitzaTemes();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -196,6 +209,48 @@ public class TemesVista extends Tab {
 
         Scene dialogScene = new Scene(parent);
         dialog.setTitle("Crear tema");
+        dialog.setResizable(false);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    private void dialogModificarNomTema() {
+        final Stage dialog = new Stage();
+        VBox parent = new VBox(SPACE);
+        parent.setPadding(new Insets(20));
+        final String nomTema = llistaT.getSelectionModel().getSelectedItem();
+        final TextField inputText = new TextField(nomTema);
+        Separator separator = new Separator(); separator.setVisible(false);
+        HBox botons = new HBox(SPACE);
+        Button ok = new Button("Modificar");
+        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+                try {
+                    int id = ctrlComunitat.getId(nomTema);
+                    ctrlComunitat.modNomComunitat(id, inputText.getText());
+                    actualitzaTemes();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dialog.close();
+            }
+        });
+        Button cancel = new Button("Cancel·lar");
+        cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dialog.close();
+            }
+        });
+        botons.getChildren().addAll(ok, cancel);
+        botons.setAlignment(Pos.CENTER);
+        parent.getChildren().addAll(inputText, separator, botons);
+
+        Scene dialogScene = new Scene(parent);
+        dialog.setTitle("Modificar nom tema");
         dialog.setResizable(false);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(dialogScene);

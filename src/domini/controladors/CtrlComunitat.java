@@ -64,6 +64,7 @@ public class CtrlComunitat {
      */
     public void modNomComunitat(int id, String nomnou){
         conjunt.setNom(id, nomnou);
+        conjunt.setId(id, nomnou);
     }
 
     public void modDescripcioComunitat(int idComunitat, String descripcio){

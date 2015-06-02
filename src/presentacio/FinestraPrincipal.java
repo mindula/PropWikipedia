@@ -116,6 +116,7 @@ public class FinestraPrincipal extends Application {
                     navegacioVista.carregarCategories();
                     navegacioVista.carregarPagines();
                     temesVista.actualitzaTemes();
+                    temesVista.netejarLlistaCats();
 
                 }
                 else if ("Guardar...".equals(itemName)) {
