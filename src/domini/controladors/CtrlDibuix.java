@@ -15,7 +15,6 @@ import prop.classescompartides.graf.Comunitat;
 public class CtrlDibuix {
     private String[] color = {"rgb(180,180,180)", "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)", "rgb(255,255,0)", "rgb(0,255,255)", "rgb(255,0,255)", "rgb(94,28,13)", "rgb(241,148,108)", "rgb(255,116,21)", "rgb(7,47,122)", "rgb(64,173,38)", "rgb(97,119,171)", "rgb(222,29,42)", "rgb(69,0,68)", "rgb(90,103,39)", "rgb(164,131,196)", "rgb(187,255,19)", "rgb(207,3,124)", "rgb(0,148,189)", "rgb(255,142,0)", "rgb(140,253,153)"};
 
-
     /**
      * Es dibuixa el graf que tenim en el programa
      */
@@ -77,12 +76,4 @@ public class CtrlDibuix {
         Viewer viewer = graf.display();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
     }
-
-
-
-
-
-
-
-
 }

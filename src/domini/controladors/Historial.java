@@ -92,13 +92,6 @@ public class Historial {
     /**
      * Retorna un llistat de totes les cerques que s'han realitzat a la sessio
      */
-    public List<InfoCerca> getCerques() {
-        return Collections.unmodifiableList(llistatCerques);
-    }
-
-    /**
-     * Retorna un llistat de totes les cerques que s'han realitzat a la sessio
-     */
     public ArrayList<Pair<String, String>> getCerquesStrings() {
         ArrayList<Pair<String, String>> res = new ArrayList<>();
         for (InfoCerca i : llistatCerques) res.add(new Pair<>(i.getResultat(),

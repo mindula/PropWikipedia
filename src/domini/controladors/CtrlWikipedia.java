@@ -7,7 +7,6 @@ import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
 import persistencia.GrafParser;
-import prop.classescompartides.graf.Graf;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -31,7 +30,6 @@ public class CtrlWikipedia implements Serializable{
 
     private String dataCreacio;
     private GrafWikipedia grafWiki;
-    private Graf<NodeCategoria> grafAlgoritme;
     private ConjuntComunitatWiki conjuntsGenerats;
     private ArrayList<InfoCerca> llistatCerques;
     private ArrayList<InformacioCjtComunitats> informacioExecucions;
@@ -105,34 +103,11 @@ public class CtrlWikipedia implements Serializable{
         return informacioExecucions.size();
     }
 
-
     /**
      * Es retorna el Graf de la Wikipedia
      */
     public GrafWikipedia getGrafWiki() {
         return grafWiki;
-    }
-
-    /**
-     * Es el graf del programa passa a ser el GrafWikipedia grafWiki
-     */
-    public void setGrafWiki(GrafWikipedia grafWiki) {
-        this.grafWiki = grafWiki;
-    }
-
-    /**
-     * Retorna el graf de categories pels algorismes
-     */
-    //TODO: probablement ja no fa falta aqui, crec que te mes sentit a CtrlAlgorisme
-    public Graf<NodeCategoria> getGrafAlgoritme() {
-        return grafAlgoritme;
-    }
-
-    /**
-     * El graf utilitzat pels algoritmes grafAlgoritme
-     */
-    public void setGrafAlgoritme(Graf<NodeCategoria> grafAlgoritme) {
-        this.grafAlgoritme = grafAlgoritme;
     }
 
     /**
@@ -224,7 +199,6 @@ public class CtrlWikipedia implements Serializable{
         return "CtrlWikipedia{" +'\n' +
                 "dataCreacio='" + dataCreacio + '\n' +
                 ", grafWiki=" + grafWiki +'\n' +
-                ", grafAlgoritme=" + grafAlgoritme +'\n' +
                 ", conjuntsGenerats=" + conjuntsGenerats +'\n' +
                 '}';
     }

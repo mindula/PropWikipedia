@@ -44,20 +44,6 @@ public class CtrlCatPag {
     }
 
     /**
-     * S'obte la categoria amb nom nom
-     */
-    public NodeCategoria obtenirCategoria(String nom){
-        return grafWiki.getNodeCat(nom);
-    }
-
-    /**
-     * S'obte la pagina amb nom nom
-     */
-    public NodePagina obtenirPagina(String nom){
-        return grafWiki.getNodePag(nom);
-    }
-
-    /**
      * S'obte si existeix la categoria amb nom nom
      */
     public boolean existeixCategoria(String nom) { return grafWiki.existeixNodeCat(nom);}
@@ -145,6 +131,7 @@ public class CtrlCatPag {
      */
     public void esborrarArc(String nom1, String nom2){
         grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom1), grafWiki.getNodeCat(nom2)));
+        grafWiki.eliminarArc(grafWiki.getArcEntre(grafWiki.getNodeCat(nom2), grafWiki.getNodeCat(nom1)));
     }
 
     /**

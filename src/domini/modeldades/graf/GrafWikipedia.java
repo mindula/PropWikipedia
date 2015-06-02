@@ -185,7 +185,7 @@ public class GrafWikipedia implements Serializable{
 
     public void eliminarPagina(NodePagina pag){
         for(NodeCategoria cat : pag.getCategories()){
-            cat.getPagines().remove(this);
+            cat.getPagines().remove(pag);
         }
         pagines.remove(pag);
         paginesMap.remove(pag.getNom());
