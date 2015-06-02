@@ -68,9 +68,12 @@ public class TemesVista extends Tab {
         Button temaNouButton = new Button("Crear tema");
         temaNouButton.setMaxWidth(Double.MAX_VALUE);
         temaNouButton.setOnMouseClicked(action);
-        Button modNomTemaButton = new Button("Modificar nom tema");
-        modNomTemaButton.setMaxWidth(Double.MAX_VALUE);
-        modNomTemaButton.setOnMouseClicked(action);
+        Button modNomDescTemaButton = new Button("Modificar nom i descripció tema");
+        modNomDescTemaButton.setMaxWidth(Double.MAX_VALUE);
+        modNomDescTemaButton.setOnMouseClicked(action);
+        Button descriccioTemaButton = new Button("Mostrar descripció tema");
+        descriccioTemaButton.setMaxWidth(Double.MAX_VALUE);
+        descriccioTemaButton.setOnMouseClicked(action);
         Button affegirCatButton = new Button("Afegir categoria");
         affegirCatButton.setMaxWidth(Double.MAX_VALUE);
         affegirCatButton.setOnMouseClicked(action);
@@ -87,7 +90,8 @@ public class TemesVista extends Tab {
         VBox liniaBotons = new VBox(50);
         liniaBotons.getChildren().addAll(
                 temaNouButton,
-                modNomTemaButton,
+                modNomDescTemaButton,
+                descriccioTemaButton,
                 affegirCatButton,
                 eliminarCatButton,
                 moureCatButton,
@@ -125,9 +129,18 @@ public class TemesVista extends Tab {
                 if("Crear tema".equals(buttonName)) {
                     dialogCrearTema();
                 }
-                else if ("Modificar nom tema".equals(buttonName)) {
+                else if ("Modificar nom i descripció tema".equals(buttonName)) {
                     if (!llistaT.getSelectionModel().isEmpty()) {
-                        dialogModificarNomTema();
+                        dialogModificarNomDescTema();
+                    }
+                }
+                else if ("Mostrar descripció tema".equals(buttonName)) {
+                    if (!llistaT.getSelectionModel().isEmpty()) {
+                        String nomTema = llistaT.getSelectionModel().getSelectedItem();
+                        int idTema = CtrlWikipedia.getInstance().getConjuntsGenerats().getId(nomTema);
+                        String descripcioTema = CtrlWikipedia.getInstance().getConjuntsGenerats().getDescripcio(idTema);
+                        AlertDialog dialogDescripcio = new AlertDialog(nomTema, descripcioTema, 500, 200);
+                        dialogDescripcio.mostrarAlertDialog();
                     }
                 }
                 else if ("Afegir categoria".equals(buttonName)) {
@@ -215,22 +228,25 @@ public class TemesVista extends Tab {
         dialog.show();
     }
 
-    private void dialogModificarNomTema() {
+    private void dialogModificarNomDescTema() {
         final Stage dialog = new Stage();
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
         final String nomTema = llistaT.getSelectionModel().getSelectedItem();
+        final CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
+        final int id = ctrlComunitat.getId(nomTema);
+        final String descTema = CtrlWikipedia.getInstance().getConjuntsGenerats().getDescripcio(id);
         final TextField inputText = new TextField(nomTema);
+        final TextArea descripcio = new TextArea(descTema);
         Separator separator = new Separator(); separator.setVisible(false);
         HBox botons = new HBox(SPACE);
         Button ok = new Button("Modificar");
         ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
                 try {
-                    int id = ctrlComunitat.getId(nomTema);
                     ctrlComunitat.modNomComunitat(id, inputText.getText());
+                    CtrlWikipedia.getInstance().getConjuntsGenerats().setDescripcio(id, descripcio.getText());
                     actualitzaTemes();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -247,7 +263,7 @@ public class TemesVista extends Tab {
         });
         botons.getChildren().addAll(ok, cancel);
         botons.setAlignment(Pos.CENTER);
-        parent.getChildren().addAll(inputText, separator, botons);
+        parent.getChildren().addAll(inputText, descripcio, separator, botons);
 
         Scene dialogScene = new Scene(parent);
         dialog.setTitle("Modificar nom tema");
