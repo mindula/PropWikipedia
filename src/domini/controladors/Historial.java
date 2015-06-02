@@ -6,9 +6,7 @@ import prop.classescompartides.utils.Pair;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Grup 3: Wikipedia
@@ -18,7 +16,6 @@ import java.util.List;
 
 /**
  * Historial de cerques de la wikipedia
- * Singleton
  */
 
 public class Historial {
@@ -51,21 +48,6 @@ public class Historial {
     }
 
     /**
-     * Afegeix una cerca realitzada a la Wikipedia
-     * @param cerca
-     */
-    public void afegirCerca(InfoCerca cerca) {
-        llistatCerques.add(cerca);
-    }
-
-    /**
-     * Elimina una cerca realitzada a la Wikipedia
-     */
-    public void eliminarCerca(InfoCerca cerca) {
-        llistatCerques.remove(cerca);
-    }
-
-    /**
      * Retorna el nombre de cerques que s'han realitzat a la sessio
      */
     public int quantesCerques() {
@@ -87,13 +69,6 @@ public class Historial {
      */
     public void netejarHistorial() {
         llistatCerques.clear();
-    }
-
-    /**
-     * Retorna un llistat de totes les cerques que s'han realitzat a la sessio
-     */
-    public List<InfoCerca> getCerques() {
-        return Collections.unmodifiableList(llistatCerques);
     }
 
     /**

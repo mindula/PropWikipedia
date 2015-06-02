@@ -42,7 +42,7 @@ public class TestDomain {
                     "7.  Test CercaHistorial\n" +
                     "8.  Test Categoria\n" +
                     "9.  Test Pagina\n" +
-                    "10. Test Navegacio\n" +
+                    "10. Test Navegacio (NO EXISTEIX)\n" +
                     "11. Test CercarComunitats\n" +
                     "12. Test InformacioCjtComunitats\n" +
                     "13. Test InfoCerca\n" +
@@ -83,7 +83,7 @@ public class TestDomain {
                     TestNodePagina.main(null);
                     break;
                 case 10:
-                    TestNavegacio.main(null);
+                    //TestNavegacio.main(null);
                     break;
                 case 11:
                     System.out.println("Escull algorisme: Clique, Girvan o Louvain. " +

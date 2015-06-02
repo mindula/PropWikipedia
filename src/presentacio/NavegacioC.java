@@ -46,10 +46,10 @@ public class NavegacioC {
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
         parent.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(parent, 1024, 768); // necessari perque es massa gran...
+        Scene scene = new Scene(parent, 800, 768); // necessari perque es massa gran...
 
         titol = new Label(nomC);
-        titol.setFont(new Font(30));
+        titol.setFont(new Font(25));
         Separator separator1 = new Separator(); separator1.setVisible(false);
 
         Label labelP = new Label("Pàgines que conté");

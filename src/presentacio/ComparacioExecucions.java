@@ -78,7 +78,7 @@ public class ComparacioExecucions {
                     if (id1 == id2) {
                         AlertDialog mateixTema = new AlertDialog
                                 ("Alerta", "No es pot comparar una execució amb ella mateixa");
-                        mateixTema.mostrarAlertDialog();
+                        mateixTema.show();
                     }
                     else {
 
@@ -99,7 +99,7 @@ public class ComparacioExecucions {
                 }
                 else {
                     AlertDialog noSeleccionat = new AlertDialog("Error", "No s'han seleccionat dues execucions");
-                    noSeleccionat.mostrarAlertDialog();
+                    noSeleccionat.show();
                 }
             }
         });

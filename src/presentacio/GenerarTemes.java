@@ -48,6 +48,7 @@ public class GenerarTemes extends Tab {
         ToggleGroup group = new ToggleGroup();
         louvainRadioB = new RadioButton("Louvain");
         louvainRadioB.setToggleGroup(group);
+        louvainRadioB.setSelected(true);
         cliqueRadioB = new RadioButton("Clique");
         cliqueRadioB.setToggleGroup(group);
         girvanRadioB = new RadioButton("Girvan Newman");
@@ -71,7 +72,7 @@ public class GenerarTemes extends Tab {
                     generarTemes();
                 else {
                     AlertDialog grafBuit = new AlertDialog("Error", "El graf està buit!");
-                    grafBuit.mostrarAlertDialog();
+                    grafBuit.show();
                 }
             }
         });
@@ -209,7 +210,7 @@ public class GenerarTemes extends Tab {
                             @Override
                             public void run() {
                                 AlertDialog noHiHaCriteris = new AlertDialog("Alerta", "No hi ha criteris definits");
-                                noHiHaCriteris.mostrarAlertDialog();
+                                noHiHaCriteris.show();
                             }
                         });
                     }
@@ -264,7 +265,7 @@ public class GenerarTemes extends Tab {
                         @Override
                         public void run() {
                             AlertDialog tipusAlgNoDefinit = new AlertDialog("Alerta", "No s'ha escullit el tipus d'algorisme");
-                            tipusAlgNoDefinit.mostrarAlertDialog();
+                            tipusAlgNoDefinit.show();
                         }
                     });
                 }

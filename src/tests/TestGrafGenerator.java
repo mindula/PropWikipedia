@@ -32,7 +32,6 @@ public class TestGrafGenerator {
 
         GrafGenerator generator = new GrafGenerator();
         Graf<NodeCategoria> grafAlgoritme = generator.generate(g, criteris);
-        CtrlWikipedia.getInstance().setGrafAlgoritme(grafAlgoritme);
 
         System.out.println("Vols mostrar el graf generat? 1 - si/2 - no");
         int mostrar = sc.nextInt();

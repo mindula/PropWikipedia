@@ -56,20 +56,20 @@ public class CtrlAlgorisme{
      * Es genera un graf no dirigit segons els definits criteris i parametres que s'han determinat en la constructora
      */
     public void generarGraf() {
-        System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
-        System.err.println("Aplicant criteris...");
+        //System.err.println("Algoritme triat: " + String.valueOf(tipusAlgorisme));
+        //System.err.println("Aplicant criteris...");
         long startTime = System.currentTimeMillis();
         GrafGenerator generator = new GrafGenerator();
         grafGenerat = generator.generate(grafWikipedia, criteris);
         long generatorTime = System.currentTimeMillis() - startTime;
-        System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
+        //System.err.println("Temps en aplicar criteris: " + String.valueOf(generatorTime) + "ms");
 
 
         infoExecucio = new InformacioCjtComunitats(generatorTime, tipusAlgorisme, criteris.toString());
     }
 
     /**
-     * Cerca comunitats en un graf no dirigit previament generat mitjançant un algorisme previament definit
+     * Cerca comunitats en un graf no dirigit previament generat mitjanï¿½ant un algorisme previament definit
      * @return un conjunt de comunitats trobades en el graf
      */
     public ConjuntComunitatWiki cercarComunitats() throws Exception {
