@@ -132,7 +132,10 @@ public class NavegacioC {
             public void handle(MouseEvent mouseEvent) {
                 if(!llistaP.getSelectionModel().isEmpty())
                     dialogEliminarPagDeLaCat();
-                else System.out.println("No hi ha pag seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap pàgina seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         afegirP.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -152,7 +155,10 @@ public class NavegacioC {
             public void handle(MouseEvent mouseEvent) {
                 if(!llistaSuper.getSelectionModel().isEmpty())
                     dialogEliminarSuperDeLaCat();
-                else System.out.println("No hi ha supercategoria seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         afegirSuper.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -172,7 +178,10 @@ public class NavegacioC {
             public void handle(MouseEvent mouseEvent) {
                 if(!llistaSub.getSelectionModel().isEmpty())
                     dialogEliminarSubcategoriaDeLaCat();
-                else System.out.println("No hi ha subcategoria seleccionada");
+                else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+                    alertDialog.show();
+                }
             }
         });
         afegirSub.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -253,7 +262,10 @@ public class NavegacioC {
             stage.setScene(scene);
             stage.setTitle("Categoria");
             stage.show();
-        } else System.out.println("No hi ha cat seleccionada");
+        } else {
+            AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap categoria seleccionada");
+            alertDialog.show();
+        }
     }
 
     private void accedirPagina(ListView<String> llista){
@@ -269,7 +281,10 @@ public class NavegacioC {
             stage.setTitle("Pàgina");
             stage.show();
         }
-        else System.out.println("No hi ha pag seleccionada");
+        else{
+            AlertDialog alertDialog = new AlertDialog("Error", "No hi ha cap pàgina seleccionada");
+            alertDialog.show();
+        }
     }
 
     private void dialogReanomenarCat(){
@@ -286,13 +301,16 @@ public class NavegacioC {
             public void handle(MouseEvent mouseEvent) {
                 String nomNou = nomNouTextField.getText();
                 boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNou);
-                if(!existeix) {
+                if(!existeix && !nomNou.isEmpty()) {
                     CtrlCatPag.getInstance().ModificarNomCat(nomC, nomNou);
                     navegacioVista.carregarCategories();
                     nomC = nomNou;
                     titol.setText(nomC);
                     dialog.close();
-                } else System.out.println("Ja existeix cat");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix la categoria o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -410,7 +428,10 @@ public class NavegacioC {
                     CtrlCatPag.getInstance().RelPC(nomNovaPag, nomC);
                     carregarPaginesDeLaCategoria();
                     dialog.close();
-                } else System.out.println("No existeix pag");
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No existeix la pàgina o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -485,10 +506,18 @@ public class NavegacioC {
                 String nomNovaSuper = nomSupercatAfegir.getValue();
                 boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSuper);
                 if(existeix) {
-                    CtrlCatPag.getInstance().RelCsupC(nomNovaSuper, nomC);
-                    carregarSupercategories();
-                    dialog.close();
-                } else System.out.println("No existeix cat");
+                    if(!nomNovaSuper.equals(nomC)) {
+                        CtrlCatPag.getInstance().RelCsupC(nomNovaSuper, nomC);
+                        carregarSupercategories();
+                        dialog.close();
+                    } else{
+                        AlertDialog alertDialog = new AlertDialog("Error","No es pot afegir: és la pròpia categoria");
+                        alertDialog.show();
+                    }
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No existeix la categoria o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -563,10 +592,18 @@ public class NavegacioC {
                 String nomNovaSub = nomSubcatAfegir.getValue();
                 boolean existeix = CtrlCatPag.getInstance().existeixCategoria(nomNovaSub);
                 if(existeix) {
-                    CtrlCatPag.getInstance().RelCsubC(nomC, nomNovaSub);
-                    carregarSubcategories();
-                    dialog.close();
-                } else System.out.println("No existeix cat");
+                    if(!nomNovaSub.equals(nomC)) {
+                        CtrlCatPag.getInstance().RelCsubC(nomC, nomNovaSub);
+                        carregarSubcategories();
+                        dialog.close();
+                    }else{
+                        AlertDialog alertDialog = new AlertDialog("Error","No es pot afegir: és la pròpia categoria");
+                        alertDialog.show();
+                    }
+                } else{
+                    AlertDialog alertDialog = new AlertDialog("Error", "No existeix la categoria o no has escrit cap nom");
+                    alertDialog.show();
+                }
             }
         });
         Button cancel = new Button("Cancel·lar");
