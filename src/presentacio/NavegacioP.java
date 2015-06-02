@@ -43,10 +43,10 @@ public class NavegacioP {
         VBox parent = new VBox(SPACE);
         parent.setPadding(new Insets(20));
         parent.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(parent);
+        Scene scene = new Scene(parent, 375, 700);
 
         titol = new Label(nomP);
-        titol.setFont(new Font(30));
+        titol.setFont(new Font(25));
         Separator separator1 = new Separator(); separator1.setVisible(false);
         Label cats = new Label("Categories a les quals pertany");
         llista = new ListView<>();
