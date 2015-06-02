@@ -7,6 +7,8 @@ import org.graphstream.ui.view.Viewer;
 import prop.classescompartides.graf.Arc;
 import prop.classescompartides.graf.Comunitat;
 
+import java.util.Random;
+
 /**
  * Grup 3: Wikipedia
  * Usuari: eduard.casellas
@@ -59,18 +61,30 @@ public class CtrlDibuix {
         }
         graf.addAttribute("ui.quality");
         graf.addAttribute("ui.antialias");
+        Random rand = new Random();
+        double r, g, b;
+        boolean b1 = false;
         for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
+            r = rand.nextDouble()*255;
+            g = rand.nextDouble()*255;
+            b = rand.nextDouble()*255;
             for (NodeCategoria cat: com.getNodes()){
                 if (com.mida() > 1) {
-                    graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
+                        graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:rgb("+ (int)r +","+(int)g+","+(int)b+");");
                 }
                 else {
+                    //Comprovem que el node no formi part d'una altre comunitat on no sigui només ell.
+                    b1 = false;
+                    for(Comunitat<NodeCategoria> c : CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
+                        if (c.getId() >= com.getId()) break;
+                        if (c.teNode(cat)) b1 = true;
+                    }
+                    if (b1) break;
                     graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color: black;");
                     graf.getNode(cat.getNom()).addAttribute("ui.style", "size: 3px;");
                 }
 
             }
-
         }
 
         Viewer viewer = graf.display();
