@@ -63,7 +63,7 @@ public class ComparacioTemes {
         final Label critNum2 = new Label();
         Label mitjana = new Label("Num. de de nodes per comunitat: ");
         final Label mitjNum1 = new Label();
-        Label mitjNum2 = new Label();
+        final Label mitjNum2 = new Label();
 
         compareButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -75,19 +75,31 @@ public class ComparacioTemes {
                     int id1 = nomId.get(exec1);
                     int id2 = nomId.get(exec2);
 
-                    String[] valors1 = CtrlWikipedia.getInstance().getInfoExecucio(id1).split("-");
-                    String[] valors2 = CtrlWikipedia.getInstance().getInfoExecucio(id2).split("-");
+                    if (id1 == id2) {
+                        AlertDialog mateixTema = new AlertDialog
+                                ("Alerta", "No es pot comparar una execució amb ella mateixa");
+                        mateixTema.mostrarAlertDialog();
+                    }
+                    else {
 
-                    miliNum1.setText(valors1[0]);
-                    miliNum2.setText(valors2[0]);
-                    nombreNum1.setText(valors1[1]);
-                    nombreNum2.setText(valors2[1]);
-                    algoNum1.setText(valors1[2]);
-                    algoNum2.setText(valors2[2]);
-                    critNum1.setText(valors1[3]);
-                    critNum2.setText(valors2[3]);
-                    mitjNum1.setText(valors1[4]);
-                    miliNum2.setText(valors2[4]);
+                        String[] valors1 = CtrlWikipedia.getInstance().getInfoExecucio(id1).split("-");
+                        String[] valors2 = CtrlWikipedia.getInstance().getInfoExecucio(id2).split("-");
+
+                        miliNum1.setText(valors1[0]);
+                        miliNum2.setText(valors2[0]);
+                        nombreNum1.setText(valors1[1]);
+                        nombreNum2.setText(valors2[1]);
+                        algoNum1.setText(valors1[2]);
+                        algoNum2.setText(valors2[2]);
+                        critNum1.setText(valors1[3]);
+                        critNum2.setText(valors2[3]);
+                        mitjNum1.setText(valors1[4]);
+                        mitjNum2.setText(valors2[4]);
+                    }
+                }
+                else {
+                    AlertDialog noSeleccionat = new AlertDialog("Error", "No s'han seleccionat dues execucions");
+                    noSeleccionat.mostrarAlertDialog();
                 }
             }
         });
