@@ -48,6 +48,7 @@ public class GenerarTemes extends Tab {
         ToggleGroup group = new ToggleGroup();
         louvainRadioB = new RadioButton("Louvain");
         louvainRadioB.setToggleGroup(group);
+        louvainRadioB.setSelected(true);
         cliqueRadioB = new RadioButton("Clique");
         cliqueRadioB.setToggleGroup(group);
         girvanRadioB = new RadioButton("Girvan Newman");
