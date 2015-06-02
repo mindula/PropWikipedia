@@ -73,7 +73,7 @@ public class CtrlDibuix {
                         graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:rgb("+ (int)r +","+(int)g+","+(int)b+");");
                 }
                 else {
-                    //Comprovem que el node no formi part d'una altre comunitat on no sigui només ell.
+                    //Comprovem que el node no formi part d'una altre comunitat on no estigui nomes ell.
                     b1 = false;
                     for(Comunitat<NodeCategoria> c : CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
                         if (c.getId() >= com.getId()) break;
