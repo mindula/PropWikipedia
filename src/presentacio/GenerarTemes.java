@@ -176,8 +176,14 @@ public class GenerarTemes extends Tab {
                 double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
                 TipusAlgorisme tipusAlgorisme = null;
                 if (louvainRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.LOUVAIN;
-                else if (cliqueRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.CLIQUE;
-                else if (girvanRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.GIRVAN;
+                else if (cliqueRadioB.isSelected()) {
+                    tipusAlgorisme = TipusAlgorisme.CLIQUE;
+                    parametreAlgorisme *= 0.8;
+                }
+                else if (girvanRadioB.isSelected()) {
+                    tipusAlgorisme = TipusAlgorisme.GIRVAN;
+                    parametreAlgorisme *= 0.8;
+                }
                 if (tipusAlgorisme != null) {
                     double ponderacioNom;
                     double ponderacioSubC;
@@ -220,6 +226,7 @@ public class GenerarTemes extends Tab {
                                 tipusAlgorisme,
                                 parametreAlgorisme,
                                 criteris);
+                        System.out.println(parametreAlgorisme);
                         final TipusAlgorisme finalTipusAlgorisme = tipusAlgorisme;
                         Platform.runLater(new Runnable() {
                             @Override
