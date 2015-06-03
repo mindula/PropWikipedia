@@ -8,8 +8,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -21,9 +21,7 @@ import javafx.stage.Stage;
 import presentacio.autocompletat.AutoCompleteComboBoxListener;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * Grup 3: Wikipedia
@@ -126,10 +124,10 @@ public class NavegacioP {
                 String url = CtrlCatPag.getInstance().getUrlPag(nomP);
                 try {
                     Desktop.getDesktop().browse(new URI(url));
-                } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
+                    alertDialog.show();
                 }
             }
         });

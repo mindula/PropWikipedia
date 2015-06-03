@@ -8,7 +8,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,6 +19,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentacio.autocompletat.AutoCompleteComboBoxListener;
+
+import java.awt.*;
+import java.net.URI;
 
 /**
  * Grup 3: Wikipedia
@@ -91,8 +97,10 @@ public class NavegacioC {
         boxPagSuperSub.getChildren().addAll(boxP, boxSuper, boxSub);
 
         Button modificarNom = new Button("Modificar el nom de la categoria");
+        Button veureNavegador = new Button("Visitar web");
         Button eliminar = new Button("Eliminar la categoria");
         modificarNom.setMaxWidth(200);
+        veureNavegador.setMaxWidth(200);
         eliminar.setMaxWidth(200);
 
         // llista amb cats del mateix tema
@@ -110,7 +118,7 @@ public class NavegacioC {
         boxMock1.getChildren().addAll(mockList1);
         VBox boxMock2 = new VBox(SPACE);
         boxMock2.setAlignment(Pos.BOTTOM_RIGHT);
-        boxMock2.getChildren().addAll(mockList2, modificarNom, eliminar);
+        boxMock2.getChildren().addAll(mockList2, modificarNom, veureNavegador, eliminar);
 
         HBox boxMateixTema = new HBox(SPACE);
         boxMateixTema.setAlignment(Pos.CENTER);
@@ -200,6 +208,19 @@ public class NavegacioC {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 dialogReanomenarCat();
+            }
+        });
+        veureNavegador.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String url = CtrlCatPag.getInstance().getUrlCat(nomC);
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
+                    alertDialog.show();
+                }
             }
         });
         eliminar.setOnMouseClicked(new EventHandler<MouseEvent>() {
