@@ -41,7 +41,7 @@ public class CtrlComunitat {
         return INSTANCE;
     }
 
-    public boolean JaExisteixTemaNom(String nom){
+    public boolean jaExisteixTemaNom(String nom){
         return conjunt.getNoms().contains(nom);
     }
 

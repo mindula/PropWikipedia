@@ -245,7 +245,7 @@ public class TemesVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
-                    if(!CtrlComunitat.getInstance().JaExisteixTemaNom(nomTema)){
+                    if(!CtrlComunitat.getInstance().jaExisteixTemaNom(inputText.getText())){
                     ctrlComunitat.modNomComunitat(id, inputText.getText());
                     CtrlWikipedia.getInstance().getConjuntsGenerats().setDescripcio(id, descripcio.getText());
                     actualitzaTemes();
