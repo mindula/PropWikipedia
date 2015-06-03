@@ -25,12 +25,13 @@ public class CriteriSubCategoriesComuns extends Criteri{
 
 
         double fillsComuns = 0;
-        for(Arc<NodeCategoria> a1 : graf.getNodesAdjacents(n1)){
-            NodeCategoria successor = Graf.getNodeOposat(n1, a1);
-
-            if(graf.existeixArcCC(n2, successor)){
-
-                fillsComuns++;
+        for(Arc<NodeCategoria> arc : graf.getNodesAdjacents(n1)){
+            NodeCategoria fill = Graf.getNodeOposat(n1, arc);
+            if(arc.getPes()< 0){
+                Arc<NodeCategoria> arcn2fill = graf.getArcEntre(n2, fill);
+                if(arcn2fill != null && arcn2fill.getPes() < 0) {
+                    fillsComuns++;
+                }
             }
         }
 

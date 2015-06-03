@@ -18,13 +18,13 @@ public class CriteriNomJaroWinkler extends Criteri{
 
     public CriteriNomJaroWinkler(double ponderacio) {
         super(ponderacio);
+        System.out.println("nou criteri nom amb ponderacio" + ponderacio);
     }
 
     @Override
     public double getPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
         double jaro = JaroWinklerDistance.calculate(n1.getNom(), n2.getNom());
-        return jaro/8 < 0.1 ? 0:jaro ;
-
+        return jaro < 0.8 ? 0:jaro ;
     }
 
     @Override

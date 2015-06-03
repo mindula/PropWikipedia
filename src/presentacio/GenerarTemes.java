@@ -244,14 +244,18 @@ public class GenerarTemes extends Tab {
                         try {
                             c.cercarComunitats();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                          //  e.printStackTrace();
                         }
+
                         final long elapsedTime = System.currentTimeMillis() - startTime - generatorTime;
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
                                 logAlgorisme.appendText("Temps en cercar comunitats: " + String.valueOf(elapsedTime) +
                                         "ms" + '\n');
+                                int lastExec = CtrlWikipedia.getInstance().getNombreExecucions()-1;
+                                String infoExecucio = CtrlWikipedia.getInstance().getInfoExecucio(lastExec);
+                                logAlgorisme.appendText("hola");
 
                                 finestraPrincipal.actualitzarTemes();
 
