@@ -83,14 +83,14 @@ public class CtrlAlgorisme{
             algorisme = new CtrlAlgoritmoClique<>();
         }
 
-        System.err.println("Cercant comunitats...");
+        //System.err.println("Cercant comunitats...");
         conjunt.setCjtComunitats(algorisme.cercarComunitats(grafGenerat, par1));
         int nComunitats = conjunt.getCjtComunitats().getNumComunitats();
-        System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
+        //System.err.println("Nombre de comunitats generades: " + String.valueOf(nComunitats));
         infoExecucio.setNombreComunitats(nComunitats);
         infoExecucio.setMitjanaNodesPerComunitat(grafGenerat.ordre() / (double) conjunt.getCjtComunitats().getNumComunitats());
         long elapsedTime = System.currentTimeMillis() - startTime;
-        System.err.println("Temps en cercar: " + String.valueOf(elapsedTime) + "ms");
+        //System.err.println("Temps en cercar: " + String.valueOf(elapsedTime) + "ms");
 
         infoExecucio.setTempsComunitats(elapsedTime);
         CtrlComunitat.getInstance().afegirComunitatsGenerades(conjunt);

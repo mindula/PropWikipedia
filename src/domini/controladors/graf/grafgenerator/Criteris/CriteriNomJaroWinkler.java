@@ -18,7 +18,7 @@ public class CriteriNomJaroWinkler extends Criteri{
 
     public CriteriNomJaroWinkler(double ponderacio) {
         super(ponderacio);
-        System.out.println("nou criteri nom amb ponderacio" + ponderacio);
+        //System.out.println("nou criteri nom amb ponderacio" + ponderacio);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class GrafGenerator  {
             }
             long temps_it = System.currentTimeMillis() -temps_iteracio_start;
             if(temps_it > 100) {
-
+               /*
                 System.out.println("iteracio " + i + "/" + graf.getCategories().size() + ":" + temps_it + "ms");
                 System.out.println("Temps en criteri: " + tempsCriteri);
                 System.out.println("proporcio: " + (tempsCriteri / (double) temps_it) * 100 + "%");
@@ -61,14 +61,15 @@ public class GrafGenerator  {
                 System.out.println("Arcs: "+newGraf.mida());
                 System.out.println("JODER");
                 System.out.println();
+                */
 
                 iteracionsLlargues++;
             }
 
 
         }
-        System.out.println("Iteracions llargues : "+iteracionsLlargues);
-        System.out.println("Arcs"+ newGraf.mida());
+        //System.out.println("Iteracions llargues : "+iteracionsLlargues);
+        //System.out.println("Arcs"+ newGraf.mida());
         return newGraf;
     }
 }

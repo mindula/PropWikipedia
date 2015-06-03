@@ -20,7 +20,7 @@ public class CtrlPersistencia {
         objectOutputStream.writeObject(CtrlWikipedia.getInstance());
         objectOutputStream.close();
         fileOutputStream.close();
-        System.out.println("Fitxer guardat a "+filePath);
+        //System.out.println("Fitxer guardat a "+filePath);
     }
 
     public static void carregarSessio(String filepath) throws IOException, ClassCastException, ClassNotFoundException {
@@ -31,7 +31,7 @@ public class CtrlPersistencia {
 
         CtrlWikipedia.setInstance(sessio);
 
-            System.out.println("Fitxer carregat : "+sessio.toString());
+            //System.out.println("Fitxer carregat : "+sessio.toString());
 
 
     }

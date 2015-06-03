@@ -427,8 +427,8 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
         // Mostra la comunitat a la qual cada node hi pertany
         public void mostrarComunitats() {
-            for (int i=0 ; i<size ; i++)
-                System.out.println(i + "/" + n2c[i] + "/" + in[i] + "/" + tot[i]);
+            //for (int i=0 ; i<size ; i++)
+                //System.out.println(i + "/" + n2c[i] + "/" + in[i] + "/" + tot[i]);
         }
 
         // Mostra la particio actual. Les comunitats estan numerades desde 0 fins k-1
@@ -471,7 +471,7 @@ public class AlgorismeLouvain<T> extends Algoritme<T> {
 
                 for (Arc<Integer> a : h) {
                     int neigh = Graf.getNodeOposat(i, a);
-                    System.out.println(renumber[n2c[i]] + " " + renumber[n2c[neigh]]);
+                    //System.out.println(renumber[n2c[i]] + " " + renumber[n2c[neigh]]);
                 }
             }
         }
