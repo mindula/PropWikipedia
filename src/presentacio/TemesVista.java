@@ -43,9 +43,9 @@ public class TemesVista extends Tab {
         llistaT.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (!llistaT.getSelectionModel().isEmpty()) {
+                if (!llistaT.getSelectionModel().isEmpty() && !llistaT.getItems().isEmpty()) {
+                    llistaC.getSelectionModel().clearSelection();
                     String tema = llistaT.getSelectionModel().getSelectedItem();
-                    System.out.println(tema);
                     int id = CtrlComunitat.getInstance().getId(tema);
                     try {
                         HashSet<NodeCategoria> c =
@@ -149,6 +149,7 @@ public class TemesVista extends Tab {
                 }
                 else if ("Eliminar categoria".equals(buttonName)) {
                     if (!llistaT.getSelectionModel().isEmpty() && !llistaC.getSelectionModel().isEmpty()) {
+
                         String tema = llistaT.getSelectionModel().getSelectedItem();
                         String cat = llistaC.getSelectionModel().getSelectedItem();
                         CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
@@ -159,6 +160,7 @@ public class TemesVista extends Tab {
                             e.printStackTrace();
                         }
                         llistaC.getItems().remove(cat);
+                        llistaC.getSelectionModel().clearSelection();
                     }
                 }
                 else if ("Eliminar tema".equals(buttonName)) {
@@ -172,6 +174,7 @@ public class TemesVista extends Tab {
                             e.printStackTrace();
                         }
                         actualitzaTemes();
+                        netejarLlistaCats();
                     }
                 }
                 else if ("Operacions entre temes".equals(buttonName)) {
@@ -201,12 +204,18 @@ public class TemesVista extends Tab {
             public void handle(MouseEvent mouseEvent) {
                 CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
                 try {
-                    ctrlComunitat.creaComunitat( inputText.getText());
-                    actualitzaTemes();
+                    if(!inputText.getText().isEmpty() && !ctrlComunitat.jaExisteixTemaNom(inputText.getText())){
+                        ctrlComunitat.creaComunitat( inputText.getText());
+                        actualitzaTemes();
+                        dialog.close();
+                    }else{
+                        AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix el tema o no has escrit cap nom");
+                        alertDialog.show();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    dialog.close();
                 }
-                dialog.close();
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -245,18 +254,19 @@ public class TemesVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
-                    if(!CtrlComunitat.getInstance().jaExisteixTemaNom(inputText.getText())){
+                    if(!inputText.getText().isEmpty() && !CtrlComunitat.getInstance().jaExisteixTemaNom(inputText.getText())){
                     ctrlComunitat.modNomComunitat(id, inputText.getText());
                     CtrlWikipedia.getInstance().getConjuntsGenerats().setDescripcio(id, descripcio.getText());
                     actualitzaTemes();
+                    dialog.close();
                     } else{
-                        AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix un tema amb aquest nom");
+                        AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix el tema o no has escrit cap nom");
                         alertDialog.show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    dialog.close();
                 }
-                dialog.close();
             }
         });
         Button cancel = new Button("Cancel·lar");
@@ -307,10 +317,7 @@ public class TemesVista extends Tab {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    System.out.println(ctrlComunitat.getConjunt().getCjtComunitats());
-
                     String tema = llistaT.getSelectionModel().getSelectedItem();
-                    System.out.println(tema);
                     int id = CtrlComunitat.getInstance().getId(tema);
                     try {
                         HashSet<NodeCategoria> c =

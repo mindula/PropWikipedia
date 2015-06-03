@@ -9,6 +9,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,6 +19,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentacio.autocompletat.AutoCompleteComboBoxListener;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Grup 3: Wikipedia
@@ -56,15 +64,17 @@ public class NavegacioP {
         Separator separator2 = new Separator(); separator2.setVisible(false);
         Button afegirCat = new Button("Afegir categoria a la pàgina");
         Button reanomenarPag = new Button("Modificar el nom de la pàgina");
+        Button veureNavegador = new Button("Visitar web");
         Button eliminarPag = new Button("Eliminar la pàgina");
         accedir.setMaxWidth(Double.MAX_VALUE);
         eliminarCat.setMaxWidth(Double.MAX_VALUE);
         afegirCat.setMaxWidth(Double.MAX_VALUE);
         reanomenarPag.setMaxWidth(Double.MAX_VALUE);
+        veureNavegador.setMaxWidth(Double.MAX_VALUE);
         eliminarPag.setMaxWidth(Double.MAX_VALUE);
 
         parent.getChildren().addAll(titol, separator1, cats, llista,
-                accedir, eliminarCat, separator2, afegirCat, reanomenarPag, eliminarPag);
+                accedir, eliminarCat, separator2, afegirCat, reanomenarPag, veureNavegador, eliminarPag);
 
         // OnMouseClicked Listeners:
         accedir.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -108,6 +118,19 @@ public class NavegacioP {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 dialogReanomenarPag();
+            }
+        });
+        veureNavegador.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String url = CtrlCatPag.getInstance().getUrlPag(nomP);
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (IOException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
             }
         });
         eliminarPag.setOnMouseClicked(new EventHandler<MouseEvent>() {
