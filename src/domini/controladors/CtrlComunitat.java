@@ -41,6 +41,10 @@ public class CtrlComunitat {
         return INSTANCE;
     }
 
+    public boolean JaExisteixTemaNom(String nom){
+        return conjunt.getNoms().contains(nom);
+    }
+
 
     /**
      * Afegeix el conjunt de comunitats c al conjunt de comunitats del programa amb un nou id que
