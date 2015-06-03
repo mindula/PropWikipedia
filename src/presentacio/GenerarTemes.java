@@ -226,7 +226,6 @@ public class GenerarTemes extends Tab {
                                 tipusAlgorisme,
                                 parametreAlgorisme,
                                 criteris);
-                        System.out.println(parametreAlgorisme);
                         final TipusAlgorisme finalTipusAlgorisme = tipusAlgorisme;
                         Platform.runLater(new Runnable() {
                             @Override
