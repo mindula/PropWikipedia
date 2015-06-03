@@ -203,8 +203,8 @@ public class FinestraPrincipal extends Application {
                     ctrlDibuix.DibuixarGrafAmbComunitats();
                 }
                 else if ("Ajuda".equals(itemName)) {
-                    //TODO: here
-                    String url = CtrlCatPag.getInstance().getUrlPag("http://..waiting..");
+
+                    String url = "https://drive.google.com/uc?export=download&id=0B9yekx9QemWJd2c5Mmx4czhYM0E";
                     try {
                         Desktop.getDesktop().browse(new URI(url));
                     } catch (Exception e) {
