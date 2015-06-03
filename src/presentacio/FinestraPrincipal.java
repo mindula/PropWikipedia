@@ -85,10 +85,12 @@ public class FinestraPrincipal extends Application {
         mostrarGrafWiki.setOnAction(action);
         MenuItem mostrarGrafTemes = new MenuItem("Graf amb els temes");
         mostrarGrafTemes.setOnAction(action);
-        menu2.getItems().addAll(historialCerques, compararTemes, mostrarGrafWiki, mostrarGrafTemes);
-        Menu menu3 = new Menu("Ajuda");
+        menu2.getItems().addAll(mostrarGrafWiki, mostrarGrafTemes);
+        Menu menu3 = new Menu("Eines");
+        menu3.getItems().addAll(historialCerques, compararTemes);
+        Menu menu4 = new Menu("Ajuda");
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menu1, menu2, menu3);
+        menuBar.getMenus().addAll(menu1, menu2, menu3, menu4);
 
 
         //Abans era un StackPane
