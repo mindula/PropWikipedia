@@ -9,6 +9,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,8 +22,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistencia.CtrlPersistencia;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Grup 3: Wikipedia
@@ -89,6 +96,7 @@ public class FinestraPrincipal extends Application {
         Menu menu3 = new Menu("Eines");
         menu3.getItems().addAll(historialCerques, compararTemes);
         Menu menu4 = new Menu("Ajuda");
+        menu4.setOnAction(action);
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3, menu4);
 
@@ -193,6 +201,17 @@ public class FinestraPrincipal extends Application {
                 else if ("Graf amb els temes".equals(itemName)) {
                     CtrlDibuix ctrlDibuix = new CtrlDibuix();
                     ctrlDibuix.DibuixarGrafAmbComunitats();
+                }
+                else if ("Ajuda".equals(itemName)) {
+                    //TODO: here
+                    String url = CtrlCatPag.getInstance().getUrlPag("http://..waiting..");
+                    try {
+                        Desktop.getDesktop().browse(new URI(url));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
+                        alertDialog.show();
+                    }
                 }
             }
         };
