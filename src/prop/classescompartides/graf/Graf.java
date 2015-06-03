@@ -40,7 +40,6 @@ public class Graf<T> implements Serializable {
     protected ArrayList<Arc<T>> cjtArcs;
     protected HashSet<T> cjtNodes;
     protected int V, E;
-    protected int initialCapacity;
 
     /**
      * Inicialitza un Graf buit
@@ -50,15 +49,6 @@ public class Graf<T> implements Serializable {
         cjtArcs = new ArrayList<Arc<T>>();
         cjtNodes = new HashSet<T>();
         V = E = 0;
-        initialCapacity = 0;
-    }
-
-    public Graf(int initialCapacity) {
-        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>(initialCapacity*2);
-        cjtArcs = new ArrayList<Arc<T>>(initialCapacity*initialCapacity);
-        cjtNodes = new HashSet<T>(initialCapacity);
-        V = E = 0;
-        this.initialCapacity = initialCapacity;
     }
 
     /**

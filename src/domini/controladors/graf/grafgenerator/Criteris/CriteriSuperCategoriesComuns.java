@@ -29,8 +29,10 @@ public class CriteriSuperCategoriesComuns extends Criteri{
         for(Arc<NodeCategoria> arc : arcs1){
 
                 NodeCategoria pare = Graf.getNodeOposat(n1, arc);
-                if(graf.existeixArcCC(pare, n2)){ // tot
-                    paresComuns++;
+                if(arc.getPes()> 0){
+                    Arc<NodeCategoria> arcn2pare = graf.getArcEntre(n2, pare);
+                    if(arcn2pare != null && arcn2pare.getPes() > 0)
+                        paresComuns++;
                 }
 
         }
@@ -39,7 +41,19 @@ public class CriteriSuperCategoriesComuns extends Criteri{
 
     @Override
     public double getMaxPes(NodeCategoria n1, NodeCategoria n2, GrafWikipedia graf) {
-        return Math.min(graf.getGrau(n1), graf.getGrau(n2));
+        int paresN1 = 0;
+        int paresN2 =0;
+        for(Arc<NodeCategoria> paren1 : graf.getNodesAdjacents(n1)){
+            if (paren1.getPes() > 0)
+                paresN1++;
+        }
+
+        for(Arc<NodeCategoria> paren2 : graf.getNodesAdjacents(n2)){
+            if (paren2.getPes() > 0)
+                paresN1++;
+        }
+
+        return Math.min(paresN1, paresN2);
     }
 
     public String toString() {
