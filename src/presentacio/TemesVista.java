@@ -44,8 +44,8 @@ public class TemesVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (!llistaT.getSelectionModel().isEmpty() && !llistaT.getItems().isEmpty()) {
+                    llistaC.getSelectionModel().clearSelection();
                     String tema = llistaT.getSelectionModel().getSelectedItem();
-                    System.out.println(tema);
                     int id = CtrlComunitat.getInstance().getId(tema);
                     try {
                         HashSet<NodeCategoria> c =
@@ -149,6 +149,7 @@ public class TemesVista extends Tab {
                 }
                 else if ("Eliminar categoria".equals(buttonName)) {
                     if (!llistaT.getSelectionModel().isEmpty() && !llistaC.getSelectionModel().isEmpty()) {
+
                         String tema = llistaT.getSelectionModel().getSelectedItem();
                         String cat = llistaC.getSelectionModel().getSelectedItem();
                         CtrlComunitat ctrlComunitat = CtrlComunitat.getInstance();
@@ -159,6 +160,7 @@ public class TemesVista extends Tab {
                             e.printStackTrace();
                         }
                         llistaC.getItems().remove(cat);
+                        llistaC.getSelectionModel().clearSelection();
                     }
                 }
                 else if ("Eliminar tema".equals(buttonName)) {
@@ -315,10 +317,7 @@ public class TemesVista extends Tab {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    System.out.println(ctrlComunitat.getConjunt().getCjtComunitats());
-
                     String tema = llistaT.getSelectionModel().getSelectedItem();
-                    System.out.println(tema);
                     int id = CtrlComunitat.getInstance().getId(tema);
                     try {
                         HashSet<NodeCategoria> c =
