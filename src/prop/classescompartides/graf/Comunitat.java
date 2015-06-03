@@ -55,9 +55,6 @@ public class Comunitat<T> implements Serializable {
      * Retorna la mida de la comunitat, és a dir, el nombre de nodes que la componen
      * @return la mida de la comunitat
      */
-    public int mida(){
-        return nodes.size();
-    }
 
 
     public HashSet<T> getNodes() {

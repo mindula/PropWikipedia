@@ -159,7 +159,7 @@ public class TestDomain {
                     graf.addAttribute("ui.antialias");
                     for(Comunitat<NodeCategoria> com: CtrlWikipedia.getInstance().getConjuntsGenerats().getCjtComunitats().getComunitats()){
                         for (NodeCategoria cat: com.getNodes()){
-                            if (com.mida() > 1) {
+                            if (com.getMida() > 1) {
                                 graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:" + color[com.getId() % 22] + ";");
                             }
                             else {

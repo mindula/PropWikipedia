@@ -53,7 +53,7 @@ public class CtrlComunitat {
     public void afegirComunitatsGenerades(ConjuntComunitatWiki c) throws Exception {
         for (Comunitat<NodeCategoria> com: c.getCjtComunitats().getComunitats()) {
             conjunt.getCjtComunitats().afegirComunitat(com);
-            String nom = "Tema: " + String.valueOf(conjunt.getCjtComunitats().getNumComunitats());
+            String nom = "Tema: " + String.valueOf(conjunt.getCjtComunitats().getNumComunitats()+" ("+com.getMida()+" categories)");
             com.setId(conjunt.getCjtComunitats().getNumComunitats());
             conjunt.setNom(com.getId(), nom);
             conjunt.setId(com.getId(), nom);

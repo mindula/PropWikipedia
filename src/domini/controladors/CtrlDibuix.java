@@ -69,7 +69,7 @@ public class CtrlDibuix {
             g = rand.nextDouble()*255;
             b = rand.nextDouble()*255;
             for (NodeCategoria cat: com.getNodes()){
-                if (com.mida() > 1) {
+                if (com.getMida() > 1) {
                         graf.getNode(cat.getNom()).addAttribute("ui.style", "fill-color:rgb("+ (int)r +","+(int)g+","+(int)b+");");
                 }
                 else {
