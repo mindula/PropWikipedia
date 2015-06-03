@@ -8,12 +8,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -96,28 +96,15 @@ public class FinestraPrincipal extends Application {
         Menu menu3 = new Menu("Eines");
         menu3.getItems().addAll(historialCerques, compararTemes);
         Menu menu4 = new Menu("Ajuda");
-        menu4.setOnAction(action);
+
+
+        MenuItem ajudaOnline = new MenuItem("Ajuda Online");
+        ajudaOnline.setOnAction(action);
+
+        menu4.getItems().add(ajudaOnline);
+
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3, menu4);
-        //TODO: nowork
-        menu4.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                Menu source = (Menu) actionEvent.getSource();
-                System.out.println(source.getText());
-                if(source.getText().equals("Ajuda")){
-                    String url = "https://drive.google.com/file/d/0B9yekx9QemWJd2c5Mmx4czhYM0E/view";
-                    try {
-                        Desktop.getDesktop().browse(new URI(url));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
-                        alertDialog.show();
-                    }
-                }
-            }
-        });
 
         //Abans era un StackPane
         VBox root = new VBox();
@@ -219,6 +206,16 @@ public class FinestraPrincipal extends Application {
                 else if ("Graf amb els temes".equals(itemName)) {
                     CtrlDibuix ctrlDibuix = new CtrlDibuix();
                     ctrlDibuix.DibuixarGrafAmbComunitats();
+                }
+
+                else if(itemName.equals("Ajuda Online")){
+                    String url = "https://drive.google.com/file/d/0B9yekx9QemWJd2c5Mmx4czhYM0E/view";
+                    try {
+                        Desktop.getDesktop().browse(new URI(url));
+                    } catch (Exception e) {
+                        AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
+                        alertDialog.show();
+                    }
                 }
 
             }
