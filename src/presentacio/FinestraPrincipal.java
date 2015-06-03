@@ -229,6 +229,8 @@ public class FinestraPrincipal extends Application {
                                                                     + "Eduard Casellas" + '\n'
                                                                     + "Ricard Gascons" + '\n'
                                                                     + "Aleix París" + '\n');
+                    about.setHeight(200);
+                    about.show();
                 }
 
             }
