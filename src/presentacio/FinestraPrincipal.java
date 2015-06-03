@@ -69,7 +69,7 @@ public class FinestraPrincipal extends Application {
         /*
             Aquin afegim els menus
          */
-        EventHandler<ActionEvent> action = listenerMenuItems();
+        final EventHandler<ActionEvent> action = listenerMenuItems();
         Menu menu1 = new Menu("Arxiu");
         MenuItem nou = new MenuItem("Nou");
         nou.setOnAction(action);
@@ -79,7 +79,7 @@ public class FinestraPrincipal extends Application {
         carregar.setOnAction(action);
         MenuItem importar = new MenuItem("Importar...");
         importar.setOnAction(action);
-        MenuItem sortir = new MenuItem("Sortir");
+        final MenuItem sortir = new MenuItem("Sortir");
         sortir.setOnAction(action);
         menu1.getItems().addAll(nou, guardar, carregar, importar, sortir);
 
@@ -99,7 +99,25 @@ public class FinestraPrincipal extends Application {
         menu4.setOnAction(action);
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3, menu4);
+        //TODO: nowork
+        menu4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
 
+                Menu source = (Menu) actionEvent.getSource();
+                System.out.println(source.getText());
+                if(source.getText().equals("Ajuda")){
+                    String url = "https://drive.google.com/file/d/0B9yekx9QemWJd2c5Mmx4czhYM0E/view";
+                    try {
+                        Desktop.getDesktop().browse(new URI(url));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
+                        alertDialog.show();
+                    }
+                }
+            }
+        });
 
         //Abans era un StackPane
         VBox root = new VBox();
@@ -202,17 +220,7 @@ public class FinestraPrincipal extends Application {
                     CtrlDibuix ctrlDibuix = new CtrlDibuix();
                     ctrlDibuix.DibuixarGrafAmbComunitats();
                 }
-                else if ("Ajuda".equals(itemName)) {
 
-                    String url = "https://drive.google.com/uc?export=download&id=0B9yekx9QemWJd2c5Mmx4czhYM0E";
-                    try {
-                        Desktop.getDesktop().browse(new URI(url));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
-                        alertDialog.show();
-                    }
-                }
             }
         };
     }
