@@ -253,9 +253,6 @@ public class GenerarTemes extends Tab {
                             public void run() {
                                 logAlgorisme.appendText("Temps en cercar comunitats: " + String.valueOf(elapsedTime) +
                                         "ms" + '\n');
-                                int lastExec = CtrlWikipedia.getInstance().getNombreExecucions()-1;
-                                String infoExecucio = CtrlWikipedia.getInstance().getInfoExecucio(lastExec);
-                                logAlgorisme.appendText("hola");
 
                                 finestraPrincipal.actualitzarTemes();
 
