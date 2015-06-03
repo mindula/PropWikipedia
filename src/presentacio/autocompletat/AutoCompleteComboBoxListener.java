@@ -12,6 +12,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Classe externa
+ * Autoria: BLOGMEISTER
+ * URL: http://tech.chitgoks.com/2013/08/20/how-to-create-autocomplete-combobox-or-textfield-in-java-fx-2/
+ */
 
 public class AutoCompleteComboBoxListener implements EventHandler<KeyEvent> {
 
