@@ -171,6 +171,7 @@ public class GenerarTemes extends Tab {
                     public void run() {
                         finestraPrincipal.bloquejarBotonsCatNavegacio();
                         progresAlgoritme.setProgress(-1.0D);
+                        generarTemes.setDisable(true);
                     }
                 });
                 double parametreAlgorisme = exhaustivitatSlider.getValue()/100;
@@ -280,6 +281,7 @@ public class GenerarTemes extends Tab {
                     @Override
                     public void run() {
                         progresAlgoritme.setProgress(0);
+                        generarTemes.setDisable(false);
                     }
                 });
             }
