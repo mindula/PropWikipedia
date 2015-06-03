@@ -101,7 +101,10 @@ public class FinestraPrincipal extends Application {
         MenuItem ajudaOnline = new MenuItem("Ajuda Online");
         ajudaOnline.setOnAction(action);
 
-        menu4.getItems().add(ajudaOnline);
+        MenuItem about = new MenuItem("About");
+        about.setOnAction(action);
+
+        menu4.getItems().addAll(ajudaOnline, about);
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menu1, menu2, menu3, menu4);
@@ -216,6 +219,16 @@ public class FinestraPrincipal extends Application {
                         AlertDialog alertDialog = new AlertDialog("Error", "Funcionalitat només disponible a Windows");
                         alertDialog.show();
                     }
+                }
+                else if (itemName.equals("About")) {
+                    AlertDialog about = new AlertDialog("About", "Projecte de Programació" + '\n'
+                                                                    + "Clúster 11" + '\n'
+                                                                    + "Grup 3: Wikipedia" + '\n'
+                                                                    + "Developers: " + '\n'
+                                                                    + "Agustí Bau" + '\n'
+                                                                    + "Eduard Casellas" + '\n'
+                                                                    + "Ricard Gascons" + '\n'
+                                                                    + "Aleix París" + '\n');
                 }
 
             }

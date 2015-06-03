@@ -179,7 +179,7 @@ public class GenerarTemes extends Tab {
                 if (louvainRadioB.isSelected()) tipusAlgorisme = TipusAlgorisme.LOUVAIN;
                 else if (cliqueRadioB.isSelected()) {
                     tipusAlgorisme = TipusAlgorisme.CLIQUE;
-                    parametreAlgorisme *= 0.8;
+                    parametreAlgorisme *= 0.5;
                 }
                 else if (girvanRadioB.isSelected()) {
                     tipusAlgorisme = TipusAlgorisme.GIRVAN;
