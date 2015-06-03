@@ -41,6 +41,10 @@ public class CtrlComunitat {
         return INSTANCE;
     }
 
+    public boolean jaExisteixTemaNom(String nom){
+        return conjunt.getNoms().contains(nom);
+    }
+
 
     /**
      * Afegeix el conjunt de comunitats c al conjunt de comunitats del programa amb un nou id que
@@ -53,7 +57,7 @@ public class CtrlComunitat {
             com.setId(conjunt.getCjtComunitats().getNumComunitats());
             conjunt.setNom(com.getId(), nom);
             conjunt.setId(com.getId(), nom);
-            conjunt.setDescripcio(com.getId(), "No hi ha cap descripcio");
+            conjunt.setDescripcio(com.getId(), "No hi ha cap descripció");
         }
     }
 
@@ -67,7 +71,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(id, nom);
         conjunt.setId(id, nom);
-        conjunt.setDescripcio(id, "No hi ha cap descripci�");
+        conjunt.setDescripcio(id, "No hi ha cap descripció");
     }
 
     public Integer getId(String nom) {
@@ -123,7 +127,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(id, "Unio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
+        conjunt.setDescripcio(id, "No hi ha cap descripció");
         //CtrlWikipedia.getInstance().setConjuntsGenerats(conjunt);
     }
 
@@ -140,7 +144,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(id, "Interseccio entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
+        conjunt.setDescripcio(id, "No hi ha cap descripció");
     }
 
     /**
@@ -156,7 +160,7 @@ public class CtrlComunitat {
         conjunt.getCjtComunitats().afegirComunitat(c);
         conjunt.setNom(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
         conjunt.setId(id, "Diferencia entre " + idComunitat1 + " i " + idComunitat2);
-        conjunt.setDescripcio(id, "No hi ha cap Descripcio");
+        conjunt.setDescripcio(id, "No hi ha cap descripció");
 
     }
 

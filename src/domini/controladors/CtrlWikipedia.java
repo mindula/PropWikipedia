@@ -7,6 +7,7 @@ import domini.modeldades.graf.GrafWikipedia;
 import domini.modeldades.graf.NodeCategoria;
 import domini.modeldades.graf.NodePagina;
 import persistencia.GrafParser;
+import prop.classescompartides.graf.Comunitat;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -139,6 +140,10 @@ public class CtrlWikipedia implements Serializable{
      * Cas d'us Eliminar Categoria
      */
     public void elimCat(String nom){
+        for(Comunitat<NodeCategoria> com: conjuntsGenerats.getCjtComunitats().getComunitats()){
+            if (com.getNodes().contains(grafWiki.getNodeCat(nom)))
+                com.getNodes().remove(grafWiki.getNodeCat(nom));
+        }
         grafWiki.eliminarCategoria(grafWiki.getNodeCat(nom));
     }
 
@@ -193,6 +198,8 @@ public class CtrlWikipedia implements Serializable{
     public ArrayList<InfoCerca> getLlistatCerques() {
         return llistatCerques;
     }
+
+
 
     @Override
     public String toString() {
