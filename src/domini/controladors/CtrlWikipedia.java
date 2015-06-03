@@ -23,7 +23,7 @@ import java.util.Date;
  */
 
 /**
- * CtrlWikipedia de la Wikipedia // TODO: superdefinicion
+ * CtrlWikipedia de la Wikipedia
  */
 
 public class CtrlWikipedia implements Serializable{

@@ -147,7 +147,6 @@ public class FinestraPrincipal extends Application {
                         }
                         navegacioVista.carregarCategories();
                         navegacioVista.carregarPagines();
-                        //TODO: no s'actualitzen els Temes, ja que a CtrlWikipedia no shi guarden mai
                         temesVista.actualitzaTemes();
                     }
                 }

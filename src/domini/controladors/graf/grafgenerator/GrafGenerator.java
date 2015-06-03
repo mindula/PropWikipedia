@@ -59,8 +59,6 @@ public class GrafGenerator  {
                 System.out.println("Temps en afegirArc: " + tempsAfegirArc);
                 System.out.println("proporcio: " + (tempsAfegirArc / (double) temps_it) * 100 + "%");
                 System.out.println("Arcs: "+newGraf.mida());
-                System.out.println("JODER");
-                System.out.println();
                 */
 
                 iteracionsLlargues++;

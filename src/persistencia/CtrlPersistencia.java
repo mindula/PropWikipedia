@@ -13,8 +13,6 @@ import java.io.*;
 public class CtrlPersistencia {
 
     public static  void guardarSessio(String filePath) throws IOException {
-        // TODO: aquest sistema nomes te el inconvenient que si camviem els atributs de la classe CtrlWiki
-        // els fitxers deixen de ser compatibles
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(CtrlWikipedia.getInstance());

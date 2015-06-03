@@ -171,6 +171,4 @@ public class CtrlComunitat {
         conjunt.eliminarInfoComunitat(idComunitat);
         conjunt.getCjtComunitats().eliminarComunitat(conjunt.getCjtComunitats().getComunitat(idComunitat));
     }
-
-    //TODO: Metode OPCIONAL Assignar color a un tema
 }
