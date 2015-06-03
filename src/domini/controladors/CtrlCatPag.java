@@ -202,4 +202,11 @@ public class CtrlCatPag {
         }
         return categories;
     }
+
+    public String getUrlPag(String nomPag){
+        return grafWiki.getNodePag(nomPag).getUrl();
+    }
+    public String getUrlCat(String nomCat){
+        return grafWiki.getNodeCat(nomCat).getUrl();
+    }
 }
