@@ -245,9 +245,14 @@ public class TemesVista extends Tab {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
+                    if(!CtrlComunitat.getInstance().JaExisteixTemaNom(nomTema)){
                     ctrlComunitat.modNomComunitat(id, inputText.getText());
                     CtrlWikipedia.getInstance().getConjuntsGenerats().setDescripcio(id, descripcio.getText());
                     actualitzaTemes();
+                    } else{
+                        AlertDialog alertDialog = new AlertDialog("Error", "Ja existeix un tema amb aquest nom");
+                        alertDialog.show();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
